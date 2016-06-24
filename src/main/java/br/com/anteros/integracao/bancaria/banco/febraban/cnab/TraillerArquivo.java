@@ -1,0 +1,109 @@
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab;
+
+import br.com.anteros.flatfile.annotation.Field;
+import br.com.anteros.flatfile.annotation.IdType;
+import br.com.anteros.flatfile.annotation.Paddings;
+import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+
+public class TraillerArquivo {
+
+	@IdType(name = "TIPO_REGISTRO", length = 1, position = 3, value = "9")
+	private String tipoRegistro;
+
+	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	private Integer codigoBanco;
+
+	@Field(name = "LT_SERVICO", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer loteServico;
+
+	@Field(name = "BRANCOS_1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
+	private String brancos1;
+
+	@Field(name = "QT_LOTE_ARQUIVO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer quantidadeLotesArquivo;
+
+	@Field(name = "QT_REGISTRO_ARQUIVO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer quantidadeRegistrosArquivo;
+
+	@Field(name = "QT_CONTA_CONCILIACAO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer quantidadeContasConciliacao;
+
+	@Field(name = "BRANCOS_2", length = 205, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
+	private String brancos2;
+
+	public TraillerArquivo(ContaBancaria contaBancaria) {
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
+		this.loteServico = 9999;// G002
+		this.quantidadeLotesArquivo = 1;// G049
+		this.quantidadeRegistrosArquivo = 1; // G056
+	}
+
+	public static TraillerArquivo of(ContaBancaria contaBancaria) {
+		return new TraillerArquivo(contaBancaria);
+	}
+
+	public String getTipoRegistro() {
+		return tipoRegistro;
+	}
+
+	public void setTipoRegistro(String tipoRegistro) {
+		this.tipoRegistro = tipoRegistro;
+	}
+
+	public Integer getCodigoBanco() {
+		return codigoBanco;
+	}
+
+	public void setCodigoBanco(Integer codigoBanco) {
+		this.codigoBanco = codigoBanco;
+	}
+
+	public Integer getLoteServico() {
+		return loteServico;
+	}
+
+	public void setLoteServico(Integer loteServico) {
+		this.loteServico = loteServico;
+	}
+
+	public String getBrancos1() {
+		return brancos1;
+	}
+
+	public void setBrancos1(String brancos1) {
+		this.brancos1 = brancos1;
+	}
+
+	public Integer getQuantidadeLotesArquivo() {
+		return quantidadeLotesArquivo;
+	}
+
+	public void setQuantidadeLotesArquivo(Integer quantidadeLotesArquivo) {
+		this.quantidadeLotesArquivo = quantidadeLotesArquivo;
+	}
+
+	public Integer getQuantidadeRegistrosArquivo() {
+		return quantidadeRegistrosArquivo;
+	}
+
+	public void setQuantidadeRegistrosArquivo(Integer quantidadeRegistrosArquivo) {
+		this.quantidadeRegistrosArquivo = quantidadeRegistrosArquivo;
+	}
+
+	public Integer getQuantidadeContasConciliacao() {
+		return quantidadeContasConciliacao;
+	}
+
+	public void setQuantidadeContasConciliacao(Integer quantidadeContasConciliacao) {
+		this.quantidadeContasConciliacao = quantidadeContasConciliacao;
+	}
+
+	public String getBrancos2() {
+		return brancos2;
+	}
+
+	public void setBrancos2(String brancos2) {
+		this.brancos2 = brancos2;
+	}
+}
