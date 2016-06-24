@@ -46,7 +46,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeProtesto;
 import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeTitulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240Febraban;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 
@@ -66,7 +66,7 @@ public class Teste {
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		
-		CNAB240 cnab240 = new CNAB240(contaBancaria, remessas);
+		CNAB240Febraban cnab240 = new CNAB240Febraban(contaBancaria, remessas);
 		
 		FlatFileManager manager = new FlatFileManager();
 		byte[] data = manager.generate(cnab240);
