@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2016 Anteros Tecnologia
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,8 +23,6 @@ import javax.xml.bind.JAXBException;
 
 import com.lowagie.text.DocumentException;
 
-import br.com.anteros.automacao.bancaria.boleto.BancosSuportados;
-import br.com.anteros.automacao.bancaria.boleto.Boleto;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.CEP;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.UnidadeFederativa;
@@ -34,6 +47,8 @@ import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeTitulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240;
+import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
+import br.com.anteros.integracao.bancaria.boleto.Boleto;
 
 public class Teste {
 
