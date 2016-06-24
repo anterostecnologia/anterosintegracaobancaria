@@ -25,9 +25,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 @FlatFile(name = "Arquivo CNAB240", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
-public class CNAB240Febraban implements CNAB240{
-
-	private static final int PRIMEIRA_REMESSA = 0;
+public class CNAB240Febraban implements CNAB240 {
 
 	@Record(name = "Header", description = "Protocolo de comunicação", order = 1)
 	private HeaderArquivo headerArquivo;
@@ -47,22 +45,24 @@ public class CNAB240Febraban implements CNAB240{
 	@Record(name = "Trailler", order = 6)
 	private TraillerArquivo traillerArquivo;
 
-
 	public CNAB240Febraban(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		
-		Assert.notNull(remessas,"Informe as remessas para geração do arquivo.");
-		if (remessas.size()==0){
+
+		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
+		if (remessas.size() == 0) {
 			throw new CNABException("Informe as remessas para geração do arquivo.");
 		}
-		
-		headerArquivo = HeaderArquivo.of(contaBancaria, remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(), remessas.get(PRIMEIRA_REMESSA).getTitulo().getCedente());
-		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(), remessas.get(PRIMEIRA_REMESSA).getTitulo().getCedente());
-		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria,remessas);
-		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria,remessas);
-		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria,remessas);
+
+		headerArquivo = HeaderArquivo.of(contaBancaria,
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
+				CNAB240.VERSAO_LAYOUT_ARQUIVO_FEBRABAN);
+		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), CNAB240.VERSAO_LAYOUT_LOTE_FEBRABAN);
+		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
+		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
+		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
-	
-	
 
 }

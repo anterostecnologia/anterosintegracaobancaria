@@ -403,6 +403,8 @@ public class Banco implements br.com.anteros.integracao.bancaria.banco.Banco {
 		
 		return pessoaJuridica.hasContaBancaria();
 	}
+	
+	
 
 
 	/**

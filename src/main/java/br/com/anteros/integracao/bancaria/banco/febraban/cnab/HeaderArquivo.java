@@ -86,7 +86,7 @@ public class HeaderArquivo {
 	@Field(name = "NR_SEQUENCIAL_ARQUIVO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialArquivo;
 
-	@Field(name = "NR_VERSAO_ARQUIVO", length = 3, type = EnumTypes.INTEGER, value = "084", padding = Paddings.ZERO_LEFT)
+	@Field(name = "NR_VERSAO_ARQUIVO", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroVersaoArquivo;
 
 	@Field(name = "DENSIDADE_GRAVACAO_ARQUIVO", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00000")
@@ -102,7 +102,7 @@ public class HeaderArquivo {
 	private String brancos3;
 
 
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
@@ -110,6 +110,7 @@ public class HeaderArquivo {
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
+		this.numeroVersaoArquivo = versaoLayoutArquivo;//G030
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeEmpresa = cedente.getNome();// G013
@@ -120,8 +121,8 @@ public class HeaderArquivo {
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
-	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		return new HeaderArquivo(contaBancaria, carteira, cedente);
+	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo) {
+		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo);
 	}
 
 	public String getTipoRegistro() {

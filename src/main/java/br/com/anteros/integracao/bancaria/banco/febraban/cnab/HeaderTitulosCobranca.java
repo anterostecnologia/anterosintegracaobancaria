@@ -46,8 +46,8 @@ public class HeaderTitulosCobranca {
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
-	@Field(name = "LAYOUT_LOTE", length = 3, value = "045", type = EnumTypes.INTEGER)
-	private String layoutLote;
+	@Field(name = "LAYOUT_LOTE", length = 3, type = EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	private Integer layoutLote;
 
 	@Field(name = "BRANCOS2", length = 1, value = " ")
 	private String brancos2;
@@ -97,13 +97,14 @@ public class HeaderTitulosCobranca {
 	@Field(name = "BRANCOS3", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	public HeaderTitulosCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+	public HeaderTitulosCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutLote) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.loteServico = 1;//G002		
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
 		this.codigoConvenio = carteira.getCodigoConvenio();// G007
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
+		this.layoutLote = versaoLayoutLote;//G030
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
@@ -113,8 +114,8 @@ public class HeaderTitulosCobranca {
 		this.dataGravacao = new Date();// G068
 	}
 
-	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		return new HeaderTitulosCobranca(contaBancaria, carteira, cedente);
+	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutLote) {
+		return new HeaderTitulosCobranca(contaBancaria, carteira, cedente, versaoLayoutLote);
 	}
 
 	public String getTipoRegistro() {
@@ -165,11 +166,11 @@ public class HeaderTitulosCobranca {
 		this.brancos1 = brancos1;
 	}
 
-	public String getLayoutLote() {
+	public Integer getLayoutLote() {
 		return layoutLote;
 	}
 
-	public void setLayoutLote(String layoutLote) {
+	public void setLayoutLote(Integer layoutLote) {
 		this.layoutLote = layoutLote;
 	}
 
