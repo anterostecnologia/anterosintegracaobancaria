@@ -14,7 +14,6 @@ public class CNAB240Factory {
 	public static final Integer CAIXA_ECONOMICA_FEDERAL = 104;
 	public static final Integer HSBC = 399;
 	public static final Integer ITAU = 184;
-	public static final Integer UNIBANCO = 409;
 	public static final Integer SANTANDER = 033;
 	public static final Integer REAL = 356;
 
