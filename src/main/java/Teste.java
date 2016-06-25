@@ -26,8 +26,8 @@ import com.lowagie.text.DocumentException;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.CEP;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.UnidadeFederativa;
-import br.com.anteros.flatfile.annotation.FlatFileManager;
-import br.com.anteros.flatfile.annotation.FlatFileManagerException;
+import br.com.anteros.flatfile.FlatFileManager;
+import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.Agencia;
 import br.com.anteros.integracao.bancaria.banco.febraban.Carteira;
 import br.com.anteros.integracao.bancaria.banco.febraban.Cedente;
@@ -70,7 +70,7 @@ public class Teste {
 		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, remessas);
 		
 		FlatFileManager manager = new FlatFileManager();
-		byte[] data = manager.generate(layoutCNAB240);
+		byte[] data = manager.generate(layoutCNAB240,new String[]{"REMESSA"});
 		
 		System.out.println(new String(data));
 		

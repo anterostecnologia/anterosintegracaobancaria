@@ -27,17 +27,20 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 @FlatFile(name = "Arquivo CNAB240", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
 public class CNAB240Febraban implements CNAB240 {
 
-	@Record(name = "Header", description = "Protocolo de comunicação", order = 1)
+	@Record(name = "Header", description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
 	private HeaderArquivo headerArquivo;
 
-	@Record(name = "HeaderLoteCobranca", description = "Cabeçalho lote de titulos cobrança", order = 2)
+	@Record(name = "HeaderLoteCobranca", description = "Cabeçalho lote de titulos cobrança", order = 2, groups={"REMESSA","RETORNO"})
 	private HeaderTitulosCobranca headerTitulosCobranca;
 
-	@Record(name = "TituloCobrancaSegmentoP", description = "Segmento P dos titulos cobrança", order = 3, repeatable = true)
+	@Record(name = "TituloCobrancaSegmentoP", description = "Segmento P Remessa dos titulos cobrança", order = 3, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoP segmentoP;
 
-	@InnerRecord(name = "TituloCobrancaSegmentoQ", description = "Segmento Q dos titulos cobrança", recordOwner = "TituloCobrancaSegmentoP", order = 4, repeatable = true)
+	@InnerRecord(name = "TituloCobrancaSegmentoQ", description = "Segmento Q Remessa dos titulos cobrança", recordOwner = "TituloCobrancaSegmentoP", order = 4, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoQ segmentoQ;
+
+	@Record(name = "TituloCobrancaSegmentoT", description = "Segmento T Retorno dos titulos cobrança", order = 5, repeatable = true, groups={"RETORNO"})
+	private TitulosCobrancaSegmentoT segmentoT;
 
 	@Record(name = "TraillerLoteCobranca", description = "Resumo lote de titulos cobrança", order = 5)
 	private TraillerTitulosCobranca traillerTitulosCobranca;
@@ -61,6 +64,7 @@ public class CNAB240Febraban implements CNAB240 {
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), CNAB240.VERSAO_LAYOUT_LOTE_FEBRABAN);
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
+		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}

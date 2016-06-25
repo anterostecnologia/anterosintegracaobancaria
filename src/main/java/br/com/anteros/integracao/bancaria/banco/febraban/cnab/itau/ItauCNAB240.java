@@ -14,6 +14,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderArquivo;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderTitulosCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoP;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoQ;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoT;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerArquivo;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerTitulosCobranca;
 
@@ -24,23 +25,27 @@ public class ItauCNAB240 implements CNAB240 {
 	private static final int VERSAO_LAYOUT_ARQUIVO_ITAU = 40;
 	private static final int VERSAO_LAYOUT_LOTE_ITAU = 30;
 
-	@Record(name = "Header", description = "Protocolo de comunicação", order = 1)
+	@Record(name = "Header", description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
 	private HeaderArquivo headerArquivo;
 
-	@Record(name = "HeaderLoteCobranca", description = "Cabeçalho lote de titulos cobrança", order = 2)
+	@Record(name = "HeaderLoteCobranca", description = "Cabeçalho lote de titulos cobrança", order = 2, groups={"REMESSA","RETORNO"})
 	private HeaderTitulosCobranca headerTitulosCobranca;
 
-	@Record(name = "TituloCobrancaSegmentoP", description = "Segmento P dos titulos cobrança", order = 3, repeatable = true)
+	@Record(name = "TituloCobrancaSegmentoP", description = "Segmento P Remessa dos titulos cobrança", order = 3, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoP segmentoP;
 
-	@InnerRecord(name = "TituloCobrancaSegmentoQ", description = "Segmento Q dos titulos cobrança", recordOwner = "TituloCobrancaSegmentoP", order = 4, repeatable = true)
+	@InnerRecord(name = "TituloCobrancaSegmentoQ", description = "Segmento Q Remessa dos titulos cobrança", recordOwner = "TituloCobrancaSegmentoP", order = 4, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoQ segmentoQ;
+
+	@Record(name = "TituloCobrancaSegmentoT", description = "Segmento T Retorno dos titulos cobrança", order = 5, repeatable = true, groups={"RETORNO"})
+	private TitulosCobrancaSegmentoT segmentoT;
 
 	@Record(name = "TraillerLoteCobranca", description = "Resumo lote de titulos cobrança", order = 5)
 	private TraillerTitulosCobranca traillerTitulosCobranca;
 
 	@Record(name = "Trailler", order = 6)
 	private TraillerArquivo traillerArquivo;
+
 
 	public ItauCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 
@@ -58,6 +63,7 @@ public class ItauCNAB240 implements CNAB240 {
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_ITAU);
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
+		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
