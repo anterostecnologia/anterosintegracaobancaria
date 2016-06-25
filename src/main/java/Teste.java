@@ -46,8 +46,8 @@ import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeProtesto;
 import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeTitulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240Factory;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 

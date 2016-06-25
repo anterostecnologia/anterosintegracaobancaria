@@ -1,14 +1,14 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
 import java.util.List;
 
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.bancobrasil.BancoBrasilCNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.bradesco.BradescoCNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.caixa.CaixaEconomicaFederalCNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.hsbc.HsbcCNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.itau.ItauCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil.BancoBrasilCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bradesco.BradescoCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.caixa.CaixaEconomicaFederalCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.hsbc.HsbcCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.itau.ItauCNAB240;
 
 public class CNAB240Factory {
 

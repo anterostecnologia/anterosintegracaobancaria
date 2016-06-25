@@ -1,4 +1,4 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab.bancobrasil;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil;
 
 import java.util.List;
 
@@ -8,15 +8,15 @@ import br.com.anteros.flatfile.annotation.InnerRecord;
 import br.com.anteros.flatfile.annotation.Record;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNABException;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderArquivo;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderTitulosCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoP;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoQ;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoT;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerArquivo;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerTitulosCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNABException;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderTitulosCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoP;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoQ;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerTitulosCobranca;
 
 
 @FlatFile(name = "Arquivo CNAB240 - Banco do Brasil", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")

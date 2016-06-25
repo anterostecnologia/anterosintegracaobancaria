@@ -1,4 +1,4 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab.itau;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.caixa;
 
 import java.util.List;
 
@@ -8,22 +8,21 @@ import br.com.anteros.flatfile.annotation.InnerRecord;
 import br.com.anteros.flatfile.annotation.Record;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.CNABException;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderArquivo;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.HeaderTitulosCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoP;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoQ;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TitulosCobrancaSegmentoT;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerArquivo;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab.TraillerTitulosCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNABException;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderTitulosCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoP;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoQ;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerTitulosCobranca;
 
+@FlatFile(name = "Arquivo CNAB240 - Caixa Econômica Federal", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
+public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 
-@FlatFile(name = "Arquivo CNAB240 - Itaú", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
-public class ItauCNAB240 implements CNAB240 {
-
-	private static final int VERSAO_LAYOUT_ARQUIVO_ITAU = 40;
-	private static final int VERSAO_LAYOUT_LOTE_ITAU = 30;
+	private static final int VERSAO_LAYOUT_ARQUIVO_CEF = 50;
+	private static final int VERSAO_LAYOUT_LOTE_CEF = 30;
 
 	@Record(name = "Header", description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
 	private HeaderArquivo headerArquivo;
@@ -47,7 +46,7 @@ public class ItauCNAB240 implements CNAB240 {
 	private TraillerArquivo traillerArquivo;
 
 
-	public ItauCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	public CaixaEconomicaFederalCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
@@ -57,15 +56,14 @@ public class ItauCNAB240 implements CNAB240 {
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
-				VERSAO_LAYOUT_ARQUIVO_ITAU);
+				VERSAO_LAYOUT_ARQUIVO_CEF);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
-				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_ITAU);
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_CEF);
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
-
 }

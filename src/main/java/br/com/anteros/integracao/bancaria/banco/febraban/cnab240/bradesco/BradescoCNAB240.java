@@ -1,19 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 Anteros Tecnologia
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bradesco;
 
 import java.util.List;
 
@@ -23,9 +8,21 @@ import br.com.anteros.flatfile.annotation.InnerRecord;
 import br.com.anteros.flatfile.annotation.Record;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNABException;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.HeaderTitulosCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoP;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoQ;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerArquivo;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerTitulosCobranca;
 
-@FlatFile(name = "Arquivo CNAB240", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
-public class CNAB240Febraban implements CNAB240 {
+
+@FlatFile(name = "Arquivo CNAB240 - Bradesco", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
+public class BradescoCNAB240 implements CNAB240 {
+
+	private static final int VERSAO_LAYOUT_LOTE_BRADESCO = 42;
 
 	@Record(name = "Header", description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
 	private HeaderArquivo headerArquivo;
@@ -48,7 +45,8 @@ public class CNAB240Febraban implements CNAB240 {
 	@Record(name = "Trailler", order = 6)
 	private TraillerArquivo traillerArquivo;
 
-	public CNAB240Febraban(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+
+	public BradescoCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
@@ -61,12 +59,13 @@ public class CNAB240Febraban implements CNAB240 {
 				CNAB240.VERSAO_LAYOUT_ARQUIVO_FEBRABAN);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
-				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), CNAB240.VERSAO_LAYOUT_LOTE_FEBRABAN);
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_BRADESCO);
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
+
 
 }

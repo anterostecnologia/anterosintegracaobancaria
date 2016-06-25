@@ -20,4 +20,4 @@
  * @author edson
  *
  */
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab.bancobrasil;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil;
