@@ -26,7 +26,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TraillerTitulosCobranca {
 
-	@IdType(name = "TIPO_REGISTRO", length = 1, position = 3, value = "5")
+	@IdType(name = "TIPO_REGISTRO", length = 1, position = 8, value = "5")
 	private String tipoRegistro;
 
 	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)

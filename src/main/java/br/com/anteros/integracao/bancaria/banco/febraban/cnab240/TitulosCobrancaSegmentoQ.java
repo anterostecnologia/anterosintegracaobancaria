@@ -27,10 +27,10 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TitulosCobrancaSegmentoQ implements RecordData {
 
-	@IdType(name = "CD_SEGMENTO_REGISTRO", length = 1, position = 5, value = "Q")
+	@IdType(name = "CD_SEGMENTO_REGISTRO", length = 1, position = 14, value = "Q")
 	private String codigoSegmentoRegistro;
 
-	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
 	@Field(name = "LT_SERVICO", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -48,7 +48,7 @@ public class TitulosCobrancaSegmentoQ implements RecordData {
 	@Field(name = "CD_MOVIMENTO_REMESSA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoMovimentoRemessa;
 
-	@Field(name = "CD_MOVIMENTO_REMESSA", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = "TP_INSCRICAO_SACADO", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoInscricaoSacado;
 
 	@Field(name = "NR_INSCRICAO_SACADO", length = 15, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)

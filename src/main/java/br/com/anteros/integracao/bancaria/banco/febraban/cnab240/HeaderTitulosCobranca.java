@@ -28,7 +28,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class HeaderTitulosCobranca {
 
-	@IdType(name = "TP_REGISTRO", length = 1, position = 3, value = "1")
+	@IdType(name = "TP_REGISTRO", length = 1, position = 8, value = "1")
 	private String tipoRegistro;
 
 	@Field(name = "CD_BANCO", length = 3, value = "1", padding = Paddings.ZERO_LEFT)
@@ -46,7 +46,7 @@ public class HeaderTitulosCobranca {
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
-	@Field(name = "LAYOUT_LOTE", length = 3, type = EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	@Field(name = "LAYOUT_LOTE", length = 3, value = "045", type = EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer layoutLote;
 
 	@Field(name = "BRANCOS2", length = 1, value = " ")
