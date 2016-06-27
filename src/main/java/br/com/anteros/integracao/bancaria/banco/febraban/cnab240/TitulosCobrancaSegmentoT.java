@@ -1,6 +1,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import br.com.anteros.flatfile.Record;
 import br.com.anteros.flatfile.annotation.Field;
