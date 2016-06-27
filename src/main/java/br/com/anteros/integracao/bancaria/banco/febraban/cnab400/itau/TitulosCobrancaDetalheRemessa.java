@@ -1,13 +1,16 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab400;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.itau;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TitulosCobrancaDetalheRemessa {
 
@@ -163,6 +166,10 @@ public class TitulosCobrancaDetalheRemessa {
 	
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
+
+	public TitulosCobrancaDetalheRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+
+	}
 
 	public Integer getCodigoRegistro() {
 		return codigoRegistro;
@@ -570,6 +577,10 @@ public class TitulosCobrancaDetalheRemessa {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public static TitulosCobrancaDetalheRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+		return new TitulosCobrancaDetalheRemessa(contaBancaria, remessas);
 	}
 	
 }

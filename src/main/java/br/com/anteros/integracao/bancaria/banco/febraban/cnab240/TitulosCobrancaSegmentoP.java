@@ -558,4 +558,8 @@ public class TitulosCobrancaSegmentoP implements RecordData {
 		return new TitulosCobrancaSegmentoP(contaBancaria,remessas);
 	}
 
+	public void set(br.com.anteros.flatfile.Record record) {
+		
+	}
+
 }

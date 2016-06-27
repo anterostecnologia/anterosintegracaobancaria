@@ -1,9 +1,13 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab400;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.itau;
+
+import java.util.List;
 
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TraillerArquivoRemessa {
 
@@ -15,6 +19,10 @@ public class TraillerArquivoRemessa {
 	
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+
+	public TraillerArquivoRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+
+	}
 
 	public Integer getCodigoRegistro() {
 		return codigoRegistro;
@@ -38,6 +46,10 @@ public class TraillerArquivoRemessa {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public static TraillerArquivoRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+		return new TraillerArquivoRemessa(contaBancaria, remessas);
 	}
 	
 	

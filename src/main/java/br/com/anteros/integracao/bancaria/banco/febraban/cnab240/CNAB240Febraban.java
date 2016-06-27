@@ -15,38 +15,61 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.xml.bind.JAXBException;
+
 import br.com.anteros.core.utils.Assert;
+import br.com.anteros.flatfile.FlatFileManager;
+import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.flatfile.annotation.FlatFile;
 import br.com.anteros.flatfile.annotation.InnerRecord;
 import br.com.anteros.flatfile.annotation.Record;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
 
 @FlatFile(name = "Arquivo CNAB240", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
 public class CNAB240Febraban implements CNAB240 {
 
-	@Record(name = "Header", description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
+	private static final String TRAILLER = "Trailler";
+	public static final String TRAILLER_LOTE_COBRANCA = "TraillerLoteCobranca";
+	public static final String TITULO_COBRANCA_SEGMENTO_T = "TituloCobrancaSegmentoT";
+	public static final String TITULO_COBRANCA_SEGMENTO_U = "TituloCobrancaSegmentoU";
+	public static final String TITULO_COBRANCA_SEGMENTO_Q = "TituloCobrancaSegmentoQ";
+	public static final String TITULO_COBRANCA_SEGMENTO_P = "TituloCobrancaSegmentoP";
+	public static final String HEADER_LOTE_COBRANCA = "HeaderLoteCobranca";
+	public static final String HEADER = "Header";
+
+	@Record(name = HEADER, description = "Protocolo de comunicação", order = 1, groups={"REMESSA","RETORNO"})
 	private HeaderArquivo headerArquivo;
 
-	@Record(name = "HeaderLoteCobranca", description = "Cabeçalho lote de titulos cobrança", order = 2, groups={"REMESSA","RETORNO"})
+	@Record(name = HEADER_LOTE_COBRANCA, description = "Cabeçalho lote de titulos cobrança", order = 2, groups={"REMESSA","RETORNO"})
 	private HeaderTitulosCobranca headerTitulosCobranca;
 
-	@Record(name = "TituloCobrancaSegmentoP", description = "Segmento P Remessa dos titulos cobrança", order = 3, repeatable = true, groups={"REMESSA"})
+	@Record(name = TITULO_COBRANCA_SEGMENTO_P, description = "Segmento P Remessa dos titulos cobrança", order = 3, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoP segmentoP;
 
-	@InnerRecord(name = "TituloCobrancaSegmentoQ", description = "Segmento Q Remessa dos titulos cobrança", recordOwner = "TituloCobrancaSegmentoP", order = 4, repeatable = true, groups={"REMESSA"})
+	@InnerRecord(name = TITULO_COBRANCA_SEGMENTO_Q, description = "Segmento Q Remessa dos titulos cobrança", recordOwner = TITULO_COBRANCA_SEGMENTO_P, order = 4, repeatable = true, groups={"REMESSA"})
 	private TitulosCobrancaSegmentoQ segmentoQ;
 
-	@Record(name = "TituloCobrancaSegmentoT", description = "Segmento T Retorno dos titulos cobrança", order = 5, repeatable = true, groups={"RETORNO"})
+	@Record(name = TITULO_COBRANCA_SEGMENTO_T, description = "Segmento T Retorno dos titulos cobrança", order = 5, repeatable = true, groups={"RETORNO"})
 	private TitulosCobrancaSegmentoT segmentoT;
+	
+	@InnerRecord(name = TITULO_COBRANCA_SEGMENTO_U, description = "Segmento U Retorno dos titulos cobrança", order = 6, repeatable = true, groups={"RETORNO"}, recordOwner=TITULO_COBRANCA_SEGMENTO_T)
+	private TitulosCobrancaSegmentoU segmentoU;
 
-	@Record(name = "TraillerLoteCobranca", description = "Resumo lote de titulos cobrança", order = 5)
+	@Record(name = TRAILLER_LOTE_COBRANCA, description = "Resumo lote de titulos cobrança", order = 7, groups={"REMESSA","RETORNO"})
 	private TraillerTitulosCobranca traillerTitulosCobranca;
 
-	@Record(name = "Trailler", order = 6)
+	@Record(name = TRAILLER, order = 8, groups={"REMESSA","RETORNO"})
 	private TraillerArquivo traillerArquivo;
+	private List<RemessaCobranca> remessas;
 
 	public CNAB240Febraban(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 
@@ -54,6 +77,8 @@ public class CNAB240Febraban implements CNAB240 {
 		if (remessas.size() == 0) {
 			throw new CNABException("Informe as remessas para geração do arquivo.");
 		}
+		
+		this.remessas = remessas;
 
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
@@ -65,8 +90,68 @@ public class CNAB240Febraban implements CNAB240 {
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
+		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
+	
+	public CNAB240Febraban(ContaBancaria contaBancaria) {	
+		headerArquivo = HeaderArquivo.of(contaBancaria);
+		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria);
+		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
+		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
+		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria);
+		traillerArquivo = TraillerArquivo.of(contaBancaria);
+	}
 
+	public byte[] generate() throws FlatFileManagerException, JAXBException, IllegalArgumentException,
+			IllegalAccessException, IOException {
+		return generate(new String[]{"GLOBAL"});
+	}
+
+	public byte[] generate(String[] groups) throws FlatFileManagerException, JAXBException,
+			IllegalArgumentException, IllegalAccessException, IOException {
+		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
+		if (remessas.size() == 0) {
+			throw new CNABException("Informe as remessas para geração do arquivo.");
+		}
+		FlatFileManager manager = new FlatFileManager();
+		return manager.generate(this,groups);
+	}
+
+	public List<RetornoCobranca> read(File file) throws IOException, IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException {
+		return read(new FileInputStream(file), new String[]{"GLOBAL"});
+	}
+
+	public List<RetornoCobranca> read(InputStream dataInputStream) throws IOException, IllegalArgumentException,
+	IllegalAccessException, FlatFileManagerException, JAXBException {
+		return read(dataInputStream, new String[]{"GLOBAL"});
+	}
+
+	public List<RetornoCobranca> read(byte[] data) throws IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
+		return read(new ByteArrayInputStream(data), new String[]{"GLOBAL"});
+	}
+	
+	public List<RetornoCobranca> read(File file, String[] groups) throws IOException, IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException {
+		return read(new FileInputStream(file), groups);
+	}
+
+	public List<RetornoCobranca> read(InputStream dataInputStream, String[] groups) throws IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
+		FlatFileManager manager = new FlatFileManager();
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, groups, dataInputStream);
+		
+		headerArquivo.set(flatFile.getRecord(HEADER));
+		headerTitulosCobranca.set(flatFile.getRecord(HEADER_LOTE_COBRANCA));		
+		segmentoT.set(flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_T));
+		segmentoU.set(flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_U));
+		traillerTitulosCobranca.set(flatFile.getRecord(TRAILLER_LOTE_COBRANCA));
+		traillerArquivo.set(flatFile.getRecord(TRAILLER));
+		
+		
+		return null;
+	}
+
+	public List<RetornoCobranca> read(byte[] data, String[] groups) throws IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
+		return read(new ByteArrayInputStream(data), groups);
+	}
 }

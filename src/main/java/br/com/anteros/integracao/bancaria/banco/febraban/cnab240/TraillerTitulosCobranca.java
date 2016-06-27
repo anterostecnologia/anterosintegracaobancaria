@@ -53,6 +53,11 @@ public class TraillerTitulosCobranca {
 		
 	}
 
+	public TraillerTitulosCobranca(ContaBancaria contaBancaria2) {
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); //G001
+		this.loteServico = 1;//G002
+	}
+
 	public static TraillerTitulosCobranca of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 		return new TraillerTitulosCobranca(contaBancaria, remessas);
 	}
@@ -111,6 +116,14 @@ public class TraillerTitulosCobranca {
 
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
+	}
+
+	public void set(br.com.anteros.flatfile.Record record) {
+		
+	}
+
+	public static TraillerTitulosCobranca of(ContaBancaria contaBancaria) {
+		return new TraillerTitulosCobranca(contaBancaria);
 	}
 
 }

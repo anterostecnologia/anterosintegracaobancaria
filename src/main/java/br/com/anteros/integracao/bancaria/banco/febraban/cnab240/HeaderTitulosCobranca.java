@@ -114,6 +114,18 @@ public class HeaderTitulosCobranca {
 		this.dataGravacao = new Date();// G068
 	}
 
+	public HeaderTitulosCobranca(ContaBancaria contaBancaria) {
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
+		this.loteServico = 1;//G002		
+		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
+		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
+		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
+		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
+		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
+		this.numeroRemessaRetorno = 1; //G079
+		this.dataGravacao = new Date();// G068
+	}
+
 	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutLote) {
 		return new HeaderTitulosCobranca(contaBancaria, carteira, cedente, versaoLayoutLote);
 	}
@@ -300,6 +312,14 @@ public class HeaderTitulosCobranca {
 
 	public void setBrancos3(String brancos3) {
 		this.brancos3 = brancos3;
+	}
+
+	public void set(br.com.anteros.flatfile.Record record) {
+		
+	}
+
+	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria) {
+		return new HeaderTitulosCobranca(contaBancaria);
 	}
 
 }

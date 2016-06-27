@@ -121,4 +121,8 @@ public class TraillerArquivo {
 	public void setBrancos2(String brancos2) {
 		this.brancos2 = brancos2;
 	}
+
+	public void set(br.com.anteros.flatfile.Record record) {
+		
+	}
 }

@@ -324,4 +324,8 @@ public class TitulosCobrancaSegmentoQ implements RecordData {
 		this.codigoBancoCorrespondenteCompe = 0; // C031
 	}
 
+	public void set(br.com.anteros.flatfile.Record record) {
+		
+	}
+
 }

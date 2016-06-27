@@ -1,4 +1,4 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab400;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.itau;
 
 import java.util.Date;
 
@@ -7,6 +7,9 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.febraban.Carteira;
+import br.com.anteros.integracao.bancaria.banco.febraban.Cedente;
+import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class HeaderArquivoRemessa {
 	
@@ -63,6 +66,10 @@ public class HeaderArquivoRemessa {
 
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+
+	public HeaderArquivoRemessa(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+		
+	}
 
 	public String getCodigoDoRegistro() {
 		return codigoDoRegistro;
@@ -206,6 +213,10 @@ public class HeaderArquivoRemessa {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public static HeaderArquivoRemessa of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+		return new HeaderArquivoRemessa(contaBancaria,carteira,cedente);
 	}
 	
 	

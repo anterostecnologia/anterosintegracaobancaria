@@ -1,7 +1,9 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
+import br.com.anteros.flatfile.Record;
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
@@ -343,12 +345,14 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 	}
 
 	public int getNumberOfRecords() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public void readRowData(int row) {
-		// TODO Auto-generated method stub
+		
+	}
+
+	public void set(Collection<Record> collection) {
 		
 	}
 	

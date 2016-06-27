@@ -29,10 +29,12 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class HeaderArquivo {
 
+	private static final String CD_BANCO = "CD_BANCO";
+
 	@IdType(name = "TIPO_REGISTRO", length = 1, position = 3, value = "0")
 	private String tipoRegistro;
 
-	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
 	@Field(name = "LT_SERVICO", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000")
@@ -121,8 +123,26 @@ public class HeaderArquivo {
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
+	public HeaderArquivo(ContaBancaria contaBancaria) {
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
+		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
+		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
+		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
+		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
+		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
+		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
+		this.codigoRemessaRetorno = 1;// G015
+		this.dataGeracaoArquivo = new Date();// G016
+		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(new Date()));// G017
+		this.numeroSequencialArquivo = 1;// G018
+	}
+
 	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo) {
 		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo);
+	}
+	
+	public static HeaderArquivo of(ContaBancaria contaBancaria) {
+		return new HeaderArquivo(contaBancaria);
 	}
 
 	public String getTipoRegistro() {
@@ -315,6 +335,10 @@ public class HeaderArquivo {
 
 	public void setBrancos3(String brancos3) {
 		this.brancos3 = brancos3;
+	}
+
+	public void set(br.com.anteros.flatfile.Record record) {		
+		setCodigoBanco((Integer)record.getValue(CD_BANCO));
 	}
 
 }
