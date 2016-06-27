@@ -1,7 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 
 import br.com.anteros.flatfile.Record;
 import br.com.anteros.flatfile.annotation.Field;
@@ -13,93 +12,122 @@ import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class TitulosCobrancaSegmentoT implements RecordData {
-	
-	
-	@IdType(value="T", length=1, position=5, name="CD_SEGMENTO_REGISTRO")
+
+	private static final String BRANCOS_2 = "BRANCOS2";
+	private static final String ID_REJEICAO = "ID_REJEICAO";
+	private static final String VL_TARIFA_CUSTAS = "VL_TARIFA_CUSTAS";
+	private static final String NR_CONTRATO_OPERACAO_CREDITO = "NR_CONTRATO_OPERACAO_CREDITO";
+	private static final String NOME_SACADOR_AVALISTA = "NOME_SACADOR_AVALISTA";
+	private static final String NR_INSCRICAO_SACADO_AVALISTA = "NR_INSCRICAO_SACADO_AVALISTA";
+	private static final String TP_INSCRICAO_SACADO_AVALISTA = "TP_INSCRICAO_SACADO_AVALISTA";
+	private static final String CD_MOEDA = "CD_MOEDA";
+	private static final String ID_TITULO_EMPRESA = "ID_TITULO_EMPRESA";
+	private static final String DIGITO_AGENCIA_COBRADORA = "DIGITO_AGENCIA_COBRADORA";
+	private static final String AGENCIA_COBRADORA_RECEBEDORA = "AGENCIA_COBRADORA_RECEBEDORA";
+	private static final String NR_BANCO = "NR_BANCO";
+	private static final String VL_NOMINAL_TITULO = "VL_NOMINAL_TITULO";
+	private static final String DT_VENCIMENTO = "DT_VENCIMENTO";
+	private static final String NR_DOCUMENTO_COBRANCA = "NR_DOCUMENTO_COBRANCA";
+	private static final String CD_CARTEIRA = "CD_CARTEIRA";
+	private static final String ID_TITULO = "ID_TITULO";
+	private static final String DIGITO_AGENCIA_CONTA = "DIGITO_AGENCIA_CONTA";
+	private static final String DIGITO_CONTACORRENTE = "DIGITO_CONTACORRENTE";
+	private static final String NR_CONTACORRENTE = "NR_CONTACORRENTE";
+	private static final String DIGITO_VERIFICADOR_AGENCIA = "DIGITO_VERIFICADOR_AGENCIA";
+	private static final String AGENCIA_MANTENEDORA = "AGENCIA_MANTENEDORA";
+	private static final String CD_MOVIMENTO_RETORNO = "CD_MOVIMENTO_RETORNO";
+	private static final String BRANCOS_1 = "BRANCOS1";
+	private static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
+	private static final String TP_REGISTRO = "TP_REGISTRO";
+	private static final String LT_SERVICO = "LT_SERVICO";
+	private static final String CD_BANCO = "CD_BANCO";
+	private static final String CD_SEGMENTO_REGISTRO = "CD_SEGMENTO_REGISTRO";
+
+	@IdType(value = "T", length = 1, position = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
-	
-	@Field(name="CD_BANCO", type=EnumTypes.INTEGER, length=3, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = CD_BANCO, type = EnumTypes.INTEGER, length = 3, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
-	
-	@Field(name="LT_SERVICO", type=EnumTypes.INTEGER, length=4, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = LT_SERVICO, type = EnumTypes.INTEGER, length = 4, padding = Paddings.ZERO_LEFT)
 	private Integer loteServico;
-	
-	@Field(name="TP_REGISTRO", type=EnumTypes.INTEGER, length=1, value="3", padding=Paddings.ZERO_LEFT)
-	private Integer tipoRegistro; 
-	
-	@Field(name="NR_SEQUENCIAL_REGISTRO", type=EnumTypes.INTEGER, length=5, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = TP_REGISTRO, type = EnumTypes.INTEGER, length = 1, value = "3", padding = Paddings.ZERO_LEFT)
+	private Integer tipoRegistro;
+
+	@Field(name = NR_SEQUENCIAL_REGISTRO, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
-	
-	@Field(name="BRANCOS1", length=1, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = BRANCOS_1, length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="CD_MOVIMENTO_RETORNO", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer codigoMovimentoRetorno; 
-    
-	@Field(name="AGENCIA_MANTENEDORA", type=EnumTypes.INTEGER, length=5, padding=Paddings.ZERO_LEFT)
-    private Integer agenciaMantenedora;
-    
-	@Field(name="DIGITO_VERIFICADOR_AGENCIA", length=1)
-    private String digitoVerificadorAgencia;
-	
-	@Field(name="NR_CONTACORRENTE", length=12, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer numeroContaCorrente; 
-    
-	@Field(name="DIGITO_CONTACORRENTE", length=1)
-    private String digitoVerificadorContaCorrente;
-    
-	@Field(name="DIGITO_AGENCIA_CONTA", length=1)
-    private String digitoVerificadorAgenciaConta;
-    
-	@Field(name="ID_TITULO", length=20, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer codigoMovimentoRetorno;
+
+	@Field(name = AGENCIA_MANTENEDORA, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
+	private Integer agenciaMantenedora;
+
+	@Field(name = DIGITO_VERIFICADOR_AGENCIA, length = 1)
+	private String digitoVerificadorAgencia;
+
+	@Field(name = NR_CONTACORRENTE, length = 12, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer numeroContaCorrente;
+
+	@Field(name = DIGITO_CONTACORRENTE, length = 1)
+	private String digitoVerificadorContaCorrente;
+
+	@Field(name = DIGITO_AGENCIA_CONTA, length = 1)
+	private String digitoVerificadorAgenciaConta;
+
+	@Field(name = ID_TITULO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorTitulo;
-	
-	@Field(name="CD_CARTEIRA", length=1, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String codigoCarteira; 
-    
-	@Field(name="NR_DOCUMENTO_COBRANCA", length=15, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = CD_CARTEIRA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String codigoCarteira;
+
+	@Field(name = NR_DOCUMENTO_COBRANCA, length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
-    
-	@Field(name="DT_VENCIMENTO", length=8, padding=Paddings.ZERO_LEFT, format=Formats.DATE_DDMMYYYY)
-    private String dataVencimentoTitulo;
-	
-	@Field(name="VL_NOMINAL_TITULO", length=15, type=EnumTypes.BIGDECIMAL, padding=Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+
+	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY)
+	private String dataVencimentoTitulo;
+
+	@Field(name = VL_NOMINAL_TITULO, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal valorNominalTitulo;
-    
-	@Field(name="NR_BANCO", type=EnumTypes.INTEGER, length=3, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_BANCO, type = EnumTypes.INTEGER, length = 3, padding = Paddings.ZERO_LEFT)
 	private Integer numeroBanco;
-	
-	@Field(name="AGENCIA_COBRADORA_RECEBEDORA", length=5, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = AGENCIA_COBRADORA_RECEBEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaCobradoraRecebedora;
-    
-	@Field(name="DIGITO_AGENCIA_COBRADORA", length=1)
+
+	@Field(name = DIGITO_AGENCIA_COBRADORA, length = 1)
 	private String digitoVerificadorAgenciaCobradora;
-    
-	@Field(name="ID_TITULO_EMPRESA", length=25)
+
+	@Field(name = ID_TITULO_EMPRESA, length = 25)
 	private String identificadorTituloEmpresa;
-    
-	@Field(name="CD_MOEDA", length=2, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = CD_MOEDA, length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoMoeda;
-	
-	@Field(name="TP_INSCRICAO_SACADO_AVALISTA", length=1, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = TP_INSCRICAO_SACADO_AVALISTA, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoInscricaoSacadoAvalista;
-	
-	@Field(name="NR_INSCRICAO_SACADO_AVALISTA", length=15, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroInscricaoSacadoAvalista; 
-	
-	@Field(name="NOME_SACADOR_AVALISTA", length=40, padding=Paddings.WHITE_SPACE_RIGHT)
-    private String nomeSacadorAvalista;	
-	
-	@Field(name="NR_CONTRATO_OPERACAO_CREDITO", length=10, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = NR_INSCRICAO_SACADO_AVALISTA, length = 15, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long numeroInscricaoSacadoAvalista;
+
+	@Field(name = NOME_SACADOR_AVALISTA, length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String nomeSacadorAvalista;
+
+	@Field(name = NR_CONTRATO_OPERACAO_CREDITO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroContratoOperacaoCredito;
- 	
-	@Field(name="VL_TARIFA_CUSTAS", length=15, type=EnumTypes.BIGDECIMAL, padding=Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
-    private BigDecimal valorTarifaCustas;
-	
-	@Field(name="ID_REJEICAO", length=10, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = VL_TARIFA_CUSTAS, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
+	private BigDecimal valorTarifaCustas;
+
+	@Field(name = ID_REJEICAO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorRejeicao;
-	
-	@Field(name="BRANCOS2", length=17, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
+
+	@Field(name = BRANCOS_2, length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;
@@ -349,14 +377,39 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 	}
 
 	public void readRowData(int row) {
-		
+
 	}
 
-	public void set(Collection<Record> collection) {
-		
+	public void set(Record record) {
+		this.codigoSegmentoRegistro = record.getValue(CD_SEGMENTO_REGISTRO);
+		this.codigoBanco = record.getValue(CD_BANCO);
+		this.loteServico = record.getValue(LT_SERVICO);
+		this.tipoRegistro = record.getValue(TP_REGISTRO);
+		this.numeroSequencialRegistro = record.getValue(NR_SEQUENCIAL_REGISTRO);
+		this.brancos1 = record.getValue(BRANCOS_1);
+		this.codigoMovimentoRetorno = record.getValue(CD_MOVIMENTO_RETORNO);
+		this.agenciaMantenedora = record.getValue(AGENCIA_MANTENEDORA);
+		this.digitoVerificadorAgencia = record.getValue(DIGITO_VERIFICADOR_AGENCIA);
+		this.numeroContaCorrente = record.getValue(NR_CONTACORRENTE);
+		this.digitoVerificadorContaCorrente = record.getValue(DIGITO_CONTACORRENTE);
+		this.digitoVerificadorAgenciaConta = record.getValue(DIGITO_AGENCIA_CONTA);
+		this.identificadorTitulo = record.getValue(ID_TITULO);
+		this.codigoCarteira = record.getValue(CD_CARTEIRA);
+		this.numeroDocumentoCobranca = record.getValue(NR_DOCUMENTO_COBRANCA);
+		this.dataVencimentoTitulo = record.getValue(DT_VENCIMENTO);
+		this.valorNominalTitulo = record.getValue(VL_NOMINAL_TITULO);
+		this.numeroBanco = record.getValue(NR_BANCO);
+		this.agenciaCobradoraRecebedora = record.getValue(AGENCIA_COBRADORA_RECEBEDORA);
+		this.digitoVerificadorAgenciaCobradora = record.getValue(DIGITO_AGENCIA_COBRADORA);
+		this.identificadorTituloEmpresa = record.getValue(ID_TITULO_EMPRESA);
+		this.codigoMoeda = record.getValue(CD_MOEDA);
+		this.tipoInscricaoSacadoAvalista = record.getValue(TP_INSCRICAO_SACADO_AVALISTA);
+		this.numeroInscricaoSacadoAvalista = record.getValue(NR_INSCRICAO_SACADO_AVALISTA);
+		this.nomeSacadorAvalista = record.getValue(NOME_SACADOR_AVALISTA);
+		this.numeroContratoOperacaoCredito = record.getValue(NR_CONTRATO_OPERACAO_CREDITO);
+		this.valorTarifaCustas = record.getValue(VL_TARIFA_CUSTAS);
+		this.identificadorRejeicao = record.getValue(ID_REJEICAO);
+		this.brancos2 = record.getValue(BRANCOS_2);
 	}
-	
-	
-	
 
 }

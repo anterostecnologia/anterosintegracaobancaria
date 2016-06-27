@@ -79,10 +79,10 @@ public class HeaderTitulosCobranca {
 	@Field(name = "NOME_EMPRESA", length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = "MENSAGEM1", length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value=" ")
+	@Field(name = "MENSAGEM_1", length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value=" ")
 	private String mensagem1;
 
-	@Field(name = "MENSAGEM1", length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value=" ")
+	@Field(name = "MENSAGEM_2", length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value=" ")
 	private String mensagem2;
 
 	@Field(name = "NR_REMESSA_RETORNO", length = 8, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
