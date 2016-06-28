@@ -89,6 +89,7 @@ public class HsbcCNAB240 implements CNAB240 {
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
+		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
 		traillerTitulosCobranca = TraillerTitulosCobranca.of(contaBancaria, remessas);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
@@ -135,6 +136,7 @@ public class HsbcCNAB240 implements CNAB240 {
 
 	public List<RetornoCobranca> read(InputStream dataInputStream, String[] groups) throws IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
+		
 		FlatFileManager manager = new FlatFileManager();
 		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();

@@ -386,7 +386,6 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 		this.loteServico = record.getValue(LT_SERVICO);
 		this.tipoRegistro = record.getValue(TP_REGISTRO);
 		this.numeroSequencialRegistro = record.getValue(NR_SEQUENCIAL_REGISTRO);
-		this.brancos1 = record.getValue(BRANCOS_1);
 		this.codigoMovimentoRetorno = record.getValue(CD_MOVIMENTO_RETORNO);
 		this.agenciaMantenedora = record.getValue(AGENCIA_MANTENEDORA);
 		this.digitoVerificadorAgencia = record.getValue(DIGITO_VERIFICADOR_AGENCIA);
@@ -409,7 +408,6 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 		this.numeroContratoOperacaoCredito = record.getValue(NR_CONTRATO_OPERACAO_CREDITO);
 		this.valorTarifaCustas = record.getValue(VL_TARIFA_CUSTAS);
 		this.identificadorRejeicao = record.getValue(ID_REJEICAO);
-		this.brancos2 = record.getValue(BRANCOS_2);
 	}
 
 }

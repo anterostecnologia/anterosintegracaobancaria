@@ -318,7 +318,6 @@ public class TitulosCobrancaSegmentoU {
 		this.loteServico = record.getValue(LOTE_SERVICO);
 		this.tipoRegistro = record.getValue(TP_REGISTRO);
 		this.numeroSequencialRegistro = record.getValue(NR_SEQUENCIAL_REGISTRO);
-		this.brancos1 = record.getValue(BRANCOS_1);
 		this.codigoMovimentoRetorno = record.getValue(CD_MOVIMENTO_RETORNO);
 		this.valorJurosMultasEncargos = record.getValue(VL_JUROS_MULTAS);
 		this.valorDesconto = record.getValue(VL_DESCONTO);
@@ -336,7 +335,6 @@ public class TitulosCobrancaSegmentoU {
 		this.complementoOcorrencia = record.getValue(COMPLEMENTO_OCORRENCIA);
 		this.codigoBancoCorrespondente = record.getValue(CD_BANCO_CORRESPONDENTE);
 		this.nossoNumeroBancoCorrespondente = record.getValue(NOSSO_NR_BANCO_CORRESPONDENTE);
-		this.brancos2 = record.getValue(BRANCOS_2);
 	}
 
 }
