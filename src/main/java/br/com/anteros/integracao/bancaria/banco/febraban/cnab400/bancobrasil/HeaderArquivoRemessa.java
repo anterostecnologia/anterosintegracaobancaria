@@ -31,7 +31,7 @@ public class HeaderArquivoRemessa {
 	@Field(name="BRANCOS1", length=7, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
 	private String brancos1;
 	
-	@Field(name="PREFIXO_AGENCIA", length=9, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	@Field(name="PREFIXO_AGENCIA", length=4, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer prefixoAgencia;
 	
 	@Field(name="DIGITO_AGENCIA", length=1)

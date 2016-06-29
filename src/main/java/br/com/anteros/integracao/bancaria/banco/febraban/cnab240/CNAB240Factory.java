@@ -9,6 +9,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bradesco.Brades
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.caixa.CaixaEconomicaFederalCNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.hsbc.HsbcCNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.itau.ItauCNAB240;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.santander.SantanderCNAB240;
 
 public class CNAB240Factory {
 
@@ -22,20 +23,22 @@ public class CNAB240Factory {
 
 	public static CNAB240 create(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BANCO_BRASIL) {
-			return new BancoBrasilCNAB240(contaBancaria,remessas);
+			return new BancoBrasilCNAB240(contaBancaria, remessas);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BRADESCO) {
-			return new BradescoCNAB240(contaBancaria,remessas);
+			return new BradescoCNAB240(contaBancaria, remessas);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == CAIXA_ECONOMICA_FEDERAL) {
-			return new CaixaEconomicaFederalCNAB240(contaBancaria,remessas);
+			return new CaixaEconomicaFederalCNAB240(contaBancaria, remessas);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == HSBC) {
-			return new HsbcCNAB240(contaBancaria,remessas);
+			return new HsbcCNAB240(contaBancaria, remessas);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == ITAU) {
-			return new ItauCNAB240(contaBancaria,remessas);
+			return new ItauCNAB240(contaBancaria, remessas);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == SANTANDER) {
+			return new SantanderCNAB240(contaBancaria, remessas);
 		}
 		throw new CNABException(
 				"Layout CNAB240 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
 	}
-	
+
 	public static CNAB240 create(ContaBancaria contaBancaria) {
 		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BANCO_BRASIL) {
 			return new BancoBrasilCNAB240(contaBancaria);
@@ -47,6 +50,8 @@ public class CNAB240Factory {
 			return new HsbcCNAB240(contaBancaria);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == ITAU) {
 			return new ItauCNAB240(contaBancaria);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == SANTANDER) {
+			return new SantanderCNAB240(contaBancaria);
 		}
 		throw new CNABException(
 				"Layout CNAB240 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
