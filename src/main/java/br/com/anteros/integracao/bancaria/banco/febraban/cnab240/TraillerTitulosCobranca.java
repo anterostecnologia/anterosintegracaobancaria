@@ -26,19 +26,27 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TraillerTitulosCobranca {
 
-	@IdType(name = "TIPO_REGISTRO", length = 1, position = 8, value = "5")
+	private static final String QT_REGISTRO = "QT_REGISTRO";
+
+	private static final String LT_SERVICO = "LT_SERVICO";
+
+	private static final String CD_BANCO = "CD_BANCO";
+
+	private static final String TIPO_REGISTRO = "TIPO_REGISTRO";
+
+	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "5")
 	private String tipoRegistro;
 
-	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
-	@Field(name = "LT_SERVICO", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer loteServico;
 
 	@Field(name = "BRANCOS_1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
 	private String brancos1;
 
-	@Field(name = "QT_REGISTRO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = QT_REGISTRO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer quantidadeRegistros;
 
 	@Field(name = "BRANCOS_2", length = 217, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
@@ -47,15 +55,14 @@ public class TraillerTitulosCobranca {
 	private ContaBancaria contaBancaria;
 
 	public TraillerTitulosCobranca(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); //G001
-		this.loteServico = 1;//G002
-		this.quantidadeRegistros = remessas.size();//G057
-		
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
+		this.loteServico = 1;// G002
+		this.quantidadeRegistros = remessas.size();// G057
 	}
 
 	public TraillerTitulosCobranca(ContaBancaria contaBancaria2) {
-		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); //G001
-		this.loteServico = 1;//G002
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
+		this.loteServico = 1;// G002
 	}
 
 	public static TraillerTitulosCobranca of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
@@ -119,7 +126,10 @@ public class TraillerTitulosCobranca {
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+		setTipoRegistro((String) record.getValue(TIPO_REGISTRO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setLoteServico((Integer) record.getValue(LT_SERVICO));
+		setQuantidadeRegistros((Integer) record.getValue(QT_REGISTRO));
 	}
 
 	public static TraillerTitulosCobranca of(ContaBancaria contaBancaria) {

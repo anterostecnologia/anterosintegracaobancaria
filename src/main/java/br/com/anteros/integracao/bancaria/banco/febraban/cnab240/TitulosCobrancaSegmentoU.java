@@ -313,28 +313,28 @@ public class TitulosCobrancaSegmentoU {
 	}
 
 	public void set(Record record) {
-		this.codigoSegmentoRegistro = record.getValue(CD_SEGMENTO_REGISTRO);
-		this.codigoBanco = record.getValue(CD_BANCO);
-		this.loteServico = record.getValue(LOTE_SERVICO);
-		this.tipoRegistro = record.getValue(TP_REGISTRO);
-		this.numeroSequencialRegistro = record.getValue(NR_SEQUENCIAL_REGISTRO);
-		this.codigoMovimentoRetorno = record.getValue(CD_MOVIMENTO_RETORNO);
-		this.valorJurosMultasEncargos = record.getValue(VL_JUROS_MULTAS);
-		this.valorDesconto = record.getValue(VL_DESCONTO);
-		this.valorAbatimento = record.getValue(VL_ABATIMENTO);
-		this.valorIOF = record.getValue(VL_IOF);
-		this.valorPagoSacado = record.getValue(VL_PAGOSACADO);
-		this.valorLiquidoCreditado = record.getValue(VL_LIQUIDO_CREDITADO);
-		this.valorOutrasDespesas = record.getValue(VL_OUTRAS_DESPESAS);
-		this.valorOutrosCreditos = record.getValue(VL_OUTROS_CREDITOS);
-		this.dataOcorrenciaPagamento = record.getValue(DT_OCORRENCIA_PAGAMENTO);
-		this.dataEfetivacaoCredito = record.getValue(DT_EFETIVACAO_CREDITO);
-		this.codigoOcorrencia = record.getValue(CD_OCORRENCIA);
-		this.dataOcorrencia = record.getValue(DT_OCORRENCIA);
-		this.valorOcorrencia = record.getValue(VL_OCORRENCIA);
-		this.complementoOcorrencia = record.getValue(COMPLEMENTO_OCORRENCIA);
-		this.codigoBancoCorrespondente = record.getValue(CD_BANCO_CORRESPONDENTE);
-		this.nossoNumeroBancoCorrespondente = record.getValue(NOSSO_NR_BANCO_CORRESPONDENTE);
+		setCodigoSegmentoRegistro((String) record.getValue(CD_SEGMENTO_REGISTRO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setLoteServico((Integer) record.getValue(LOTE_SERVICO));
+		setTipoRegistro((Integer) record.getValue(TP_REGISTRO));
+		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
+		setCodigoMovimentoRetorno((Integer) record.getValue(CD_MOVIMENTO_RETORNO));
+		setValorJurosMultasEncargos((BigDecimal) record.getValue(VL_JUROS_MULTAS));
+		setValorDesconto((BigDecimal) record.getValue(VL_DESCONTO));
+		setValorAbatimento((BigDecimal) record.getValue(VL_ABATIMENTO));
+		setValorIOF((BigDecimal) record.getValue(VL_IOF));
+		setValorPagoSacado((BigDecimal) record.getValue(VL_PAGOSACADO));
+		setValorLiquidoCreditado((BigDecimal) record.getValue(VL_LIQUIDO_CREDITADO));
+		setValorOutrasDespesas((BigDecimal) record.getValue(VL_OUTRAS_DESPESAS));
+		setValorOutrosCreditos((BigDecimal) record.getValue(VL_OUTROS_CREDITOS));
+		setDataOcorrenciaPagamento((Date) record.getValue(DT_OCORRENCIA_PAGAMENTO));
+		setDataEfetivacaoCredito((Date) record.getValue(DT_EFETIVACAO_CREDITO));
+		setCodigoOcorrencia((String) record.getValue(CD_OCORRENCIA));
+		setDataOcorrencia((Date) record.getValue(DT_OCORRENCIA));
+		setValorOcorrencia((BigDecimal) record.getValue(VL_OCORRENCIA));
+		setComplementoOcorrencia((String) record.getValue(COMPLEMENTO_OCORRENCIA));
+		setCodigoBancoCorrespondente((Integer) record.getValue(CD_BANCO_CORRESPONDENTE));
+		setNossoNumeroBancoCorrespondente((String) record.getValue(NOSSO_NR_BANCO_CORRESPONDENTE));
 	}
 
 }

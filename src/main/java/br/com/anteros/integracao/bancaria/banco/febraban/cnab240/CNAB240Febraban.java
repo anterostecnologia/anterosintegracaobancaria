@@ -153,7 +153,7 @@ public class CNAB240Febraban implements CNAB240 {
 
 		headerArquivo.set(flatFile.getRecord(HEADER));
 		headerTitulosCobranca.set(flatFile.getRecord(HEADER_LOTE_COBRANCA));
-		
+
 		Iterator<br.com.anteros.flatfile.Record> iteratorT = flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_T).iterator();
 		Iterator<br.com.anteros.flatfile.Record> iteratorU = flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_U).iterator();
 		while (iteratorT.hasNext()) {

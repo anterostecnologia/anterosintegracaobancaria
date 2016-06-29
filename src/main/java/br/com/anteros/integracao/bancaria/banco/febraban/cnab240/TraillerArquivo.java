@@ -23,25 +23,32 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class TraillerArquivo {
 
-	@IdType(name = "TIPO_REGISTRO", length = 1, position = 8, value = "9")
+	private static final String QT_CONTA_CONCILIACAO = "QT_CONTA_CONCILIACAO";
+	private static final String QT_REGISTRO_ARQUIVO = "QT_REGISTRO_ARQUIVO";
+	private static final String QT_LOTE_ARQUIVO = "QT_LOTE_ARQUIVO";
+	private static final String LT_SERVICO = "LT_SERVICO";
+	private static final String CD_BANCO = "CD_BANCO";
+	private static final String TIPO_REGISTRO = "TIPO_REGISTRO";
+
+	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "9")
 	private String tipoRegistro;
 
-	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
-	@Field(name = "LT_SERVICO", length = 4, value = "9999", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LT_SERVICO, length = 4, value = "9999", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer loteServico;
 
 	@Field(name = "BRANCOS_1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
 	private String brancos1;
 
-	@Field(name = "QT_LOTE_ARQUIVO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = QT_LOTE_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer quantidadeLotesArquivo;
 
-	@Field(name = "QT_REGISTRO_ARQUIVO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = QT_REGISTRO_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer quantidadeRegistrosArquivo;
 
-	@Field(name = "QT_CONTA_CONCILIACAO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = QT_CONTA_CONCILIACAO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer quantidadeContasConciliacao;
 
 	@Field(name = "BRANCOS_2", length = 205, value = " ", padding = Paddings.WHITE_SPACE_LEFT)
@@ -123,6 +130,11 @@ public class TraillerArquivo {
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+		setTipoRegistro((String) record.getValue(TIPO_REGISTRO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setLoteServico((Integer) record.getValue(LT_SERVICO));
+		setQuantidadeLotesArquivo((Integer) record.getValue(QT_LOTE_ARQUIVO));
+		setQuantidadeRegistrosArquivo((Integer) record.getValue(QT_REGISTRO_ARQUIVO));
+		setQuantidadeContasConciliacao((Integer) record.getValue(QT_CONTA_CONCILIACAO));
 	}
 }

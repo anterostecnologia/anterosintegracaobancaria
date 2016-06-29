@@ -381,33 +381,33 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 	}
 
 	public void set(Record record) {
-		this.codigoSegmentoRegistro = record.getValue(CD_SEGMENTO_REGISTRO);
-		this.codigoBanco = record.getValue(CD_BANCO);
-		this.loteServico = record.getValue(LT_SERVICO);
-		this.tipoRegistro = record.getValue(TP_REGISTRO);
-		this.numeroSequencialRegistro = record.getValue(NR_SEQUENCIAL_REGISTRO);
-		this.codigoMovimentoRetorno = record.getValue(CD_MOVIMENTO_RETORNO);
-		this.agenciaMantenedora = record.getValue(AGENCIA_MANTENEDORA);
-		this.digitoVerificadorAgencia = record.getValue(DIGITO_VERIFICADOR_AGENCIA);
-		this.numeroContaCorrente = record.getValue(NR_CONTACORRENTE);
-		this.digitoVerificadorContaCorrente = record.getValue(DIGITO_CONTACORRENTE);
-		this.digitoVerificadorAgenciaConta = record.getValue(DIGITO_AGENCIA_CONTA);
-		this.identificadorTitulo = record.getValue(ID_TITULO);
-		this.codigoCarteira = record.getValue(CD_CARTEIRA);
-		this.numeroDocumentoCobranca = record.getValue(NR_DOCUMENTO_COBRANCA);
-		this.dataVencimentoTitulo = record.getValue(DT_VENCIMENTO);
-		this.valorNominalTitulo = record.getValue(VL_NOMINAL_TITULO);
-		this.numeroBanco = record.getValue(NR_BANCO);
-		this.agenciaCobradoraRecebedora = record.getValue(AGENCIA_COBRADORA_RECEBEDORA);
-		this.digitoVerificadorAgenciaCobradora = record.getValue(DIGITO_AGENCIA_COBRADORA);
-		this.identificadorTituloEmpresa = record.getValue(ID_TITULO_EMPRESA);
-		this.codigoMoeda = record.getValue(CD_MOEDA);
-		this.tipoInscricaoSacadoAvalista = record.getValue(TP_INSCRICAO_SACADO_AVALISTA);
-		this.numeroInscricaoSacadoAvalista = record.getValue(NR_INSCRICAO_SACADO_AVALISTA);
-		this.nomeSacadorAvalista = record.getValue(NOME_SACADOR_AVALISTA);
-		this.numeroContratoOperacaoCredito = record.getValue(NR_CONTRATO_OPERACAO_CREDITO);
-		this.valorTarifaCustas = record.getValue(VL_TARIFA_CUSTAS);
-		this.identificadorRejeicao = record.getValue(ID_REJEICAO);
+		setCodigoSegmentoRegistro((String) record.getValue(CD_SEGMENTO_REGISTRO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setLoteServico((Integer) record.getValue(LT_SERVICO));
+		setTipoRegistro((Integer) record.getValue(TP_REGISTRO));
+		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
+		setCodigoMovimentoRetorno((Integer) record.getValue(CD_MOVIMENTO_RETORNO));
+		setAgenciaMantenedora((Integer) record.getValue(AGENCIA_MANTENEDORA));
+		setDigitoVerificadorAgencia((String) record.getValue(DIGITO_VERIFICADOR_AGENCIA));
+		setNumeroContaCorrente((Integer) record.getValue(NR_CONTACORRENTE));
+		setDigitoVerificadorContaCorrente((String) record.getValue(DIGITO_CONTACORRENTE));
+		setDigitoVerificadorAgenciaConta((String) record.getValue(DIGITO_AGENCIA_CONTA));
+		setIdentificadorTitulo((String) record.getValue(ID_TITULO));
+		setCodigoCarteira((String) record.getValue(CD_CARTEIRA));
+		setNumeroDocumentoCobranca((String) record.getValue(NR_DOCUMENTO_COBRANCA));
+		setDataVencimentoTitulo((String) record.getValue(DT_VENCIMENTO));
+		setValorNominalTitulo((BigDecimal) record.getValue(VL_NOMINAL_TITULO));
+		setNumeroBanco((Integer) record.getValue(NR_BANCO));
+		setAgenciaCobradoraRecebedora((Integer) record.getValue(AGENCIA_COBRADORA_RECEBEDORA));
+		setDigitoVerificadorAgenciaCobradora((String) record.getValue(DIGITO_AGENCIA_COBRADORA));
+		setIdentificadorTituloEmpresa((String) record.getValue(ID_TITULO_EMPRESA));
+		setCodigoMoeda((String) record.getValue(CD_MOEDA));
+		setTipoInscricaoSacadoAvalista((Integer) record.getValue(TP_INSCRICAO_SACADO_AVALISTA));
+		setNumeroInscricaoSacadoAvalista((Long) record.getValue(NR_INSCRICAO_SACADO_AVALISTA));
+		setNomeSacadorAvalista((String) record.getValue(NOME_SACADOR_AVALISTA));
+		setNumeroContratoOperacaoCredito((String) record.getValue(NR_CONTRATO_OPERACAO_CREDITO));
+		setValorTarifaCustas((BigDecimal) record.getValue(VL_TARIFA_CUSTAS));
+		setIdentificadorRejeicao((String) record.getValue(ID_REJEICAO));
 	}
 
 }

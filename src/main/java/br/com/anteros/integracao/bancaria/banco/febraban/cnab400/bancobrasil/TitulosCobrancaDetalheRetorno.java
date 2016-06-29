@@ -14,167 +14,166 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class TitulosCobrancaDetalheRetorno {
 
-	
-	@IdType(name="CD_REGISTRO", length=1, position=1, value="1")
+	@IdType(name = "CD_REGISTRO", length = 1, position = 1, value = "1")
 	private Integer codigoRegistro;
-	
-	@Field(name="BRANCOS1", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="BRANCOS2", length=14, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS2", length = 14, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
-	
-	@Field(name="CD_EMPRESA", length=14, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "CD_EMPRESA", length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long codigoEmpresa;
-	
-	@Field(name="NR_CONVENIO", length=7, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer numeroConvenio; 
-	
-	@Field(name="BRANCOS3", length=25, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "NR_CONVENIO", length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer numeroConvenio;
+
+	@Field(name = "BRANCOS3", length = 25, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
-	
-	@Field(name="NOSSO_NUMERO", length=17)
+
+	@Field(name = "NOSSO_NUMERO", length = 17)
 	private String nossoNumero;
-	
-	@Field(name="TP_COBRANCA", length=1)
+
+	@Field(name = "TP_COBRANCA", length = 1)
 	private String tipoCobranca;
-	
-	@Field(name="TP_COBRANCA_ESPECIFICO", length=1)
+
+	@Field(name = "TP_COBRANCA_ESPECIFICO", length = 1)
 	private String tipoCobrancaEspecifico;
-	
-	@Field(name="BRANCOS4", length=4, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS4", length = 4, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos4;
-	
-	@Field(name="BRANCOS5", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS5", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos5;
-	
-	@Field(name="BRANCOS6", length=3, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS6", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos6;
 
-	@Field(name="VARIACAO_CARTEIRA", length=3)
+	@Field(name = "VARIACAO_CARTEIRA", length = 3)
 	private String variacaoCarteira;
-	
-	@Field(name="BRANCOS7", length=1, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS7", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos7;
-	
-	@Field(name="TAXA_DESCONTO", length=5, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "TAXA_DESCONTO", length = 5, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal taxaDesconto;
-	
-	@Field(name="TAXA_IOF", length=5, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "TAXA_IOF", length = 5, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal taxaIOF;
-	
-	@Field(name="BRANCOS8", length=1, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS8", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos8;
-	
-	@Field(name="CARTEIRA", length=2)
+
+	@Field(name = "CARTEIRA", length = 2)
 	private String carteira;
-	
-	@Field(name="CD_OCORRENCIA", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "CD_OCORRENCIA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoOcorrencia;
-	
-	@Field(name="DT_OCORRENCIA", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY)
+
+	@Field(name = "DT_OCORRENCIA", length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
 	private Date dataOcorrencia;
-	
-	@Field(name="NR_DOCUMENTO", length=10)
+
+	@Field(name = "NR_DOCUMENTO", length = 10)
 	private String numeroDocumento;
-	
-	@Field(name="BRANCOS9", length=20, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS9", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos9;
-	
-	@Field(name="DT_VENCIMENTO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY)
+
+	@Field(name = "DT_VENCIMENTO", length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
 	private Date dataVencimento;
-	
-	@Field(name="VL_TITULO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_TITULO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTitulo;
 
-	@Field(name="CD_BANCO", length=3, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
-	
-	@Field(name="BRANCOS10", length=20, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS10", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos10;
-	
-	@Field(name="BRANCOS11", length=1, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS11", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos11;
 
-	@Field(name="BRANCOS12", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS12", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos12;
-	
-	@Field(name="DT_CREDITO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY)
-    private Date dataCredito;
-	
-	@Field(name="VL_TARIFA", length=7, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "DT_CREDITO", length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
+	private Date dataCredito;
+
+	@Field(name = "VL_TARIFA", length = 7, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTarifa;
-	
-	@Field(name="VL_OUTRASDESPESAS", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_OUTRASDESPESAS", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorOutrasDespesas;
-	
-	@Field(name="VL_JUROSDESCONTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_JUROSDESCONTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorJurosDesconto;
-	
-	@Field(name="VL_IOF", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_IOF", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorIOF;
 
-	@Field(name="VL_ABATIMENTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+	@Field(name = "VL_ABATIMENTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorAbatimento;
-	
-	@Field(name="VL_DESCONTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_DESCONTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorDesconto;
-	
-	@Field(name="VL_PAGO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_PAGO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorPago;
-	
-	@Field(name="VL_JUROS", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_JUROS", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorJuros;
-	
-	@Field(name="VL_JUROS", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_OUTROS_CREDITOS", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorOutrosCreditos;
 
-	@Field(name="BRANCOS13", length=13, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS13", length = 13, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos13;
-	
-	@Field(name="VL_LANCAMENTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = "VL_LANCAMENTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorLancamento;
-	
-	@Field(name="INDICATIVO_DEBITO_CREDITO", length=1)
+
+	@Field(name = "INDICATIVO_DEBITO_CREDITO", length = 1)
 	private String indicativoDebitoCredito;
-	
-	@Field(name="INDICADOR_VALOR", length=1)
+
+	@Field(name = "INDICADOR_VALOR", length = 1)
 	private String indicadorValor;
-	
-	@Field(name="BRANCOS14", length=12, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS14", length = 12, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos14;
-	
-	@Field(name="BRANCOS15", length=1, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS15", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos15;
-	
-	@Field(name="BRANCOS16", length=9, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS16", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos16;
 
-	@Field(name="BRANCOS17", length=7, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS17", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos17;
-	
-	@Field(name="BRANCOS18", length=9, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS18", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos18;
-	
-	@Field(name="BRANCOS19", length=7, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS19", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos19;
-	
-	@Field(name="BRANCOS20", length=9, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS20", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos20;
-	
-	@Field(name="BRANCOS21", length=7, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS21", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos21;
-	
-	@Field(name="BRANCOS22", length=9, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS22", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos22;
 
-	@Field(name="BRANCOS23", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancos23;	
+	@Field(name = "BRANCOS23", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos23;
 
-	@Field(name="BRANCOS24", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS24", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos24;
-	
-	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6)
+
+	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 6)
 	private Integer numeroSequencialRegistro;
 
 	public TitulosCobrancaDetalheRetorno(ContaBancaria contaBancaria) {
@@ -618,8 +617,39 @@ public class TitulosCobrancaDetalheRetorno {
 	}
 
 	public void set(Collection<Record> collection) {
-	
-		
+		for (Record record : collection) {
+			setCodigoRegistro((Integer) record.getValue("CD_REGISTRO"));
+			setCodigoEmpresa((Long) record.getValue("CD_EMPRESA"));
+			setNumeroConvenio((Integer) record.getValue("NR_CONVENIO"));
+			setNossoNumero((String) record.getValue("NOSSO_NUMERO"));
+			setTipoCobranca((String) record.getValue("TP_COBRANCA"));
+			setTipoCobrancaEspecifico((String) record.getValue("TP_COBRANCA_ESPECIFICO"));
+			setVariacaoCarteira((String) record.getValue("VARIACAO_CARTEIRA"));
+			setTaxaDesconto((BigDecimal) record.getValue("TAXA_DESCONTO"));
+			setTaxaIOF((BigDecimal) record.getValue("TAXA_IOF"));
+			setCarteira((String) record.getValue("CARTEIRA"));
+			setCodigoOcorrencia((Integer) record.getValue("CD_OCORRENCIA"));
+			setDataOcorrencia((Date) record.getValue("DT_OCORRENCIA"));
+			setNumeroDocumento((String) record.getValue("NR_DOCUMENTO"));
+			setDataVencimento((Date) record.getValue("DT_VENCIMENTO"));
+			setValorTitulo((BigDecimal) record.getValue("VL_TITULO"));
+			setCodigoBanco((Integer) record.getValue("CD_BANCO"));
+			setDataCredito((Date) record.getValue("DT_CREDITO"));
+			setValorTarifa((BigDecimal) record.getValue("VL_TARIFA"));
+			setValorOutrasDespesas((BigDecimal) record.getValue("VL_OUTRASDESPESAS"));
+			setValorJurosDesconto((BigDecimal) record.getValue("VL_JUROSDESCONTO"));
+			setValorIOF((BigDecimal) record.getValue("VL_IOF"));
+			setValorAbatimento((BigDecimal) record.getValue("VL_ABATIMENTO"));
+			setValorDesconto((BigDecimal) record.getValue("VL_DESCONTO"));
+			setValorPago((BigDecimal) record.getValue("VL_PAGO"));
+			setValorJuros((BigDecimal) record.getValue("VL_JUROS"));
+			setValorOutrosCreditos((BigDecimal) record.getValue("VL_OUTROS_CREDITOS"));
+			setValorLancamento((BigDecimal) record.getValue("VL_LANCAMENTO"));
+			setIndicadorValor((String) record.getValue("INDICADOR_VALOR"));
+			setIndicativoDebitoCredito((String) record.getValue("INDICATIVO_DEBITO_CREDITO"));
+			setNumeroSequencialRegistro((Integer) record.getValue("NR_SEQUENCIAL_REGISTRO"));
+		}
+
 	}
-	
+
 }
