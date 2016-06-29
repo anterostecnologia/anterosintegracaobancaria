@@ -1,4 +1,4 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.caixa;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.santander;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -31,11 +31,11 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobranca
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerArquivo;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TraillerTitulosCobranca;
 
-@FlatFile(name = "Arquivo CNAB240 - Caixa Econômica Federal", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
-public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
+@FlatFile(name = "Arquivo CNAB240 - Santander", description = "Arquivo de remessa/retorno CNAB240", version = "1.0")
+public class SantanderCNAB240 implements CNAB240 {
 
-	private static final int VERSAO_LAYOUT_ARQUIVO_CEF = 50;
-	private static final int VERSAO_LAYOUT_LOTE_CEF = 30;
+	private static final int VERSAO_LAYOUT_ARQUIVO_ITAU = 40;
+	private static final int VERSAO_LAYOUT_LOTE_ITAU = 30;
 
 	private static final String TRAILLER = "Trailler";
 	public static final String TRAILLER_LOTE_COBRANCA = "TraillerLoteCobranca";
@@ -72,7 +72,7 @@ public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 	@Record(name = TRAILLER, order = 8, groups = { "REMESSA", "RETORNO" })
 	private TraillerArquivo traillerArquivo;
 
-	public CaixaEconomicaFederalCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	public SantanderCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
@@ -82,10 +82,10 @@ public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
-				VERSAO_LAYOUT_ARQUIVO_CEF);
+				VERSAO_LAYOUT_ARQUIVO_ITAU);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
-				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_CEF);
+				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_ITAU);
 		segmentoP = TitulosCobrancaSegmentoP.of(contaBancaria, remessas);
 		segmentoQ = TitulosCobrancaSegmentoQ.of(contaBancaria, remessas);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
@@ -94,7 +94,7 @@ public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
 
-	public CaixaEconomicaFederalCNAB240(ContaBancaria contaBancaria) {
+	public SantanderCNAB240(ContaBancaria contaBancaria) {
 		headerArquivo = HeaderArquivo.of(contaBancaria);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
@@ -136,7 +136,7 @@ public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 
 	public List<RetornoCobranca> read(InputStream dataInputStream, String[] groups) throws IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
-		
+
 		FlatFileManager manager = new FlatFileManager();
 		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
@@ -165,4 +165,5 @@ public class CaixaEconomicaFederalCNAB240 implements CNAB240 {
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 		return read(new ByteArrayInputStream(data), groups);
 	}
+
 }
