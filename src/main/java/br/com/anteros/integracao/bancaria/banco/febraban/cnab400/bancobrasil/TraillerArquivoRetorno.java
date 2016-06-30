@@ -10,84 +10,103 @@ import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class TraillerArquivoRetorno {
-	
-	
-	@IdType(name="CD_REGISTRO", length=1, position=1, value="9")
+
+	private static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
+	private static final String NR_AVISO_CARTEIRA_VENDOR = "NR_AVISO_CARTEIRA_VENDOR";
+	private static final String VL_TOTAL_CARTEIRA_VENDOR = "VL_TOTAL_CARTEIRA_VENDOR";
+	private static final String QT_TITULOS_CARTEIRA_VENDOR = "QT_TITULOS_CARTEIRA_VENDOR";
+	private static final String NR_AVISO_CARTEIRA_DESCONTADA = "NR_AVISO_CARTEIRA_DESCONTADA";
+	private static final String VL_TOTAL_CARTEIRA_DESCONTADA = "VL_TOTAL_CARTEIRA_DESCONTADA";
+	private static final String QT_TITULOS_CARTEIRA_DESCONTADA = "QT_TITULOS_CARTEIRA_DESCONTADA";
+	private static final String NR_AVISO_CARTEIRA_CAUCIONADA = "NR_AVISO_CARTEIRA_CAUCIONADA";
+	private static final String VL_TOTAL_CARTEIRA_CAUCIONADA = "VL_TOTAL_CARTEIRA_CAUCIONADA";
+	private static final String QT_TITULOS_CARTEIRA_CAUCIONADA = "QT_TITULOS_CARTEIRA_CAUCIONADA";
+	private static final String NR_AVISO_CARTEIRA_VINCULADA = "NR_AVISO_CARTEIRA_VINCULADA";
+	private static final String VL_TOTAL_CARTEIRA_VINCULADA = "VL_TOTAL_CARTEIRA_VINCULADA";
+	private static final String QT_TITULOS_CARTEIRA_VINCULADA = "QT_TITULOS_CARTEIRA_VINCULADA";
+	private static final String NR_AVISO_CARTEIRA_SIMPLES = "NR_AVISO_CARTEIRA_SIMPLES";
+	private static final String VL_TOTAL_CARTEIRA_SIMPLES = "VL_TOTAL_CARTEIRA_SIMPLES";
+	private static final String QT_TITULOS_CARTEIRA_SIMPLES = "QT_TITULOS_CARTEIRA_SIMPLES";
+	private static final String CD_BANCO = "CD_BANCO";
+	private static final String CD_RETORNO = "CD_RETORNO";
+	private static final String CD_REGISTRO = "CD_REGISTRO";
+
+	@IdType(name = CD_REGISTRO, length = 1, position = 1, value = "9")
 	private Integer codigoRegistro;
 
-	@Field(name="CD_RETORNO", length=1)
+	@Field(name = CD_RETORNO, length = 1)
 	private String codigoRetorno;
-	
-	@Field(name="BRANCOS1", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="CD_BANCO", length=3, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
-	
-	@Field(name="BRANCOS2", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS2", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
-		
-	@Field(name="QT_TITULOS_CARTEIRA_SIMPLES", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = QT_TITULOS_CARTEIRA_SIMPLES, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long quantidadeTitulosCarteiraSimples;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_SIMPLES", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = VL_TOTAL_CARTEIRA_SIMPLES, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalTitulosCarteiraSimples;
-	
-	@Field(name="NR_AVISO_CARTEIRA_SIMPLES", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_AVISO_CARTEIRA_SIMPLES, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroAvisoCarteiraSimples;
-	
-	@Field(name="BRANCOS_CARTEIRA_SIMPLES", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS_CARTEIRA_SIMPLES", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancosCarteiraSimples;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_VINCULADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = QT_TITULOS_CARTEIRA_VINCULADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long quantidadeTitulosCarteiraVinculada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_VINCULADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = VL_TOTAL_CARTEIRA_VINCULADA, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalTitulosCarteiraVinculada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_VINCULADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_AVISO_CARTEIRA_VINCULADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroAvisoCarteiraVinculada;
-	
-	@Field(name="BRANCOS_CARTEIRA_VINCULADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS_CARTEIRA_VINCULADA", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancosCarteiraVinculada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_CAUCIONADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = QT_TITULOS_CARTEIRA_CAUCIONADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long quantidadeTitulosCarteiraCaucionada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_CAUCIONADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = VL_TOTAL_CARTEIRA_CAUCIONADA, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalTitulosCarteiraCaucionada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_CAUCIONADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_AVISO_CARTEIRA_CAUCIONADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroAvisoCarteiraCaucionada;
-	
-	@Field(name="BRANCOS_CARTEIRA_CAUCIONADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS_CARTEIRA_CAUCIONADA", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancosCarteiraCaucionada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_DESCONTADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = QT_TITULOS_CARTEIRA_DESCONTADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long quantidadeTitulosCarteiraDescontada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_DESCONTADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = VL_TOTAL_CARTEIRA_DESCONTADA, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalTitulosCarteiraDescontada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_DESCONTADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_AVISO_CARTEIRA_DESCONTADA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroAvisoCarteiraDescontada;
-	
-	@Field(name="BRANCOS_CARTEIRA_DESCONTADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS_CARTEIRA_DESCONTADA", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancosCarteiraDescontada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_VENDOR", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = QT_TITULOS_CARTEIRA_VENDOR, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long quantidadeTitulosCarteiraVendor;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_VENDOR", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+
+	@Field(name = VL_TOTAL_CARTEIRA_VENDOR, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalTitulosCarteiraVendor;
-	
-	@Field(name="NR_AVISO_CARTEIRA_VENDOR", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_AVISO_CARTEIRA_VENDOR, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroAvisoCarteiraVendor;
-	
-	@Field(name="BRANCOS_CARTEIRA_VENDOR", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS_CARTEIRA_VENDOR", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancosCarteiraVendor;
-	
-	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
 	public TraillerArquivoRetorno(ContaBancaria contaBancaria) {
@@ -306,6 +325,24 @@ public class TraillerArquivoRetorno {
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+		setCodigoRegistro((Integer) record.getValue(CD_REGISTRO));
+		setCodigoRetorno((String) record.getValue(CD_RETORNO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setQuantidadeTitulosCarteiraSimples((Long) record.getValue(QT_TITULOS_CARTEIRA_SIMPLES));
+		setValorTotalTitulosCarteiraSimples((BigDecimal) record.getValue(VL_TOTAL_CARTEIRA_SIMPLES));
+		setNumeroAvisoCarteiraSimples((Long) record.getValue(NR_AVISO_CARTEIRA_SIMPLES));
+		setQuantidadeTitulosCarteiraVinculada((Long) record.getValue(QT_TITULOS_CARTEIRA_VINCULADA));
+		setValorTotalTitulosCarteiraVinculada((BigDecimal) record.getValue(VL_TOTAL_CARTEIRA_VINCULADA));
+		setNumeroAvisoCarteiraVinculada((Long) record.getValue(NR_AVISO_CARTEIRA_VINCULADA));
+		setQuantidadeTitulosCarteiraCaucionada((Long) record.getValue(QT_TITULOS_CARTEIRA_CAUCIONADA));
+		setValorTotalTitulosCarteiraCaucionada((BigDecimal) record.getValue(VL_TOTAL_CARTEIRA_CAUCIONADA));
+		setNumeroAvisoCarteiraCaucionada((Long) record.getValue(NR_AVISO_CARTEIRA_CAUCIONADA));
+		setQuantidadeTitulosCarteiraDescontada((Long) record.getValue(QT_TITULOS_CARTEIRA_DESCONTADA));
+		setValorTotalTitulosCarteiraDescontada((BigDecimal) record.getValue(VL_TOTAL_CARTEIRA_DESCONTADA));
+		setNumeroAvisoCarteiraDescontada((Long) record.getValue(NR_AVISO_CARTEIRA_DESCONTADA));
+		setQuantidadeTitulosCarteiraVendor((Long) record.getValue(QT_TITULOS_CARTEIRA_VENDOR));
+		setValorTotalTitulosCarteiraVendor((BigDecimal) record.getValue(VL_TOTAL_CARTEIRA_VENDOR));
+		setNumeroAvisoCarteiraVendor((Long) record.getValue(NR_AVISO_CARTEIRA_VENDOR));
+		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
 	}
 }

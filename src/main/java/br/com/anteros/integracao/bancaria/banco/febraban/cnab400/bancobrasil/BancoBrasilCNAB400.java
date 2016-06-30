@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import br.com.anteros.core.utils.Assert;
 import br.com.anteros.flatfile.FlatFileManager;
 import br.com.anteros.flatfile.FlatFileManagerException;
+import br.com.anteros.flatfile.annotation.FlatFile;
 import br.com.anteros.flatfile.annotation.Record;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
@@ -19,7 +20,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNABException;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.CNAB400;
 
-
+@FlatFile(name = "Arquivo CNAB400 - Banco do Brasil", description = "Arquivo de remessa/retorno CNAB400", version = "1.0")
 public class BancoBrasilCNAB400 implements CNAB400 {
 
 	public static final String HEADER_REMESSA = "HeaderRemessa";
@@ -119,19 +120,16 @@ public class BancoBrasilCNAB400 implements CNAB400 {
 
 	public List<RetornoCobranca> read(InputStream dataInputStream, String[] groups) throws IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
-		
+
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, groups, dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, groups,
+				dataInputStream);
 
 		headerArquivoRetorno.set(flatFile.getRecord(HEADER_RETORNO));
 		detalheRetorno.set(flatFile.getRecords(TITULO_COBRANCA_DETALHE_RETORNO));
 		traillerArquivoRetorno.set(flatFile.getRecord(TRAILLER_RETORNO));
 
 		return null;
-		
-		
-		
-		
 	}
 
 	public List<RetornoCobranca> read(byte[] data, String[] groups) throws IllegalArgumentException,
