@@ -52,7 +52,7 @@ public class HeaderTitulosCobranca {
 	@IdType(name = TP_REGISTRO, length = 1, position = 8, value = "1")
 	private String tipoRegistro;
 
-	@Field(name = CD_BANCO, length = 3, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
 	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -61,7 +61,7 @@ public class HeaderTitulosCobranca {
 	@Field(name = TP_OPERACAO, length = 1, value = "R")
 	private String tipoOperacao;
 
-	@Field(name = TP_SERVICO, length = 2, value = "01", padding = Paddings.ZERO_LEFT)
+	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)

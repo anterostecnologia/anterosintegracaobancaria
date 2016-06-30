@@ -54,7 +54,7 @@ public class HeaderArquivo {
 	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "0")
 	private String tipoRegistro;
 
-	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
 	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000")

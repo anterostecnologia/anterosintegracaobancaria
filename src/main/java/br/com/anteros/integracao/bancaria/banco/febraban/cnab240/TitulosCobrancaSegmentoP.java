@@ -39,7 +39,7 @@ public class TitulosCobrancaSegmentoP implements RecordData {
 	@Field(name = "LT_SERVICO", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer loteServico;
 
-	@Field(name = "TP_REGISTRO", length = 1, value = "3", padding = Paddings.ZERO_LEFT)
+	@Field(name = "TP_REGISTRO", length = 1, value = "3", padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer tipoRegistro;
 
 	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -99,13 +99,13 @@ public class TitulosCobrancaSegmentoP implements RecordData {
 	@Field(name = "DIGITO_VERIFICADOR_AGENCIA_COBRANCA", length = 1)
 	private String digitoVerificadorAgenciaCobranca;
 
-	@Field(name = "ESPECIE_TITULO", length = 2, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ESPECIE_TITULO", length = 2, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer especieTitulo;
 
 	@Field(name = "ID_TITULO_ACEITO", length = 1)
 	private String identificadorTituloAceito;
 
-	@Field(name = "DT_EMISSAO_TITULO", length = 8, format = Formats.DATE_DDMMYYYY, padding = Paddings.ZERO_LEFT)
+	@Field(name = "DT_EMISSAO_TITULO", length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY, padding = Paddings.ZERO_LEFT)
 	private Date dtEmissaoTitulo;
 
 	@Field(name = "CD_JUROSMORA", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
