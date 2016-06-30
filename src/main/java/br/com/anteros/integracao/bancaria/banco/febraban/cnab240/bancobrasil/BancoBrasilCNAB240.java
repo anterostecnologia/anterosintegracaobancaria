@@ -137,7 +137,7 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 	
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, new String[]{"RETORNO"}, dataInputStream);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
 
 		headerArquivo.set(flatFile.getRecord(HEADER));

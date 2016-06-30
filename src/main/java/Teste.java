@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
-
-import com.lowagie.text.DocumentException;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.CEP;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
@@ -33,6 +32,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.Cedente;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.NumeroDaConta;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.Sacado;
 import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeBaixaDevolucao;
 import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeCobranca;
@@ -49,6 +49,8 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
+
+import com.lowagie.text.DocumentException;
 
 public class Teste {
 
@@ -68,10 +70,21 @@ public class Teste {
 		
 		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, remessas);
 		
+		/*
+		 * Teste para gerar arquivo
+		 */
 		byte[] data = layoutCNAB240.generate(new String[]{"REMESSA"});
-		
 		System.out.println(new String(data));
 		
+		/*
+		 * Teste para ler arquivo
+		 */
+	     File file = new File("/Users/eduardogreco/Documents/CNAB240_031210_000001.REM");
+		 List<RetornoCobranca> result = layoutCNAB240.read(file);
+		
+		 
+		 
+		 
 		
 		
 //		
