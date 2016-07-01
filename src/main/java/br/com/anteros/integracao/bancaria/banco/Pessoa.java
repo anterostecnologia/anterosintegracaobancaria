@@ -17,6 +17,7 @@ package br.com.anteros.integracao.bancaria.banco;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.contato.NumeroDeTelefone;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
@@ -199,8 +200,7 @@ public class Pessoa implements br.com.anteros.automacao.bancaria.comum.pessoa.Pe
 	 * @see Collection
 	 */
 	public Collection<Endereco> getEnderecos() {
-
-		return enderecos;
+		return Collections.unmodifiableCollection(enderecos);
 	}
 	
 	public String getNome() {
@@ -242,37 +242,12 @@ public class Pessoa implements br.com.anteros.automacao.bancaria.comum.pessoa.Pe
 		this.cprf = cprf;
 	}
 
-	/**
-	 * @see ContaBancaria
-	 * @see Collection
-	 */
-	public void setContasBancarias(Collection<ContaBancaria> contasBancarias) {
-		
-		this.contasBancarias = contasBancarias;
-	}
-
-	/**
-	 * @see Endereco
-	 * @see Collection
-	 */
-	public void setEnderecos(Collection<Endereco> enderecos) {
-		
-		this.enderecos = enderecos;
-	}
 
 	public void setNome(String nome) {
 	
 		this.nome = nome;
 	}
 
-	/**
-	 * @see NumeroDeTelefone
-	 * @see Collection
-	 */
-	public void setTelefones(Collection<NumeroDeTelefone> telefones) {
-		
-		this.telefones = telefones;
-	}
 
 	/** 
 	 * Verifica se esta pessoa é uma instância de <code>PessoaFisica</code>.

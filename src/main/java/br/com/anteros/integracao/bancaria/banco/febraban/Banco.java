@@ -299,14 +299,6 @@ public class Banco implements br.com.anteros.integracao.bancaria.banco.Banco {
 
 
 	/**
-	 * @see br.com.anteros.automacao.bancaria.comum.pessoa.Pessoa#setEnderecos(java.util.Collection)
-	 */
-	public void setEnderecos(Collection<Endereco> enderecos) {
-		
-		pessoaJuridica.setEnderecos(enderecos);
-	}
-
-	/**
 	 * @see br.com.anteros.automacao.bancaria.comum.pessoa.Pessoa#setNome(java.lang.String)
 	 */
 	
@@ -315,14 +307,6 @@ public class Banco implements br.com.anteros.integracao.bancaria.banco.Banco {
 		pessoaJuridica.setNome(nome);
 	}
 
-	/**
-	 * @see br.com.anteros.automacao.bancaria.comum.pessoa.Pessoa#setTelefones(java.util.Collection)
-	 */
-	
-	public void setTelefones(Collection<NumeroDeTelefone> telefones) {
-		
-		pessoaJuridica.setTelefones(telefones);
-	}
 
 	/**
 	 * @see br.com.anteros.automacao.bancaria.comum.pessoa.PessoaJuridica#getInscricaoEstadual()
@@ -406,15 +390,6 @@ public class Banco implements br.com.anteros.integracao.bancaria.banco.Banco {
 	
 	
 
-
-	/**
-	 * @see br.com.anteros.automacao.bancaria.comum.pessoa.Pessoa#setContasBancarias(java.util.Collection)
-	 */
-	
-	public void setContasBancarias(Collection<ContaBancaria> contasBancarias) {
-		
-		pessoaJuridica.setContasBancarias(contasBancarias);
-	}
 
 	@Override
 	public String toString() {

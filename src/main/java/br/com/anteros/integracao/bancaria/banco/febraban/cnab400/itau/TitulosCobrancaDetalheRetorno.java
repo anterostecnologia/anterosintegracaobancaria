@@ -13,7 +13,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 public class TitulosCobrancaDetalheRetorno {
 
 	
-	@IdType(name="CD_REGISTRO", length=1, position=1, value="1")
+	@IdType(name="CD_REGISTRO", length=1, positionField=1, value="1")
 	private Integer codigoRegistro;
 	
 	@Field(name="BRANCOS1", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)

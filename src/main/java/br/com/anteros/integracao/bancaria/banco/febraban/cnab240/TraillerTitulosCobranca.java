@@ -34,7 +34,7 @@ public class TraillerTitulosCobranca {
 
 	private static final String TIPO_REGISTRO = "TIPO_REGISTRO";
 
-	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "5")
+	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "5")
 	private String tipoRegistro;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)

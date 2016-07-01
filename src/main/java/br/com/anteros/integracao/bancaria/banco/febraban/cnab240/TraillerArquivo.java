@@ -30,7 +30,7 @@ public class TraillerArquivo {
 	private static final String CD_BANCO = "CD_BANCO";
 	private static final String TIPO_REGISTRO = "TIPO_REGISTRO";
 
-	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "9")
+	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "9")
 	private String tipoRegistro;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)

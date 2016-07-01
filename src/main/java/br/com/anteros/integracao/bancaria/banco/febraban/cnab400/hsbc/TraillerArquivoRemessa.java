@@ -11,7 +11,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TraillerArquivoRemessa {
 
-	@IdType(name="ID_REGISTRO", length=1, position=1, value="9")
+	@IdType(name="ID_REGISTRO", length=1, positionField=1, value="9")
 	private Integer codigoRegistro;
 	
 	@Field(name="BRANCOS", length=393, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)

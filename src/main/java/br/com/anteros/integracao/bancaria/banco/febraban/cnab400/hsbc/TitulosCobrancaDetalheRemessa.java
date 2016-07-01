@@ -14,7 +14,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TitulosCobrancaDetalheRemessa {
 
-	@IdType(name="CD_REGISTRO", length=1, value="1", position=1)
+	@IdType(name="CD_REGISTRO", length=1, value="1", positionField=1)
 	private Integer codigoRegistro;
 	
 	@Field(name="TP_INSCRICAO_EMPRESA", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)

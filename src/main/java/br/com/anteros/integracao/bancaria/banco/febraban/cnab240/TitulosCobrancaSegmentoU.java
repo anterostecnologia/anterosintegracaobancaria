@@ -38,7 +38,7 @@ public class TitulosCobrancaSegmentoU {
 	private static final String CD_BANCO = "CD_BANCO";
 	private static final String CD_SEGMENTO_REGISTRO = "CD_SEGMENTO_REGISTRO";
 
-	@IdType(name = CD_SEGMENTO_REGISTRO, length = 1, position = 5, value = "U")
+	@IdType(name = CD_SEGMENTO_REGISTRO, length = 1, positionField = 5, value = "U")
 	private String codigoSegmentoRegistro;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)

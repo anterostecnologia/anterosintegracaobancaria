@@ -13,7 +13,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class HeaderArquivoRemessa {
 	
-	@IdType(name="ID_REGISTRO", value="0", length=1, position=1)
+	@IdType(name="ID_REGISTRO", value="0", length=1, positionField=1)
 	private String codigoDoRegistro;
 	
 	@Field(name="ID_REMESSA", length=1, value="1", type=EnumTypes.INTEGER)

@@ -51,7 +51,7 @@ public class HeaderArquivo {
 	private static final String TIPO_REGISTRO = "TIPO_REGISTRO";
 	private static final String CD_BANCO = "CD_BANCO";
 
-	@IdType(name = TIPO_REGISTRO, length = 1, position = 8, value = "0")
+	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "0")
 	private String tipoRegistro;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -123,7 +123,7 @@ public class HeaderArquivo {
 	@Field(name = "BRANCOS_3", length = 29, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
@@ -137,12 +137,12 @@ public class HeaderArquivo {
 		this.nomeEmpresa = cedente.getNome();// G013
 		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
 		this.codigoRemessaRetorno = 1;// G015
-		this.dataGeracaoArquivo = new Date();// G016
-		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(new Date()));// G017
+		this.dataGeracaoArquivo = dataHoraGeracao;// G016
+		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
-	public HeaderArquivo(ContaBancaria contaBancaria) {
+	public HeaderArquivo(ContaBancaria contaBancaria, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
@@ -151,18 +151,18 @@ public class HeaderArquivo {
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
 		this.codigoRemessaRetorno = 1;// G015
-		this.dataGeracaoArquivo = new Date();// G016
-		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(new Date()));// G017
+		this.dataGeracaoArquivo = dataHoraGeracao;// G016
+		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
 	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutArquivo) {
-		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo);
+			Integer versaoLayoutArquivo, Date dataHoraGeracao) {
+		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo, dataHoraGeracao);
 	}
 
-	public static HeaderArquivo of(ContaBancaria contaBancaria) {
-		return new HeaderArquivo(contaBancaria);
+	public static HeaderArquivo of(ContaBancaria contaBancaria, Date dataHoraGeracao) {
+		return new HeaderArquivo(contaBancaria, dataHoraGeracao);
 	}
 
 	public String getTipoRegistro() {

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class ItauCNAB240 implements CNAB240 {
 	@Record(name = TRAILLER, order = 8, groups = { "REMESSA", "RETORNO" })
 	private TraillerArquivo traillerArquivo;
 
-	public ItauCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	public ItauCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataHoraGeracao) {
 
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
@@ -82,7 +83,7 @@ public class ItauCNAB240 implements CNAB240 {
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
-				VERSAO_LAYOUT_ARQUIVO_ITAU);
+				VERSAO_LAYOUT_ARQUIVO_ITAU, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_ITAU);
@@ -94,8 +95,8 @@ public class ItauCNAB240 implements CNAB240 {
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
 
-	public ItauCNAB240(ContaBancaria contaBancaria) {
-		headerArquivo = HeaderArquivo.of(contaBancaria);
+	public ItauCNAB240(ContaBancaria contaBancaria, Date dataHoraGeracao) {
+		headerArquivo = HeaderArquivo.of(contaBancaria, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
@@ -138,7 +139,7 @@ public class ItauCNAB240 implements CNAB240 {
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 		
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, groups, dataInputStream);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
 
 		headerArquivo.set(flatFile.getRecord(HEADER));
@@ -166,4 +167,7 @@ public class ItauCNAB240 implements CNAB240 {
 		return read(new ByteArrayInputStream(data), groups);
 	}
 
+	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException {
+		return new FlatFileManager().getXMLSchema(this);
+	}
 }

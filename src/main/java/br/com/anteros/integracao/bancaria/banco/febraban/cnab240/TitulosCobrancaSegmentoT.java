@@ -1,6 +1,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import br.com.anteros.flatfile.Record;
 import br.com.anteros.flatfile.annotation.Field;
@@ -43,7 +44,7 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 	private static final String CD_BANCO = "CD_BANCO";
 	private static final String CD_SEGMENTO_REGISTRO = "CD_SEGMENTO_REGISTRO";
 
-	@IdType(value = "T", length = 1, position = 5, name = CD_SEGMENTO_REGISTRO)
+	@IdType(value = "T", length = 1, positionField = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
 
 	@Field(name = CD_BANCO, type = EnumTypes.INTEGER, length = 3, padding = Paddings.ZERO_LEFT)
@@ -88,8 +89,8 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 	@Field(name = NR_DOCUMENTO_COBRANCA, length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
 
-	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY)
-	private String dataVencimentoTitulo;
+	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	private Date dataVencimentoTitulo;
 
 	@Field(name = VL_NOMINAL_TITULO, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal valorNominalTitulo;
@@ -256,11 +257,11 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 		this.numeroDocumentoCobranca = numeroDocumentoCobranca;
 	}
 
-	public String getDataVencimentoTitulo() {
+	public Date getDataVencimentoTitulo() {
 		return dataVencimentoTitulo;
 	}
 
-	public void setDataVencimentoTitulo(String dataVencimentoTitulo) {
+	public void setDataVencimentoTitulo(Date dataVencimentoTitulo) {
 		this.dataVencimentoTitulo = dataVencimentoTitulo;
 	}
 
@@ -395,7 +396,7 @@ public class TitulosCobrancaSegmentoT implements RecordData {
 		setIdentificadorTitulo((String) record.getValue(ID_TITULO));
 		setCodigoCarteira((String) record.getValue(CD_CARTEIRA));
 		setNumeroDocumentoCobranca((String) record.getValue(NR_DOCUMENTO_COBRANCA));
-		setDataVencimentoTitulo((String) record.getValue(DT_VENCIMENTO));
+		setDataVencimentoTitulo((Date) record.getValue(DT_VENCIMENTO));
 		setValorNominalTitulo((BigDecimal) record.getValue(VL_NOMINAL_TITULO));
 		setNumeroBanco((Integer) record.getValue(NR_BANCO));
 		setAgenciaCobradoraRecebedora((Integer) record.getValue(AGENCIA_COBRADORA_RECEBEDORA));

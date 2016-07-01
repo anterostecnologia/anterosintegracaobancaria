@@ -16,6 +16,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.contato.NumeroDeTelefone;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
@@ -109,13 +110,6 @@ public class EntidadeDeCobranca{
 		return pessoa.getContasBancarias();
 	}
 	
-	/**
-	 * @see ContaBancaria
-	 * @see Collection
-	 */
-	public void setContasBancarias(Collection<ContaBancaria> contasBancarias) {
-		pessoa.setContasBancarias(contasBancarias);
-	}
 	
 	/**
 	 * @see Endereco
@@ -140,13 +134,6 @@ public class EntidadeDeCobranca{
 		return pessoa.getEnderecos();
 	}
 	
-	/**
-	 * @see Endereco
-	 * @see Collection
-	 */
-	public void setEnderecos(Collection<Endereco> enderecos) {
-		pessoa.setEnderecos(enderecos);
-	}
 
 	/**
 	 * @see NumeroDeTelefone
@@ -171,12 +158,5 @@ public class EntidadeDeCobranca{
 		return pessoa.getTelefones();
 	}
 
-	/**
-	 * @see NumeroDeTelefone
-	 * @see Collection
-	 */
-	public void setTelefones(Collection<NumeroDeTelefone> telefones) {
-		pessoa.setTelefones(telefones);
-	}
 
 }

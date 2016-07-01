@@ -31,7 +31,7 @@ public class TraillerArquivoRetorno {
 	private static final String CD_RETORNO = "CD_RETORNO";
 	private static final String CD_REGISTRO = "CD_REGISTRO";
 
-	@IdType(name = CD_REGISTRO, length = 1, position = 1, value = "9")
+	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "9")
 	private Integer codigoRegistro;
 
 	@Field(name = CD_RETORNO, length = 1)

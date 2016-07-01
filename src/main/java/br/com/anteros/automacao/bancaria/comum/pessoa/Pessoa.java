@@ -46,19 +46,13 @@ public interface Pessoa{
 
 	public Collection<NumeroDeTelefone> getTelefones();
 
-	public void setTelefones(Collection<NumeroDeTelefone> telefones);
-
 	public void addTelefone(NumeroDeTelefone telefone);
 
 	public Collection<Endereco> getEnderecos();
 
-	public void setEnderecos(Collection<Endereco> enderecos);
-
 	public void addEndereco(Endereco endereco);
 
 	public Collection<ContaBancaria> getContasBancarias();
-
-	public void setContasBancarias(Collection<ContaBancaria> contasBancarias);
 
 	public void addContaBancaria(ContaBancaria contaBancaria);
 

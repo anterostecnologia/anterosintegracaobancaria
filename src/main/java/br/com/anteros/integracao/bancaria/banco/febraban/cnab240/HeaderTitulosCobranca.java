@@ -49,7 +49,7 @@ public class HeaderTitulosCobranca {
 	private static final String CD_BANCO = "CD_BANCO";
 	private static final String TP_REGISTRO = "TP_REGISTRO";
 
-	@IdType(name = TP_REGISTRO, length = 1, position = 8, value = "1")
+	@IdType(name = TP_REGISTRO, length = 1, positionField = 3, value = "1")
 	private String tipoRegistro;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -76,8 +76,8 @@ public class HeaderTitulosCobranca {
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
 	private Integer tipoInscricao;
 
-	@Field(name = NR_INSCRICAO, length = 15, type = EnumTypes.LONG)
-	private Long numeroInscricao;
+	@Field(name = NR_INSCRICAO, length = 15, padding=Paddings.ZERO_LEFT)
+	private String numeroInscricao;
 
 	@Field(name = CD_CONVENIO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoConvenio;
@@ -123,7 +123,7 @@ public class HeaderTitulosCobranca {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.loteServico = 1;// G002
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
-		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
+		this.numeroInscricao = cedente.getCPRF().getCodigoComZeros(); // G006
 		this.codigoConvenio = carteira.getCodigoConvenio();// G007
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.layoutLote = versaoLayoutLote;// G030
@@ -225,11 +225,11 @@ public class HeaderTitulosCobranca {
 		this.tipoInscricao = tipoInscricao;
 	}
 
-	public Long getNumeroInscricao() {
+	public String getNumeroInscricao() {
 		return numeroInscricao;
 	}
 
-	public void setNumeroInscricao(Long numeroInscricao) {
+	public void setNumeroInscricao(String numeroInscricao) {
 		this.numeroInscricao = numeroInscricao;
 	}
 
@@ -345,7 +345,7 @@ public class HeaderTitulosCobranca {
 		setTipoServico((Integer) record.getValue(TP_SERVICO));
 		setLayoutLote((Integer) record.getValue(LAYOUT_LOTE));
 		setTipoInscricao((Integer) record.getValue(TP_INSCRICAO));
-		setNumeroInscricao((Long) record.getValue(NR_INSCRICAO));
+		setNumeroInscricao((String)record.getValue(NR_INSCRICAO));
 		setCodigoConvenio((String) record.getValue(CD_CONVENIO));
 		setAgenciaMantenedora((Integer) record.getValue(AGENCIA_MANTENEDORA));
 		setDigitoVerificadorAgencia((String) record.getValue(DIGITO_AGENCIA));

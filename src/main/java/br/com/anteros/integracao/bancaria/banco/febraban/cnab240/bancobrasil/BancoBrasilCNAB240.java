@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 	@Record(name = TRAILLER, order = 8, groups = { "REMESSA", "RETORNO" })
 	private TraillerArquivo traillerArquivo;
 
-	public BancoBrasilCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	public BancoBrasilCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataHoraGeracao) {
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
 			throw new CNABException("Informe as remessas para geração do arquivo.");
@@ -81,7 +82,7 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
-				VERSAO_LAYOUT_ARQUIVO_BB);
+				VERSAO_LAYOUT_ARQUIVO_BB, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), VERSAO_LAYOUT_LOTE_BB);
@@ -93,8 +94,8 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
 
-	public BancoBrasilCNAB240(ContaBancaria contaBancaria) {
-		headerArquivo = HeaderArquivo.of(contaBancaria);
+	public BancoBrasilCNAB240(ContaBancaria contaBancaria,  Date dataHoraGeracao) {
+		headerArquivo = HeaderArquivo.of(contaBancaria, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
@@ -137,20 +138,19 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 	
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, new String[]{"RETORNO"}, dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, groups, dataInputStream);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
 
 		headerArquivo.set(flatFile.getRecord(HEADER));
 		headerTitulosCobranca.set(flatFile.getRecord(HEADER_LOTE_COBRANCA));
 
 		Iterator<br.com.anteros.flatfile.Record> iteratorT = flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_T).iterator();
-		Iterator<br.com.anteros.flatfile.Record> iteratorU = flatFile.getRecords(TITULO_COBRANCA_SEGMENTO_U).iterator();
 		while (iteratorT.hasNext()) {
 			br.com.anteros.flatfile.Record recordT = iteratorT.next();
-			br.com.anteros.flatfile.Record recordU = iteratorU.next();
 			segmentoT.set(recordT);
-			segmentoU.set(recordU);
-
+			if (recordT.getInnerRecords().size()!=1)
+				throw new CNABException("Número de registros filhos para o Registro T incorreto.");
+			segmentoU.set(recordT.getInnerRecords().iterator().next());
 			result.add(RetornoCobranca.of(segmentoT, segmentoU));
 		}
 
@@ -163,6 +163,10 @@ public class BancoBrasilCNAB240 implements CNAB240 {
 	public List<RetornoCobranca> read(byte[] data, String[] groups) throws IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 		return read(new ByteArrayInputStream(data), groups);
+	}
+
+	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException {
+		return new FlatFileManager().getXMLSchema(this);
 	}
 
 }

@@ -68,22 +68,31 @@ public class Teste {
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		
-		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, remessas);
-		
-		/*
-		 * Teste para gerar arquivo
-		 */
-		byte[] data = layoutCNAB240.generate(new String[]{"REMESSA"});
-		System.out.println(new String(data));
-		
-		/*
-		 * Teste para ler arquivo
-		 */
-	     File file = new File("/Users/eduardogreco/Documents/CNAB240_031210_000001.REM");
-		 List<RetornoCobranca> result = layoutCNAB240.read(file);
-		
-		 
-		 
+//		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, remessas);
+//		
+//		/*
+//		 * Teste para gerar arquivo
+//		 */
+//		byte[] data = layoutCNAB240.generate(new String[]{"REMESSA"});
+//		System.out.println(new String(data));
+//		
+//
+//		 List<RetornoCobranca> result = layoutCNAB240.read(data, new String[]{"RETORNO"});
+//		
+//		 for (RetornoCobranca retorno : result){
+//			 System.out.println(retorno);
+//		 }
+//		
+//		/*
+//		 * Teste para ler arquivo
+//		 */
+//	     File file = new File("src/main/java/BANCOBRASIL.ret");
+//		 List<RetornoCobranca> result = layoutCNAB240.read(file, new String[]{"RETORNO"});
+//		
+//		 for (RetornoCobranca retorno : result){
+//			 System.out.println(retorno);
+//		 }
+//		 
 		 
 		
 		

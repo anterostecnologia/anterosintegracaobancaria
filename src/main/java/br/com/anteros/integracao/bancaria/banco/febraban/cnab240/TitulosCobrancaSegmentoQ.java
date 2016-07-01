@@ -27,7 +27,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
 public class TitulosCobrancaSegmentoQ implements RecordData {
 
-	@IdType(name = "CD_SEGMENTO_REGISTRO", length = 1, position = 14, value = "Q")
+	@IdType(name = "CD_SEGMENTO_REGISTRO", length = 1, positionField = 5, value = "Q")
 	private String codigoSegmentoRegistro;
 
 	@Field(name = "CD_BANCO", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)

@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class CNAB240Febraban implements CNAB240 {
 	private TraillerArquivo traillerArquivo;
 	private List<RemessaCobranca> remessas;
 
-	public CNAB240Febraban(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	public CNAB240Febraban(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataHoraGeracao) {
 
 		Assert.notNull(remessas, "Informe as remessas para geração do arquivo.");
 		if (remessas.size() == 0) {
@@ -87,7 +88,7 @@ public class CNAB240Febraban implements CNAB240 {
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(),
-				CNAB240.VERSAO_LAYOUT_ARQUIVO_FEBRABAN);
+				CNAB240.VERSAO_LAYOUT_ARQUIVO_FEBRABAN, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCedente(), CNAB240.VERSAO_LAYOUT_LOTE_FEBRABAN);
@@ -99,8 +100,8 @@ public class CNAB240Febraban implements CNAB240 {
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
 	}
 
-	public CNAB240Febraban(ContaBancaria contaBancaria) {
-		headerArquivo = HeaderArquivo.of(contaBancaria);
+	public CNAB240Febraban(ContaBancaria contaBancaria,  Date dataHoraGeracao) {
+		headerArquivo = HeaderArquivo.of(contaBancaria, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
 		segmentoU = TitulosCobrancaSegmentoU.of(contaBancaria);
@@ -174,5 +175,9 @@ public class CNAB240Febraban implements CNAB240 {
 	public List<RetornoCobranca> read(byte[] data, String[] groups) throws IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException, IOException {
 		return read(new ByteArrayInputStream(data), groups);
+	}
+	
+	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException {
+		return new FlatFileManager().getXMLSchema(this);
 	}
 }

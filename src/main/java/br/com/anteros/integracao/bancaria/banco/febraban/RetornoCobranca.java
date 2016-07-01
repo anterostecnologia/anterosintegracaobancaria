@@ -16,12 +16,15 @@
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoT;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobrancaSegmentoU;
 
 public class RetornoCobranca {
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	private String codigoSegmentoRegistroT;
 	private Integer codigoBancoT;
@@ -37,7 +40,7 @@ public class RetornoCobranca {
 	private String identificadorTituloT;
 	private String codigoCarteiraT;
 	private String numeroDocumentoCobrancaT;
-	private String dataVencimentoTituloT;
+	private Date dataVencimentoTituloT;
 	private BigDecimal valorNominalTituloT;
 	private Integer numeroBancoT;
 	private Integer agenciaCobradoraRecebedoraT;
@@ -249,11 +252,11 @@ public class RetornoCobranca {
 		this.numeroDocumentoCobrancaT = numeroDocumentoCobrancaT;
 	}
 
-	public String getDataVencimentoTituloT() {
+	public Date getDataVencimentoTituloT() {
 		return dataVencimentoTituloT;
 	}
 
-	public void setDataVencimentoTituloT(String dataVencimentoTituloT) {
+	public void setDataVencimentoTituloT(Date dataVencimentoTituloT) {
 		this.dataVencimentoTituloT = dataVencimentoTituloT;
 	}
 
@@ -527,6 +530,39 @@ public class RetornoCobranca {
 
 	public void setNossoNumeroBancoCorrespondenteU(String nossoNumeroBancoCorrespondenteU) {
 		this.nossoNumeroBancoCorrespondenteU = nossoNumeroBancoCorrespondenteU;
+	}
+
+	@Override
+	public String toString() {
+		return "RetornoCobranca [codigoSegmentoRegistroT=" + codigoSegmentoRegistroT + ", codigoBancoT=" + codigoBancoT
+				+ ", loteServicoT=" + loteServicoT + ", tipoRegistroT=" + tipoRegistroT + ", numeroSequencialRegistroT="
+				+ numeroSequencialRegistroT + ", codigoMovimentoRetornoT=" + codigoMovimentoRetornoT
+				+ ", agenciaMantenedoraT=" + agenciaMantenedoraT + ", digitoVerificadorAgenciaT="
+				+ digitoVerificadorAgenciaT + ", numeroContaCorrenteT=" + numeroContaCorrenteT
+				+ ", digitoVerificadorContaCorrenteT=" + digitoVerificadorContaCorrenteT
+				+ ", digitoVerificadorAgenciaContaT=" + digitoVerificadorAgenciaContaT + ", identificadorTituloT="
+				+ identificadorTituloT + ", codigoCarteiraT=" + codigoCarteiraT + ", numeroDocumentoCobrancaT="
+				+ numeroDocumentoCobrancaT + ", dataVencimentoTituloT=" + (dataVencimentoTituloT==null?"":sdf.format(dataVencimentoTituloT))
+				+ ", valorNominalTituloT=" + valorNominalTituloT + ", numeroBancoT=" + numeroBancoT
+				+ ", agenciaCobradoraRecebedoraT=" + agenciaCobradoraRecebedoraT
+				+ ", digitoVerificadorAgenciaCobradoraT=" + digitoVerificadorAgenciaCobradoraT
+				+ ", identificadorTituloEmpresaT=" + identificadorTituloEmpresaT + ", codigoMoedaT=" + codigoMoedaT
+				+ ", tipoInscricaoSacadoAvalistaT=" + tipoInscricaoSacadoAvalistaT + ", numeroInscricaoSacadoAvalistaT="
+				+ numeroInscricaoSacadoAvalistaT + ", nomeSacadorAvalistaT=" + nomeSacadorAvalistaT
+				+ ", numeroContratoOperacaoCreditoT=" + numeroContratoOperacaoCreditoT + ", valorTarifaCustasT="
+				+ valorTarifaCustasT + ", identificadorRejeicaoT=" + identificadorRejeicaoT
+				+ ", codigoSegmentoRegistroU=" + codigoSegmentoRegistroU + ", codigoBancoU=" + codigoBancoU
+				+ ", loteServicoU=" + loteServicoU + ", tipoRegistroU=" + tipoRegistroU + ", numeroSequencialRegistroU="
+				+ numeroSequencialRegistroU + ", codigoMovimentoRetornoU=" + codigoMovimentoRetornoU
+				+ ", valorJurosMultasEncargosU=" + valorJurosMultasEncargosU + ", valorDescontoU=" + valorDescontoU
+				+ ", valorAbatimentoU=" + valorAbatimentoU + ", valorIOFU=" + valorIOFU + ", valorPagoSacadoU="
+				+ valorPagoSacadoU + ", valorLiquidoCreditadoU=" + valorLiquidoCreditadoU + ", valorOutrasDespesasU="
+				+ valorOutrasDespesasU + ", valorOutrosCreditosU=" + valorOutrosCreditosU
+				+ ", dataOcorrenciaPagamentoU=" + (dataOcorrenciaPagamentoU==null?"":sdf.format(dataOcorrenciaPagamentoU)) + ", dataEfetivacaoCreditoU="
+				+ (dataEfetivacaoCreditoU==null?"":sdf.format(dataEfetivacaoCreditoU)) + ", codigoOcorrenciaU=" + codigoOcorrenciaU + ", dataOcorrenciaU="
+				+ (dataOcorrenciaU==null?"":sdf.format(dataOcorrenciaU)) + ", valorOcorrenciaU=" + valorOcorrenciaU + ", complementoOcorrenciaU="
+				+ complementoOcorrenciaU + ", codigoBancoCorrespondenteU=" + codigoBancoCorrespondenteU
+				+ ", nossoNumeroBancoCorrespondenteU=" + nossoNumeroBancoCorrespondenteU + "]";
 	}
 
 }

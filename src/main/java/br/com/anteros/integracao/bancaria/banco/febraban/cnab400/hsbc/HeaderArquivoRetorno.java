@@ -12,7 +12,7 @@ import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 public class HeaderArquivoRetorno {
 
 	
-	@IdType(name="CD_REGISTRO", length=1, position=1, value="0")
+	@IdType(name="CD_REGISTRO", length=1, positionField=1, value="0")
 	private Integer codigoRegistro;
 	
 	@Field(name="CD_RETORNO", length=1)

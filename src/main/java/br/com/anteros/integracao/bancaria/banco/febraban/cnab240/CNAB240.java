@@ -20,6 +20,8 @@ public interface CNAB240 {
 
 	public byte[] generate() throws FlatFileManagerException, JAXBException, IllegalArgumentException,
 			IllegalAccessException, IOException;
+	
+	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException;
 
 	public byte[] generate(String[] groups) throws FlatFileManagerException, JAXBException,
 			IllegalArgumentException, IllegalAccessException, IOException;
