@@ -1,4 +1,4 @@
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.util;
+package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

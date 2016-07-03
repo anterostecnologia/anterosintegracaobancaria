@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,10 @@ public class Teste {
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		remessas.add(criarRemessaBancaria(contaBancaria));
 		
-//		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, remessas);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
+		
+		CNAB240 layoutCNAB240 = CNAB240Factory.create(contaBancaria, calendar.getTime(), calendar.getTime());
 //		
 //		/*
 //		 * Teste para gerar arquivo
@@ -83,16 +87,16 @@ public class Teste {
 //			 System.out.println(retorno);
 //		 }
 //		
-//		/*
-//		 * Teste para ler arquivo
-//		 */
-//	     File file = new File("src/main/java/BANCOBRASIL.ret");
-//		 List<RetornoCobranca> result = layoutCNAB240.read(file, new String[]{"RETORNO"});
-//		
-//		 for (RetornoCobranca retorno : result){
-//			 System.out.println(retorno);
-//		 }
-//		 
+		/*
+		 * Teste para ler arquivo
+		 */
+	     File file = new File("src/main/java/BANCOBRASIL.ret");
+		 List<RetornoCobranca> result = layoutCNAB240.read(file, new String[]{"RETORNO"});
+		
+		 for (RetornoCobranca retorno : result){
+			 System.out.println(retorno);
+		 }
+		 
 		 
 		
 		

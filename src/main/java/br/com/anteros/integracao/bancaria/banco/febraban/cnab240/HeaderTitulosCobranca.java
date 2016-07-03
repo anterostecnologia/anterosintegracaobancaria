@@ -15,6 +15,7 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import br.com.anteros.flatfile.annotation.Field;
@@ -119,7 +120,7 @@ public class HeaderTitulosCobranca {
 	private String brancos3;
 
 	public HeaderTitulosCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutLote) {
+			Integer versaoLayoutLote, Date dataGravacao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.loteServico = 1;// G002
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
@@ -133,10 +134,10 @@ public class HeaderTitulosCobranca {
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeEmpresa = cedente.getNome();// G013
 		this.numeroRemessaRetorno = 1; // G079
-		this.dataGravacao = new Date();// G068
+		this.dataGravacao = dataGravacao;// G068
 	}
 
-	public HeaderTitulosCobranca(ContaBancaria contaBancaria) {
+	public HeaderTitulosCobranca(ContaBancaria contaBancaria, Date dataGravacao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.loteServico = 1;// G002
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
@@ -145,9 +146,23 @@ public class HeaderTitulosCobranca {
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.numeroRemessaRetorno = 1; // G079
-		this.dataGravacao = new Date();// G068
+		this.dataGravacao = dataGravacao;// G068
+	}
+	
+	public HeaderTitulosCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
+			Integer versaoLayoutLote) {
+		this(contaBancaria,carteira,cedente,versaoLayoutLote,Calendar.getInstance().getTime());
 	}
 
+	public HeaderTitulosCobranca(ContaBancaria contaBancaria) {
+		this(contaBancaria, Calendar.getInstance().getTime());
+	}
+
+	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
+			Integer versaoLayoutLote, Date dataGravacao) {
+		return new HeaderTitulosCobranca(contaBancaria, carteira, cedente, versaoLayoutLote, dataGravacao);
+	}
+	
 	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
 			Integer versaoLayoutLote) {
 		return new HeaderTitulosCobranca(contaBancaria, carteira, cedente, versaoLayoutLote);
@@ -360,6 +375,10 @@ public class HeaderTitulosCobranca {
 		setDataCredito((Date) record.getValue(DT_CREDITO));
 	}
 
+	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria, Date dataGravacao) {
+		return new HeaderTitulosCobranca(contaBancaria, dataGravacao);
+	}
+	
 	public static HeaderTitulosCobranca of(ContaBancaria contaBancaria) {
 		return new HeaderTitulosCobranca(contaBancaria);
 	}

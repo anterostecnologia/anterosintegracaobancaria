@@ -60,7 +60,7 @@ public class TraillerTitulosCobranca {
 		this.quantidadeRegistros = remessas.size();// G057
 	}
 
-	public TraillerTitulosCobranca(ContaBancaria contaBancaria2) {
+	public TraillerTitulosCobranca(ContaBancaria contaBancaria) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
 		this.loteServico = 1;// G002
 	}
