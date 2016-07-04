@@ -1,6 +1,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bradesco;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -61,6 +62,12 @@ public class BradescoCNAB240Test {
 		byte[] byteArray = layoutCNAB240.generate(new String[] { REMESSA });
 
 		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB240_BancoBradesco.REM");
+		
+		FileOutputStream fos = new FileOutputStream(file);
+		fos.write(byteArray);
+		fos.flush();
+		fos.close();
+		
 		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));
 
