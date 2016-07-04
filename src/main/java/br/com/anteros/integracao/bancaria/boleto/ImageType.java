@@ -18,5 +18,5 @@ package br.com.anteros.integracao.bancaria.boleto;
 public enum ImageType {
 
 	PNG,
-	JPG	
+	JPG
 }

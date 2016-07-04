@@ -59,6 +59,15 @@ public class BoletoConfiguration {
 		this.creationDate = builder.getCreationDate();
 		this.modificationDate = builder.getModificationDate();
 		this.producer = builder.getProducer();
+		validate();
+	}
+
+	private void validate() {
+		if (!StringUtils.isEmpty(this.author) && (StringUtils.isEmpty(this.title) || StringUtils.isEmpty(creator)
+				|| StringUtils.isEmpty(keywords) || StringUtils.isEmpty(this.subject))) {
+			throw new BoletoException(
+					"Ao informar o autor para o boleto informe também: titulo, criador, palavras chaves e assunto.");
+		}
 	}
 
 	public boolean isGroupResults() {

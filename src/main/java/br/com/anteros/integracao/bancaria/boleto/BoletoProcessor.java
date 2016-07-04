@@ -22,8 +22,11 @@ import java.util.Map.Entry;
 import java.util.WeakHashMap;
 
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
 import com.lowagie.text.Image;
 import com.lowagie.text.pdf.AcroFields;
+import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 
@@ -49,10 +52,12 @@ public class BoletoProcessor {
 		PdfReader reader = new PdfReader(template);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PdfStamper stamper = new PdfStamper(reader, baos);
-
+		
 		AcroFields form = stamper.getAcroFields();
 		for (Entry<String, String> e : texts.entrySet()) {
-			form.setField(e.getKey(), e.getValue());
+			String s = new String(e.getValue().getBytes(),"UTF-8");
+			form.setFieldProperty(e.getKey(),"textfont",FontFactory.getFont(FontFactory.HELVETICA).getBaseFont(),null);
+			form.setField(e.getKey(), s);
 		}
 
 		for (Entry<String, java.awt.Image> e : images.entrySet()) {

@@ -15,6 +15,8 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.boleto;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +24,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.rendering.PDFRenderer;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -94,53 +102,65 @@ public class BoletoManager {
 		return generateToFile(configuration, boletos.toArray(new Boleto[] {}));
 	}
 
-	// public List<byte[]> generateToImage(ImageType imageType,
-	// BoletoConfiguration configuration, Boleto... boletos)
-	// throws IOException, DocumentException {
-	// List<byte[]> generatedBoletos = new ArrayList<byte[]>();
-	// int i = 0;
-	// for (Boleto boleto : boletos) {
-	// BoletoInfoViewBuilder builder = new
-	// BoletoInfoViewBuilder(ResourceBundle.getInstance(), boleto).build();
-	// BoletoProcessor processor = new BoletoProcessor(boleto, builder,
-	// configuration.getTemplate(boleto));
-	// byte[] generatedBoleto = processor.execute();
-	//
-	// PDDocument pdfDocument = PDDocument.load(generatedBoleto);
-	// PDFRenderer pdfRenderer = new PDFRenderer(pdfDocument);
-	//
-	// BufferedImage bim = pdfRenderer.renderImageWithDPI(0, 300,
-	// org.apache.pdfbox.rendering.ImageType.RGB);
-	// i++;
-	// FileOutputStream fos = new FileOutputStream(new
-	// File("/Users/edson/teste_x" + i + ".png"));
-	// ImageIO.write(bim, "png", fos);
-	// fos.flush();
-	// fos.close();
-	// pdfDocument.close();
-	// }
-	// return generatedBoletos;
-	// }
-	//
-	// public List<byte[]> generateToImage(ImageType imageType,
-	// BoletoConfiguration configuration, List<Boleto> boletos)
-	// throws IOException, DocumentException {
-	// return generateToImage(imageType, configuration, boletos.toArray(new
-	// Boleto[] {}));
-	// }
-	//
-	// public List<File> generateToImageFile(ImageType imageType,
-	// BoletoConfiguration configuration, Boleto... boletos)
-	// throws IOException {
-	// return null;
-	// }
-	//
-	// public List<File> generateToImageFile(ImageType imageType,
-	// BoletoConfiguration configuration, List<Boleto> boletos)
-	// throws IOException {
-	// return generateToImageFile(imageType, configuration, boletos.toArray(new
-	// Boleto[] {}));
-	// }
+	public List<byte[]> generateToImage(ImageType imageType, int resolutionDPI, BoletoConfiguration configuration,
+			Boleto... boletos) throws IOException, DocumentException {
+		List<byte[]> generatedBoletos = new ArrayList<byte[]>();
+		for (Boleto boleto : boletos) {
+			BoletoInfoViewBuilder builder = new BoletoInfoViewBuilder(ResourceBundle.getInstance(), boleto).build();
+			BoletoProcessor processor = new BoletoProcessor(boleto, builder, configuration.getTemplate(boleto));
+			byte[] generatedBoleto = processor.execute();
+
+			PDDocument pdfDocument = PDDocument.load(generatedBoleto);
+			PDFRenderer pdfRenderer = new PDFRenderer(pdfDocument);
+
+			BufferedImage bim = pdfRenderer.renderImageWithDPI(0, resolutionDPI,
+					org.apache.pdfbox.rendering.ImageType.RGB);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+			ImageIO.write(bim, imageType.name(), baos);
+			generatedBoletos.add(baos.toByteArray());
+			baos.close();
+			pdfDocument.close();
+		}
+		return generatedBoletos;
+	}
+
+	public List<byte[]> converPDFToImage(ImageType imageType, int resolutionDPI, byte[] pdf)
+			throws IOException, DocumentException {
+		PDDocument pdfDocument = PDDocument.load(pdf);
+		PDFRenderer pdfRenderer = new PDFRenderer(pdfDocument);
+		List<byte[]> result = new ArrayList<byte[]>();
+
+		for (int i = 0; i < pdfDocument.getPages().getCount(); i++) {
+			BufferedImage bim = pdfRenderer.renderImageWithDPI(i, resolutionDPI,
+					org.apache.pdfbox.rendering.ImageType.RGB);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+			ImageIO.write(bim, imageType.name(), baos);
+			byte[] boleto = baos.toByteArray();
+			baos.close();
+			result.add(boleto);
+		}
+		pdfDocument.close();
+		return result;
+	}
+
+	public List<byte[]> generateToImage(ImageType imageType, int resolutionDPI, BoletoConfiguration configuration,
+			List<Boleto> boletos) throws IOException, DocumentException {
+		return generateToImage(imageType, resolutionDPI, configuration, boletos.toArray(new Boleto[] {}));
+	}
+
+	public List<File> generateToImageFile(ImageType imageType, int resolutionDPI, BoletoConfiguration configuration,
+			Boleto... boletos) throws IOException {
+		return null;
+	}
+
+	public List<File> generateToImageFile(ImageType imageType, int resolutionDPI, BoletoConfiguration configuration,
+			List<Boleto> boletos) throws IOException {
+		return generateToImageFile(imageType, resolutionDPI, configuration, boletos.toArray(new Boleto[] {}));
+	}
 
 	private byte[] mergeFiles(Collection<byte[]> pdfFiles, BoletoConfiguration configuration) {
 

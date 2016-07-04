@@ -33,6 +33,9 @@ import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
 
 public class CNAB240Helper {
+	
+	
+	
 
 	public static List<RemessaCobranca> gerarTitulosParaRemessaCobranca(Banco banco) {
 		List<RemessaCobranca> result = new ArrayList<RemessaCobranca>();
@@ -40,13 +43,13 @@ public class CNAB240Helper {
 		Cedente cedente = criarCedente(banco);
 		Carteira carteira = criarCarteira();
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
-				"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "188282828282", "2", 1000));
+				"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "05009401448", "1", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
-				"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "288282828282", "2", 1000));
+				"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "05009401449", "1", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
-				"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "388282828282", "2", 1000));
+				"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "05009401440", "1", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"), "100000001",
-				DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "488282828282", "2", 1000));
+				DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "05009401447", "1", 1000));
 		return result;
 	}
 
