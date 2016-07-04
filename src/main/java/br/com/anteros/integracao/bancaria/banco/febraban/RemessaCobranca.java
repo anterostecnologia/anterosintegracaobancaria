@@ -21,10 +21,19 @@ public class RemessaCobranca {
 	
 	private Titulo titulo;
 	
-	private Long nrLote;
+	private Integer nrLote;	
 	
+	private RemessaCobranca(TipoDeMovimentoRemessa codigoMovimentoRemessa, Titulo titulo, Integer nrLote) {
+		super();
+		this.codigoMovimentoRemessa = codigoMovimentoRemessa;
+		this.titulo = titulo;
+		this.nrLote = nrLote;
+	}
 	
-	
+	public static RemessaCobranca of (TipoDeMovimentoRemessa codigoMovimentoRemessa, Titulo titulo, Integer nrLote) {
+		return new RemessaCobranca(codigoMovimentoRemessa, titulo, nrLote);
+	}
+
 	public TipoDeMovimentoRemessa getCodigoMovimentoRemessa() {
 		return codigoMovimentoRemessa;
 	}
@@ -41,11 +50,11 @@ public class RemessaCobranca {
 		this.titulo = titulo;
 	}
 
-	public Long getNrLote() {
+	public Integer getNrLote() {
 		return nrLote;
 	}
 
-	public void setNrLote(Long nrLote) {
+	public void setNrLote(Integer nrLote) {
 		this.nrLote = nrLote;
 	}
 	

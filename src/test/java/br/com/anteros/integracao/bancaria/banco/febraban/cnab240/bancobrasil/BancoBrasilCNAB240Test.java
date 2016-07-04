@@ -2,6 +2,7 @@ package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,61 +18,70 @@ import br.com.anteros.core.utils.ResourceUtils;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
+import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeMoeda;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class BancoBrasilCNAB240Test {
-	
+
 	private static final String REMESSA = "REMESSA";
 	private List<RemessaCobranca> remessas;
 	private CNAB240 layoutCNAB240;
-	
+
 	@Before
-	public void beforeExecuteTests(){
-		remessas = CNAB240Helper
-				.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_DO_BRASIL.create());
-		
+	public void beforeExecuteTests() {
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_DO_BRASIL.create());
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
 
 		layoutCNAB240 = CNAB240Factory.create(remessas, calendar.getTime(), calendar.getTime());
 	}
-	
+
 	@After
-	public void afterExecuteTests(){
-		
-	}	
+	public void afterExecuteTests() {
+
+	}
 
 	@Test
-	public void deveGerarlSchemaXMLDoLayoutIgualAoModelo() throws IllegalArgumentException, IllegalAccessException, FlatFileManagerException,
-			JAXBException, IOException {
+	public void deveGerarlSchemaXMLDoLayoutIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
+			FlatFileManagerException, JAXBException, IOException {
 		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoBrasil.xml");
-		
+
 		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String schema = StringUtils.removeCRLF(new String(layoutCNAB240.getXMLSchema(), "UTF-8"));
 
-		Assert.assertEquals("Arquivo XML Banco do Brasil gerado diferente do modelo.", fileSchema, schema);
+		Assert.assertEquals("Banco do Brasil: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
 	}
 
 	@Test
-	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException, FlatFileManagerException,
-			JAXBException, IOException {
+	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
+			FlatFileManagerException, JAXBException, IOException {
 
 		byte[] byteArray = layoutCNAB240.generate(new String[] { REMESSA });
 
-		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/CNAB240BancoBrasil.REM");
+		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB240_BancoBrasil.REM");
 		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));
 
-		Assert.assertEquals("Arquivo de REMESSA do Banco do Brasil gerado diferente do modelo.", fileData, data);
+		Assert.assertEquals("Banco do Brasil: Arquivo de REMESSA gerado diferente do modelo.", fileData, data);
 	}
 
 	@Test
-	public void lerArquivoRetorno() {
-		Assert.assertEquals("Teste", 1, 1, 0);
-	}
+	public void deveLerArquivoRetornoEValidarValores() throws IllegalArgumentException, IllegalAccessException,
+			IOException, FlatFileManagerException, JAXBException {
 
+		File file = new File("src/main/resources/arquivos-retorno/RET_CNAB240_BancoBrasil.RET");
+		List<RetornoCobranca> retornos = layoutCNAB240.read(file, new String[] { "RETORNO" });
+
+		Assert.assertEquals("Banco do Brasil: Número de retornos lido incorreto.", retornos.size(), 4);
+		Assert.assertEquals("Banco do Brasil: Tipo de moeda lido incorreto.",
+				retornos.get(0).getTitulo().getTipoDeMoeda(), TipoDeMoeda.REAL);
+		Assert.assertEquals("Valor nominal do titulo lido incorreto.", retornos.get(0).getTitulo().getValor(),new BigDecimal("563.14"));
+		Assert.assertEquals("Valor creditado do titulo lido incorreto.", retornos.get(0).getValorLiquidoCreditado(),new BigDecimal("560.64"));
+	}
 
 }

@@ -17,6 +17,7 @@ package br.com.anteros.integracao.bancaria.banco.febraban;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -55,6 +56,8 @@ import br.com.anteros.core.utils.ObjectUtils;
  * @version 0.2
  */
 public class Titulo {
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
 	 * @see #setNumeroDoDocumento(String)
@@ -208,6 +211,18 @@ public class Titulo {
 	 * @see Aceite
 	 */
 	private Aceite aceite;
+	
+	/**
+	 * <p>
+	 * Cria uma instância de título.
+	 * </p>
+	 * 
+	 * @param contaBancaria
+	 * 
+	 */
+	public Titulo(ContaBancaria contaBancaria) {
+		this.setContaBancaria(contaBancaria);
+	}
 
 	/**
 	 * <p>
@@ -791,7 +806,7 @@ public class Titulo {
 	@Override
 	public String toString() {
 		return "Titulo [numeroDoDocumento=" + numeroDoDocumento + ", dataDoDocumento=" + dataDoDocumento
-				+ ", dataDoVencimento=" + dataDoVencimento + ", tipoDeMoeda=" + tipoDeMoeda + ", valor=" + valor
+				+ ", dataDoVencimento=" + (dataDoVencimento==null?"":sdf.format(dataDoVencimento)) + ", tipoDeMoeda=" + tipoDeMoeda + ", valor=" + valor
 				+ ", desconto=" + valorDesconto + ", mora=" + valorJurosMora + ", deducao=" + valorDeducao + ", acrecimo=" + valorAcrecimo
 				+ ", valorCobrado=" + valorCobrado + ", tipoDeDocumento=" + tipoDeDocumento + ", nossoNumero="
 				+ nossoNumero + ", digitoDoNossoNumero=" + digitoDoNossoNumero + ", contaBancaria=" + contaBancaria

@@ -62,13 +62,13 @@ public class Teste {
 		
 		List<RemessaCobranca> remessas = new ArrayList<RemessaCobranca>();
 		
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		remessas.add(criarRemessaBancaria(contaBancaria));
-		
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		remessas.add(criarRemessaBancaria(contaBancaria));
+//		
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
 		
@@ -90,7 +90,7 @@ public class Teste {
 		/*
 		 * Teste para ler arquivo
 		 */
-	     File file = new File("src/main/java/BANCOBRASIL.ret");
+	     File file = new File("src/main/resources/arquivos-retorno/RET_CNAB240_BancoBrasil.RET");
 		 List<RetornoCobranca> result = layoutCNAB240.read(file, new String[]{"RETORNO"});
 		
 		 for (RetornoCobranca retorno : result){
@@ -161,11 +161,7 @@ public class Teste {
 		titulo.setValorDesconto(new BigDecimal("15"));
 		titulo.setValorIOF(new BigDecimal("10"));
 		titulo.setValorJurosMora(new BigDecimal("15"));
-		RemessaCobranca remessaCobranca = new RemessaCobranca();
-		remessaCobranca.setCodigoMovimentoRemessa(TipoDeMovimentoRemessa.ENTRADA_TITULOS);
-		remessaCobranca.setNrLote(100L);
-		remessaCobranca.setTitulo(titulo);
-		return remessaCobranca;
+		return RemessaCobranca.of(TipoDeMovimentoRemessa.ENTRADA_TITULOS,titulo,100);
 	}
 	
 

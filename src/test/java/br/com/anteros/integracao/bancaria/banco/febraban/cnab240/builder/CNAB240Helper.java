@@ -40,19 +40,19 @@ public class CNAB240Helper {
 		Cedente cedente = criarCedente(banco);
 		Carteira carteira = criarCarteira();
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
-				"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "188282828282", "2", 1000L));
+				"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "188282828282", "2", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
-				"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "288282828282", "2", 1000L));
+				"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "288282828282", "2", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
-				"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "388282828282", "2", 1000L));
+				"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "388282828282", "2", 1000));
 		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"), "100000001",
-				DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "488282828282", "2", 1000L));
+				DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "488282828282", "2", 1000));
 		return result;
 	}
 
 	private static RemessaCobranca criarRemessa(ContaBancaria contaBancaria, Cedente cedente, Carteira carteira,
 			Sacado sacado, BigDecimal valorTitulo, String numeroDocumento, Date dataVencimento, String nossoNumero,
-			String digitoNossoNumero, Long numeroLote) {
+			String digitoNossoNumero, Integer nrLote) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.MAY, 10);
 		Titulo titulo = new Titulo(contaBancaria, sacado, cedente, carteira);
@@ -83,11 +83,7 @@ public class CNAB240Helper {
 		titulo.setValorIOF(BigDecimal.TEN);
 		titulo.setValorJurosMora(BigDecimal.TEN);
 
-		RemessaCobranca remessa = new RemessaCobranca();
-		remessa.setCodigoMovimentoRemessa(TipoDeMovimentoRemessa.ENTRADA_TITULOS);
-		remessa.setNrLote(numeroLote);
-		remessa.setTitulo(titulo);
-		return remessa;
+		return RemessaCobranca.of(TipoDeMovimentoRemessa.ENTRADA_TITULOS, titulo, nrLote);
 	}
 
 	public static final Cedente criarCedente(Banco banco) {

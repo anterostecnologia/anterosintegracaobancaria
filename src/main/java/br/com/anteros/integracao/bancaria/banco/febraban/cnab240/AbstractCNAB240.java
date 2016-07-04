@@ -52,6 +52,8 @@ public abstract class AbstractCNAB240 implements CNAB240 {
 
 	@Record(name = TRAILLER, order = 8, groups = { REMESSA, RETORNO })
 	protected TraillerArquivo traillerArquivo;
+
+	private ContaBancaria contaBancaria;
 	
 	protected AbstractCNAB240(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataHoraGeracao,
 			Date dataGravacao) {
@@ -59,6 +61,8 @@ public abstract class AbstractCNAB240 implements CNAB240 {
 		if (remessas.size() == 0) {
 			throw new CNABException("Informe as remessas para geração do arquivo.");
 		}
+		
+		this.contaBancaria = contaBancaria;
 
 		headerArquivo = HeaderArquivo.of(contaBancaria,
 				remessas.get(CNAB240.PRIMEIRA_REMESSA).getTitulo().getCarteira(),
@@ -76,6 +80,8 @@ public abstract class AbstractCNAB240 implements CNAB240 {
 	}
 
 	protected AbstractCNAB240(ContaBancaria contaBancaria, Date dataHoraGeracao, Date dataGravacao) {
+		this.contaBancaria = contaBancaria;
+
 		headerArquivo = HeaderArquivo.of(contaBancaria, dataHoraGeracao);
 		headerTitulosCobranca = HeaderTitulosCobranca.of(contaBancaria, dataGravacao);
 		segmentoT = TitulosCobrancaSegmentoT.of(contaBancaria);
@@ -133,7 +139,7 @@ public abstract class AbstractCNAB240 implements CNAB240 {
 			if (recordT.getInnerRecords().size() != 1)
 				throw new CNABException("Número de registros filhos para o Registro T incorreto.");
 			segmentoU.set(recordT.getInnerRecords().iterator().next());
-			result.add(RetornoCobranca.of(segmentoT, segmentoU));
+			result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU));
 		}
 
 		traillerTitulosCobranca.set(flatFile.getRecord(TRAILLER_LOTE_COBRANCA));

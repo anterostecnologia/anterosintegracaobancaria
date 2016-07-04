@@ -25,544 +25,260 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.TitulosCobranca
 public class RetornoCobranca {
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+	private Titulo titulo;
 
-	private String codigoSegmentoRegistroT;
-	private Integer codigoBancoT;
-	private Integer loteServicoT;
-	private Integer tipoRegistroT;
-	private Integer numeroSequencialRegistroT;
-	private Integer codigoMovimentoRetornoT;
-	private Integer agenciaMantenedoraT;
-	private String digitoVerificadorAgenciaT;
-	private Integer numeroContaCorrenteT;
-	private String digitoVerificadorContaCorrenteT;
-	private String digitoVerificadorAgenciaContaT;
-	private String identificadorTituloT;
-	private String codigoCarteiraT;
-	private String numeroDocumentoCobrancaT;
-	private Date dataVencimentoTituloT;
-	private BigDecimal valorNominalTituloT;
-	private Integer numeroBancoT;
-	private Integer agenciaCobradoraRecebedoraT;
-	private String digitoVerificadorAgenciaCobradoraT;
-	private String identificadorTituloEmpresaT;
-	private String codigoMoedaT;
-	private Integer tipoInscricaoSacadoAvalistaT;
-	private Long numeroInscricaoSacadoAvalistaT;
-	private String nomeSacadorAvalistaT;
-	private String numeroContratoOperacaoCreditoT;
-	private BigDecimal valorTarifaCustasT;
-	private String identificadorRejeicaoT;
-
-	private String codigoSegmentoRegistroU;
-	private Integer codigoBancoU;
-	private Integer loteServicoU;
-	private Integer tipoRegistroU;
-	private Integer numeroSequencialRegistroU;
-	private Integer codigoMovimentoRetornoU;
-	private BigDecimal valorJurosMultasEncargosU;
-	private BigDecimal valorDescontoU;
-	private BigDecimal valorAbatimentoU;
-	private BigDecimal valorIOFU;
-	private BigDecimal valorPagoSacadoU;
-	private BigDecimal valorLiquidoCreditadoU;
-	private BigDecimal valorOutrasDespesasU;
-	private BigDecimal valorOutrosCreditosU;
-	private Date dataOcorrenciaPagamentoU;
-	private Date dataEfetivacaoCreditoU;
-	private String codigoOcorrenciaU;
-	private Date dataOcorrenciaU;
-	private BigDecimal valorOcorrenciaU;
-	private String complementoOcorrenciaU;
-	private Integer codigoBancoCorrespondenteU;
-	private String nossoNumeroBancoCorrespondenteU;
-
-	private RetornoCobranca(TitulosCobrancaSegmentoT segmentoT, TitulosCobrancaSegmentoU segmentoU) {
-		/**
-		 * Segmento T
-		 */
-		this.codigoSegmentoRegistroT = segmentoT.getCodigoSegmentoRegistro();
-		this.codigoBancoT = segmentoT.getCodigoBanco();
-		this.loteServicoT = segmentoT.getLoteServico();
-		this.tipoRegistroT = segmentoT.getTipoRegistro();
-		this.numeroSequencialRegistroT = segmentoT.getNumeroSequencialRegistro();
-		this.codigoMovimentoRetornoT = segmentoT.getCodigoMovimentoRetorno();
-		this.agenciaMantenedoraT = segmentoT.getAgenciaMantenedora();
-		this.digitoVerificadorAgenciaT = segmentoT.getDigitoVerificadorAgencia();
-		this.numeroContaCorrenteT = segmentoT.getNumeroContaCorrente();
-		this.digitoVerificadorContaCorrenteT = segmentoT.getDigitoVerificadorContaCorrente();
-		this.digitoVerificadorAgenciaContaT = segmentoT.getDigitoVerificadorAgenciaConta();
-		this.identificadorTituloT = segmentoT.getIdentificadorTitulo();
-		this.codigoCarteiraT = segmentoT.getCodigoCarteira();
-		this.numeroDocumentoCobrancaT = segmentoT.getNumeroDocumentoCobranca();
-		this.dataVencimentoTituloT = segmentoT.getDataVencimentoTitulo();
-		this.valorNominalTituloT = segmentoT.getValorNominalTitulo();
-		this.numeroBancoT = segmentoT.getNumeroBanco();
-		this.agenciaCobradoraRecebedoraT = segmentoT.getAgenciaCobradoraRecebedora();
-		this.digitoVerificadorAgenciaCobradoraT = segmentoT.getDigitoVerificadorAgenciaCobradora();
-		this.identificadorTituloEmpresaT = segmentoT.getIdentificadorTituloEmpresa();
-		this.codigoMoedaT = segmentoT.getCodigoMoeda();
-		this.tipoInscricaoSacadoAvalistaT = segmentoT.getTipoInscricaoSacadoAvalista();
-		this.numeroInscricaoSacadoAvalistaT = segmentoT.getNumeroInscricaoSacadoAvalista();
-		this.nomeSacadorAvalistaT = segmentoT.getNomeSacadorAvalista();
-		this.numeroContratoOperacaoCreditoT = segmentoT.getNumeroContratoOperacaoCredito();
-		this.valorTarifaCustasT = segmentoT.getValorTarifaCustas();
-		this.identificadorRejeicaoT = segmentoT.getIdentificadorRejeicao();
-
-		/**
-		 * Segmento U
-		 */
-		this.codigoSegmentoRegistroU = segmentoU.getCodigoSegmentoRegistro();
-		this.codigoBancoU = segmentoU.getCodigoBanco();
-		this.loteServicoU = segmentoU.getLoteServico();
-		this.tipoRegistroU = segmentoU.getTipoRegistro();
-		this.numeroSequencialRegistroU = segmentoU.getNumeroSequencialRegistro();
-		this.codigoMovimentoRetornoU = segmentoU.getCodigoMovimentoRetorno();
-		this.valorJurosMultasEncargosU = segmentoU.getValorJurosMultasEncargos();
-		this.valorDescontoU = segmentoU.getValorDesconto();
-		this.valorAbatimentoU = segmentoU.getValorAbatimento();
-		this.valorIOFU = segmentoU.getValorIOF();
-		this.valorPagoSacadoU = segmentoU.getValorPagoSacado();
-		this.valorLiquidoCreditadoU = segmentoU.getValorLiquidoCreditado();
-		this.valorOutrasDespesasU = segmentoU.getValorOutrasDespesas();
-		this.valorOutrosCreditosU = segmentoU.getValorOutrosCreditos();
-		this.dataOcorrenciaPagamentoU = segmentoU.getDataOcorrenciaPagamento();
-		this.dataEfetivacaoCreditoU = segmentoU.getDataEfetivacaoCredito();
-		this.codigoOcorrenciaU = segmentoU.getCodigoOcorrencia();
-		this.dataOcorrenciaU = segmentoU.getDataOcorrencia();
-		this.valorOcorrenciaU = segmentoU.getValorOcorrencia();
-		this.complementoOcorrenciaU = segmentoU.getComplementoOcorrencia();
-		this.codigoBancoCorrespondenteU = segmentoU.getCodigoBancoCorrespondente();
-		this.nossoNumeroBancoCorrespondenteU = segmentoU.getNossoNumeroBancoCorrespondente();
-	}
-
-	public static RetornoCobranca of(TitulosCobrancaSegmentoT segmentoT, TitulosCobrancaSegmentoU segmentoU) {
-		return new RetornoCobranca(segmentoT, segmentoU);
-	}
-
-	public String getCodigoSegmentoRegistroT() {
-		return codigoSegmentoRegistroT;
-	}
-
-	public void setCodigoSegmentoRegistroT(String codigoSegmentoRegistroT) {
-		this.codigoSegmentoRegistroT = codigoSegmentoRegistroT;
-	}
-
-	public Integer getCodigoBancoT() {
-		return codigoBancoT;
-	}
-
-	public void setCodigoBancoT(Integer codigoBancoT) {
-		this.codigoBancoT = codigoBancoT;
-	}
-
-	public Integer getLoteServicoT() {
-		return loteServicoT;
-	}
-
-	public void setLoteServicoT(Integer loteServicoT) {
-		this.loteServicoT = loteServicoT;
-	}
-
-	public Integer getTipoRegistroT() {
-		return tipoRegistroT;
-	}
-
-	public void setTipoRegistroT(Integer tipoRegistroT) {
-		this.tipoRegistroT = tipoRegistroT;
-	}
-
-	public Integer getNumeroSequencialRegistroT() {
-		return numeroSequencialRegistroT;
-	}
-
-	public void setNumeroSequencialRegistroT(Integer numeroSequencialRegistroT) {
-		this.numeroSequencialRegistroT = numeroSequencialRegistroT;
-	}
-
-	public Integer getCodigoMovimentoRetornoT() {
-		return codigoMovimentoRetornoT;
-	}
-
-	public void setCodigoMovimentoRetornoT(Integer codigoMovimentoRetornoT) {
-		this.codigoMovimentoRetornoT = codigoMovimentoRetornoT;
-	}
-
-	public Integer getAgenciaMantenedoraT() {
-		return agenciaMantenedoraT;
-	}
-
-	public void setAgenciaMantenedoraT(Integer agenciaMantenedoraT) {
-		this.agenciaMantenedoraT = agenciaMantenedoraT;
-	}
-
-	public String getDigitoVerificadorAgenciaT() {
-		return digitoVerificadorAgenciaT;
-	}
-
-	public void setDigitoVerificadorAgenciaT(String digitoVerificadorAgenciaT) {
-		this.digitoVerificadorAgenciaT = digitoVerificadorAgenciaT;
-	}
-
-	public Integer getNumeroContaCorrenteT() {
-		return numeroContaCorrenteT;
-	}
-
-	public void setNumeroContaCorrenteT(Integer numeroContaCorrenteT) {
-		this.numeroContaCorrenteT = numeroContaCorrenteT;
-	}
-
-	public String getDigitoVerificadorContaCorrenteT() {
-		return digitoVerificadorContaCorrenteT;
-	}
-
-	public void setDigitoVerificadorContaCorrenteT(String digitoVerificadorContaCorrenteT) {
-		this.digitoVerificadorContaCorrenteT = digitoVerificadorContaCorrenteT;
-	}
-
-	public String getDigitoVerificadorAgenciaContaT() {
-		return digitoVerificadorAgenciaContaT;
-	}
-
-	public void setDigitoVerificadorAgenciaContaT(String digitoVerificadorAgenciaContaT) {
-		this.digitoVerificadorAgenciaContaT = digitoVerificadorAgenciaContaT;
-	}
-
-	public String getIdentificadorTituloT() {
-		return identificadorTituloT;
-	}
+	private Integer nrLote;
 
-	public void setIdentificadorTituloT(String identificadorTituloT) {
-		this.identificadorTituloT = identificadorTituloT;
-	}
-
-	public String getCodigoCarteiraT() {
-		return codigoCarteiraT;
-	}
-
-	public void setCodigoCarteiraT(String codigoCarteiraT) {
-		this.codigoCarteiraT = codigoCarteiraT;
-	}
-
-	public String getNumeroDocumentoCobrancaT() {
-		return numeroDocumentoCobrancaT;
-	}
-
-	public void setNumeroDocumentoCobrancaT(String numeroDocumentoCobrancaT) {
-		this.numeroDocumentoCobrancaT = numeroDocumentoCobrancaT;
-	}
-
-	public Date getDataVencimentoTituloT() {
-		return dataVencimentoTituloT;
-	}
-
-	public void setDataVencimentoTituloT(Date dataVencimentoTituloT) {
-		this.dataVencimentoTituloT = dataVencimentoTituloT;
-	}
-
-	public BigDecimal getValorNominalTituloT() {
-		return valorNominalTituloT;
-	}
-
-	public void setValorNominalTituloT(BigDecimal valorNominalTituloT) {
-		this.valorNominalTituloT = valorNominalTituloT;
-	}
-
-	public Integer getNumeroBancoT() {
-		return numeroBancoT;
-	}
-
-	public void setNumeroBancoT(Integer numeroBancoT) {
-		this.numeroBancoT = numeroBancoT;
-	}
-
-	public Integer getAgenciaCobradoraRecebedoraT() {
-		return agenciaCobradoraRecebedoraT;
-	}
-
-	public void setAgenciaCobradoraRecebedoraT(Integer agenciaCobradoraRecebedoraT) {
-		this.agenciaCobradoraRecebedoraT = agenciaCobradoraRecebedoraT;
-	}
-
-	public String getDigitoVerificadorAgenciaCobradoraT() {
-		return digitoVerificadorAgenciaCobradoraT;
-	}
-
-	public void setDigitoVerificadorAgenciaCobradoraT(String digitoVerificadorAgenciaCobradoraT) {
-		this.digitoVerificadorAgenciaCobradoraT = digitoVerificadorAgenciaCobradoraT;
-	}
-
-	public String getIdentificadorTituloEmpresaT() {
-		return identificadorTituloEmpresaT;
-	}
-
-	public void setIdentificadorTituloEmpresaT(String identificadorTituloEmpresaT) {
-		this.identificadorTituloEmpresaT = identificadorTituloEmpresaT;
-	}
+	private Integer numeroSequencial;
 
-	public String getCodigoMoedaT() {
-		return codigoMoedaT;
-	}
+	private Integer codigoMovimentoRetorno;
 
-	public void setCodigoMoedaT(String codigoMoedaT) {
-		this.codigoMoedaT = codigoMoedaT;
-	}
+	private String numeroContratoOperacaoCredito;
 
-	public Integer getTipoInscricaoSacadoAvalistaT() {
-		return tipoInscricaoSacadoAvalistaT;
-	}
+	private Integer tipoInscricaoSacadoAvalista;
 
-	public void setTipoInscricaoSacadoAvalistaT(Integer tipoInscricaoSacadoAvalistaT) {
-		this.tipoInscricaoSacadoAvalistaT = tipoInscricaoSacadoAvalistaT;
-	}
+	private Long numeroInscricaoSacadoAvalista;
 
-	public Long getNumeroInscricaoSacadoAvalistaT() {
-		return numeroInscricaoSacadoAvalistaT;
-	}
+	private String nomeSacadorAvalista;
 
-	public void setNumeroInscricaoSacadoAvalistaT(Long numeroInscricaoSacadoAvalistaT) {
-		this.numeroInscricaoSacadoAvalistaT = numeroInscricaoSacadoAvalistaT;
-	}
+	private BigDecimal valorTarifasCustas;
 
-	public String getNomeSacadorAvalistaT() {
-		return nomeSacadorAvalistaT;
-	}
+	private String identificacaoRejeicao;
 
-	public void setNomeSacadorAvalistaT(String nomeSacadorAvalistaT) {
-		this.nomeSacadorAvalistaT = nomeSacadorAvalistaT;
-	}
+	private BigDecimal valorLiquidoCreditado;
 
-	public String getNumeroContratoOperacaoCreditoT() {
-		return numeroContratoOperacaoCreditoT;
-	}
+	private BigDecimal valorOutrasDespesas;
 
-	public void setNumeroContratoOperacaoCreditoT(String numeroContratoOperacaoCreditoT) {
-		this.numeroContratoOperacaoCreditoT = numeroContratoOperacaoCreditoT;
-	}
+	private BigDecimal valorOutrosCreditos;
 
-	public BigDecimal getValorTarifaCustasT() {
-		return valorTarifaCustasT;
-	}
+	private Date dataOcorrenciaPagamento;
 
-	public void setValorTarifaCustasT(BigDecimal valorTarifaCustasT) {
-		this.valorTarifaCustasT = valorTarifaCustasT;
-	}
+	private Date dataEfetivacaoCredito;
 
-	public String getIdentificadorRejeicaoT() {
-		return identificadorRejeicaoT;
-	}
+	private String codigoOcorrenciaSacado;
 
-	public void setIdentificadorRejeicaoT(String identificadorRejeicaoT) {
-		this.identificadorRejeicaoT = identificadorRejeicaoT;
-	}
+	private Date dataOcorrenciaSacado;
 
-	public String getCodigoSegmentoRegistroU() {
-		return codigoSegmentoRegistroU;
-	}
+	private BigDecimal valorOcorrenciaSacado;
 
-	public void setCodigoSegmentoRegistroU(String codigoSegmentoRegistroU) {
-		this.codigoSegmentoRegistroU = codigoSegmentoRegistroU;
-	}
+	private String complementoOcorrenciaSacado;
+	
+	
 
-	public Integer getCodigoBancoU() {
-		return codigoBancoU;
+	private RetornoCobranca(ContaBancaria contaBancaria, TitulosCobrancaSegmentoT segmentoT, TitulosCobrancaSegmentoU segmentoU) {
+		titulo = new Titulo(contaBancaria);
+		titulo.setCarteira(new Carteira(Integer.valueOf(segmentoT.getCodigoCarteira())));
+		titulo.setValor(segmentoT.getValorNominalTitulo());
+		titulo.setDataDoVencimento(segmentoT.getDataVencimentoTitulo());
+		titulo.setNossoNumero(segmentoT.getIdentificadorTitulo());
+		titulo.setNumeroDoDocumento(segmentoT.getNumeroDocumentoCobranca());
+		titulo.setValorJurosMora(segmentoU.getValorJurosMultasEncargos());
+		titulo.setValorAbatimento(segmentoU.getValorAbatimento());
+		titulo.setValorDesconto(segmentoU.getValorDesconto());
+		titulo.setValorIOF(segmentoU.getValorIOF());
+		titulo.setValorCobrado(segmentoU.getValorPagoSacado());
+		titulo.setTipoDeMoeda(TipoDeMoeda.convert(Integer.valueOf(segmentoT.getCodigoMoeda())));
+		
+		this.nrLote = segmentoT.getLoteServico();
+		this.numeroSequencial = segmentoT.getNumeroSequencialRegistro();
+		this.codigoMovimentoRetorno = segmentoT.getCodigoMovimentoRetorno();
+		this.numeroContratoOperacaoCredito = segmentoT.getNumeroContratoOperacaoCredito();
+		this.tipoInscricaoSacadoAvalista = segmentoT.getTipoInscricaoSacadoAvalista();
+		this.numeroInscricaoSacadoAvalista = segmentoT.getNumeroInscricaoSacadoAvalista();
+		this.nomeSacadorAvalista = segmentoT.getNomeSacadorAvalista();
+		this.valorTarifasCustas = segmentoT.getValorTarifaCustas();
+		this.identificacaoRejeicao = segmentoT.getIdentificadorRejeicao();
+		this.valorLiquidoCreditado = segmentoU.getValorLiquidoCreditado();
+		this.valorOutrasDespesas = segmentoU.getValorOutrasDespesas();
+		this.valorOutrosCreditos = segmentoU.getValorOutrosCreditos();
+		this.dataOcorrenciaPagamento = segmentoU.getDataOcorrenciaPagamento();
+		this.dataEfetivacaoCredito = segmentoU.getDataEfetivacaoCredito();
+		this.codigoOcorrenciaSacado = segmentoU.getCodigoOcorrencia();
+		this.dataOcorrenciaSacado = segmentoU.getDataOcorrencia();
+		this.valorOcorrenciaSacado = segmentoU.getValorOcorrencia();
+		this.complementoOcorrenciaSacado = segmentoU.getComplementoOcorrencia();
 	}
 
-	public void setCodigoBancoU(Integer codigoBancoU) {
-		this.codigoBancoU = codigoBancoU;
+	public static RetornoCobranca of(ContaBancaria contaBancaria, TitulosCobrancaSegmentoT segmentoT, TitulosCobrancaSegmentoU segmentoU) {
+		return new RetornoCobranca(contaBancaria, segmentoT, segmentoU);
 	}
 
-	public Integer getLoteServicoU() {
-		return loteServicoU;
+	public SimpleDateFormat getSdf() {
+		return sdf;
 	}
 
-	public void setLoteServicoU(Integer loteServicoU) {
-		this.loteServicoU = loteServicoU;
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
 	}
 
-	public Integer getTipoRegistroU() {
-		return tipoRegistroU;
+	public Titulo getTitulo() {
+		return titulo;
 	}
 
-	public void setTipoRegistroU(Integer tipoRegistroU) {
-		this.tipoRegistroU = tipoRegistroU;
+	public void setTitulo(Titulo titulo) {
+		this.titulo = titulo;
 	}
 
-	public Integer getNumeroSequencialRegistroU() {
-		return numeroSequencialRegistroU;
+	public Integer getNrLote() {
+		return nrLote;
 	}
 
-	public void setNumeroSequencialRegistroU(Integer numeroSequencialRegistroU) {
-		this.numeroSequencialRegistroU = numeroSequencialRegistroU;
+	public void setNumeroLote(Integer numeroLote) {
+		this.nrLote = numeroLote;
 	}
 
-	public Integer getCodigoMovimentoRetornoU() {
-		return codigoMovimentoRetornoU;
+	public Integer getNumeroSequencial() {
+		return numeroSequencial;
 	}
 
-	public void setCodigoMovimentoRetornoU(Integer codigoMovimentoRetornoU) {
-		this.codigoMovimentoRetornoU = codigoMovimentoRetornoU;
+	public void setNumeroSequencial(Integer numeroSequencial) {
+		this.numeroSequencial = numeroSequencial;
 	}
 
-	public BigDecimal getValorJurosMultasEncargosU() {
-		return valorJurosMultasEncargosU;
+	public Integer getCodigoMovimentoRetorno() {
+		return codigoMovimentoRetorno;
 	}
 
-	public void setValorJurosMultasEncargosU(BigDecimal valorJurosMultasEncargosU) {
-		this.valorJurosMultasEncargosU = valorJurosMultasEncargosU;
+	public void setCodigoMovimentoRetorno(Integer codigoMovimentoRetorno) {
+		this.codigoMovimentoRetorno = codigoMovimentoRetorno;
 	}
 
-	public BigDecimal getValorDescontoU() {
-		return valorDescontoU;
+	public String getNumeroContratoOperacaoCredito() {
+		return numeroContratoOperacaoCredito;
 	}
 
-	public void setValorDescontoU(BigDecimal valorDescontoU) {
-		this.valorDescontoU = valorDescontoU;
+	public void setNumeroContratoOperacaoCredito(String numeroContratoOperacaoCredito) {
+		this.numeroContratoOperacaoCredito = numeroContratoOperacaoCredito;
 	}
 
-	public BigDecimal getValorAbatimentoU() {
-		return valorAbatimentoU;
+	public Integer getTipoInscricaoSacadoAvalista() {
+		return tipoInscricaoSacadoAvalista;
 	}
 
-	public void setValorAbatimentoU(BigDecimal valorAbatimentoU) {
-		this.valorAbatimentoU = valorAbatimentoU;
+	public void setTipoInscricaoSacadoAvalista(Integer tipoInscricaoSacadoAvalista) {
+		this.tipoInscricaoSacadoAvalista = tipoInscricaoSacadoAvalista;
 	}
 
-	public BigDecimal getValorIOFU() {
-		return valorIOFU;
+	public Long getNumeroInscricaoSacadoAvalista() {
+		return numeroInscricaoSacadoAvalista;
 	}
 
-	public void setValorIOFU(BigDecimal valorIOFU) {
-		this.valorIOFU = valorIOFU;
+	public void setNumeroInscricaoSacadoAvalista(Long numeroInscricaoSacadoAvalista) {
+		this.numeroInscricaoSacadoAvalista = numeroInscricaoSacadoAvalista;
 	}
 
-	public BigDecimal getValorPagoSacadoU() {
-		return valorPagoSacadoU;
+	public String getNomeSacadorAvalista() {
+		return nomeSacadorAvalista;
 	}
 
-	public void setValorPagoSacadoU(BigDecimal valorPagoSacadoU) {
-		this.valorPagoSacadoU = valorPagoSacadoU;
+	public void setNomeSacadorAvalista(String nomeSacadorAvalista) {
+		this.nomeSacadorAvalista = nomeSacadorAvalista;
 	}
 
-	public BigDecimal getValorLiquidoCreditadoU() {
-		return valorLiquidoCreditadoU;
+	public BigDecimal getValorTarifasCustas() {
+		return valorTarifasCustas;
 	}
 
-	public void setValorLiquidoCreditadoU(BigDecimal valorLiquidoCreditadoU) {
-		this.valorLiquidoCreditadoU = valorLiquidoCreditadoU;
+	public void setValorTarifasCustas(BigDecimal valorTarifasCustas) {
+		this.valorTarifasCustas = valorTarifasCustas;
 	}
 
-	public BigDecimal getValorOutrasDespesasU() {
-		return valorOutrasDespesasU;
+	public String getIdentificacaoRejeicao() {
+		return identificacaoRejeicao;
 	}
 
-	public void setValorOutrasDespesasU(BigDecimal valorOutrasDespesasU) {
-		this.valorOutrasDespesasU = valorOutrasDespesasU;
+	public void setIdentificacaoRejeicao(String identificacaoRejeicao) {
+		this.identificacaoRejeicao = identificacaoRejeicao;
 	}
 
-	public BigDecimal getValorOutrosCreditosU() {
-		return valorOutrosCreditosU;
+	public BigDecimal getValorLiquidoCreditado() {
+		return valorLiquidoCreditado;
 	}
 
-	public void setValorOutrosCreditosU(BigDecimal valorOutrosCreditosU) {
-		this.valorOutrosCreditosU = valorOutrosCreditosU;
+	public void setValorLiquidoCreditado(BigDecimal valorLiquidoCreditado) {
+		this.valorLiquidoCreditado = valorLiquidoCreditado;
 	}
 
-	public Date getDataOcorrenciaPagamentoU() {
-		return dataOcorrenciaPagamentoU;
+	public BigDecimal getValorOutrasDespesas() {
+		return valorOutrasDespesas;
 	}
 
-	public void setDataOcorrenciaPagamentoU(Date dataOcorrenciaPagamentoU) {
-		this.dataOcorrenciaPagamentoU = dataOcorrenciaPagamentoU;
+	public void setValorOutrasDespesas(BigDecimal valorOutrasDespesas) {
+		this.valorOutrasDespesas = valorOutrasDespesas;
 	}
 
-	public Date getDataEfetivacaoCreditoU() {
-		return dataEfetivacaoCreditoU;
+	public BigDecimal getValorOutrosCreditos() {
+		return valorOutrosCreditos;
 	}
 
-	public void setDataEfetivacaoCreditoU(Date dataEfetivacaoCreditoU) {
-		this.dataEfetivacaoCreditoU = dataEfetivacaoCreditoU;
+	public void setValorOutrosCreditos(BigDecimal valorOutrosCreditos) {
+		this.valorOutrosCreditos = valorOutrosCreditos;
 	}
 
-	public String getCodigoOcorrenciaU() {
-		return codigoOcorrenciaU;
+	public Date getDataOcorrenciaPagamento() {
+		return dataOcorrenciaPagamento;
 	}
 
-	public void setCodigoOcorrenciaU(String codigoOcorrenciaU) {
-		this.codigoOcorrenciaU = codigoOcorrenciaU;
+	public void setDataOcorrenciaPagamento(Date dataOcorrenciaPagamento) {
+		this.dataOcorrenciaPagamento = dataOcorrenciaPagamento;
 	}
 
-	public Date getDataOcorrenciaU() {
-		return dataOcorrenciaU;
+	public Date getDataEfetivacaoCredito() {
+		return dataEfetivacaoCredito;
 	}
 
-	public void setDataOcorrenciaU(Date dataOcorrenciaU) {
-		this.dataOcorrenciaU = dataOcorrenciaU;
+	public void setDataEfetivacaoCredito(Date dataEfetivacaoCredito) {
+		this.dataEfetivacaoCredito = dataEfetivacaoCredito;
 	}
 
-	public BigDecimal getValorOcorrenciaU() {
-		return valorOcorrenciaU;
+	public String getCodigoOcorrenciaSacado() {
+		return codigoOcorrenciaSacado;
 	}
 
-	public void setValorOcorrenciaU(BigDecimal valorOcorrenciaU) {
-		this.valorOcorrenciaU = valorOcorrenciaU;
+	public void setCodigoOcorrenciaSacado(String codigoOcorrenciaSacado) {
+		this.codigoOcorrenciaSacado = codigoOcorrenciaSacado;
 	}
 
-	public String getComplementoOcorrenciaU() {
-		return complementoOcorrenciaU;
+	public Date getDataOcorrenciaSacado() {
+		return dataOcorrenciaSacado;
 	}
 
-	public void setComplementoOcorrenciaU(String complementoOcorrenciaU) {
-		this.complementoOcorrenciaU = complementoOcorrenciaU;
+	public void setDataOcorrenciaSacado(Date dataOcorrenciaSacado) {
+		this.dataOcorrenciaSacado = dataOcorrenciaSacado;
 	}
 
-	public Integer getCodigoBancoCorrespondenteU() {
-		return codigoBancoCorrespondenteU;
+	public BigDecimal getValorOcorrenciaSacado() {
+		return valorOcorrenciaSacado;
 	}
 
-	public void setCodigoBancoCorrespondenteU(Integer codigoBancoCorrespondenteU) {
-		this.codigoBancoCorrespondenteU = codigoBancoCorrespondenteU;
+	public void setValorOcorrenciaSacado(BigDecimal valorOcorrenciaSacado) {
+		this.valorOcorrenciaSacado = valorOcorrenciaSacado;
 	}
 
-	public String getNossoNumeroBancoCorrespondenteU() {
-		return nossoNumeroBancoCorrespondenteU;
+	public String getComplementoOcorrenciaSacado() {
+		return complementoOcorrenciaSacado;
 	}
 
-	public void setNossoNumeroBancoCorrespondenteU(String nossoNumeroBancoCorrespondenteU) {
-		this.nossoNumeroBancoCorrespondenteU = nossoNumeroBancoCorrespondenteU;
+	public void setComplementoOcorrenciaSacado(String complementoOcorrenciaSacado) {
+		this.complementoOcorrenciaSacado = complementoOcorrenciaSacado;
 	}
 
 	@Override
 	public String toString() {
-		return "RetornoCobranca [codigoSegmentoRegistroT=" + codigoSegmentoRegistroT + ", codigoBancoT=" + codigoBancoT
-				+ ", loteServicoT=" + loteServicoT + ", tipoRegistroT=" + tipoRegistroT + ", numeroSequencialRegistroT="
-				+ numeroSequencialRegistroT + ", codigoMovimentoRetornoT=" + codigoMovimentoRetornoT
-				+ ", agenciaMantenedoraT=" + agenciaMantenedoraT + ", digitoVerificadorAgenciaT="
-				+ digitoVerificadorAgenciaT + ", numeroContaCorrenteT=" + numeroContaCorrenteT
-				+ ", digitoVerificadorContaCorrenteT=" + digitoVerificadorContaCorrenteT
-				+ ", digitoVerificadorAgenciaContaT=" + digitoVerificadorAgenciaContaT + ", identificadorTituloT="
-				+ identificadorTituloT + ", codigoCarteiraT=" + codigoCarteiraT + ", numeroDocumentoCobrancaT="
-				+ numeroDocumentoCobrancaT + ", dataVencimentoTituloT=" + (dataVencimentoTituloT==null?"":sdf.format(dataVencimentoTituloT))
-				+ ", valorNominalTituloT=" + valorNominalTituloT + ", numeroBancoT=" + numeroBancoT
-				+ ", agenciaCobradoraRecebedoraT=" + agenciaCobradoraRecebedoraT
-				+ ", digitoVerificadorAgenciaCobradoraT=" + digitoVerificadorAgenciaCobradoraT
-				+ ", identificadorTituloEmpresaT=" + identificadorTituloEmpresaT + ", codigoMoedaT=" + codigoMoedaT
-				+ ", tipoInscricaoSacadoAvalistaT=" + tipoInscricaoSacadoAvalistaT + ", numeroInscricaoSacadoAvalistaT="
-				+ numeroInscricaoSacadoAvalistaT + ", nomeSacadorAvalistaT=" + nomeSacadorAvalistaT
-				+ ", numeroContratoOperacaoCreditoT=" + numeroContratoOperacaoCreditoT + ", valorTarifaCustasT="
-				+ valorTarifaCustasT + ", identificadorRejeicaoT=" + identificadorRejeicaoT
-				+ ", codigoSegmentoRegistroU=" + codigoSegmentoRegistroU + ", codigoBancoU=" + codigoBancoU
-				+ ", loteServicoU=" + loteServicoU + ", tipoRegistroU=" + tipoRegistroU + ", numeroSequencialRegistroU="
-				+ numeroSequencialRegistroU + ", codigoMovimentoRetornoU=" + codigoMovimentoRetornoU
-				+ ", valorJurosMultasEncargosU=" + valorJurosMultasEncargosU + ", valorDescontoU=" + valorDescontoU
-				+ ", valorAbatimentoU=" + valorAbatimentoU + ", valorIOFU=" + valorIOFU + ", valorPagoSacadoU="
-				+ valorPagoSacadoU + ", valorLiquidoCreditadoU=" + valorLiquidoCreditadoU + ", valorOutrasDespesasU="
-				+ valorOutrasDespesasU + ", valorOutrosCreditosU=" + valorOutrosCreditosU
-				+ ", dataOcorrenciaPagamentoU=" + (dataOcorrenciaPagamentoU==null?"":sdf.format(dataOcorrenciaPagamentoU)) + ", dataEfetivacaoCreditoU="
-				+ (dataEfetivacaoCreditoU==null?"":sdf.format(dataEfetivacaoCreditoU)) + ", codigoOcorrenciaU=" + codigoOcorrenciaU + ", dataOcorrenciaU="
-				+ (dataOcorrenciaU==null?"":sdf.format(dataOcorrenciaU)) + ", valorOcorrenciaU=" + valorOcorrenciaU + ", complementoOcorrenciaU="
-				+ complementoOcorrenciaU + ", codigoBancoCorrespondenteU=" + codigoBancoCorrespondenteU
-				+ ", nossoNumeroBancoCorrespondenteU=" + nossoNumeroBancoCorrespondenteU + "]";
+		return "RetornoCobranca [titulo=" + titulo + ", nrLote=" + nrLote + ", numeroSequencial="
+				+ numeroSequencial + ", codigoMovimentoRetorno=" + codigoMovimentoRetorno
+				+ ", numeroContratoOperacaoCredito=" + numeroContratoOperacaoCredito + ", tipoInscricaoSacadoAvalista="
+				+ tipoInscricaoSacadoAvalista + ", numeroInscricaoSacadoAvalista=" + numeroInscricaoSacadoAvalista
+				+ ", nomeSacadorAvalista=" + nomeSacadorAvalista + ", valorTarifasCustas=" + valorTarifasCustas
+				+ ", identificacaoRejeicao=" + identificacaoRejeicao + ", valorLiquidoCreditado="
+				+ valorLiquidoCreditado + ", valorOutrasDespesas=" + valorOutrasDespesas + ", valorOutrosCreditos="
+				+ valorOutrosCreditos + ", dataOcorrenciaPagamento=" + (dataOcorrenciaPagamento==null?"":sdf.format(dataOcorrenciaPagamento))
+				+ ", dataEfetivacaoCredito=" + (dataEfetivacaoCredito==null?"":sdf.format(dataEfetivacaoCredito)) + ", codigoOcorrenciaSacado="
+				+ codigoOcorrenciaSacado + ", dataOcorrenciaSacado=" + (dataOcorrenciaSacado==null?"":sdf.format(dataOcorrenciaSacado)) + ", valorOcorrenciaSacado="
+				+ valorOcorrenciaSacado + ", complementoOcorrenciaSacado=" + complementoOcorrenciaSacado + "]";
 	}
 
+	
+  
 }
