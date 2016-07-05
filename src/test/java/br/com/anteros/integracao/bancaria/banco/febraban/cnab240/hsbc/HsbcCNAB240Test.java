@@ -31,7 +31,7 @@ public class HsbcCNAB240Test {
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.HSBC.create());
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.HSBC.create(),CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);

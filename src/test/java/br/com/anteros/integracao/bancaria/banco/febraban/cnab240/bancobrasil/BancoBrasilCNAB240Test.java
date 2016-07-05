@@ -1,7 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -34,7 +33,7 @@ public class BancoBrasilCNAB240Test {
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_DO_BRASIL.create());
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_DO_BRASIL.create(), CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
@@ -66,10 +65,10 @@ public class BancoBrasilCNAB240Test {
 
 		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB240_BancoBrasil.REM");
 		
-		FileOutputStream fos = new FileOutputStream(file);
-		fos.write(byteArray);
-		fos.flush();
-		fos.close();
+//		FileOutputStream fos = new FileOutputStream(file);
+//		fos.write(byteArray);
+//		fos.flush();
+//		fos.close();
 		
 		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));

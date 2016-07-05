@@ -13,16 +13,11 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.caixa.CaixaEcon
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.hsbc.HsbcCNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.itau.ItauCNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.santander.SantanderCNAB240;
+import static br.com.anteros.integracao.bancaria.util.Constants.*;
 
 public class CNAB240Factory {
 
-	public static final Integer BANCO_BRASIL = 1;
-	public static final Integer BRADESCO = 237;
-	public static final Integer CAIXA_ECONOMICA_FEDERAL = 104;
-	public static final Integer HSBC = 399;
-	public static final Integer ITAU = 341;
-	public static final Integer SANTANDER = 33;
-	public static final Integer REAL = 356;
+
 
 	public static CNAB240 create(List<RemessaCobranca> remessas, Date dataHoraGeracao) {
 		return CNAB240Factory.create(remessas, Calendar.getInstance().getTime(), Calendar.getInstance().getTime());

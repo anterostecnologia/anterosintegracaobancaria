@@ -1,10 +1,12 @@
-package br.com.anteros.integracao.bancaria.boleto;
+package br.com.anteros.integracao.bancaria.boleto.hsbc;
 
 import static br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.BoletoHelper.ANTEROS_TECNOLOGIA;
 import static br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.BoletoHelper.EDSON_MARTINS;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,8 +28,14 @@ import br.com.anteros.integracao.bancaria.banco.febraban.Banco;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.BoletoHelper;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
+import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
+import br.com.anteros.integracao.bancaria.boleto.Boleto;
+import br.com.anteros.integracao.bancaria.boleto.BoletoConfiguration;
+import br.com.anteros.integracao.bancaria.boleto.BoletoConfigurationBuilder;
+import br.com.anteros.integracao.bancaria.boleto.BoletoManager;
+import br.com.anteros.integracao.bancaria.boleto.ImageType;
 
-public class BoletoManagerTest {
+public class BoletoBancoHsbcTest {
 
 	public static final String BOLETO_BANCARIO = "BOLETO BANCÁRIO";
 	private Date dhGeracaoBoleto;
@@ -41,8 +48,8 @@ public class BoletoManagerTest {
 		calendar.set(2016, Calendar.JULY, 04, 10, 15);
 		dhGeracaoBoleto = calendar.getTime();
 
-		Banco banco = BancosSuportados.BANCO_DO_BRASIL.create();
-		List<RemessaCobranca> remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(banco);
+		Banco banco = BancosSuportados.HSBC.create();
+		List<RemessaCobranca> remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(banco,CNAB240Helper.criarCarteira(1));
 		boletosParaTeste = BoletoHelper.geraBoletosParaTeste(banco, remessas);
 	}
 
@@ -61,17 +68,13 @@ public class BoletoManagerTest {
 		for (byte[] b : boletosGerados) {
 			List<byte[]> boletoImg = BoletoManager.getInstance().converPDFToImage(ImageType.PNG, 130, b); 
 			assertNotNull(boletoImg);
-			assertTrue(boletoImg.size()==1);
+			assertEquals(boletoImg.size(),1);
 			File modeloOrigem = ResourceUtils
 					.getFile("src/main/resources/pdf/boletos/BOLETO_" + (i+1) + "_" + boletosParaTeste.get(i).getTitulo()
 							.getContaBancaria().getBanco().getCodigoDeCompensacaoBACEN().getCodigoFormatado() + ".png");
 			
-//			File file = ResourceUtils
-//					.getFile("/Users/edson/B_O_L_E_T_O_" + (i+1) + "_" + boletosParaTeste.get(i).getTitulo()
-//							.getContaBancaria().getBanco().getCodigoDeCompensacaoBACEN().getCodigoFormatado() + ".png");
-//			
-//			FileOutputStream fos = new FileOutputStream(file);
-//			fos.write(b);
+//			FileOutputStream fos = new FileOutputStream(modeloOrigem);
+//			fos.write(boletoImg.get(0));
 //			fos.flush();
 //			fos.close();
 					
@@ -94,7 +97,7 @@ public class BoletoManagerTest {
 	
 		List<byte[]> boletosGerados = BoletoManager.getInstance().generate(configuration, boletosParaTeste);
 		assertNotNull(boletosGerados);
-		assertTrue(boletosGerados.size()==1);
+		assertEquals(boletosGerados.size(),1);
 		List<byte[]> boletosImg = BoletoManager.getInstance().converPDFToImage(ImageType.PNG, 130, boletosGerados.get(0));
 		
 		int i = 0;
@@ -103,14 +106,10 @@ public class BoletoManagerTest {
 					.getFile("src/main/resources/pdf/boletos/BOLETO_" + (i+1) + "_" + boletosParaTeste.get(i).getTitulo()
 							.getContaBancaria().getBanco().getCodigoDeCompensacaoBACEN().getCodigoFormatado() + ".png");
 			
-//			File file = ResourceUtils
-//					.getFile("/Users/edson/B_O_L_E_T_O_" + (i+1) + "_" + boletosParaTeste.get(i).getTitulo()
-//							.getContaBancaria().getBanco().getCodigoDeCompensacaoBACEN().getCodigoFormatado() + ".png");
-//			
-//			FileOutputStream fos = new FileOutputStream(file);
-//			fos.write(b);
-//			fos.flush();
-//			fos.close();
+			FileOutputStream fos = new FileOutputStream(modeloOrigem);
+			fos.write(b);
+			fos.flush();
+			fos.close();
 			
 			FileInputStream fis = new FileInputStream(modeloOrigem);
 			try {
@@ -121,6 +120,17 @@ public class BoletoManagerTest {
 
 			i++;
 		}
+	}
+	
+	@Test
+	public void deveGerarBoletoComLinhaDigitavelValida(){
+		assertNotNull(boletosParaTeste);
+		assertEquals(boletosParaTeste.size(), 4);
+
+		assertEquals(boletosParaTeste.get(0).getLinhaDigitavel().write(), "39995.00949 01448.112126 00232.320010 1 67900001234734");
+		assertEquals(boletosParaTeste.get(1).getLinhaDigitavel().write(), "39995.00949 01449.112125 00232.320010 7 67900005234714");
+		assertEquals(boletosParaTeste.get(2).getLinhaDigitavel().write(), "39995.00949 01440.112124 00232.320010 2 67900006124724");
+		assertEquals(boletosParaTeste.get(3).getLinhaDigitavel().write(), "39995.00949 01447.112127 00232.320010 1 67900000023454");
 	}
 
 }

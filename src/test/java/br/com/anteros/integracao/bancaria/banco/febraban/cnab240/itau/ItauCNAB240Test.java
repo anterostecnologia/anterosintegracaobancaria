@@ -31,7 +31,7 @@ public class ItauCNAB240Test {
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_ITAU.create());
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_ITAU.create(),CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);

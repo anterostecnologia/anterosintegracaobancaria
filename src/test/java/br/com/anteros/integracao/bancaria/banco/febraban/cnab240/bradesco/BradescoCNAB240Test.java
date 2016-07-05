@@ -31,7 +31,7 @@ public class BradescoCNAB240Test {
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_BRADESCO.create());
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.BANCO_BRADESCO.create(), CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
@@ -63,10 +63,10 @@ public class BradescoCNAB240Test {
 
 		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB240_BancoBradesco.REM");
 		
-		FileOutputStream fos = new FileOutputStream(file);
-		fos.write(byteArray);
-		fos.flush();
-		fos.close();
+//		FileOutputStream fos = new FileOutputStream(file);
+//		fos.write(byteArray);
+//		fos.flush();
+//		fos.close();
 		
 		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));

@@ -31,7 +31,7 @@ public class CaixaCNAB240Test {
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.CAIXA_ECONOMICA_FEDERAL.create());
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.CAIXA_ECONOMICA_FEDERAL.create(),CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);

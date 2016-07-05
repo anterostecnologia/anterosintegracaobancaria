@@ -31,25 +31,51 @@ import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeProtesto;
 import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeTitulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
 import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
+import br.com.anteros.integracao.bancaria.util.Constants;
 
 public class CNAB240Helper {
-	
-	
-	
 
-	public static List<RemessaCobranca> gerarTitulosParaRemessaCobranca(Banco banco) {
+	public static List<RemessaCobranca> gerarTitulosParaRemessaCobranca(Banco banco, Carteira carteira) {
 		List<RemessaCobranca> result = new ArrayList<RemessaCobranca>();
 		ContaBancaria contaBancaria = criarContaBancaria(banco);
 		Cedente cedente = criarCedente(banco);
-		Carteira carteira = criarCarteira();
-		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
-				"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "05009401448", "1", 1000));
-		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
-				"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "05009401449", "1", 1000));
-		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
-				"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "05009401440", "1", 1000));
-		result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"), "100000001",
-				DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "05009401447", "1", 1000));
+		if (banco.getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
+					"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "12345605009401448", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
+					"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "12345605009401449", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
+					"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "12345605009401440", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"),
+					"100000001", DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "12345605009401447", "1", 1000));
+		} else if (banco.getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
+					"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "09401448", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
+					"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "09401449", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
+					"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "09401440", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"),
+					"100000001", DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "09401447", "1", 1000));
+		} else if (banco.getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
+					"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "5009401448", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
+					"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "5009401449", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
+					"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "5009401440", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"),
+					"100000001", DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "5009401447", "1", 1000));
+		} else {
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
+					"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "05009401448", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
+					"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "05009401449", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
+					"100000001", DateUtil.stringToDate("12/07/2016", "dd/MM/yyyy"), "05009401440", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"),
+					"100000001", DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "05009401447", "1", 1000));
+		}
 		return result;
 	}
 
@@ -117,7 +143,7 @@ public class CNAB240Helper {
 
 	public static ContaBancaria criarContaBancaria(Banco banco) {
 		Agencia agencia = new Agencia(1212, "3");
-		NumeroDaConta numeroDaConta = new NumeroDaConta(232323, "2");
+		NumeroDaConta numeroDaConta = new NumeroDaConta(23232, "2");
 		ContaBancaria contaBancaria = new ContaBancaria(banco);
 		contaBancaria.setAgencia(agencia);
 		contaBancaria.setNumeroDaConta(numeroDaConta);
@@ -184,8 +210,8 @@ public class CNAB240Helper {
 		return sacado;
 	}
 
-	private static Carteira criarCarteira() {
-		Carteira carteira = new Carteira(1);
+	public static Carteira criarCarteira(int codigoCarteira) {
+		Carteira carteira = new Carteira(codigoCarteira);
 		carteira.setCodigoConvenio("123456");
 		carteira.setNome("CARTEIRA");
 		carteira.setTipoDeCobranca(TipoDeCobranca.COM_REGISTRO);
