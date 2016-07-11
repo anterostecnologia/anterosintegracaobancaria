@@ -34,7 +34,7 @@ import br.com.anteros.core.utils.StringUtils;
  * 
  * @version 0.2
  */
-public enum TipoDeMoeda {
+public enum TipoMoeda {
 
 	/**
 	 * Padrão FEBRABAN
@@ -47,7 +47,7 @@ public enum TipoDeMoeda {
 	/**
 	 * @param codigo
 	 */
-	private TipoDeMoeda(int codigo) {
+	private TipoMoeda(int codigo) {
 		this.codigo = codigo;
 	}
 
@@ -73,37 +73,37 @@ public enum TipoDeMoeda {
 		return s;
 	}
 
-	public static TipoDeMoeda convert(Integer tipoMoeda) {
+	public static TipoMoeda convert(Integer tipoMoeda) {
 		switch (tipoMoeda) {
 		case 2:
-			return TipoDeMoeda.DOLAR_AMERICANO_COMERCIAL_VENDA;
+			return TipoMoeda.DOLAR_AMERICANO_COMERCIAL_VENDA;
 		case 3:
-			return TipoDeMoeda.DOLAR_AMERICANO_TURISMO_VENDA;
+			return TipoMoeda.DOLAR_AMERICANO_TURISMO_VENDA;
 		case 4:
-			return TipoDeMoeda.ITRD;
+			return TipoMoeda.ITRD;
 		case 5:
-			return TipoDeMoeda.IDTR;
+			return TipoMoeda.IDTR;
 		case 6:
-			return TipoDeMoeda.UFIR_DIARIA;
+			return TipoMoeda.UFIR_DIARIA;
 		case 7:
-			return TipoDeMoeda.UFIR_MENSAL;
+			return TipoMoeda.UFIR_MENSAL;
 		case 8:
-			return TipoDeMoeda.FAJ_TR;
+			return TipoMoeda.FAJ_TR;
 		case 9:
-			return TipoDeMoeda.REAL;
+			return TipoMoeda.REAL;
 		case 10:
-			return TipoDeMoeda.TR;
+			return TipoMoeda.TR;
 		case 11:
-			return TipoDeMoeda.IGPM;
+			return TipoMoeda.IGPM;
 		case 12:
-			return TipoDeMoeda.CDI;
+			return TipoMoeda.CDI;
 		case 13:
-			return TipoDeMoeda.PERCENTUAL_DO_CDI;
+			return TipoMoeda.PERCENTUAL_DO_CDI;
 		case 14:
-			return TipoDeMoeda.EURO;
+			return TipoMoeda.EURO;
 		default:
 			break;
 		}
-		return TipoDeMoeda.REAL;
+		return TipoMoeda.REAL;
 	}
 }

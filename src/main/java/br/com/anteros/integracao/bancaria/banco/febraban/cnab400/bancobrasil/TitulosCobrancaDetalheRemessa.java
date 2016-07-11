@@ -8,167 +8,177 @@ import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
+import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 
-public class TitulosCobrancaDetalheRemessa {
+public class TitulosCobrancaDetalheRemessa implements RecordData {
 
-	@IdType(name="CD_REGISTRO", length=1, value="1", positionField=1)
+	@IdType(name = "CD_REGISTRO", length = 1, value = "7", positionField = 1)
 	private Integer codigoRegistro;
-	
-	@Field(name="TP_INSCRICAO_EMPRESA", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "TP_INSCRICAO_EMPRESA", length = 2, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer tipoInscricaoEmpresa;
-	
-	@Field(name="NR_INSCRICAO", length=14, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
+
+	@Field(name = "NR_INSCRICAO", length = 14, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
 	private Long numeroInscricao;
-	
-	@Field(name="AGENCIA", length=4, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "AGENCIA", length = 4, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer agencia;
-	
-	@Field(name="DIGITO_AGENCIA", length=1)
+
+	@Field(name = "DIGITO_AGENCIA", length = 1, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String digitoAgencia;
-	
-	@Field(name="NR_CONTACORRENTE", length=8, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
-	private Long numeroContaCorrente;
-	
-	@Field(name="DIGITO_CONTACORRENTE", length=1)
+
+	@Field(name = "NR_CONTACORRENTE", length = 8, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
+	private Integer numeroContaCorrente;
+
+	@Field(name = "DIGITO_CONTACORRENTE", length = 1, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String digitoContaCorrente;
-	
-	@Field(name="NR_CONVENIO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer numeroConvenio;
-	
-	@Field(name="USO_EMPRESA", length=25, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
+
+	@Field(name = "NR_CONVENIO", length = 7, padding = Paddings.ZERO_LEFT)
+	private String numeroConvenio;
+
+	@Field(name = "USO_EMPRESA", length = 25, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
 	private String usoEmpresa;
-	
-	@Field(name="NOSSO_NUMERO", length=11, padding=Paddings.ZERO_LEFT)
-	private Long nossoNumero;
-	
-	@Field(name="DIGITO_NOSSO_NUMERO", length=1)
-	private String digitoNossoNumero;
-	
-	@Field(name="NR_PRESTACAO", length=2, value="00")
+
+	@Field(name = "NOSSO_NUMERO", length = 17, padding = Paddings.ZERO_LEFT)
+	private String nossoNumero;
+
+	@Field(name = "NR_PRESTACAO", length = 2, value = "00")
 	private String numeroPrestacao;
-	
-	@Field(name="GRUPO_VALOR", length=2, value="00")
+
+	@Field(name = "GRUPO_VALOR", length = 2, value = "00")
 	private String grupoValor;
-	
-	@Field(name="BRANCOS1", length=3, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="INDICATIVO_MENSAGEM", length=1)
+
+	@Field(name = "INDICATIVO_MENSAGEM", length = 1, padding=Paddings.WHITE_SPACE_LEFT)
 	private String indicativoMensagem;
-	
-	@Field(name="BRANCOS2", length=3, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "BRANCOS2", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
-	
-	@Field(name="VARIACAO_CARTEIRA", length=3, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "VARIACAO_CARTEIRA", length = 3, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer variacaoCarteira;
-	
-	@Field(name="CONTA_CAUCAO", length=1, type=EnumTypes.INTEGER, value="0")
+
+	@Field(name = "CONTA_CAUCAO", length = 1, type = EnumTypes.INTEGER, value = "0")
 	private Integer contaCaucao;
-	
-	@Field(name="NR_BORDERO", length=6, value="000000", type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-    private Integer numeroBordero;	
-	
-	@Field(name="TP_COBRANCA", length=5, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "NR_BORDERO", length = 6, value = "000000", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer numeroBordero;
+
+	@Field(name = "TP_COBRANCA", length = 5, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String tipoCobranca;
-	
-	@Field(name="CARTEIRA", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "CARTEIRA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer carteira;
-	
-	@Field(name="CD_OCORRENCIA", length=2, type=EnumTypes.INTEGER, value="1", padding=Paddings.ZERO_LEFT )
+
+	@Field(name = "CD_OCORRENCIA", length = 2, type = EnumTypes.INTEGER, value = "1", padding = Paddings.ZERO_LEFT)
 	private Integer codigoOcorrencia;
-	
-	@Field(name="NR_DOCUMENTO", length=10, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "NR_DOCUMENTO", length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumento;
-	
-	@Field(name="DT_VENCIMENTO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "DT_VENCIMENTO", length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY, padding = Paddings.ZERO_LEFT)
 	private Date dataVencimento;
-	
-	@Field(name="VL_TITULO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "VL_TITULO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD, padding = Paddings.ZERO_LEFT)
 	private BigDecimal valorNominalTitulo;
-	
-	@Field(name="CD_BANCO", length=3, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "CD_BANCO", length = 3, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer codigoBanco;
-	
-	@Field(name="AGENCIA_COBRADORA", length=4, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "AGENCIA_COBRADORA", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaCobradora;
-	
-	@Field(name="DIGITO_AGENCIA_COBRADORA", length=1, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "DIGITO_AGENCIA_COBRADORA", length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String digitoAgenciaCobradora;
 
-	@Field(name="ESPECIE_TITULO", length=2, padding=Paddings.ZERO_LEFT)
+	@Field(name = "ESPECIE_TITULO", length = 2, padding = Paddings.ZERO_LEFT)
 	private Integer especieTitulo;
-	
-	@Field(name="ACEITE", length=1)
+
+	@Field(name = "ACEITE", length = 1)
 	private String aceite;
-	
-	@Field(name="DT_EMISSAO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "DT_EMISSAO", length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY, padding = Paddings.ZERO_LEFT)
 	private Date dataEmissao;
-	
-	@Field(name="PRIMEIRA_INSTRUCAO", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "PRIMEIRA_INSTRUCAO", length = 2, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer primeiraInstrucao;
-	
-	@Field(name="SEGUNDA_INSTRUCAO", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+
+	@Field(name = "SEGUNDA_INSTRUCAO", length = 2, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer segundaInstrucao;
-	
-	@Field(name="VL_JUROS", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "VL_JUROS", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD, padding = Paddings.ZERO_LEFT)
 	private BigDecimal valorJuros;
-		
-	@Field(name="DT_DESCONTO", length=6, type=EnumTypes.DATE, padding=Paddings.ZERO_LEFT, format=Formats.DATE_DDMMYY)
+
+	@Field(name = "DT_DESCONTO", length = 6, type = EnumTypes.DATE, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYY)
 	private Date dataDesconto;
-	
-	@Field(name="VL_DESCONTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "VL_DESCONTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD, padding = Paddings.ZERO_LEFT)
 	private BigDecimal valorDesconto;
-	
-	@Field(name="VL_IOF", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "VL_IOF", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD, padding = Paddings.ZERO_LEFT)
 	private BigDecimal valorIOF;
-	
-	@Field(name="VL_ABATIMENTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "VL_ABATIMENTO", length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD, padding = Paddings.ZERO_LEFT)
 	private BigDecimal valorAbatimento;
-	
-	@Field(name="TP_SACADO", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "TP_SACADO", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoSacado;
-	
-	@Field(name="NR_INSCRICAO_SACADO", length=14, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroInscricaoSabado;
-	
-	@Field(name="NOME_SACADO", length=37, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "NR_INSCRICAO_SACADO", length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long numeroInscricaoSacado;
+
+	@Field(name = "NOME_SACADO", length = 37, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeSacado;
-	
-	@Field(name="BRANCOS3", length=3, value=" ")
+
+	@Field(name = "BRANCOS3", length = 3, value = " ", padding=Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
-	
-	@Field(name="ENDERECO_SACADO", length=37, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "ENDERECO_SACADO", length = 37, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String enderecoSacado;
-	
-	@Field(name="BRANCOS4", length=3, value=" ")
+
+	@Field(name = "BRANCOS4", length = 15, value = " ", padding=Paddings.WHITE_SPACE_RIGHT)
 	private String brancos4;
 
-	@Field(name="CEP_SACADO", length=8, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	@Field(name = "CEP_SACADO", length = 8, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer cepSacado;
-	
-	@Field(name="CIDADE_SACADO", length=15, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "CIDADE_SACADO", length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String cidadeSacado;
-	
-	@Field(name="UF_SACADO", length=2)
+
+	@Field(name = "UF_SACADO", length = 2, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String estadoSacado;
-	
-	@Field(name="SACADOR_AVALISTA", length=40, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "SACADOR_AVALISTA", length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String sacadorAvalista;
-	
-	@Field(name="NR_DIAS_PROTESTO", length=2, padding=Paddings.WHITE_SPACE_RIGHT)
+
+	@Field(name = "NR_DIAS_PROTESTO", length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String diasProtesto;
-	
-	@Field(name="BRANCOS5", length=1, value=" ")
+
+	@Field(name = "BRANCOS5", length = 1, value = " ", padding=Paddings.WHITE_SPACE_RIGHT)
 	private String brancos5;
-	
-	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	public TitulosCobrancaDetalheRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
+	private List<RemessaCobranca> remessas;
 
+	private Date dataHoraGeracao;
+
+	private Date dataGravacao;
+
+	private ContaBancaria contaBancaria;
+
+	public TitulosCobrancaDetalheRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataGravacao,
+			Date dataHoraGeracao) {
+		this.contaBancaria = contaBancaria;
+		this.remessas = remessas;
+		this.dataGravacao = dataGravacao;
+		this.dataHoraGeracao = dataHoraGeracao;
 	}
 
 	public Integer getCodigoRegistro() {
@@ -211,11 +221,11 @@ public class TitulosCobrancaDetalheRemessa {
 		this.digitoAgencia = digitoAgencia;
 	}
 
-	public Long getNumeroContaCorrente() {
+	public Integer getNumeroContaCorrente() {
 		return numeroContaCorrente;
 	}
 
-	public void setNumeroContaCorrente(Long numeroContaCorrente) {
+	public void setNumeroContaCorrente(Integer numeroContaCorrente) {
 		this.numeroContaCorrente = numeroContaCorrente;
 	}
 
@@ -227,11 +237,11 @@ public class TitulosCobrancaDetalheRemessa {
 		this.digitoContaCorrente = digitoContaCorrente;
 	}
 
-	public Integer getNumeroConvenio() {
+	public String getNumeroConvenio() {
 		return numeroConvenio;
 	}
 
-	public void setNumeroConvenio(Integer numeroConvenio) {
+	public void setNumeroConvenio(String numeroConvenio) {
 		this.numeroConvenio = numeroConvenio;
 	}
 
@@ -243,20 +253,12 @@ public class TitulosCobrancaDetalheRemessa {
 		this.usoEmpresa = usoEmpresa;
 	}
 
-	public Long getNossoNumero() {
+	public String getNossoNumero() {
 		return nossoNumero;
 	}
 
-	public void setNossoNumero(Long nossoNumero) {
+	public void setNossoNumero(String nossoNumero) {
 		this.nossoNumero = nossoNumero;
-	}
-
-	public String getDigitoNossoNumero() {
-		return digitoNossoNumero;
-	}
-
-	public void setDigitoNossoNumero(String digitoNossoNumero) {
-		this.digitoNossoNumero = digitoNossoNumero;
 	}
 
 	public String getNumeroPrestacao() {
@@ -483,12 +485,12 @@ public class TitulosCobrancaDetalheRemessa {
 		this.tipoSacado = tipoSacado;
 	}
 
-	public Long getNumeroInscricaoSabado() {
-		return numeroInscricaoSabado;
+	public Long getNumeroInscricaoSacado() {
+		return numeroInscricaoSacado;
 	}
 
 	public void setNumeroInscricaoSabado(Long numeroInscricaoSabado) {
-		this.numeroInscricaoSabado = numeroInscricaoSabado;
+		this.numeroInscricaoSacado = numeroInscricaoSabado;
 	}
 
 	public String getNomeSacado() {
@@ -579,8 +581,54 @@ public class TitulosCobrancaDetalheRemessa {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
 	}
 
-	public static TitulosCobrancaDetalheRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		return new TitulosCobrancaDetalheRemessa(contaBancaria, remessas);
+	public static TitulosCobrancaDetalheRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas,
+			Date dataHoraGeracao, Date dataGravacao) {
+		return new TitulosCobrancaDetalheRemessa(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 	}
-	
+
+	public int getNumberOfRecords() {
+		return remessas.size();
+	}
+
+	public void readRowData(int row) {
+		this.tipoInscricaoEmpresa  = (remessas.get(row).getTitulo().getCedente().getCPRF().isFisica() ? 1 : 2);
+		this.numeroInscricao = remessas.get(row).getTitulo().getCedente().getCPRF().getCodigo();
+		this.agencia = contaBancaria.getAgencia().getCodigo();
+		this.digitoAgencia = contaBancaria.getAgencia().getDigitoVerificador();
+		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();
+		this.digitoContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();
+		this.numeroConvenio = remessas.get(row).getTitulo().getCarteira().getCodigoConvenio();
+		this.nossoNumero = remessas.get(row).getTitulo().getNossoNumero();
+		this.indicativoMensagem = "0";
+		this.variacaoCarteira = remessas.get(row).getTitulo().getCarteira().getVariacaoCarteira();
+		this.tipoCobranca = remessas.get(row).getTitulo().getCarteira().getTipoDeCobranca().getTipo()+"";
+		this.carteira = remessas.get(row).getTitulo().getCarteira().getCodigo();
+		this.codigoOcorrencia = remessas.get(row).getCodigoMovimentoRemessa().getTipo();
+		this.numeroDocumento = remessas.get(row).getTitulo().getNumeroDocumento();
+		this.dataVencimento = remessas.get(row).getTitulo().getDataVencimento();
+		this.valorNominalTitulo = remessas.get(row).getTitulo().getValorTitulo();
+		this.especieTitulo = remessas.get(row).getTitulo().getTipoDocumento().getCodigo();
+		this.aceite = remessas.get(row).getTitulo().getAceite().name();
+		this.dataEmissao = remessas.get(row).getTitulo().getDataDocumento();
+		this.primeiraInstrucao = remessas.get(row).getTitulo().getInstrucaoCobranca1();
+		this.segundaInstrucao = remessas.get(row).getTitulo().getInstrucaoCobranca2();
+		this.valorJuros = remessas.get(row).getTitulo().getValorJurosMoraPorAtraso();
+		this.dataDesconto = remessas.get(row).getTitulo().getDataDesconto();
+		this.valorDesconto = remessas.get(row).getTitulo().getValorDescontoConcedido();
+		this.valorIOF = remessas.get(row).getTitulo().getValorIOF();
+		this.valorAbatimento = remessas.get(row).getTitulo().getValorAbatimento();
+		this.tipoSacado = (remessas.get(row).getTitulo().getSacado().getCPRF().isFisica() ? 1 : 2);
+		this.numeroInscricaoSacado = remessas.get(row).getTitulo().getSacado().getCPRF().getCodigo();
+		this.nomeSacado = remessas.get(row).getTitulo().getSacado().getNome();
+		this.enderecoSacado = remessas.get(row).getTitulo().getSacado().getNextEndereco().getLogradouro()+","+
+				remessas.get(row).getTitulo().getSacado().getNextEndereco().getNumero();
+		this.cepSacado = remessas.get(row).getTitulo().getSacado().getNextEndereco().getCEP().getCodigo();
+		this.cidadeSacado = remessas.get(row).getTitulo().getSacado().getNextEndereco().getLocalidade();
+		this.estadoSacado = remessas.get(row).getTitulo().getSacado().getNextEndereco().getUF().getSigla();
+		if (remessas.get(row).getTitulo().getSacadorAvalista()!=null)
+		this.sacadorAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getNome();
+		this.diasProtesto = remessas.get(row).getTitulo().getNrDiasProtesto()+"";
+		this.numeroSequencialRegistro = row+2;
+	}
+
 }

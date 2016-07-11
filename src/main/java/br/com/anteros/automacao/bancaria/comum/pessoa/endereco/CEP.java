@@ -83,6 +83,11 @@ public class CEP {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
+	public Integer getCodigo(){
+		String s = cep.replaceAll("[^0-9.]", "");
+		return Integer.valueOf(s);
+	}
 
 	@Override
 	public String toString() {

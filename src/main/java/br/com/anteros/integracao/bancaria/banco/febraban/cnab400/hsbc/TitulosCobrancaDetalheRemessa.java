@@ -16,106 +16,97 @@ public class TitulosCobrancaDetalheRemessa {
 
 	@IdType(name="CD_REGISTRO", length=1, value="1", positionField=1)
 	private Integer codigoRegistro;
+		
+	@Field(name="AGENCIA_DEBITO", length=5, value="0", type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	private Integer agenciaDebito;
 	
-	@Field(name="TP_INSCRICAO_EMPRESA", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer tipoInscricaoEmpresa;
+	@Field(name="DIGITO_AGENCIA_DEBITO", length=1, value=" ")
+	private String digitoAgenciaDebito;
 	
-	@Field(name="NR_INSCRICAO", length=14, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
-	private Long numeroInscricao;
+	@Field(name="RAZAO_CONTA_DEBITO", length=5, value="0", padding=Paddings.ZERO_LEFT)
+	private Integer RazaoSocialContaDebito;
 	
-	@Field(name="AGENCIA", length=4, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+	@Field(name="CONTA_CORRENTE_DEBITO", length=7, value="0", padding=Paddings.ZERO_LEFT)
+	private Integer contaCorrenteDebito;
+	
+	@Field(name="DIGITO_CONTA_DEBITO", length=1, value=" ")
+	private String digitoContaCorrenteDebito;
+	
+	@Field(name="ZEROS1", value="0", length=1)
+	private String zeros1;
+	
+	@Field(name="CARTEIRA", length=3, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	private Integer carteira;
+	
+	@Field(name="AGENCIA", length=5, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer agencia;
 	
-	@Field(name="DIGITO_AGENCIA", length=1)
-	private String digitoAgencia;
-	
-	@Field(name="NR_CONTACORRENTE", length=8, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
+	@Field(name="NR_CONTACORRENTE", length=7, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
 	private Long numeroContaCorrente;
 	
 	@Field(name="DIGITO_CONTACORRENTE", length=1)
 	private String digitoContaCorrente;
 	
-	@Field(name="NR_CONVENIO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer numeroConvenio;
-	
-	@Field(name="USO_EMPRESA", length=25, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
-	private String usoEmpresa;
-	
-	@Field(name="NOSSO_NUMERO", length=11, padding=Paddings.ZERO_LEFT)
-	private Long nossoNumero;
-	
-	@Field(name="DIGITO_NOSSO_NUMERO", length=1)
-	private String digitoNossoNumero;
-	
-	@Field(name="NR_PRESTACAO", length=2, value="00")
-	private String numeroPrestacao;
-	
-	@Field(name="GRUPO_VALOR", length=2, value="00")
-	private String grupoValor;
-	
-	@Field(name="BRANCOS1", length=3, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name="BRANCOS1", length=25, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="INDICATIVO_MENSAGEM", length=1)
-	private String indicativoMensagem;
-	
-	@Field(name="BRANCOS2", length=3, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancos2;
-	
-	@Field(name="VARIACAO_CARTEIRA", length=3, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer variacaoCarteira;
-	
-	@Field(name="CONTA_CAUCAO", length=1, type=EnumTypes.INTEGER, value="0")
-	private Integer contaCaucao;
-	
-	@Field(name="NR_BORDERO", length=6, value="000000", type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-    private Integer numeroBordero;	
-	
-	@Field(name="TP_COBRANCA", length=5, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String tipoCobranca;
-	
-	@Field(name="CARTEIRA", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer carteira;
-	
-	@Field(name="CD_OCORRENCIA", length=2, type=EnumTypes.INTEGER, value="1", padding=Paddings.ZERO_LEFT )
-	private Integer codigoOcorrencia;
-	
-	@Field(name="NR_DOCUMENTO", length=10, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String numeroDocumento;
-	
-	@Field(name="DT_VENCIMENTO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
-	private Date dataVencimento;
-	
-	@Field(name="VL_TITULO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
-	private BigDecimal valorNominalTitulo;
 	
 	@Field(name="CD_BANCO", length=3, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer codigoBanco;
 	
-	@Field(name="AGENCIA_COBRADORA", length=4, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer agenciaCobradora;
+	@Field(name="CD_MULTA", length=1, type=EnumTypes.INTEGER)
+	private Integer codigoMulta;
 	
-	@Field(name="DIGITO_AGENCIA_COBRADORA", length=1, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String digitoAgenciaCobradora;
-
-	@Field(name="ESPECIE_TITULO", length=2, padding=Paddings.ZERO_LEFT)
+    @Field(name="PC_MULTA", length=4, type=EnumTypes.BIGDECIMAL, padding=Paddings.ZERO_LEFT)
+	private BigDecimal percentualMulta;
+    
+    @Field(name="NOSSO_NUMERO", length=11, padding=Paddings.ZERO_LEFT)
+	private Long nossoNumero;
+	
+    @Field(name="DIGITO_NOSSO_NUMERO", length=1)
+	private String digitoNossoNumero;
+    
+    @Field(name="VL_DESCONTO_BONIFICACAO_DIA", length=10, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+	private BigDecimal valorDescontoBonificacaoDia;
+    
+    @Field(name="INDICADOR_RATEIO_CREDITO", length=1, value="R")
+    private String indicadorRateioCredito;
+    
+    @Field(name="BRANCOS2", length=3, value=" ")
+    private String brancos2;
+    
+    @Field(name="CD_OCORRENCIA", length=2, type=EnumTypes.INTEGER, value="1", padding=Paddings.ZERO_LEFT )
+	private Integer codigoOcorrencia;
+    
+    @Field(name="NR_DOCUMENTO", length=10, padding=Paddings.WHITE_SPACE_RIGHT)
+	private String numeroDocumento;
+    
+    @Field(name="DT_VENCIMENTO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
+	private Date dataVencimento;
+    
+    @Field(name="VL_TITULO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
+	private BigDecimal valorNominalTitulo;
+    
+    @Field(name="ZEROS2", value="0", length=5, padding=Paddings.ZERO_LEFT)
+	private String zeros2;
+    
+    @Field(name="ESPECIE_TITULO", length=2, padding=Paddings.ZERO_LEFT)
 	private Integer especieTitulo;
-	
-	@Field(name="ACEITE", length=1)
+    
+    @Field(name="ACEITE", length=1, value="N")
 	private String aceite;
-	
-	@Field(name="DT_EMISSAO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
+    
+    @Field(name="DT_EMISSAO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
 	private Date dataEmissao;
-	
-	@Field(name="PRIMEIRA_INSTRUCAO", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+    
+    @Field(name="PRIMEIRA_INSTRUCAO", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer primeiraInstrucao;
 	
 	@Field(name="SEGUNDA_INSTRUCAO", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer segundaInstrucao;
-	
+    
 	@Field(name="VL_JUROS", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
 	private BigDecimal valorJuros;
-		
+	
 	@Field(name="DT_DESCONTO", length=6, type=EnumTypes.DATE, padding=Paddings.ZERO_LEFT, format=Formats.DATE_DDMMYY)
 	private Date dataDesconto;
 	
@@ -127,42 +118,27 @@ public class TitulosCobrancaDetalheRemessa {
 	
 	@Field(name="VL_ABATIMENTO", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD, padding=Paddings.ZERO_LEFT)
 	private BigDecimal valorAbatimento;
-	
+    
 	@Field(name="TP_SACADO", length=2, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer tipoSacado;
 	
 	@Field(name="NR_INSCRICAO_SACADO", length=14, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroInscricaoSabado;
+	private Long numeroInscricaoSacado;
 	
-	@Field(name="NOME_SACADO", length=37, padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name="NOME_SACADO", length=40, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String nomeSacado;
 	
-	@Field(name="BRANCOS3", length=3, value=" ")
-	private String brancos3;
-	
-	@Field(name="ENDERECO_SACADO", length=37, padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name="ENDERECO_SACADO", length=40, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String enderecoSacado;
 	
-	@Field(name="BRANCOS4", length=3, value=" ")
-	private String brancos4;
-
+	@Field(name="BRANCOS3", length=12, value=" ")
+	private String brancos3;
+	
 	@Field(name="CEP_SACADO", length=8, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer cepSacado;
 	
-	@Field(name="CIDADE_SACADO", length=15, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String cidadeSacado;
-	
-	@Field(name="UF_SACADO", length=2)
-	private String estadoSacado;
-	
-	@Field(name="SACADOR_AVALISTA", length=40, padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name="SACADOR_AVALISTA", length=60, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String sacadorAvalista;
-	
-	@Field(name="NR_DIAS_PROTESTO", length=2, padding=Paddings.WHITE_SPACE_RIGHT)
-	private String diasProtesto;
-	
-	@Field(name="BRANCOS5", length=1, value=" ")
-	private String brancos5;
 	
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
@@ -179,36 +155,12 @@ public class TitulosCobrancaDetalheRemessa {
 		this.codigoRegistro = codigoRegistro;
 	}
 
-	public Integer getTipoInscricaoEmpresa() {
-		return tipoInscricaoEmpresa;
-	}
-
-	public void setTipoInscricaoEmpresa(Integer tipoInscricaoEmpresa) {
-		this.tipoInscricaoEmpresa = tipoInscricaoEmpresa;
-	}
-
-	public Long getNumeroInscricao() {
-		return numeroInscricao;
-	}
-
-	public void setNumeroInscricao(Long numeroInscricao) {
-		this.numeroInscricao = numeroInscricao;
-	}
-
 	public Integer getAgencia() {
 		return agencia;
 	}
 
 	public void setAgencia(Integer agencia) {
 		this.agencia = agencia;
-	}
-
-	public String getDigitoAgencia() {
-		return digitoAgencia;
-	}
-
-	public void setDigitoAgencia(String digitoAgencia) {
-		this.digitoAgencia = digitoAgencia;
 	}
 
 	public Long getNumeroContaCorrente() {
@@ -227,22 +179,6 @@ public class TitulosCobrancaDetalheRemessa {
 		this.digitoContaCorrente = digitoContaCorrente;
 	}
 
-	public Integer getNumeroConvenio() {
-		return numeroConvenio;
-	}
-
-	public void setNumeroConvenio(Integer numeroConvenio) {
-		this.numeroConvenio = numeroConvenio;
-	}
-
-	public String getUsoEmpresa() {
-		return usoEmpresa;
-	}
-
-	public void setUsoEmpresa(String usoEmpresa) {
-		this.usoEmpresa = usoEmpresa;
-	}
-
 	public Long getNossoNumero() {
 		return nossoNumero;
 	}
@@ -259,22 +195,6 @@ public class TitulosCobrancaDetalheRemessa {
 		this.digitoNossoNumero = digitoNossoNumero;
 	}
 
-	public String getNumeroPrestacao() {
-		return numeroPrestacao;
-	}
-
-	public void setNumeroPrestacao(String numeroPrestacao) {
-		this.numeroPrestacao = numeroPrestacao;
-	}
-
-	public String getGrupoValor() {
-		return grupoValor;
-	}
-
-	public void setGrupoValor(String grupoValor) {
-		this.grupoValor = grupoValor;
-	}
-
 	public String getBrancos1() {
 		return brancos1;
 	}
@@ -283,52 +203,12 @@ public class TitulosCobrancaDetalheRemessa {
 		this.brancos1 = brancos1;
 	}
 
-	public String getIndicativoMensagem() {
-		return indicativoMensagem;
-	}
-
-	public void setIndicativoMensagem(String indicativoMensagem) {
-		this.indicativoMensagem = indicativoMensagem;
-	}
-
 	public String getBrancos2() {
 		return brancos2;
 	}
 
 	public void setBrancos2(String brancos2) {
 		this.brancos2 = brancos2;
-	}
-
-	public Integer getVariacaoCarteira() {
-		return variacaoCarteira;
-	}
-
-	public void setVariacaoCarteira(Integer variacaoCarteira) {
-		this.variacaoCarteira = variacaoCarteira;
-	}
-
-	public Integer getContaCaucao() {
-		return contaCaucao;
-	}
-
-	public void setContaCaucao(Integer contaCaucao) {
-		this.contaCaucao = contaCaucao;
-	}
-
-	public Integer getNumeroBordero() {
-		return numeroBordero;
-	}
-
-	public void setNumeroBordero(Integer numeroBordero) {
-		this.numeroBordero = numeroBordero;
-	}
-
-	public String getTipoCobranca() {
-		return tipoCobranca;
-	}
-
-	public void setTipoCobranca(String tipoCobranca) {
-		this.tipoCobranca = tipoCobranca;
 	}
 
 	public Integer getCarteira() {
@@ -377,22 +257,6 @@ public class TitulosCobrancaDetalheRemessa {
 
 	public void setCodigoBanco(Integer codigoBanco) {
 		this.codigoBanco = codigoBanco;
-	}
-
-	public Integer getAgenciaCobradora() {
-		return agenciaCobradora;
-	}
-
-	public void setAgenciaCobradora(Integer agenciaCobradora) {
-		this.agenciaCobradora = agenciaCobradora;
-	}
-
-	public String getDigitoAgenciaCobradora() {
-		return digitoAgenciaCobradora;
-	}
-
-	public void setDigitoAgenciaCobradora(String digitoAgenciaCobradora) {
-		this.digitoAgenciaCobradora = digitoAgenciaCobradora;
 	}
 
 	public Integer getEspecieTitulo() {
@@ -483,14 +347,6 @@ public class TitulosCobrancaDetalheRemessa {
 		this.tipoSacado = tipoSacado;
 	}
 
-	public Long getNumeroInscricaoSabado() {
-		return numeroInscricaoSabado;
-	}
-
-	public void setNumeroInscricaoSabado(Long numeroInscricaoSabado) {
-		this.numeroInscricaoSabado = numeroInscricaoSabado;
-	}
-
 	public String getNomeSacado() {
 		return nomeSacado;
 	}
@@ -515,14 +371,6 @@ public class TitulosCobrancaDetalheRemessa {
 		this.enderecoSacado = enderecoSacado;
 	}
 
-	public String getBrancos4() {
-		return brancos4;
-	}
-
-	public void setBrancos4(String brancos4) {
-		this.brancos4 = brancos4;
-	}
-
 	public Integer getCepSacado() {
 		return cepSacado;
 	}
@@ -531,22 +379,7 @@ public class TitulosCobrancaDetalheRemessa {
 		this.cepSacado = cepSacado;
 	}
 
-	public String getCidadeSacado() {
-		return cidadeSacado;
-	}
-
-	public void setCidadeSacado(String cidadeSacado) {
-		this.cidadeSacado = cidadeSacado;
-	}
-
-	public String getEstadoSacado() {
-		return estadoSacado;
-	}
-
-	public void setEstadoSacado(String estadoSacado) {
-		this.estadoSacado = estadoSacado;
-	}
-
+	
 	public String getSacadorAvalista() {
 		return sacadorAvalista;
 	}
@@ -555,21 +388,6 @@ public class TitulosCobrancaDetalheRemessa {
 		this.sacadorAvalista = sacadorAvalista;
 	}
 
-	public String getDiasProtesto() {
-		return diasProtesto;
-	}
-
-	public void setDiasProtesto(String diasProtesto) {
-		this.diasProtesto = diasProtesto;
-	}
-
-	public String getBrancos5() {
-		return brancos5;
-	}
-
-	public void setBrancos5(String brancos5) {
-		this.brancos5 = brancos5;
-	}
 
 	public Integer getNumeroSequencialRegistro() {
 		return numeroSequencialRegistro;
@@ -581,6 +399,29 @@ public class TitulosCobrancaDetalheRemessa {
 
 	public static TitulosCobrancaDetalheRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
 		return new TitulosCobrancaDetalheRemessa(contaBancaria, remessas);
+	}
+
+	@Override
+	public String toString() {
+		return "TitulosCobrancaDetalheRemessa [codigoRegistro=" + codigoRegistro + ", agenciaDebito=" + agenciaDebito
+				+ ", digitoAgenciaDebito=" + digitoAgenciaDebito + ", RazaoSocialContaDebito=" + RazaoSocialContaDebito
+				+ ", contaCorrenteDebito=" + contaCorrenteDebito + ", digitoContaCorrenteDebito="
+				+ digitoContaCorrenteDebito + ", zeros1=" + zeros1 + ", carteira=" + carteira + ", agencia=" + agencia
+				+ ", numeroContaCorrente=" + numeroContaCorrente + ", digitoContaCorrente=" + digitoContaCorrente
+				+ ", brancos1=" + brancos1 + ", codigoBanco=" + codigoBanco + ", codigoMulta=" + codigoMulta
+				+ ", percentualMulta=" + percentualMulta + ", nossoNumero=" + nossoNumero + ", digitoNossoNumero="
+				+ digitoNossoNumero + ", valorDescontoBonificacaoDia=" + valorDescontoBonificacaoDia
+				+ ", indicadorRateioCredito=" + indicadorRateioCredito + ", brancos2=" + brancos2
+				+ ", codigoOcorrencia=" + codigoOcorrencia + ", numeroDocumento=" + numeroDocumento
+				+ ", dataVencimento=" + dataVencimento + ", valorNominalTitulo=" + valorNominalTitulo + ", zeros2="
+				+ zeros2 + ", especieTitulo=" + especieTitulo + ", aceite=" + aceite + ", dataEmissao=" + dataEmissao
+				+ ", primeiraInstrucao=" + primeiraInstrucao + ", segundaInstrucao=" + segundaInstrucao
+				+ ", valorJuros=" + valorJuros + ", dataDesconto=" + dataDesconto + ", valorDesconto=" + valorDesconto
+				+ ", valorIOF=" + valorIOF + ", valorAbatimento=" + valorAbatimento + ", tipoSacado=" + tipoSacado
+				+ ", numeroInscricaoSacado=" + numeroInscricaoSacado + ", nomeSacado=" + nomeSacado
+				+ ", enderecoSacado=" + enderecoSacado + ", brancos3=" + brancos3 + ", cepSacado=" + cepSacado
+				+ ", sacadorAvalista=" + sacadorAvalista + ", numeroSequencialRegistro=" + numeroSequencialRegistro
+				+ "]";
 	}
 	
 }

@@ -25,26 +25,12 @@ public class HeaderArquivoRemessa {
 	@Field(name="CD_SERVICO", value="01", length=2, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer codigoServico;
 	
-	@Field(name="LITERAL_SERVICO", value="COBRANCA", length=8)
+	@Field(name="LITERAL_SERVICO", value="COBRANCA", length=15)
 	private String literalServico;
 	
-	@Field(name="BRANCOS1", length=7, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
-	private String brancos1;
 	
-	@Field(name="PREFIXO_AGENCIA", length=9, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer prefixoAgencia;
-	
-	@Field(name="DIGITO_AGENCIA", length=1)
-	private String digitoVerificadoraAgencia;
-	
-	@Field(name="NR_CONTACORRENTE", length=8, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer numeroContaCorrente;
-	
-	@Field(name="DIGITO_CONTACORRENTE", length=1)
-	private String digitoContaCorrente;
-	
-	@Field(name="COMPLEMENTO_REGISTRO", value="000000", length=6, padding=Paddings.ZERO_LEFT)
-	private Integer complementoRegistro;
+	@Field(name="CD_EMPRESA", length=20, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+	private Integer codigoEmpresa;
 	
 	@Field(name="NOME_EMPRESA", length=30, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
@@ -56,19 +42,33 @@ public class HeaderArquivoRemessa {
 	private String nomeBanco;
 	
 	@Field(name="DT_GRAVACAO", length=6, type=EnumTypes.DATE, format=Formats.DATE_DDMMYY, padding=Paddings.ZERO_LEFT)
-	private Date dataGravacao;
+	private Date dataGravacao;	
+	
+	@Field(name="BRANCOS1", length=8, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
+	private String brancos1;
+	
+	@Field(name="ID_SISTEMA", length=2, value="MX")
+	private String identificacaoSistema;
 	
 	@Field(name="NR_SEQUENCIAL_REMESSA", length=7, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
 	private Long numeroSequencialRemessa;
 	
-	@Field(name="BRANCOS2", length=287, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name="BRANCOS2", length=277, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
-
+	
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+	
 
-	public HeaderArquivoRemessa(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		
+	public HeaderArquivoRemessa(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataGravacao, Date dataHoraGeracao) {
+		this.codigoEmpresa = Integer.valueOf(carteira.getCodigoConvenio());
+		this.nomeEmpresa = cedente.getNome();
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();
+		this.nomeBanco = contaBancaria.getBanco().getNomeFantasia();
+		this.nomeEmpresa = cedente.getNome();
+		this.dataGravacao = dataGravacao;
+		this.numeroSequencialRemessa = 1L;
+		this.numeroSequencialRegistro = 1;
 	}
 
 	public String getCodigoDoRegistro() {
@@ -119,46 +119,7 @@ public class HeaderArquivoRemessa {
 		this.brancos1 = brancos1;
 	}
 
-	public Integer getPrefixoAgencia() {
-		return prefixoAgencia;
-	}
-
-	public void setPrefixoAgencia(Integer prefixoAgencia) {
-		this.prefixoAgencia = prefixoAgencia;
-	}
-
-	public String getDigitoVerificadoraAgencia() {
-		return digitoVerificadoraAgencia;
-	}
-
-	public void setDigitoVerificadoraAgencia(String digitoVerificadoraAgencia) {
-		this.digitoVerificadoraAgencia = digitoVerificadoraAgencia;
-	}
-
-	public Integer getNumeroContaCorrente() {
-		return numeroContaCorrente;
-	}
-
-	public void setNumeroContaCorrente(Integer numeroContaCorrente) {
-		this.numeroContaCorrente = numeroContaCorrente;
-	}
-
-	public String getDigitoContaCorrente() {
-		return digitoContaCorrente;
-	}
-
-	public void setDigitoContaCorrente(String digitoContaCorrente) {
-		this.digitoContaCorrente = digitoContaCorrente;
-	}
-
-	public Integer getComplementoRegistro() {
-		return complementoRegistro;
-	}
-
-	public void setComplementoRegistro(Integer complementoRegistro) {
-		this.complementoRegistro = complementoRegistro;
-	}
-
+	
 	public String getNomeEmpresa() {
 		return nomeEmpresa;
 	}
@@ -215,8 +176,24 @@ public class HeaderArquivoRemessa {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
 	}
 
-	public static HeaderArquivoRemessa of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		return new HeaderArquivoRemessa(contaBancaria,carteira,cedente);
+	public static HeaderArquivoRemessa of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataHoraGeracao, Date dataGravacao) {
+		return new HeaderArquivoRemessa(contaBancaria,carteira,cedente, dataHoraGeracao, dataGravacao);
+	}
+
+	public Integer getCodigoEmpresa() {
+		return codigoEmpresa;
+	}
+
+	public void setCodigoEmpresa(Integer codigoEmpresa) {
+		this.codigoEmpresa = codigoEmpresa;
+	}
+
+	public String getIdentificacaoSistema() {
+		return identificacaoSistema;
+	}
+
+	public void setIdentificacaoSistema(String identificacaoSistema) {
+		this.identificacaoSistema = identificacaoSistema;
 	}
 	
 	

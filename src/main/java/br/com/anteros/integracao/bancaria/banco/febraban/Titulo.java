@@ -16,15 +16,12 @@
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.integracao.bancaria.banco.ParametroBancario;
 import br.com.anteros.integracao.bancaria.banco.ParametrosBancariosMap;
-import br.com.anteros.core.utils.ObjectUtils;
-
 
 /**
  * Representa um título em cobrança, tais como:
@@ -42,198 +39,91 @@ import br.com.anteros.core.utils.ObjectUtils;
  * <li>Nota de Crédito Rural</li>
  * <li>E outras espécies pagáveis através da rede bancária.</li>
  * 
- * @see TipoDeTitulo
- * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class Titulo {
-	
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-	/**
-	 * @see #setNumeroDoDocumento(String)
-	 */
-	private String numeroDoDocumento;
+	private String numeroDocumento;
 
-	/**
-	 * @see #setDataDoDocumento(Date)
-	 */
-	private Date dataDoDocumento;
+	private Date dataDocumento;
 
-	/**
-	 * @see #setDataDoVencimento(Date)
-	 */
-	private Date dataDoVencimento;
+	private Date dataVencimento;
 
-	/**
-	 * @see br.com.anteros.integracao.bancaria.banco.febraban.TipoDeMoeda
-	 */
-	private TipoDeMoeda tipoDeMoeda = TipoDeMoeda.REAL;
+	private TipoMoeda tipoMoeda = TipoMoeda.REAL;
 
-	/**
-	 * @see #setValor(BigDecimal)
-	 */
-	private BigDecimal valor;
+	private BigDecimal valorTitulo= BigDecimal.ZERO;
 
-	/**
-	 * @see #setDesconto(BigDecimal)
-	 */
-	private BigDecimal valorDesconto;
-	
-	private BigDecimal percentualDesconto;
-	
-	/**
-	 * @see #setMora(BigDecimal)
-	 */
-	private BigDecimal valorJurosMora;
-	
-	/**
-	 * @see #setDeducao(BigDecimal)
-	 */
-	private BigDecimal valorDeducao;
-	
-	/**
-	 * @see #setAcrecimo(BigDecimal)
-	 */
-	private BigDecimal valorAcrecimo;
-	
-	/**
-	 * @see #setValorCobrado(BigDecimal)
-	 */
-	private BigDecimal valorCobrado;
-	
-	private BigDecimal valorIOF;
-	
-	private BigDecimal valorAbatimento;
-	
-	private Integer nrDiasProtesto;
-	
-	private TipoDeBaixaDevolucao tipoDeBaixaDevolucao;
-	
-	private Integer nrDiasBaixaDevolucao;
-	
-	
+	private BigDecimal valorDescontoConcedido= BigDecimal.ZERO;
 
-	/**
-	 * @see br.com.anteros.integracao.bancaria.banco.febraban.TipoDeTitulo
-	 */
-	private TipoDeTitulo tipoDeDocumento;
+	private BigDecimal percentualDescontoConcedido= BigDecimal.ZERO;
+
+	private BigDecimal valorJurosMoraPorAtraso= BigDecimal.ZERO;
+
+	private BigDecimal valorAcrecimo= BigDecimal.ZERO;
 	
-	private TipoDeJurosMora tipoDeJurosMora;
+	private BigDecimal valorJuros= BigDecimal.ZERO;
 	
-	private TipoDeTitulo tipoDeTitulo;
+	private BigDecimal valorDesconto= BigDecimal.ZERO;
 	
-	private TipoDeDesconto tipoDeDesconto;
-	
-	private TipoDeProtesto tipoDeProtesto;
-	
+	private BigDecimal valorDeducao= BigDecimal.ZERO;
+
+	private BigDecimal valorCobrado= BigDecimal.ZERO;
+
+	private BigDecimal valorIOF= BigDecimal.ZERO;
+
+	private BigDecimal valorAbatimentoConcedido= BigDecimal.ZERO;
+
+	private BigDecimal valorAbatimento= BigDecimal.ZERO;
+
+	private Integer nrDiasProtesto=0;
+
+	private TipoDeBaixaDevolucao tipoBaixaDevolucao;
+
+	private Integer nrDiasBaixaDevolucao=0;
+
+	private TipoTitulo tipoDocumento;
+
+	private TipoJurosMora tipoJurosMora;
+
+	private TipoDesconto tipoDesconto;
+
+	private TipoProtesto tipoProtesto;
+
 	private Date dataDesconto;
-	/**
-	 * Data indicativa do início da cobrança do Juros de Mora de um título de cobrança.
-	 */
+
 	private Date dataJurosMora;
 
-	/**
-	 * @see #setNossoNumero(String)
-	 */
 	private String nossoNumero;
 
-	/**
-	 * @see #setDigitoDoNossoNumero(String)
-	 */
-	private String digitoDoNossoNumero;
+	private String digitoNossoNumero;
 
-	/**
-	 * @see #setContaBancaria(ContaBancaria)
-	 */
 	private ContaBancaria contaBancaria;
 
-	/**
-	 * @see #setCedente(Cedente)
-	 */
 	private Cedente cedente;
 
-	/**
-	 * @see #setSacado(Sacado)
-	 */
 	private Sacado sacado;
 
-	/**
-	 * @see #setSacadorAvalista(SacadorAvalista)
-	 */
 	private SacadorAvalista sacadorAvalista;
-	
+
 	private Carteira carteira;
 
-	/**
-	 * @see #setParametrosBancarios(ParametrosBancariosMap)
-	 */
 	private ParametrosBancariosMap parametrosBancariosMap;
 
-	/**
-	 * <p>
-	 * Identificação de Título Aceito / Não Aceito Código adotado pela FEBRABAN
-	 * para identificar se o título de cobrança foi aceito (reconhecimento da
-	 * dívida pelo Sacado). Domínio:
-	 * </p>
-	 * <ul>
-	 * <li>'A' = Aceite</li>
-	 * <li>'N' = Não Aceite</li>
-	 * </ul>
-	 * 
-	 * @since 0.2
-	 * 
-	 * @version 0.2
-	 */
 	public enum Aceite {
-		/**
-		 * 'A' = Título Aceite.
-		 */
-		A, 
-		/**
-		 * 'N' = Título Não Aceite.
-		 */
-		N;
+		A, N;
 	}
 
-	/**
-	 * @see #setAceite(br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite)
-	 * 
-	 * @see Aceite
-	 */
 	private Aceite aceite;
-	
-	/**
-	 * <p>
-	 * Cria uma instância de título.
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 * 
-	 */
+
+	private Integer instrucaoCobranca1;
+
+	private Integer instrucaoCobranca2;
+
 	public Titulo(ContaBancaria contaBancaria) {
 		this.setContaBancaria(contaBancaria);
 	}
 
-	/**
-	 * <p>
-	 * Cria uma instância de título.
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 * @param sacado
-	 * @param cedente
-	 * 
-	 */
 	public Titulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente, Carteira carteira) {
 		this.setContaBancaria(contaBancaria);
 		this.setSacado(sacado);
@@ -241,34 +131,12 @@ public class Titulo {
 		this.setCarteira(carteira);
 	}
 
-	/**
-	 * <p>
-	 * Cria uma instância de título com sacador avalista.
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 * @param sacado
-	 * @param cedente
-	 * @param sacadorAvalista
-	 * 
-	 */
-	public Titulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente, SacadorAvalista sacadorAvalista, Carteira carteira) {
+	public Titulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente, SacadorAvalista sacadorAvalista,
+			Carteira carteira) {
 		this(contaBancaria, sacado, cedente, carteira);
 		this.setSacadorAvalista(sacadorAvalista);
 	}
 
-	/**
-	 * <p>
-	 * Cria uma instância de título acrescentado outros dados bancários ao
-	 * mesmo.
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 * @param sacado
-	 * @param cedente
-	 * @param parametrosBancariosMap
-	 * 
-	 */
 	public Titulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente,
 			ParametrosBancariosMap parametrosBancariosMap, Carteira carteira) {
 		this.setContaBancaria(contaBancaria);
@@ -278,32 +146,12 @@ public class Titulo {
 		this.setParametrosBancarios(parametrosBancariosMap);
 	}
 
-	/**
-	 * <p>
-	 * Cria uma instância de título com sacador avalista e acrescentado outros
-	 * dados bancários além do título.
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 * @param sacado
-	 * @param cedente
-	 * @param parametrosBancariosMap
-	 * @param sacadorAvalista
-	 * 
-	 */
 	public Titulo(ContaBancaria contaBancaria, Sacado sacado, Cedente cedente,
 			ParametrosBancariosMap parametrosBancariosMap, SacadorAvalista sacadorAvalista, Carteira carteira) {
 		this(contaBancaria, sacado, cedente, parametrosBancariosMap, carteira);
 		this.setSacadorAvalista(sacadorAvalista);
 	}
 
-	/**
-	 * <p>
-	 * Indica se o título possuem sacador avalista na instância
-	 * </p>
-	 * 
-	 * @return true se tem
-	 */
 	public boolean hasSacadorAvalista() {
 
 		boolean has = false;
@@ -315,171 +163,66 @@ public class Titulo {
 		return has;
 	}
 
-	/**
-	 * @see #setAceite(br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite)
-	 * 
-	 * @return the aceite
-	 */
 	public Aceite getAceite() {
 		return aceite;
 	}
 
-	/**
-	 * <p>
-	 * Indicação de aceite.
-	 * </p>
-	 * 
-	 * @param aceite
-	 *            the aceite to set
-	 */
 	public void setAceite(Aceite aceite) {
 		this.aceite = aceite;
 	}
 
-	/**
-	 * @see #setDataDoDocumento(Date)
-	 * 
-	 * @return the dataDoDocumento
-	 */
-	public Date getDataDoDocumento() {
-		return dataDoDocumento;
+	public Date getDataDocumento() {
+		return dataDocumento;
 	}
 
-	/**
-	 * <p>
-	 * Data de emissão do documento.
-	 * </p>
-	 * 
-	 * @param dataDoDocumento
-	 *            the dataDoDocumento to set
-	 */
-	public void setDataDoDocumento(Date dataDoDocumento) {
-		this.dataDoDocumento = dataDoDocumento;
+	public void setDataDocumento(Date dataDocumento) {
+		this.dataDocumento = dataDocumento;
 	}
 
-	/**
-	 * @see #setDataDoVencimento(Date)
-	 * 
-	 * @return the dataDoVencimento
-	 */
-	public Date getDataDoVencimento() {
-		return dataDoVencimento;
+	public Date getDataVencimento() {
+		return dataVencimento;
 	}
 
-	/**
-	 * <p>
-	 * Data de vencimento nominal do título de cobrança, ou melhor, data limite
-	 * para pagamento do título.
-	 * </p>
-	 * 
-	 * @param dataDoVencimento
-	 *            the dataDoVencimento to set
-	 */
-	public void setDataDoVencimento(Date dataDoVencimento) {
-		this.dataDoVencimento = dataDoVencimento;
+	public void setDataVencimento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
 	}
 
-	/**
-	 * @see #setDigitoDoNossoNumero(String)
-	 * 
-	 * @return the dígitoDoNossoNúmero
-	 */
-	public String getDigitoDoNossoNumero() {
-		return digitoDoNossoNumero;
+	public String getDigitoNossoNumero() {
+		return digitoNossoNumero;
 	}
 
-	/**
-	 * <p>
-	 * Dígito verificador do nosso número, caso exista.
-	 * </p>
-	 * 
-	 * @param digitoDoNossoNumero
-	 *            the dígitoDoNossoNúmero to set
-	 */
-	public void setDigitoDoNossoNumero(String digitoDoNossoNumero) {
-		this.digitoDoNossoNumero = digitoDoNossoNumero;
+	public void setDigitoNossoNumero(String digitoNossoNumero) {
+		this.digitoNossoNumero = digitoNossoNumero;
 	}
 
-	/**
-	 * @see br.com.anteros.integracao.bancaria.banco.febraban.TipoDeMoeda
-	 * 
-	 * @return the enumMoeda
-	 */
-	public TipoDeMoeda getTipoDeMoeda() {
-		return tipoDeMoeda;
+	public TipoMoeda getTipoMoeda() {
+		return tipoMoeda;
 	}
 
-	/**
-	 * @see br.com.anteros.integracao.bancaria.banco.febraban.TipoDeMoeda
-	 * 
-	 * @param tipoDeMoeda
-	 *            the enumMoeda to set
-	 */
-	public void setTipoDeMoeda(TipoDeMoeda tipoDeMoeda) {
-		this.tipoDeMoeda = tipoDeMoeda;
+	public void setTipoMoeda(TipoMoeda tipoMoeda) {
+		this.tipoMoeda = tipoMoeda;
 	}
 
-	/**
-	 * @see #setNossoNumero(String)
-	 * 
-	 * @return the nossoNúmero
-	 */
 	public String getNossoNumero() {
 		return nossoNumero;
 	}
 
-	/**
-	 * <p>
-	 * Código fornecido pelo Banco correspondente para identificação do título
-	 * ou identificação do título atribuído pelo esmissor do título de cobrança.
-	 * </p>
-	 * 
-	 * @param nossoNumero
-	 *            the nossoNúmero to set
-	 */
 	public void setNossoNumero(String nossoNumero) {
 		this.nossoNumero = nossoNumero;
 	}
 
-	/**
-	 * @see #setNumeroDoDocumento(String)
-	 * 
-	 * @return the númeroDoDocumento
-	 */
-	public String getNumeroDoDocumento() {
-		return numeroDoDocumento;
+	public String getNumeroDocumento() {
+		return numeroDocumento;
 	}
 
-	/**
-	 * <p>
-	 * Número de controle do cedente para o referido título. Não confundir com o
-	 * nosso número.
-	 * </p>
-	 * 
-	 * @param numeroDoDocumento
-	 *            the númeroDoDocumento to set
-	 */
-	public void setNumeroDoDocumento(String numeroDoDocumento) {
-		this.numeroDoDocumento = numeroDoDocumento;
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 
-	/**
-	 * @see #setContaBancaria(ContaBancaria)
-	 * 
-	 * @return the contaBancaria
-	 */
 	public ContaBancaria getContaBancaria() {
 		return contaBancaria;
 	}
 
-	/**
-	 * <p>
-	 * Conta na qual o título se encontra, conta do favorecido (Cedente).
-	 * </p>
-	 * 
-	 * @param contaBancaria
-	 *            the contaBancaria to set
-	 */
 	public void setContaBancaria(ContaBancaria contaBancaria) {
 
 		if (ObjectUtils.isNotNull(contaBancaria)) {
@@ -489,23 +232,10 @@ public class Titulo {
 		}
 	}
 
-	/**
-	 * @see #setCedente(Cedente)
-	 * 
-	 * @return the cedente
-	 */
 	public Cedente getCedente() {
 		return cedente;
 	}
 
-	/**
-	 * <p>
-	 * Cliente que entrega os títulos ao Banco para serem cobrados.
-	 * </p>
-	 * 
-	 * @param cedente
-	 *            the cedente to set
-	 */
 	public void setCedente(Cedente cedente) {
 		if (ObjectUtils.isNotNull(cedente)) {
 			this.cedente = cedente;
@@ -514,49 +244,22 @@ public class Titulo {
 		}
 	}
 
-	/**
-	 * @see #setSacado(Sacado)
-	 * 
-	 * @return the sacado
-	 */
 	public Sacado getSacado() {
 		return sacado;
 	}
 
-	/**
-	 * <p>
-	 * Pessoa física ou jurídica a que se destina a cobrança do compromisso, é o
-	 * cliente do Cedente.
-	 * </p>
-	 * 
-	 * @param sacado
-	 *            the sacado to set
-	 */
 	public void setSacado(Sacado sacado) {
 		if (ObjectUtils.isNotNull(sacado)) {
 			this.sacado = sacado;
 		} else {
-			throw  new IllegalArgumentException("Sacado não pode ser nulo!");
+			throw new IllegalArgumentException("Sacado não pode ser nulo!");
 		}
 	}
 
-	/**
-	 * @see #setSacadorAvalista(SacadorAvalista)
-	 * 
-	 * @return the sacadorAvalista
-	 */
 	public SacadorAvalista getSacadorAvalista() {
 		return sacadorAvalista;
 	}
 
-	/**
-	 * <p>
-	 * Cedente original do Título.
-	 * </p>
-	 * 
-	 * @param sacadorAvalista
-	 *            the sacadorAvalista to set
-	 */
 	public void setSacadorAvalista(SacadorAvalista sacadorAvalista) {
 		if (ObjectUtils.isNotNull(sacadorAvalista)) {
 			this.sacadorAvalista = sacadorAvalista;
@@ -565,253 +268,64 @@ public class Titulo {
 		}
 	}
 
-	/**
-	 * @return the tipoDeDocumento
-	 */
-	public TipoDeTitulo getTipoDeDocumento() {
-		return tipoDeDocumento;
+	public TipoTitulo getTipoDocumento() {
+		return tipoDocumento;
 	}
 
-	/**
-	 * @param tipoDeDocumento
-	 *            the tipoDeDocumento to set
-	 */
-	public void setTipoDeDocumento(TipoDeTitulo tipoDeDocumento) {
-		this.tipoDeDocumento = tipoDeDocumento;
+	public void setTipoDocumento(TipoTitulo tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
-	/**
-	 * @see #setValor(BigDecimal)
-	 * 
-	 * @return the valor
-	 */
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorTitulo() {
+		return valorTitulo;
 	}
 
-	/**
-	 * <p>
-	 * Atribui um valor (original do Título) expresso em moeda corrente e
-	 * arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * @param valor
-	 *            the valor to set
-	 */
-	public void setValor(BigDecimal valor) {
-		valor = valor.setScale(2, RoundingMode.DOWN);
-		this.valor = valor;
+	public void setValorTitulo(BigDecimal valor) {
+		this.valorTitulo = valor;
 	}
 
-	/**
-	 * @see #setDesconto(BigDecimal)
-	 * 
-	 * @return the desconto
-	 */
-	public BigDecimal getValorDesconto() {
-		return valorDesconto;
+	public BigDecimal getValorDescontoConcedido() {
+		return valorDescontoConcedido;
 	}
 
-	/**
-	 * <p>
-	 * Atribui um valor de descontos/abatimentos ao valor original do título expresso em
-	 * moeda corrente e arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * @param desconto
-	 *            the desconto to set
-	 */
-	public void setValorDesconto(BigDecimal valorDesconto) {
-
-		if (valorDesconto != null) {
-			valorDesconto = valorDesconto.setScale(2, RoundingMode.DOWN);
-		}
-		this.valorDesconto = valorDesconto;
+	public void setValorDescontoConcedido(BigDecimal valorDescontoConcedido) {
+		this.valorDescontoConcedido = valorDescontoConcedido;
 	}
 
-	/**
-	 * @see #setMora(BigDecimal)
-	 * 
-	 * @return the mora
-	 */
-	public BigDecimal getValorJurosMora() {
-		return valorJurosMora;
+	public BigDecimal getValorJurosMoraPorAtraso() {
+		return valorJurosMoraPorAtraso;
 	}
 
-	/**
-	 * <p>
-	 * Atribui um valor de mora/multa ao título expresso em moeda corrente e
-	 * arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * @param mora
-	 */
-	public void setValorJurosMora(BigDecimal valorJurosMora) {
-		if (valorJurosMora != null) {
-			valorJurosMora = valorJurosMora.setScale(2, RoundingMode.DOWN);
-		}
-		this.valorJurosMora = valorJurosMora;
+	public void setValorJurosMoraPorAtraso(BigDecimal valorJurosMoraPorAtraso) {
+		this.valorJurosMoraPorAtraso = valorJurosMoraPorAtraso;
 	}
 
-	/**
-	 * @see #setValorDeducao(BigDecimal)
-	 * 
-	 * @return the deducao
-	 */
-	public BigDecimal getValorDeducao() {
-		return valorDeducao;
-	}
-
-	/**
-	 * <p>
-	 * Atribui um valor para outras deduções ao título expresso em moeda
-	 * corrente e arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * @param deducao
-	 */
-	public void setValorDeducao(BigDecimal valorDeducao) {
-		if (valorDeducao != null) {
-			valorDeducao = valorDeducao.setScale(2, RoundingMode.DOWN);
-		}
-		this.valorDeducao = valorDeducao;
-	}
-	
-	/**
-	 * @see #setAcrecimo(BigDecimal)
-	 * 
-	 * @return the acrecimo
-	 */
 	public BigDecimal getValorAcrecimo() {
-		
 		return valorAcrecimo;
 	}
-	
-	/**
-	 * <p>
-	 * Atribui um valor para outros acrécimos ao título expresso em moeda
-	 * corrente e arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * @param acrecimo
-	 */
+
 	public void setValorAcrecimo(BigDecimal valorAcrecimo) {
-		if (valorAcrecimo != null) {
-			valorAcrecimo = valorAcrecimo.setScale(2, RoundingMode.DOWN);
-		}
 		this.valorAcrecimo = valorAcrecimo;
 	}
 
-	/**
-	 * @see #setValorCobrado(BigDecimal)
-	 * 
-	 * @return the valorCobrado
-	 */
 	public BigDecimal getValorCobrado() {
 		return valorCobrado;
 	}
 
-	/**
-	 * <p>
-	 * Atribui um "valor cobrardo" ao título expresso em moeda corrente e
-	 * arredondanda em duas casas decimais para baixo.
-	 * </p>
-	 * <p>
-	 * Exemplo: Para o valor 12,349 ele definirá o valor para 12,34.
-	 * </p>
-	 * 
-	 * <p>
-	 * Note que o valor cobrado não é o valor de face do título e sim um valor
-	 * resultante de deduções ou acrécimos.
-	 * </p>
-	 * 
-	 * @param valorCobrado
-	 */
 	public void setValorCobrado(BigDecimal valorCobrado) {
-		if (valorCobrado != null) {
-			valorCobrado = valorCobrado.setScale(2, RoundingMode.DOWN);
-		}
 		this.valorCobrado = valorCobrado;
 	}
-	
-	/**
-	 * <p>
-	 * Indica se existe parâmetros bancários no título.
-	 * </p>
-	 * 
-	 * @return parametrosBancarios
-	 * 
-	 * @see #getParametrosBancarios()
-	 * 
-	 * @since 0.2
-	 */
 
 	public boolean hasParametrosBancarios() {
 		return ParametrosBancariosMap.hasElement(getParametrosBancarios());
 	}
 
-	/**
-	 * <p>
-	 * Retorna os parâmetros bancários usados no título.
-	 * </p>
-	 * 
-	 * @return parametrosBancarios
-	 * 
-	 * @see #setParametrosBancarios(ParametrosBancariosMap)
-	 * 
-	 * @since 0.2
-	 */
 	public ParametrosBancariosMap getParametrosBancarios() {
 		return parametrosBancariosMap;
 	}
 
-	/**
-	 * <p>
-	 * Atribui Parâmetros bancários necessários ao título.
-	 * </p>
-	 * 
-	 * <p>
-	 * Em alguns casos, talvez seja necessário utilizar este campo para fornecer
-	 * mais informações a um título. Seja para simplesmente gerar um boleto ou
-	 * quando se desejar implementar um campo livre ou banco ainda não
-	 * suportado.
-	 * </p>
-	 * 
-	 * @see br.com.anteros.integracao.bancaria.banco.ParametrosBancariosMap
-	 * 
-	 * @param parametrosBancariosMap
-	 * 
-	 * @since 0.2
-	 */
-
 	public <P extends ParametroBancario<?>> void setParametrosBancarios(ParametrosBancariosMap parametrosBancariosMap) {
 		this.parametrosBancariosMap = parametrosBancariosMap;
-	}
-
-	@Override
-	public String toString() {
-		return "Titulo [numeroDoDocumento=" + numeroDoDocumento + ", dataDoDocumento=" + dataDoDocumento
-				+ ", dataDoVencimento=" + (dataDoVencimento==null?"":sdf.format(dataDoVencimento)) + ", tipoDeMoeda=" + tipoDeMoeda + ", valor=" + valor
-				+ ", desconto=" + valorDesconto + ", mora=" + valorJurosMora + ", deducao=" + valorDeducao + ", acrecimo=" + valorAcrecimo
-				+ ", valorCobrado=" + valorCobrado + ", tipoDeDocumento=" + tipoDeDocumento + ", nossoNumero="
-				+ nossoNumero + ", digitoDoNossoNumero=" + digitoDoNossoNumero + ", contaBancaria=" + contaBancaria
-				+ ", cedente=" + cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista
-				+ ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite + "]";
 	}
 
 	public Carteira getCarteira() {
@@ -823,15 +337,15 @@ public class Titulo {
 	}
 
 	public void setJurosMora(BigDecimal jurosMora) {
-		this.valorJurosMora = jurosMora;
+		this.valorJurosMoraPorAtraso = jurosMora;
 	}
 
-	public TipoDeJurosMora getTipoDeJurosMora() {
-		return tipoDeJurosMora;
+	public TipoJurosMora getTipoJurosMora() {
+		return tipoJurosMora;
 	}
 
-	public void setTipoDeJurosMora(TipoDeJurosMora tipoDeJurosMora) {
-		this.tipoDeJurosMora = tipoDeJurosMora;
+	public void setTipoJurosMora(TipoJurosMora tipoJurosMora) {
+		this.tipoJurosMora = tipoJurosMora;
 	}
 
 	public Date getDataJurosMora() {
@@ -842,20 +356,12 @@ public class Titulo {
 		this.dataJurosMora = dataJurosMora;
 	}
 
-	public TipoDeTitulo getTipoDeTitulo() {
-		return tipoDeTitulo;
+	public TipoDesconto getTipoDesconto() {
+		return tipoDesconto;
 	}
 
-	public void setTipoDeTitulo(TipoDeTitulo tipoDeTitulo) {
-		this.tipoDeTitulo = tipoDeTitulo;
-	}
-
-	public TipoDeDesconto getTipoDeDesconto() {
-		return tipoDeDesconto;
-	}
-
-	public void setTipoDeDesconto(TipoDeDesconto tipoDeDesconto) {
-		this.tipoDeDesconto = tipoDeDesconto;
+	public void setTipoDesconto(TipoDesconto tipoDesconto) {
+		this.tipoDesconto = tipoDesconto;
 	}
 
 	public Date getDataDesconto() {
@@ -867,11 +373,11 @@ public class Titulo {
 	}
 
 	public BigDecimal getPercentualDesconto() {
-		return percentualDesconto;
+		return percentualDescontoConcedido;
 	}
 
 	public void setPercentualDesconto(BigDecimal percentualDesconto) {
-		this.percentualDesconto = percentualDesconto;
+		this.percentualDescontoConcedido = percentualDesconto;
 	}
 
 	public BigDecimal getValorIOF() {
@@ -883,19 +389,19 @@ public class Titulo {
 	}
 
 	public BigDecimal getValorAbatimento() {
-		return valorAbatimento;
+		return valorAbatimentoConcedido;
 	}
 
 	public void setValorAbatimento(BigDecimal valorAbatimento) {
-		this.valorAbatimento = valorAbatimento;
+		this.valorAbatimentoConcedido = valorAbatimento;
 	}
 
-	public TipoDeProtesto getTipoDeProtesto() {
-		return tipoDeProtesto;
+	public TipoProtesto getTipoProtesto() {
+		return tipoProtesto;
 	}
 
-	public void setTipoDeProtesto(TipoDeProtesto tipoDeProtesto) {
-		this.tipoDeProtesto = tipoDeProtesto;
+	public void setTipoProtesto(TipoProtesto tipoProtesto) {
+		this.tipoProtesto = tipoProtesto;
 	}
 
 	public Integer getNrDiasProtesto() {
@@ -907,11 +413,11 @@ public class Titulo {
 	}
 
 	public TipoDeBaixaDevolucao getTipoDeBaixaDevolucao() {
-		return tipoDeBaixaDevolucao;
+		return tipoBaixaDevolucao;
 	}
 
-	public void setTipoDeBaixaDevolucao(TipoDeBaixaDevolucao tipoDeBaixaDevolucao) {
-		this.tipoDeBaixaDevolucao = tipoDeBaixaDevolucao;
+	public void setTipoBaixaDevolucao(TipoDeBaixaDevolucao tipoBaixaDevolucao) {
+		this.tipoBaixaDevolucao = tipoBaixaDevolucao;
 	}
 
 	public Integer getNrDiasBaixaDevolucao() {
@@ -920,6 +426,102 @@ public class Titulo {
 
 	public void setNrDiasBaixaDevolucao(Integer nrDiasBaixaDevolucao) {
 		this.nrDiasBaixaDevolucao = nrDiasBaixaDevolucao;
+	}
+
+	public Integer getInstrucaoCobranca1() {
+		return instrucaoCobranca1;
+	}
+
+	public void setInstrucaoCobranca1(Integer instrucaoCobranca1) {
+		this.instrucaoCobranca1 = instrucaoCobranca1;
+	}
+
+	public Integer getInstrucaoCobranca2() {
+		return instrucaoCobranca2;
+	}
+
+	public void setInstrucaoCobranca2(Integer instrucaoCobranca2) {
+		this.instrucaoCobranca2 = instrucaoCobranca2;
+	}
+//
+//	@Override
+//	public String toString() {
+//		return "Titulo [numeroDocumento=" + numeroDocumento + ", dataDocumento="
+//				+ (dataDocumento == null ? "" : sdf.format(dataDocumento)) + ", dataVencimento="
+//				+ (dataVencimento == null ? "" : sdf.format(dataVencimento)) + ", tipoDeMoeda=" + tipoMoeda
+//				+ ", valorTitulo=" + valorTitulo + ", valorDesconto=" + valorDescontoConcedido + ", percentualDesconto="
+//				+ percentualDescontoConcedido + ", valorJurosMora=" + valorJurosMoraPorAtraso + ", valorAcrecimo=" + valorAcrecimo + 
+//				", valorCobrado=" + valorCobrado + ", valorIOF="
+//				+ valorIOF + ", valorAbatimento=" + valorAbatimentoConcedido + ", nrDiasProtesto=" + nrDiasProtesto
+//				+ ", tipoDeBaixaDevolucao=" + tipoBaixaDevolucao + ", nrDiasBaixaDevolucao=" + nrDiasBaixaDevolucao
+//				+ ", tipoDeDocumento=" + tipoDocumento + ", tipoDeJurosMora=" + tipoJurosMora + ", tipoDeDesconto="
+//				+ tipoDesconto + ", tipoDeProtesto=" + tipoProtesto + ", dataDesconto="
+//				+ (dataDesconto == null ? "" : sdf.format(dataDesconto)) + ", dataJurosMora="
+//				+ (dataJurosMora == null ? "" : sdf.format(dataJurosMora)) + ", nossoNumero=" + nossoNumero
+//				+ ", digitoDoNossoNumero=" + digitoNossoNumero + ", contaBancaria=" + contaBancaria + ", cedente="
+//				+ cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista + ", carteira=" + carteira
+//				+ ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite + ", instrucaoCobranca1="
+//				+ instrucaoCobranca1 + ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
+//	}
+	
+	
+
+	public BigDecimal getValorAbatimentoConcedido() {
+		return valorAbatimentoConcedido;
+	}
+
+	public void setValorAbatimentoConcedido(BigDecimal valorAbatimentoConcedido) {
+		this.valorAbatimentoConcedido = valorAbatimentoConcedido;
+	}
+
+	public BigDecimal getValorJuros() {
+		return valorJuros;
+	}
+
+	public void setValorJuros(BigDecimal valorJuros) {
+		this.valorJuros = valorJuros;
+	}
+
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+
+	public BigDecimal getValorDeducao() {
+		return valorDeducao;
+	}
+
+	public void setValorDeducao(BigDecimal valorDeducao) {
+		this.valorDeducao = valorDeducao;
+	}
+
+	@Override
+	public String toString() {
+		return "Titulo [numeroDocumento=" + numeroDocumento + ", dataDocumento=" + dataDocumento + ", dataVencimento="
+				+ formatarData(dataVencimento) + ", tipoMoeda=" + tipoMoeda + ", valorTitulo=" + valorTitulo
+				+ ", valorDescontoConcedido=" + valorDescontoConcedido + ", percentualDescontoConcedido="
+				+ percentualDescontoConcedido + ", valorJurosMoraPorAtraso=" + valorJurosMoraPorAtraso
+				+ ", valorAcrecimo=" + valorAcrecimo + ", valorJuros=" + valorJuros + ", valorDesconto=" + valorDesconto
+				+ ", valorDeducao=" + valorDeducao + ", valorCobrado=" + valorCobrado + ", valorIOF=" + valorIOF
+				+ ", valorAbatimentoConcedido=" + valorAbatimentoConcedido + ", valorAbatimento=" + valorAbatimento
+				+ ", nrDiasProtesto=" + nrDiasProtesto + ", tipoBaixaDevolucao=" + tipoBaixaDevolucao
+				+ ", nrDiasBaixaDevolucao=" + nrDiasBaixaDevolucao + ", tipoDocumento=" + tipoDocumento
+				+ ", tipoJurosMora=" + tipoJurosMora + ", tipoDesconto=" + tipoDesconto + ", tipoProtesto="
+				+ tipoProtesto + ", dataDesconto=" + formatarData(dataDesconto) + ", dataJurosMora=" + formatarData(dataJurosMora)
+				+ ", nossoNumero=" + nossoNumero + ", digitoNossoNumero=" + digitoNossoNumero + ", contaBancaria="
+				+ contaBancaria + ", cedente=" + cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista
+				+ ", carteira=" + carteira + ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite
+				+ ", instrucaoCobranca1=" + instrucaoCobranca1 + ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
+	}
+	
+	
+	private String formatarData(Date data){
+		if (data==null)
+			return "";
+		return sdf.format(data);
 	}
 
 }

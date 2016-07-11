@@ -132,7 +132,7 @@ class CLBancoSantander extends AbstractCLSantander implements CampoLivre {
 
 		ContaBancaria conta = titulo.getContaBancaria();
 		StringBuilder nossoNumero = new StringBuilder(titulo.getNossoNumero());
-		nossoNumero.append(titulo.getDigitoDoNossoNumero());
+		nossoNumero.append(titulo.getDigitoNossoNumero());
 
 		this.add(new FixedField<Integer>(CONSTANTE, 1));
 		this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));

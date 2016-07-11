@@ -116,7 +116,7 @@ class CLItauComCarteirasEspeciais extends AbstractCLItau {
 		
 		this.add(new FixedField<Integer>(titulo.getCarteira().getCodigo(), 3, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero(), 8, Fillers.ZERO_LEFT));
-		this.add(new FixedField<String>(titulo.getNumeroDoDocumento(), 7, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(titulo.getNumeroDocumento(), 7, Fillers.ZERO_LEFT));
 		
 		//Aqui é o código do cedente, simbolizado pelo código da conta bancária.
 		this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 5, Fillers.ZERO_LEFT));
@@ -124,7 +124,7 @@ class CLItauComCarteirasEspeciais extends AbstractCLItau {
 		this.add(new FixedField<Integer>(calculeDigitoDoCampoLivreEspecial(
 											titulo.getCarteira().getCodigo(), 
 											titulo.getNossoNumero(),
-											titulo.getNumeroDoDocumento(),
+											titulo.getNumeroDocumento(),
 											conta.getNumeroDaConta().getCodigoDaConta()), 1));
 		this.add(new FixedField<Integer>(0, 1));
 	}

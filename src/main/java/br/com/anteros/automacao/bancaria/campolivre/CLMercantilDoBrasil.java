@@ -96,7 +96,7 @@ class CLMercantilDoBrasil extends AbstractCLMercantilDoBrasil {
 		
 		//TODO Verificar de onde virá esta informação: apenas verificar se o título tem ou não valor de desconto.
 		int desconto;
-		if(titulo.getValorDesconto() == null || titulo.getValorDesconto().equals(BigDecimal.ZERO.setScale(2, RoundingMode.DOWN))) {
+		if(titulo.getValorDescontoConcedido() == null || titulo.getValorDescontoConcedido().equals(BigDecimal.ZERO.setScale(2, RoundingMode.DOWN))) {
 			desconto = 2;
 			
 		} else {
@@ -105,7 +105,7 @@ class CLMercantilDoBrasil extends AbstractCLMercantilDoBrasil {
 		
 		this.add(new FixedField<Integer>(contaBancaria.getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
 		
-		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoDoNossoNumero(), 11, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoNossoNumero(), 11, Fillers.ZERO_LEFT));
 		
 		this.add(new FixedField<Integer>(contaBancaria.getNumeroDaConta().getCodigoDaConta(), 9, Fillers.ZERO_LEFT));
 		

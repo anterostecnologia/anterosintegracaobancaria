@@ -1,6 +1,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bancobrasil;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -19,7 +20,7 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.TipoDeMoeda;
+import br.com.anteros.integracao.bancaria.banco.febraban.TipoMoeda;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
@@ -51,8 +52,15 @@ public class BancoBrasilCNAB240Test {
 			FlatFileManagerException, JAXBException, IOException {
 		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoBrasil.xml");
 
-		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String schema = StringUtils.removeCRLF(new String(layoutCNAB240.getXMLSchema(), "UTF-8"));
+		
+//		FileOutputStream fos = new FileOutputStream(file);
+//		fos.write(schema.getBytes());
+//		fos.flush();
+//		fos.close();
+		
+		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
+		
 
 		Assert.assertEquals("Banco do Brasil: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
 	}
@@ -85,9 +93,9 @@ public class BancoBrasilCNAB240Test {
 
 		Assert.assertEquals("Banco do Brasil: Número de retornos lido incorreto.", retornos.size(), 4);
 		Assert.assertEquals("Banco do Brasil: Tipo de moeda lido incorreto.",
-				retornos.get(0).getTitulo().getTipoDeMoeda(), TipoDeMoeda.REAL);
-		Assert.assertEquals("Valor nominal do titulo lido incorreto.", retornos.get(0).getTitulo().getValor(),new BigDecimal("563.14"));
-		Assert.assertEquals("Valor creditado do titulo lido incorreto.", retornos.get(0).getValorLiquidoCreditado(),new BigDecimal("560.64"));
+				retornos.get(0).getTitulo().getTipoMoeda(), TipoMoeda.REAL);
+		Assert.assertEquals("Valor nominal do titulo lido incorreto.", new BigDecimal("563.14"), retornos.get(0).getTitulo().getValorTitulo());
+		Assert.assertEquals("Valor creditado do titulo lido incorreto.", new BigDecimal("560.64"), retornos.get(0).getValorLiquidoCreditado());
 	}
 
 }

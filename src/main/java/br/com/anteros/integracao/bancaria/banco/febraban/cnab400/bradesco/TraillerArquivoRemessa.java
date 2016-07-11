@@ -1,5 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.bradesco;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.anteros.flatfile.annotation.Field;
@@ -20,8 +21,8 @@ public class TraillerArquivoRemessa {
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
-	public TraillerArquivoRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-
+	public TraillerArquivoRemessa(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataGravacao, Date dataHoraGeracao) {
+		this.numeroSequencialRegistro = (remessas==null?2:remessas.size()+2);
 	}
 
 	public Integer getCodigoRegistro() {
@@ -48,8 +49,8 @@ public class TraillerArquivoRemessa {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
 	}
 
-	public static TraillerArquivoRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		return new TraillerArquivoRemessa(contaBancaria, remessas);
+	public static TraillerArquivoRemessa of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataGravacao, Date dataHoraGeracao) {
+		return new TraillerArquivoRemessa(contaBancaria, remessas, dataGravacao, dataHoraGeracao);
 	}
 	
 	

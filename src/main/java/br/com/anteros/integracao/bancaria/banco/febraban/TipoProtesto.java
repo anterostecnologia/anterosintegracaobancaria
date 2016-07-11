@@ -15,7 +15,7 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
-public enum TipoDeProtesto {
+public enum TipoProtesto {
 	
 	PROTESTAR_DIAS_CORRIDOS(1),
 	PROTESTAR_DIAS_UTEIS(2),
@@ -27,7 +27,7 @@ public enum TipoDeProtesto {
 	
 	private Integer tipo;
 	
-	private TipoDeProtesto(Integer tipo){
+	private TipoProtesto(Integer tipo){
 		this.tipo = tipo;
 	}
 	

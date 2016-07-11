@@ -196,7 +196,7 @@ class CLBancoDoNordesteDoBrasil extends AbstractCLBancoDoNordesteDoBrasil {
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getContaBancaria().getNumeroDaConta().getDigitoDaConta(), DIGITO_CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<String>(titulo.getDigitoDoNossoNumero(), DIGITO_NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(titulo.getDigitoNossoNumero(), DIGITO_NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(titulo.getCarteira().getCodigo(), CARTEIRA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(CAMPO_ZERADO_VALUE, CAMPO_ZERADO_LENGTH,  Fillers.ZERO_LEFT));		
 	}

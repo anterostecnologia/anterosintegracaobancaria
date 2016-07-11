@@ -17,6 +17,7 @@ import br.com.anteros.flatfile.FlatFileManager;
 import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.flatfile.annotation.InnerRecord;
 import br.com.anteros.flatfile.annotation.Record;
+import br.com.anteros.integracao.bancaria.banco.febraban.CNABException;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;

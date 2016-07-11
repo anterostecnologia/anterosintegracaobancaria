@@ -136,7 +136,7 @@ class CLHSBCCobrancaNaoRegistrada extends AbstractCLHSBC {
 		this.add(new FixedField<String>(nossoNumero, 13, Fillers.ZERO_LEFT));
 
 		this.add(new FixedField<String>(getDataVencimentoFormatoJuliano(
-				tipoIdentificadorCNR, titulo.getDataDoVencimento()), 4,
+				tipoIdentificadorCNR, titulo.getDataVencimento()), 4,
 				Fillers.ZERO_LEFT));
 
 		// 2 FIXO (Código do Aplicativo CNR - Cob. Não Registrada)

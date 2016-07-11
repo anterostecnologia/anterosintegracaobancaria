@@ -16,7 +16,6 @@
 package br.com.anteros.integracao.bancaria.boleto;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +27,6 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
 import com.lowagie.text.Document;

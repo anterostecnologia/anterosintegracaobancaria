@@ -217,7 +217,7 @@ public class CLBancoobCobrancaNaoRegistrada extends AbstractCLBancoob{
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getContaBancaria().getNumeroDaConta().getDigitoDaConta(), DV_CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero(),NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<String>(titulo.getDigitoDoNossoNumero(),DV_NOSSO_NUMERO_LENGTH));
+		this.add(new FixedField<String>(titulo.getDigitoNossoNumero(),DV_NOSSO_NUMERO_LENGTH));
 		this.add(new FixedField<Integer>(numeroDaParcela, NUMERO_DA_PARCELA_LENGTH, Fillers.ZERO_LEFT));
 	}
 }

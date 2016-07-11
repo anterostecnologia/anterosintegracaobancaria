@@ -13,28 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package br.com.anteros.integracao.bancaria.banco.febraban.cnab240;
+package br.com.anteros.integracao.bancaria.banco.febraban;
 
-public class CNABException extends RuntimeException {
+public enum TipoDesconto {
 
-	public CNABException() {
-		super();
+	VALOR_FIXO_ATE_A_DATA(1),
+	PERCENTUAL_ATE_A_DATA(2),
+	VALOR_ANTECIPACAO_DIA_CORRIDO(3),
+	VALOR_ANTECIPACAO_DIA_UTIL(4),
+	PERCENTUAL_SOBRE_VL_NOMINAL_DIA_CORRIDO(5),
+	PERCENTUAL_SOBRE_VL_NOMINAL_DIA_UTIL(6),
+	CANCELAMENTO_DESCONTO(7);
+	
+	private Integer tipo;
+	
+	private TipoDesconto(Integer tipo){
+		this.tipo = tipo;
 	}
-
-	public CNABException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
+	
+	public Integer getTipo(){
+		return tipo;
 	}
-
-	public CNABException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public CNABException(String message) {
-		super(message);
-	}
-
-	public CNABException(Throwable cause) {
-		super(cause);
-	}
-
 }

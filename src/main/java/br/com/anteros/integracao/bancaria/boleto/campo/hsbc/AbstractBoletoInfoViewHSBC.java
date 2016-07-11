@@ -53,7 +53,7 @@ public class AbstractBoletoInfoViewHSBC extends AbstractBoletoInfoCampoView {
 	
 	@Override
 	public String getTextoFcNossoNumero() {
-		return getBoleto().getTitulo().getNossoNumero() + getBoleto().getTitulo().getDigitoDoNossoNumero();
+		return getBoleto().getTitulo().getNossoNumero() + getBoleto().getTitulo().getDigitoNossoNumero();
 	}
 	
 	@Override

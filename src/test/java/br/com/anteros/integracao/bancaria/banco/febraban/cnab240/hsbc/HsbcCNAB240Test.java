@@ -49,10 +49,16 @@ public class HsbcCNAB240Test {
 			FlatFileManagerException, JAXBException, IOException {
 		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoHsbc.xml");
 
-		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String schema = StringUtils.removeCRLF(new String(layoutCNAB240.getXMLSchema(), "UTF-8"));
+		
+//		FileOutputStream fos = new FileOutputStream(file);
+//		fos.write(schema.getBytes());
+//		fos.flush();
+//		fos.close();
+		
+		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 
-		Assert.assertEquals("Banco HSBC: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
+		Assert.assertEquals("HSBC: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
 	}
 	
 	@Test
@@ -72,7 +78,7 @@ public class HsbcCNAB240Test {
 		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));
 
-		Assert.assertEquals("Banco HSBC: Arquivo de REMESSA gerado diferente do modelo.", fileData, data);
+		Assert.assertEquals("HSBC: Arquivo de REMESSA gerado diferente do modelo.", fileData, data);
 	}
 	
 	@Test

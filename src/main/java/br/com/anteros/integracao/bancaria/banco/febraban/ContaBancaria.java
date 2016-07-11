@@ -15,18 +15,13 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
-import java.util.Collection;
-
-
 import br.com.anteros.integracao.bancaria.banco.Banco;
-import br.com.anteros.integracao.bancaria.banco.Pessoa;
-
 
 /**
  * 
  * <p>
- * É um vínculo entre uma Pessoa e um Banco que agrega a agência, o número da conta
- * ou o código do cedente e a carteira.
+ * É um vínculo entre uma Pessoa e um Banco que agrega a agência, o número da
+ * conta ou o código do cedente e a carteira.
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
@@ -49,25 +44,24 @@ public class ContaBancaria {
 	 * @see Agencia
 	 */
 	private Agencia agencia;
-	
+
 	/**
 	 * @see NumeroDaConta
 	 */
 	private NumeroDaConta numeroDaConta;
-	
+
 	/**
 	 * @see Modalidade
 	 */
 	private Modalidade modalidade;
-	
-	
-	public ContaBancaria() {}
-	
+
+	public ContaBancaria() {
+	}
+
 	public ContaBancaria(Banco banco) {
-		
+
 		this.banco = banco;
 	}
-	
 
 	/**
 	 * @see Banco
@@ -75,15 +69,13 @@ public class ContaBancaria {
 	public Banco getBanco() {
 		return banco;
 	}
-	
+
 	/**
 	 * @see Banco
 	 */
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
-
-	
 
 	/**
 	 * @see Agencia
@@ -123,8 +115,9 @@ public class ContaBancaria {
 
 	@Override
 	public String toString() {
-		return "ContaBancaria [banco=" + banco + ", agencia=" + agencia + ", numeroDaConta=" + numeroDaConta
-				+ ", modalidade="
+		return "ContaBancaria [banco=" + banco.getCodigoDeCompensacaoBACEN().getCodigo() + " " + banco.getNome()
+				+ ", agencia=" + agencia.getCodigo() + " " + agencia.getDigitoVerificador() + ", numeroDaConta="
+				+ numeroDaConta.getCodigoDaConta() + " " + numeroDaConta.getDigitoDaConta() + ", modalidade="
 				+ modalidade + "]";
 	}
 

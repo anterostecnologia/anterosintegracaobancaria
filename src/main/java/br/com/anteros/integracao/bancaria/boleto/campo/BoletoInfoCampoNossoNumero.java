@@ -39,8 +39,8 @@ public class BoletoInfoCampoNossoNumero {
 		if (StringUtils.isNotBlank(titulo.getNossoNumero())) {
 			texto.append(titulo.getNossoNumero());
 
-			if (StringUtils.isNotBlank(titulo.getDigitoDoNossoNumero())) {
-				texto.append("-" + titulo.getDigitoDoNossoNumero());
+			if (StringUtils.isNotBlank(titulo.getDigitoNossoNumero())) {
+				texto.append("-" + titulo.getDigitoNossoNumero());
 			}
 		}
 

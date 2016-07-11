@@ -17,8 +17,10 @@ public interface CNAB400 {
 
 	public byte[] generate() throws FlatFileManagerException, JAXBException, IllegalArgumentException,
 			IllegalAccessException, IOException;
+	
+	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException;
 
-	public byte[] generate(String[] groups) throws FlatFileManagerException, JAXBException, IllegalArgumentException,
+	public byte[] generate(String group) throws FlatFileManagerException, JAXBException, IllegalArgumentException,
 			IllegalAccessException, IOException;
 
 	public List<RetornoCobranca> read(File file) throws IOException, IllegalArgumentException, IllegalAccessException,
@@ -30,13 +32,13 @@ public interface CNAB400 {
 	public List<RetornoCobranca> read(byte[] data) throws IOException, IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException;
 
-	public List<RetornoCobranca> read(File file, String[] groups) throws IOException, IllegalArgumentException,
+	public List<RetornoCobranca> read(File file, String group) throws IOException, IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException;
 
-	public List<RetornoCobranca> read(InputStream dataInputStream, String[] groups) throws IOException,
+	public List<RetornoCobranca> read(InputStream dataInputStream, String group) throws IOException,
 			IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException;
 
-	public List<RetornoCobranca> read(byte[] data, String[] groups) throws IOException, IllegalArgumentException,
+	public List<RetornoCobranca> read(byte[] data, String group) throws IOException, IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException;
 
 }

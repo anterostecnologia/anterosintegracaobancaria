@@ -113,11 +113,11 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 
 	public String getTextoFcEspecieDocumento() {
-		return ObjectUtils.whenNull(boleto.getTitulo().getTipoDeDocumento(), StringUtils.EMPTY, boleto.getTitulo().getTipoDeDocumento().getSigla());
+		return ObjectUtils.whenNull(boleto.getTitulo().getTipoDocumento(), StringUtils.EMPTY, boleto.getTitulo().getTipoDocumento().getSigla());
 	}
 
 	public String getTextoFcDataDocumento(){
-		return getValue(boleto.getTitulo().getDataDoDocumento());
+		return getValue(boleto.getTitulo().getDataDocumento());
 	}
 
 	public String getTextoFcLocalPagamento(){
@@ -165,7 +165,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 
 	public String getTextoFcMoraMulta(){
-		return getValue(boleto.getTitulo().getValorJurosMora());
+		return getValue(boleto.getTitulo().getValorJurosMoraPorAtraso());
 	}
 	
 	public String getTextoRsOutroAcrescimo(){
@@ -189,7 +189,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 	
 	public String getTextoFcDescontoAbatimento(){
-		return getValue(boleto.getTitulo().getValorDesconto());
+		return getValue(boleto.getTitulo().getValorDescontoConcedido());
 	}
 	
 	public String getTextoRsValorDocumento(){
@@ -197,7 +197,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 
 	public String getTextoFcValorDocumento(){
-		return getValue(boleto.getTitulo().getValor());
+		return getValue(boleto.getTitulo().getValorTitulo());
 	}
 	
 	public String getTextoRsValorCobrado(){
@@ -213,7 +213,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 
 	public String getTextoFcDataVencimento(){
-		return getValue(boleto.getTitulo().getDataDoVencimento());
+		return getValue(boleto.getTitulo().getDataVencimento());
 	}
 
 	public String getTextoRsNumeroDocumento(){
@@ -221,7 +221,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 	
 	public String getTextoFcNumeroDocumento(){
-		return getValue(boleto.getTitulo().getNumeroDoDocumento());
+		return getValue(boleto.getTitulo().getNumeroDocumento());
 	}
 	
 	public String getTextoRsCedente(){
@@ -237,7 +237,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	}
 
 	public String getTextoFcEspecie(){
-		return getValue(boleto.getTitulo().getTipoDeMoeda());
+		return getValue(boleto.getTitulo().getTipoMoeda());
 	}
 		
 	public String getTextoRsCodigoBanco(){

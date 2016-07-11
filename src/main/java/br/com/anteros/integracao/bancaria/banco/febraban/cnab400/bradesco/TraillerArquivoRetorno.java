@@ -10,94 +10,58 @@ import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
 public class TraillerArquivoRetorno {
-	
-	
-	@IdType(name="CD_REGISTRO", length=1, positionField=1, value="9")
-	private Integer codigoRegistro;
 
-	@Field(name="CD_RETORNO", length=1)
+	private static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
+
+	private static final String VL_TOTAL_COBRANCA = "VL_TOTAL_COBRANCA";
+	private static final String QT_TITULOS_COBRANCA = "QT_TITULOS_COBRANCA";
+	private static final String CD_BANCO = "CD_BANCO";
+	private static final String CD_RETORNO = "CD_RETORNO";
+	private static final String CD_REGISTRO = "CD_REGISTRO";
+
+	private static final String NR_AVISO_BANCARIO = "NR_AVISO_BANCARIO";
+
+	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "9")
+	private String codigoRegistro;
+
+	@Field(name = CD_RETORNO, length = 1)
 	private String codigoRetorno;
 	
-	@Field(name="BRANCOS1", length=2, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
-	
-	@Field(name="CD_BANCO", length=3, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
+
+	@Field(name = "BRANCOS2", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;	
+
+	@Field(name = QT_TITULOS_COBRANCA, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long quantidadeTitulosCobranca;
+
+	@Field(name = VL_TOTAL_COBRANCA, length = 14, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	private BigDecimal valorTotalCobranca;
+
+	@Field(name = NR_AVISO_BANCARIO, length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long numeroAvisoBancario;
+
+	@Field(name = "BRANCOS3", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos3;	
+
+	@Field(name = "BRANCOS4", length = 337, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos4;
 	
-	@Field(name="BRANCOS2", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancos2;
-		
-	@Field(name="QT_TITULOS_CARTEIRA_SIMPLES", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long quantidadeTitulosCarteiraSimples;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_SIMPLES", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
-	private BigDecimal valorTotalTitulosCarteiraSimples;
-	
-	@Field(name="NR_AVISO_CARTEIRA_SIMPLES", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroAvisoCarteiraSimples;
-	
-	@Field(name="BRANCOS_CARTEIRA_SIMPLES", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancosCarteiraSimples;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_VINCULADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long quantidadeTitulosCarteiraVinculada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_VINCULADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
-	private BigDecimal valorTotalTitulosCarteiraVinculada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_VINCULADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroAvisoCarteiraVinculada;
-	
-	@Field(name="BRANCOS_CARTEIRA_VINCULADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancosCarteiraVinculada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_CAUCIONADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long quantidadeTitulosCarteiraCaucionada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_CAUCIONADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
-	private BigDecimal valorTotalTitulosCarteiraCaucionada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_CAUCIONADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroAvisoCarteiraCaucionada;
-	
-	@Field(name="BRANCOS_CARTEIRA_CAUCIONADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancosCarteiraCaucionada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_DESCONTADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long quantidadeTitulosCarteiraDescontada;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_DESCONTADA", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
-	private BigDecimal valorTotalTitulosCarteiraDescontada;
-	
-	@Field(name="NR_AVISO_CARTEIRA_DESCONTADA", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroAvisoCarteiraDescontada;
-	
-	@Field(name="BRANCOS_CARTEIRA_DESCONTADA", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancosCarteiraDescontada;
-	
-	@Field(name="QT_TITULOS_CARTEIRA_VENDOR", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long quantidadeTitulosCarteiraVendor;
-	
-	@Field(name="VL_TOTAL_CARTEIRA_VENDOR", length=13, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
-	private BigDecimal valorTotalTitulosCarteiraVendor;
-	
-	@Field(name="NR_AVISO_CARTEIRA_VENDOR", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
-	private Long numeroAvisoCarteiraVendor;
-	
-	@Field(name="BRANCOS_CARTEIRA_VENDOR", length=10, value=" ", padding=Paddings.WHITE_SPACE_RIGHT)
-	private String brancosCarteiraVendor;
-	
-	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT)
+	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
 	public TraillerArquivoRetorno(ContaBancaria contaBancaria) {
 	}
 
-	public Integer getCodigoRegistro() {
+	public String getCodigoRegistro() {
 		return codigoRegistro;
 	}
 
-	public void setCodigoRegistro(Integer codigoRegistro) {
+	public void setCodigoRegistro(String codigoRegistro) {
 		this.codigoRegistro = codigoRegistro;
 	}
 
@@ -133,165 +97,6 @@ public class TraillerArquivoRetorno {
 		this.brancos2 = brancos2;
 	}
 
-	public Long getQuantidadeTitulosCarteiraSimples() {
-		return quantidadeTitulosCarteiraSimples;
-	}
-
-	public void setQuantidadeTitulosCarteiraSimples(Long quantidadeTitulosCarteiraSimples) {
-		this.quantidadeTitulosCarteiraSimples = quantidadeTitulosCarteiraSimples;
-	}
-
-	public BigDecimal getValorTotalTitulosCarteiraSimples() {
-		return valorTotalTitulosCarteiraSimples;
-	}
-
-	public void setValorTotalTitulosCarteiraSimples(BigDecimal valorTotalTitulosCarteiraSimples) {
-		this.valorTotalTitulosCarteiraSimples = valorTotalTitulosCarteiraSimples;
-	}
-
-	public Long getNumeroAvisoCarteiraSimples() {
-		return numeroAvisoCarteiraSimples;
-	}
-
-	public void setNumeroAvisoCarteiraSimples(Long numeroAvisoCarteiraSimples) {
-		this.numeroAvisoCarteiraSimples = numeroAvisoCarteiraSimples;
-	}
-
-	public String getBrancosCarteiraSimples() {
-		return brancosCarteiraSimples;
-	}
-
-	public void setBrancosCarteiraSimples(String brancosCarteiraSimples) {
-		this.brancosCarteiraSimples = brancosCarteiraSimples;
-	}
-
-	public Long getQuantidadeTitulosCarteiraVinculada() {
-		return quantidadeTitulosCarteiraVinculada;
-	}
-
-	public void setQuantidadeTitulosCarteiraVinculada(Long quantidadeTitulosCarteiraVinculada) {
-		this.quantidadeTitulosCarteiraVinculada = quantidadeTitulosCarteiraVinculada;
-	}
-
-	public BigDecimal getValorTotalTitulosCarteiraVinculada() {
-		return valorTotalTitulosCarteiraVinculada;
-	}
-
-	public void setValorTotalTitulosCarteiraVinculada(BigDecimal valorTotalTitulosCarteiraVinculada) {
-		this.valorTotalTitulosCarteiraVinculada = valorTotalTitulosCarteiraVinculada;
-	}
-
-	public Long getNumeroAvisoCarteiraVinculada() {
-		return numeroAvisoCarteiraVinculada;
-	}
-
-	public void setNumeroAvisoCarteiraVinculada(Long numeroAvisoCarteiraVinculada) {
-		this.numeroAvisoCarteiraVinculada = numeroAvisoCarteiraVinculada;
-	}
-
-	public String getBrancosCarteiraVinculada() {
-		return brancosCarteiraVinculada;
-	}
-
-	public void setBrancosCarteiraVinculada(String brancosCarteiraVinculada) {
-		this.brancosCarteiraVinculada = brancosCarteiraVinculada;
-	}
-
-	public Long getQuantidadeTitulosCarteiraCaucionada() {
-		return quantidadeTitulosCarteiraCaucionada;
-	}
-
-	public void setQuantidadeTitulosCarteiraCaucionada(Long quantidadeTitulosCarteiraCaucionada) {
-		this.quantidadeTitulosCarteiraCaucionada = quantidadeTitulosCarteiraCaucionada;
-	}
-
-	public BigDecimal getValorTotalTitulosCarteiraCaucionada() {
-		return valorTotalTitulosCarteiraCaucionada;
-	}
-
-	public void setValorTotalTitulosCarteiraCaucionada(BigDecimal valorTotalTitulosCarteiraCaucionada) {
-		this.valorTotalTitulosCarteiraCaucionada = valorTotalTitulosCarteiraCaucionada;
-	}
-
-	public Long getNumeroAvisoCarteiraCaucionada() {
-		return numeroAvisoCarteiraCaucionada;
-	}
-
-	public void setNumeroAvisoCarteiraCaucionada(Long numeroAvisoCarteiraCaucionada) {
-		this.numeroAvisoCarteiraCaucionada = numeroAvisoCarteiraCaucionada;
-	}
-
-	public String getBrancosCarteiraCaucionada() {
-		return brancosCarteiraCaucionada;
-	}
-
-	public void setBrancosCarteiraCaucionada(String brancosCarteiraCaucionada) {
-		this.brancosCarteiraCaucionada = brancosCarteiraCaucionada;
-	}
-
-	public Long getQuantidadeTitulosCarteiraDescontada() {
-		return quantidadeTitulosCarteiraDescontada;
-	}
-
-	public void setQuantidadeTitulosCarteiraDescontada(Long quantidadeTitulosCarteiraDescontada) {
-		this.quantidadeTitulosCarteiraDescontada = quantidadeTitulosCarteiraDescontada;
-	}
-
-	public BigDecimal getValorTotalTitulosCarteiraDescontada() {
-		return valorTotalTitulosCarteiraDescontada;
-	}
-
-	public void setValorTotalTitulosCarteiraDescontada(BigDecimal valorTotalTitulosCarteiraDescontada) {
-		this.valorTotalTitulosCarteiraDescontada = valorTotalTitulosCarteiraDescontada;
-	}
-
-	public Long getNumeroAvisoCarteiraDescontada() {
-		return numeroAvisoCarteiraDescontada;
-	}
-
-	public void setNumeroAvisoCarteiraDescontada(Long numeroAvisoCarteiraDescontada) {
-		this.numeroAvisoCarteiraDescontada = numeroAvisoCarteiraDescontada;
-	}
-
-	public String getBrancosCarteiraDescontada() {
-		return brancosCarteiraDescontada;
-	}
-
-	public void setBrancosCarteiraDescontada(String brancosCarteiraDescontada) {
-		this.brancosCarteiraDescontada = brancosCarteiraDescontada;
-	}
-
-	public Long getQuantidadeTitulosCarteiraVendor() {
-		return quantidadeTitulosCarteiraVendor;
-	}
-
-	public void setQuantidadeTitulosCarteiraVendor(Long quantidadeTitulosCarteiraVendor) {
-		this.quantidadeTitulosCarteiraVendor = quantidadeTitulosCarteiraVendor;
-	}
-
-	public BigDecimal getValorTotalTitulosCarteiraVendor() {
-		return valorTotalTitulosCarteiraVendor;
-	}
-
-	public void setValorTotalTitulosCarteiraVendor(BigDecimal valorTotalTitulosCarteiraVendor) {
-		this.valorTotalTitulosCarteiraVendor = valorTotalTitulosCarteiraVendor;
-	}
-
-	public Long getNumeroAvisoCarteiraVendor() {
-		return numeroAvisoCarteiraVendor;
-	}
-
-	public void setNumeroAvisoCarteiraVendor(Long numeroAvisoCarteiraVendor) {
-		this.numeroAvisoCarteiraVendor = numeroAvisoCarteiraVendor;
-	}
-
-	public String getBrancosCarteiraVendor() {
-		return brancosCarteiraVendor;
-	}
-
-	public void setBrancosCarteiraVendor(String brancosCarteiraVendor) {
-		this.brancosCarteiraVendor = brancosCarteiraVendor;
-	}
 
 	public Integer getNumeroSequencialRegistro() {
 		return numeroSequencialRegistro;
@@ -306,6 +111,36 @@ public class TraillerArquivoRetorno {
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+		setCodigoRegistro((String) record.getValue(CD_REGISTRO));
+		setCodigoRetorno((String) record.getValue(CD_RETORNO));
+		setCodigoBanco((Integer) record.getValue(CD_BANCO));
+		setQuantidadeTitulosCobranca((Long) record.getValue(QT_TITULOS_COBRANCA));
+		setValorTotalCobranca((BigDecimal) record.getValue(VL_TOTAL_COBRANCA));
+		setNumeroAvisoBancario((Long) record.getValue(NR_AVISO_BANCARIO));
+		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
+	}
+
+	public Long getQuantidadeTitulosCobranca() {
+		return quantidadeTitulosCobranca;
+	}
+
+	public void setQuantidadeTitulosCobranca(Long quantidadeTitulosCobranca) {
+		this.quantidadeTitulosCobranca = quantidadeTitulosCobranca;
+	}
+
+	public BigDecimal getValorTotalCobranca() {
+		return valorTotalCobranca;
+	}
+
+	public void setValorTotalCobranca(BigDecimal valorTotalCobranca) {
+		this.valorTotalCobranca = valorTotalCobranca;
+	}
+
+	public Long getNumeroAvisoBancario() {
+		return numeroAvisoBancario;
+	}
+
+	public void setNumeroAvisoBancario(Long numeroAvisoBancario) {
+		this.numeroAvisoBancario = numeroAvisoBancario;
 	}
 }

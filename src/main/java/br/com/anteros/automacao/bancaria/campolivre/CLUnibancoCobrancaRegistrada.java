@@ -112,13 +112,13 @@ class CLUnibancoCobrancaRegistrada extends AbstractCLUnibanco {
 		ContaBancaria conta = titulo.getContaBancaria();
 		
 		Assert.notNull(conta,"Conta Bancária NULA!");
-		Assert.notNull(titulo.getDataDoVencimento(), "Data de vencimento do título NULA!");
+		Assert.notNull(titulo.getDataVencimento(), "Data de vencimento do título NULA!");
 		Assert.notNull(conta.getAgencia().getCodigo(), "Número da Agência Bancária NULO!");
 		Assert.notNull(conta.getAgencia().getDigitoVerificador(),"Dígito da Agência Bancária NULO!");
 		Assert.notNull(titulo.getNossoNumero(),"Nosso Número NULO!");
 		
 		this.add(new FixedField<String>(CODIGO_TRANSACAO, 2));
-		this.add(new FixedField<Date>(titulo.getDataDoVencimento(), 6, DateFormat.YYMMDD.copy()));
+		this.add(new FixedField<Date>(titulo.getDataVencimento(), 6, DateFormat.YYMMDD.copy()));
 			
 		if(conta.getAgencia().getCodigo() > 0){
 			

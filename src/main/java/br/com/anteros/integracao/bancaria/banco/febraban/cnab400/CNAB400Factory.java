@@ -1,57 +1,66 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab400;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import br.com.anteros.core.utils.Assert;
+import br.com.anteros.integracao.bancaria.banco.febraban.CNABException;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNABException;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.bancobrasil.BancoBrasilCNAB400;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.bradesco.BradescoCNAB400;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.caixa.CaixaEconomicaFederalCNAB400;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.hsbc.HsbcCNAB400;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.itau.ItauCNAB400;
+import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.santander.SantanderCNAB400;
+import br.com.anteros.integracao.bancaria.util.Constants;
 
 public class CNAB400Factory {
-	
 
-	public static final Integer BANCO_BRASIL = 1;
-	public static final Integer BRADESCO = 237;
-	public static final Integer CAIXA_ECONOMICA_FEDERAL = 104;
-	public static final Integer HSBC = 399;
-	public static final Integer ITAU = 184;
-	public static final Integer SANTANDER = 033;
-	public static final Integer REAL = 356;
+	public static CNAB400 create(List<RemessaCobranca> remessas) {
+		return CNAB400Factory.create(remessas, Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+	}
 
-	public static CNAB400 create(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BANCO_BRASIL) {
-			return new BancoBrasilCNAB400(contaBancaria,remessas);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BRADESCO) {
-			return new BradescoCNAB400(contaBancaria,remessas);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == CAIXA_ECONOMICA_FEDERAL) {
-			return new CaixaEconomicaFederalCNAB400(contaBancaria,remessas);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == HSBC) {
-			return new HsbcCNAB400(contaBancaria,remessas);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == ITAU) {
-			return new ItauCNAB400(contaBancaria,remessas);
+	public static CNAB400 create(List<RemessaCobranca> remessas, Date dataHoraGeracao, Date dataGravacao) {
+		Assert.checkArgument(remessas.size() > 0, "Informe as remessas para cobrança bancária.");
+		ContaBancaria contaBancaria = remessas.iterator().next().getTitulo().getContaBancaria();
+		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BANCO_BRASIL)) {
+			return BancoBrasilCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BRADESCO)) {
+			return BradescoCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
+			return CaixaEconomicaFederalCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
+			return HsbcCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
+			return ItauCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {
+			return SantanderCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		}
 		throw new CNABException(
 				"Layout CNAB400 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
 	}
-	
+
 	public static CNAB400 create(ContaBancaria contaBancaria) {
-		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BANCO_BRASIL) {
-			return new BancoBrasilCNAB400(contaBancaria);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == BRADESCO) {
-			return new BradescoCNAB400(contaBancaria);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == CAIXA_ECONOMICA_FEDERAL) {
-			return new CaixaEconomicaFederalCNAB400(contaBancaria);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == HSBC) {
-			return new HsbcCNAB400(contaBancaria);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo() == ITAU) {
-			return new ItauCNAB400(contaBancaria);
+		return CNAB400Factory.create(contaBancaria, Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+	}
+
+	public static CNAB400 create(ContaBancaria contaBancaria, Date dataHoraGeracao, Date dataGravacao) {
+		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BANCO_BRASIL)) {
+			return BancoBrasilCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BRADESCO)) {
+			return BradescoCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
+			return CaixaEconomicaFederalCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
+			return HsbcCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
+			return ItauCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {
+			return SantanderCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
 		}
 		throw new CNABException(
 				"Layout CNAB400 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
 	}
-
 }

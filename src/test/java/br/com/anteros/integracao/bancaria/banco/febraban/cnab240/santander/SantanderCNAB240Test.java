@@ -49,8 +49,14 @@ public class SantanderCNAB240Test {
 			FlatFileManagerException, JAXBException, IOException {
 		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoSantander.xml");
 
-		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 		String schema = StringUtils.removeCRLF(new String(layoutCNAB240.getXMLSchema(), "UTF-8"));
+		
+//		FileOutputStream fos = new FileOutputStream(file);
+//		fos.write(schema.getBytes());
+//		fos.flush();
+//		fos.close();
+		
+		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 
 		Assert.assertEquals("Banco Santander: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
 	}

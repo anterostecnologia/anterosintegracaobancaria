@@ -74,7 +74,7 @@ import static java.lang.String.format;
  * @version 0.2
  */
 
-public enum TipoDeTitulo{
+public enum TipoTitulo{
 
 	CH_CHEQUE(1,"CH"),
 	DM_DUPLICATA_MERCANTIL(2,"DM"), 
@@ -134,7 +134,7 @@ public enum TipoDeTitulo{
 	 * 
 	 * @since 0.2
 	 */
-	private TipoDeTitulo(int codigo, String sigla) {
+	private TipoTitulo(int codigo, String sigla) {
 		this.codigo = codigo;
 		this.sigla = sigla;
 	}
@@ -181,13 +181,13 @@ public enum TipoDeTitulo{
 	 * 
 	 * @since 0.2
 	 */
-	public static TipoDeTitulo valueOfSigla(String sigla){
-		for(TipoDeTitulo t : values()){
+	public static TipoTitulo valueOfSigla(String sigla){
+		for(TipoTitulo t : values()){
 			if(t.getSigla().equals(sigla)){
 				return t;
 			}
 		}
-		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com sigla igual a %s!", TipoDeTitulo.class, sigla));
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com sigla igual a %s!", TipoTitulo.class, sigla));
 	}
 
 	/**
@@ -201,13 +201,13 @@ public enum TipoDeTitulo{
 	 * 
 	 * @since 0.2
 	 */
-	public static TipoDeTitulo valueOf(int codigo){
-		for(TipoDeTitulo t : values()){
+	public static TipoTitulo valueOf(int codigo){
+		for(TipoTitulo t : values()){
 			if(t.getCodigo() == codigo){
 				return t;
 			}
 		}
-		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoDeTitulo.class, codigo));
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoTitulo.class, codigo));
 	}
 	
 }

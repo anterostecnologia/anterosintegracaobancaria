@@ -653,9 +653,9 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 	 */
 	protected final static void checkDigitoDoNossoNumero(Titulo titulo){
 		
-		Assert.notNull(titulo.getDigitoDoNossoNumero(), "Dígito verificador do nosso número do título não pode ser nulo!");
-		Assert.notNull(titulo.getDigitoDoNossoNumero(), format("Dígito verificador [\"%s\"] do nosso número do título não pode ser vazio!", titulo.getDigitoDoNossoNumero()));
-		StringUtils.checkNotNumeric(titulo.getDigitoDoNossoNumero(), format("Nesse contexto o dígito verificador [\"%s\"] do nosso número deve ser um número inteiro positivo!", titulo.getDigitoDoNossoNumero()));
+		Assert.notNull(titulo.getDigitoNossoNumero(), "Dígito verificador do nosso número do título não pode ser nulo!");
+		Assert.notNull(titulo.getDigitoNossoNumero(), format("Dígito verificador [\"%s\"] do nosso número do título não pode ser vazio!", titulo.getDigitoNossoNumero()));
+		StringUtils.checkNotNumeric(titulo.getDigitoNossoNumero(), format("Nesse contexto o dígito verificador [\"%s\"] do nosso número deve ser um número inteiro positivo!", titulo.getDigitoNossoNumero()));
 	}
 	
 	/**
@@ -675,7 +675,7 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 
 		checkTamanhoDigitoDoNossoNumero(titulo, length, format(
 				"Tamanho [%s] do dígito do nosso número [\"%s\"] diferente do esperado [%s]!",
-				titulo.getDigitoDoNossoNumero().length(), titulo.getDigitoDoNossoNumero(), length));
+				titulo.getDigitoNossoNumero().length(), titulo.getDigitoNossoNumero(), length));
 	}
 	
 	/**
@@ -695,7 +695,7 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 	 */
 	protected final static void checkTamanhoDigitoDoNossoNumero(Titulo titulo, int length, String msg){
 		
-		Assert.checkArgument(titulo.getDigitoDoNossoNumero().length() == length, msg);
+		Assert.checkArgument(titulo.getDigitoNossoNumero().length() == length, msg);
 	}
 	
 	/**
@@ -710,8 +710,8 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 	 */
 	protected final static void checkValor(Titulo titulo){
 		
-		Assert.notNull(titulo.getValor(), "Valor do título não pode ser nulo!");
-		Assert.checkArgument(titulo.getValor().compareTo(ZERO) >= 0, format("O valor do título deve ser um número positivo ou zero e não [%s].",titulo.getValor()));
+		Assert.notNull(titulo.getValorTitulo(), "Valor do título não pode ser nulo!");
+		Assert.checkArgument(titulo.getValorTitulo().compareTo(ZERO) >= 0, format("O valor do título deve ser um número positivo ou zero e não [%s].",titulo.getValorTitulo()));
 	}
 	
 	/**

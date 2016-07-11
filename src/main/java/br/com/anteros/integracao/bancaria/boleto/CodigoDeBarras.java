@@ -183,9 +183,9 @@ public class CodigoDeBarras extends BlockOfFields{
 	
 		ContaBancaria contaBancaria = titulo.getContaBancaria();
 		this.codigoDoBanco.setValue(contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigoFormatado());
-		this.codigoDaMoeda.setValue(titulo.getTipoDeMoeda().getCodigo());
-		this.calculateAndSetFatorDeVencimento(titulo.getDataDoVencimento());
-		this.valorNominalDoTitulo.setValue(titulo.getValor());
+		this.codigoDaMoeda.setValue(titulo.getTipoMoeda().getCodigo());
+		this.calculateAndSetFatorDeVencimento(titulo.getDataVencimento());
+		this.valorNominalDoTitulo.setValue(titulo.getValorTitulo());
 		this.campoLivre.setValue(campoLivre.write());
 		this.calculateAndSetDigitoVerificadorGeral();
 		

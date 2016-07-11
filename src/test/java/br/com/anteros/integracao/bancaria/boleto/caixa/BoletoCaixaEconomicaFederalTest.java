@@ -79,7 +79,7 @@ public class BoletoCaixaEconomicaFederalTest {
 					
 			FileInputStream fis = new FileInputStream(modeloOrigem);
 			try {
-				assertTrue("Imagem do boleto "+(i+1)+" não é igual ao modelo. Titulo: "+boletosParaTeste.get(i).getTitulo().getNumeroDoDocumento(),IOUtils.contentEquals(new ByteArrayInputStream(boletoImg.get(0)), fis));
+				assertTrue("Imagem do boleto "+(i+1)+" não é igual ao modelo. Titulo: "+boletosParaTeste.get(i).getTitulo().getNumeroDocumento(),IOUtils.contentEquals(new ByteArrayInputStream(boletoImg.get(0)), fis));
 			} finally {
 				fis.close();
 			}
@@ -111,7 +111,7 @@ public class BoletoCaixaEconomicaFederalTest {
 			
 			FileInputStream fis = new FileInputStream(modeloOrigem);
 			try {
-				assertTrue("Imagem do boleto "+(i+1)+" não é igual ao modelo. Titulo: "+boletosParaTeste.get(i).getTitulo().getNumeroDoDocumento(),IOUtils.contentEquals(new ByteArrayInputStream(b), fis));
+				assertTrue("Imagem do boleto "+(i+1)+" não é igual ao modelo. Titulo: "+boletosParaTeste.get(i).getTitulo().getNumeroDocumento(),IOUtils.contentEquals(new ByteArrayInputStream(b), fis));
 			} finally {
 				fis.close();
 			}

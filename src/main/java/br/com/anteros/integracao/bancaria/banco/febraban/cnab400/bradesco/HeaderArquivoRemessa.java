@@ -31,7 +31,7 @@ public class HeaderArquivoRemessa {
 	@Field(name="BRANCOS1", length=7, padding=Paddings.WHITE_SPACE_RIGHT, value=" ")
 	private String brancos1;
 	
-	@Field(name="PREFIXO_AGENCIA", length=9, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
+	@Field(name="PREFIXO_AGENCIA", length=4, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
 	private Integer prefixoAgencia;
 	
 	@Field(name="DIGITO_AGENCIA", length=1)
@@ -67,8 +67,15 @@ public class HeaderArquivoRemessa {
 	@Field(name="NR_SEQUENCIAL_REGISTRO", length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
-	public HeaderArquivoRemessa(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		
+	public HeaderArquivoRemessa(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataHoraGeracao, Date dataGravacao) {
+		this.prefixoAgencia = contaBancaria.getAgencia().getCodigo();
+		this.digitoVerificadoraAgencia = contaBancaria.getAgencia().getDigitoVerificador();
+		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();
+		this.digitoContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();
+		this.nomeEmpresa = cedente.getNome();
+		this.dataGravacao = dataGravacao;
+		this.numeroSequencialRemessa = 1L;
+		this.numeroSequencialRegistro = 1;
 	}
 
 	public String getCodigoDoRegistro() {
@@ -215,8 +222,8 @@ public class HeaderArquivoRemessa {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
 	}
 
-	public static HeaderArquivoRemessa of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
-		return new HeaderArquivoRemessa(contaBancaria,carteira,cedente);
+	public static HeaderArquivoRemessa of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataHoraGeracao, Date dataGravacao) {
+		return new HeaderArquivoRemessa(contaBancaria,carteira,cedente, dataHoraGeracao, dataGravacao);
 	}
 	
 	

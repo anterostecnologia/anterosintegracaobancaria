@@ -15,19 +15,26 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.febraban;
 
-public enum TipoDeJurosMora {
+public class CNABException extends RuntimeException {
 
-	VALOR_POR_DIA(1),
-	TAXA_MENSAL(2),
-	ISENTO(3);
-	
-	private Integer tipo;
-	
-	private TipoDeJurosMora(Integer tipo){
-		this.tipo = tipo;
+	public CNABException() {
+		super();
 	}
-	
-	public Integer getTipo(){
-		return tipo;
+
+	public CNABException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
+
+	public CNABException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public CNABException(String message) {
+		super(message);
+	}
+
+	public CNABException(Throwable cause) {
+		super(cause);
+	}
+
 }

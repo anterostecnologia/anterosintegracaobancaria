@@ -1,7 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.bancobrasil;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 
 import br.com.anteros.flatfile.Record;
@@ -9,11 +8,16 @@ import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
+import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.febraban.DetalheRetorno;
 import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
 
-public class TitulosCobrancaDetalheRetorno {
+public class TitulosCobrancaDetalheRetorno implements RecordData, DetalheRetorno {
 
+	private static final String ESPECIE_TITULO = "ESPECIE_TITULO";
+	private static final String DIGITO_AGENCIA_RECEBEDORA = "DIGITO_AGENCIA_RECEBEDORA";
+	private static final String AGENCIA_RECEBEDORA = "AGENCIA_RECEBEDORA";
 	private static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
 	private static final String INDICATIVO_DEBITO_CREDITO = "INDICATIVO_DEBITO_CREDITO";
 	private static final String INDICADOR_VALOR = "INDICADOR_VALOR";
@@ -26,9 +30,8 @@ public class TitulosCobrancaDetalheRetorno {
 	private static final String VL_IOF = "VL_IOF";
 	private static final String VL_JUROSDESCONTO = "VL_JUROSDESCONTO";
 	private static final String VL_OUTRASDESPESAS = "VL_OUTRASDESPESAS";
-	private static final String VL_TARIFA = "VL_TARIFA";
+	private static final String VL_DESPESAS_COBRANCA = "VL_TARIFA";
 	private static final String DT_CREDITO = "DT_CREDITO";
-	private static final String CD_BANCO = "CD_BANCO";
 	private static final String VL_TITULO = "VL_TITULO";
 	private static final String DT_VENCIMENTO = "DT_VENCIMENTO";
 	private static final String NR_DOCUMENTO = "NR_DOCUMENTO";
@@ -42,11 +45,13 @@ public class TitulosCobrancaDetalheRetorno {
 	private static final String TP_COBRANCA = "TP_COBRANCA";
 	private static final String NOSSO_NUMERO = "NOSSO_NUMERO";
 	private static final String NR_CONVENIO = "NR_CONVENIO";
-	private static final String CD_EMPRESA = "CD_EMPRESA";
 	private static final String CD_REGISTRO = "CD_REGISTRO";
+	private static final String CD_BANCO_RECEBEDOR = "CD_BANCO_RECEBEDOR";
+	private static final String VL_ABATIMENTO_NAO_APROVEITADO = "VL_ABATIMENTO_NAO_APROVEITADO";
+	private static final String DIGITO_NOSSO_NUMERO = "DIGITO_NOSSO_NUMERO";
 
-	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "1")
-	private Integer codigoRegistro;
+	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "7")
+	private String codigoRegistro;
 
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
@@ -54,17 +59,29 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = "BRANCOS2", length = 14, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
-	@Field(name = CD_EMPRESA, length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
-	private Long codigoEmpresa;
+	@Field(name = "AGENCIA", length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer agencia;
 
-	@Field(name = NR_CONVENIO, length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = "DIGITO_AGENCIA", length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String digitoAgencia;
+
+	@Field(name = "NR_CONTACORRENTE", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long numeroContaCorrente;
+
+	@Field(name = "DIGITO_CONTACORRENTE", length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String digitoContaCorrente;
+
+	@Field(name = NR_CONVENIO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroConvenio;
 
 	@Field(name = "BRANCOS3", length = 25, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	@Field(name = NOSSO_NUMERO, length = 17)
+	@Field(name = NOSSO_NUMERO, length = 11, padding = Paddings.ZERO_LEFT)
 	private String nossoNumero;
+	
+	@Field(name = DIGITO_NOSSO_NUMERO, length = 1, padding = Paddings.ZERO_LEFT)
+	private String digitoNossoNumero;
 
 	@Field(name = TP_COBRANCA, length = 1)
 	private String tipoCobranca;
@@ -81,10 +98,10 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = "BRANCOS6", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos6;
 
-	@Field(name = VARIACAO_CARTEIRA, length = 3)
+	@Field(name = VARIACAO_CARTEIRA, length = 3, padding = Paddings.ZERO_LEFT)
 	private String variacaoCarteira;
 
-	@Field(name = "BRANCOS7", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS7", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos7;
 
 	@Field(name = TAXA_DESCONTO, length = 5, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
@@ -96,8 +113,8 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = "BRANCOS8", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos8;
 
-	@Field(name = CARTEIRA, length = 2)
-	private String carteira;
+	@Field(name = CARTEIRA, length = 2, padding = Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
+	private Integer carteira;
 
 	@Field(name = CD_OCORRENCIA, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoOcorrencia;
@@ -105,7 +122,7 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = DT_OCORRENCIA, length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
 	private Date dataOcorrencia;
 
-	@Field(name = NR_DOCUMENTO, length = 10)
+	@Field(name = NR_DOCUMENTO, length = 10, padding = Paddings.WHITE_SPACE_LEFT)
 	private String numeroDocumento;
 
 	@Field(name = "BRANCOS9", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
@@ -117,23 +134,23 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = VL_TITULO, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTitulo;
 
-	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
-	private Integer codigoBanco;
+	@Field(name = CD_BANCO_RECEBEDOR, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer codigoBancoRecebedor;
 
-	@Field(name = "BRANCOS10", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos10;
+	@Field(name = AGENCIA_RECEBEDORA, length = 4, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
+	private Integer agenciaRecebedora;
 
-	@Field(name = "BRANCOS11", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos11;
+	@Field(name = DIGITO_AGENCIA_RECEBEDORA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String digitoAgenciaRecebedora;
 
-	@Field(name = "BRANCOS12", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos12;
+	@Field(name = ESPECIE_TITULO, length = 2, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
+	private Integer especieTitulo;
 
 	@Field(name = DT_CREDITO, length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
 	private Date dataCredito;
 
-	@Field(name = VL_TARIFA, length = 7, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
-	private BigDecimal valorTarifa;
+	@Field(name = VL_DESPESAS_COBRANCA, length = 7, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	private BigDecimal valorDespesasCobranca;
 
 	@Field(name = VL_OUTRASDESPESAS, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorOutrasDespesas;
@@ -159,8 +176,8 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = VL_OUTROS_CREDITOS, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorOutrosCreditos;
 
-	@Field(name = "BRANCOS13", length = 13, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos13;
+	@Field(name = VL_ABATIMENTO_NAO_APROVEITADO, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	private BigDecimal valorAbatimentoNaoAproveitado;
 
 	@Field(name = VL_LANCAMENTO, length = 13, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorLancamento;
@@ -180,42 +197,42 @@ public class TitulosCobrancaDetalheRetorno {
 	@Field(name = "BRANCOS16", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos16;
 
-	@Field(name = "BRANCOS17", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS17", length = 6, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos17;
 
 	@Field(name = "BRANCOS18", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos18;
 
-	@Field(name = "BRANCOS19", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS19", length = 6, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos19;
 
 	@Field(name = "BRANCOS20", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos20;
 
-	@Field(name = "BRANCOS21", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS21", length = 6, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos21;
 
 	@Field(name = "BRANCOS22", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos22;
 
-	@Field(name = "BRANCOS23", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS23", length = 5, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos23;
 
 	@Field(name = "BRANCOS24", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos24;
 
-	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6)
+	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
 	public TitulosCobrancaDetalheRetorno(ContaBancaria contaBancaria) {
 
 	}
 
-	public Integer getCodigoRegistro() {
+	public String getCodigoRegistro() {
 		return codigoRegistro;
 	}
 
-	public void setCodigoRegistro(Integer codigoRegistro) {
+	public void setCodigoRegistro(String codigoRegistro) {
 		this.codigoRegistro = codigoRegistro;
 	}
 
@@ -233,14 +250,6 @@ public class TitulosCobrancaDetalheRetorno {
 
 	public void setBrancos2(String brancos2) {
 		this.brancos2 = brancos2;
-	}
-
-	public Long getCodigoEmpresa() {
-		return codigoEmpresa;
-	}
-
-	public void setCodigoEmpresa(Long codigoEmpresa) {
-		this.codigoEmpresa = codigoEmpresa;
 	}
 
 	public Integer getNumeroConvenio() {
@@ -347,15 +356,15 @@ public class TitulosCobrancaDetalheRetorno {
 		this.brancos8 = brancos8;
 	}
 
-	public String getCarteira() {
+	public Integer getCarteira() {
 		return carteira;
 	}
 
-	public void setCarteira(String carteira) {
+	public void setCarteira(Integer carteira) {
 		this.carteira = carteira;
 	}
 
-	public Integer getCodigoOcorrencia() {
+	public Integer getCodigoMovimentoRetorno() {
 		return codigoOcorrencia;
 	}
 
@@ -403,38 +412,6 @@ public class TitulosCobrancaDetalheRetorno {
 		this.valorTitulo = valorTitulo;
 	}
 
-	public Integer getCodigoBanco() {
-		return codigoBanco;
-	}
-
-	public void setCodigoBanco(Integer codigoBanco) {
-		this.codigoBanco = codigoBanco;
-	}
-
-	public String getBrancos10() {
-		return brancos10;
-	}
-
-	public void setBrancos10(String brancos10) {
-		this.brancos10 = brancos10;
-	}
-
-	public String getBrancos11() {
-		return brancos11;
-	}
-
-	public void setBrancos11(String brancos11) {
-		this.brancos11 = brancos11;
-	}
-
-	public String getBrancos12() {
-		return brancos12;
-	}
-
-	public void setBrancos12(String brancos12) {
-		this.brancos12 = brancos12;
-	}
-
 	public Date getDataCredito() {
 		return dataCredito;
 	}
@@ -443,12 +420,12 @@ public class TitulosCobrancaDetalheRetorno {
 		this.dataCredito = dataCredito;
 	}
 
-	public BigDecimal getValorTarifa() {
-		return valorTarifa;
+	public BigDecimal getValorDespesasCobranca() {
+		return valorDespesasCobranca;
 	}
 
-	public void setValorTarifa(BigDecimal valorTarifa) {
-		this.valorTarifa = valorTarifa;
+	public void setValorDespesasCobranca(BigDecimal valorDespesasCobranca) {
+		this.valorDespesasCobranca = valorDespesasCobranca;
 	}
 
 	public BigDecimal getValorOutrasDespesas() {
@@ -513,14 +490,6 @@ public class TitulosCobrancaDetalheRetorno {
 
 	public void setValorOutrosCreditos(BigDecimal valorOutrosCreditos) {
 		this.valorOutrosCreditos = valorOutrosCreditos;
-	}
-
-	public String getBrancos13() {
-		return brancos13;
-	}
-
-	public void setBrancos13(String brancos13) {
-		this.brancos13 = brancos13;
 	}
 
 	public BigDecimal getValorLancamento() {
@@ -647,41 +616,154 @@ public class TitulosCobrancaDetalheRetorno {
 		return new TitulosCobrancaDetalheRetorno(contaBancaria);
 	}
 
-	public void set(Collection<Record> collection) {
+	public void set(Record record) {
 
-		for (Record record : collection) {
-			setCodigoRegistro((Integer) record.getValue(CD_REGISTRO));
-			setCodigoEmpresa((Long) record.getValue(CD_EMPRESA));
-			setNumeroConvenio((Integer) record.getValue(NR_CONVENIO));
-			setNossoNumero((String) record.getValue(NOSSO_NUMERO));
-			setTipoCobranca((String) record.getValue(TP_COBRANCA));
-			setTipoCobrancaEspecifico((String) record.getValue(TP_COBRANCA_ESPECIFICO));
-			setVariacaoCarteira((String) record.getValue(VARIACAO_CARTEIRA));
-			setTaxaDesconto((BigDecimal) record.getValue(TAXA_DESCONTO));
-			setTaxaIOF((BigDecimal) record.getValue(TAXA_IOF));
-			setCarteira((String) record.getValue(CARTEIRA));
-			setCodigoOcorrencia((Integer) record.getValue(CD_OCORRENCIA));
-			setDataOcorrencia((Date) record.getValue(DT_OCORRENCIA));
-			setNumeroDocumento((String) record.getValue(NR_DOCUMENTO));
-			setDataVencimento((Date) record.getValue(DT_VENCIMENTO));
-			setValorTitulo((BigDecimal) record.getValue(VL_TITULO));
-			setCodigoBanco((Integer) record.getValue(CD_BANCO));
-			setDataCredito((Date) record.getValue(DT_CREDITO));
-			setValorTarifa((BigDecimal) record.getValue(VL_TARIFA));
-			setValorOutrasDespesas((BigDecimal) record.getValue(VL_OUTRASDESPESAS));
-			setValorJurosDesconto((BigDecimal) record.getValue(VL_JUROSDESCONTO));
-			setValorIOF((BigDecimal) record.getValue(VL_IOF));
-			setValorAbatimento((BigDecimal) record.getValue(VL_ABATIMENTO));
-			setValorDesconto((BigDecimal) record.getValue(VL_DESCONTO));
-			setValorPago((BigDecimal) record.getValue(VL_PAGO));
-			setValorJuros((BigDecimal) record.getValue(VL_JUROS));
-			setValorOutrosCreditos((BigDecimal) record.getValue(VL_OUTROS_CREDITOS));
-			setValorLancamento((BigDecimal) record.getValue(VL_LANCAMENTO));
-			setIndicadorValor((String) record.getValue(INDICADOR_VALOR));
-			setIndicativoDebitoCredito((String) record.getValue(INDICATIVO_DEBITO_CREDITO));
-			setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
-		}
+		setCodigoRegistro((String) record.getValue(CD_REGISTRO));
+		setNumeroConvenio((Integer) record.getValue(NR_CONVENIO));
+		setNossoNumero((String) record.getValue(NOSSO_NUMERO));
+		setTipoCobranca((String) record.getValue(TP_COBRANCA));
+		setTipoCobrancaEspecifico((String) record.getValue(TP_COBRANCA_ESPECIFICO));
+		setVariacaoCarteira((String) record.getValue(VARIACAO_CARTEIRA));
+		setTaxaDesconto((BigDecimal) record.getValue(TAXA_DESCONTO));
+		setTaxaIOF((BigDecimal) record.getValue(TAXA_IOF));
+		setCarteira((Integer) record.getValue(CARTEIRA));
+		setCodigoOcorrencia((Integer) record.getValue(CD_OCORRENCIA));
+		setDataOcorrencia((Date) record.getValue(DT_OCORRENCIA));
+		setNumeroDocumento((String) record.getValue(NR_DOCUMENTO));
+		setDataVencimento((Date) record.getValue(DT_VENCIMENTO));
+		setValorTitulo((BigDecimal) record.getValue(VL_TITULO));
+		setDataCredito((Date) record.getValue(DT_CREDITO));
+		setValorDespesasCobranca((BigDecimal) record.getValue(VL_DESPESAS_COBRANCA));
+		setValorOutrasDespesas((BigDecimal) record.getValue(VL_OUTRASDESPESAS));
+		setValorJurosDesconto((BigDecimal) record.getValue(VL_JUROSDESCONTO));
+		setValorIOF((BigDecimal) record.getValue(VL_IOF));
+		setValorAbatimento((BigDecimal) record.getValue(VL_ABATIMENTO));
+		setValorDesconto((BigDecimal) record.getValue(VL_DESCONTO));
+		setValorPago((BigDecimal) record.getValue(VL_PAGO));
+		setValorJuros((BigDecimal) record.getValue(VL_JUROS));
+		setValorOutrosCreditos((BigDecimal) record.getValue(VL_OUTROS_CREDITOS));
+		setValorLancamento((BigDecimal) record.getValue(VL_LANCAMENTO));
+		setIndicadorValor((String) record.getValue(INDICADOR_VALOR));
+		setIndicativoDebitoCredito((String) record.getValue(INDICATIVO_DEBITO_CREDITO));
+		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
+		setEspecieTitulo((Integer) record.getValue(ESPECIE_TITULO));
+		setCodigoBancoRecebedor((Integer) record.getValue(CD_BANCO_RECEBEDOR));
+		setAgenciaRecebedora((Integer) record.getValue(AGENCIA_RECEBEDORA));
+		setDigitoAgenciaRecebedora((String) record.getValue(DIGITO_AGENCIA_RECEBEDORA));
+		
 
+	}
+
+	public int getNumberOfRecords() {
+		return 0;
+	}
+
+	public void readRowData(int row) {
+
+	}
+
+	public Integer getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Integer agencia) {
+		this.agencia = agencia;
+	}
+
+	public String getDigitoAgencia() {
+		return digitoAgencia;
+	}
+
+	public void setDigitoAgencia(String digitoAgencia) {
+		this.digitoAgencia = digitoAgencia;
+	}
+
+	public Long getNumeroContaCorrente() {
+		return numeroContaCorrente;
+	}
+
+	public void setNumeroContaCorrente(Long numeroContaCorrente) {
+		this.numeroContaCorrente = numeroContaCorrente;
+	}
+
+	public String getDigitoContaCorrente() {
+		return digitoContaCorrente;
+	}
+
+	public void setDigitoContaCorrente(String digitoContaCorrente) {
+		this.digitoContaCorrente = digitoContaCorrente;
+	}
+
+	public Integer getCodigoBancoRecebedor() {
+		return codigoBancoRecebedor;
+	}
+
+	public void setCodigoBancoRecebedor(Integer codigoBancoRecebedor) {
+		this.codigoBancoRecebedor = codigoBancoRecebedor;
+	}
+
+	public Integer getAgenciaRecebedora() {
+		return agenciaRecebedora;
+	}
+
+	public void setAgenciaRecebedora(Integer agenciaRecebedora) {
+		this.agenciaRecebedora = agenciaRecebedora;
+	}
+
+	public String getDigitoAgenciaRecebedora() {
+		return digitoAgenciaRecebedora;
+	}
+
+	public void setDigitoAgenciaRecebedora(String digitoAgenciaRecebedora) {
+		this.digitoAgenciaRecebedora = digitoAgenciaRecebedora;
+	}
+
+	public Integer getEspecieTitulo() {
+		return especieTitulo;
+	}
+
+	public void setEspecieTitulo(Integer especieTitulo) {
+		this.especieTitulo = especieTitulo;
+	}
+
+	public BigDecimal getValorAbatimentoNaoAproveitado() {
+		return valorAbatimentoNaoAproveitado;
+	}
+
+	public void setValorAbatimentoNaoAproveitado(BigDecimal valorAbatimentoNaoAproveitado) {
+		this.valorAbatimentoNaoAproveitado = valorAbatimentoNaoAproveitado;
+	}
+
+	public String getMotivoOcorrencia1() {
+		return null;
+	}
+
+	public Integer getTipoInscricaoSacadoAvalista() {
+		return null;
+	}
+
+	public Long getNumeroInscricaoSacadoAvalista() {
+		return null;
+	}
+
+	public String getNomeSacadorAvalista() {
+		return null;
+	}
+
+	public String getMotivoOcorrencia2() {
+		return null;
+	}
+
+	public String getMotivoOcorrencia3() {
+		return null;
+	}
+
+	public String getMotivoOcorrencia4() {
+		return null;
+	}
+
+	public String getMotivoOcorrencia5() {
+		return null;
 	}
 
 }

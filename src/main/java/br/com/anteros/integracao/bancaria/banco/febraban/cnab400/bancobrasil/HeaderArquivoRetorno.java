@@ -18,7 +18,7 @@ public class HeaderArquivoRetorno {
 	private static final String CD_REGISTRO = "CD_REGISTRO";
 
 	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "0")
-	private Integer codigoRegistro;
+	private String codigoRegistro;
 
 	@Field(name = CD_RETORNO, length = 1)
 	private String codigoRetorno;
@@ -65,26 +65,20 @@ public class HeaderArquivoRetorno {
 	@Field(name = "BRANCOS12", length = 7, value = " ")
 	private String brancos12;
 
-	@Field(name = "BRANCOS13", length = 42, value = " ")
+	@Field(name = "BRANCOS13", length = 287, value = " ")
 	private String brancos13;
 
-	@Field(name = "BRANCOS14", length = 7, value = " ")
+	@Field(name = "BRANCOS14", length = 6, value = " ")
 	private String brancos14;
-
-	@Field(name = "BRANCOS15", length = 238, value = " ")
-	private String brancos15;
-
-	@Field(name = "BRANCOS16", length = 6, value = " ")
-	private String brancos16;
 
 	public HeaderArquivoRetorno(ContaBancaria contaBancaria) {
 	}
 
-	public Integer getCodigoRegistro() {
+	public String getCodigoRegistro() {
 		return codigoRegistro;
 	}
 
-	public void setCodigoRegistro(Integer codigoRegistro) {
+	public void setCodigoRegistro(String codigoRegistro) {
 		this.codigoRegistro = codigoRegistro;
 	}
 
@@ -220,32 +214,12 @@ public class HeaderArquivoRetorno {
 		return brancos14;
 	}
 
-	public void setBrancos14(String brancos14) {
-		this.brancos14 = brancos14;
-	}
-
-	public String getBrancos15() {
-		return brancos15;
-	}
-
-	public void setBrancos15(String brancos15) {
-		this.brancos15 = brancos15;
-	}
-
-	public String getBrancos16() {
-		return brancos16;
-	}
-
-	public void setBrancos16(String brancos16) {
-		this.brancos16 = brancos16;
-	}
-
 	public static HeaderArquivoRetorno of(ContaBancaria contaBancaria) {
 		return new HeaderArquivoRetorno(contaBancaria);
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		setCodigoRegistro((Integer) record.getValue(CD_REGISTRO));
+		setCodigoRegistro((String) record.getValue(CD_REGISTRO));
 		setCodigoRetorno((String) record.getValue(CD_RETORNO));
 		setCodigoBanco((Integer) record.getValue(CD_BANCO));
 		setNomeBanco((String) record.getValue(NOME_BANCO));

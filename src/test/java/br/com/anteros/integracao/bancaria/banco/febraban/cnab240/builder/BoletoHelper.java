@@ -24,7 +24,10 @@ public class BoletoHelper {
 	
 	private static Boleto criarBoleto(Banco banco, Titulo titulo) {
 		Boleto boleto = criarOsDadosDoNovoBoleto(new Boleto(titulo));
-
+		/**
+		 * Atribuindo data do documento para a data de processamento para efeito de teste.
+		 */
+		boleto.setDataDeProcessamento(boleto.getTitulo().getDataDocumento());
 		return boleto;
 	}
 	

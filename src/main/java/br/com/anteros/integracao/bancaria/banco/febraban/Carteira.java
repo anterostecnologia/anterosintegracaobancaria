@@ -54,6 +54,8 @@ public class Carteira {
 	private TipoDeDistribuicaoBoleto tipoDeDistribuicaoBoleto;
 	
 	private String codigoConvenio;
+	
+	private Integer variacaoCarteira=0; 
 
 	/**
 	 * 
@@ -157,10 +159,6 @@ public class Carteira {
 		return (this.tipoDeCobranca == TipoDeCobranca.SEM_REGISTRO);
 	}
 
-	@Override
-	public String toString() {
-		return "Carteira [nome=" + nome + ", codigo=" + codigo + ", tipoDeCobranca=" + tipoDeCobranca + "]";
-	}
 
 	public TipoDeCobranca getTipoDeCobranca() {
 		return tipoDeCobranca;
@@ -192,6 +190,22 @@ public class Carteira {
 
 	public void setCodigoConvenio(String codigoConvenio) {
 		this.codigoConvenio = codigoConvenio;
+	}
+
+	public Integer getVariacaoCarteira() {
+		return variacaoCarteira;
+	}
+
+	public void setVariacaoCarteira(Integer variacaoCarteira) {
+		this.variacaoCarteira = variacaoCarteira;
+	}
+
+	@Override
+	public String toString() {
+		return "Carteira [nome=" + nome + ", codigo=" + codigo + ", tipoDeCobranca=" + tipoDeCobranca
+				+ ", tipoDeEmissaoBoleto=" + tipoDeEmissaoBoleto + ", tipoDeDistribuicaoBoleto="
+				+ tipoDeDistribuicaoBoleto + ", codigoConvenio=" + codigoConvenio + ", variacaoCarteira="
+				+ variacaoCarteira + "]";
 	}	
 
 }
