@@ -18,7 +18,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo.caixa;
 import br.com.anteros.automacao.bancaria.parametro.ParametroCaixaEconomicaFederal;
 import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 import br.com.anteros.integracao.bancaria.boleto.campo.AbstractBoletoInfoCampoView;

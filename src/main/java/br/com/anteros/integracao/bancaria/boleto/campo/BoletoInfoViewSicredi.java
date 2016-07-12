@@ -17,7 +17,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 
 
 import br.com.anteros.automacao.bancaria.parametro.ParametroBancoSicredi;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo.Aceite;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo.Aceite;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 

@@ -30,7 +30,7 @@ import br.com.anteros.core.log.LoggerProvider;
 import br.com.anteros.core.utils.Assert;
 import br.com.anteros.core.utils.DateUtil;
 import br.com.anteros.core.utils.ObjectUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 
 /**
  * <p>

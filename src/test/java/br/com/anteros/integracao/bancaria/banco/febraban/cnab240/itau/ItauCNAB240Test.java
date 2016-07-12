@@ -17,10 +17,10 @@ import br.com.anteros.core.utils.IOUtils;
 import br.com.anteros.core.utils.ResourceUtils;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
-import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
+import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class ItauCNAB240Test {

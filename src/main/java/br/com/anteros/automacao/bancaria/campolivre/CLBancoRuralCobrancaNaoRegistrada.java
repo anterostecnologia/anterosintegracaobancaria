@@ -18,7 +18,7 @@ package br.com.anteros.automacao.bancaria.campolivre;
 import br.com.anteros.automacao.bancaria.parametro.ParametroBancoRural;
 import br.com.anteros.flatfile.type.component.Fillers;
 import br.com.anteros.flatfile.type.component.FixedField;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 
 /**
  * <p>

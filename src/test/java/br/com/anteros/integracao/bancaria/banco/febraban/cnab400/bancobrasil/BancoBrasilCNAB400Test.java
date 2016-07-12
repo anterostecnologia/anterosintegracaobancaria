@@ -19,12 +19,12 @@ import br.com.anteros.core.utils.IOUtils;
 import br.com.anteros.core.utils.ResourceUtils;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
-import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.RetornoCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.TipoMoeda;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.CNAB400;
-import br.com.anteros.integracao.bancaria.banco.febraban.cnab400.CNAB400Factory;
+import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.TipoMoeda;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class BancoBrasilCNAB400Test {

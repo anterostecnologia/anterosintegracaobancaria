@@ -19,7 +19,7 @@ package br.com.anteros.integracao.bancaria.banco;
 import java.awt.Image;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.PessoaJuridica;
-import br.com.anteros.integracao.bancaria.banco.febraban.CodigoDeCompensacaoBACEN;
+import br.com.anteros.integracao.bancaria.banco.layout.CodigoDeCompensacaoBACEN;
 
 
 

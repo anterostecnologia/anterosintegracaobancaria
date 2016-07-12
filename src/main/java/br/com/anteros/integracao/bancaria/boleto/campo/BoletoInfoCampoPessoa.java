@@ -17,7 +17,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 
 import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.EntidadeDeCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.EntidadeDeCobranca;
 
 /**
  * Formata os dados como CPRF e Nome de uma pessoa que são impressos no boleto.

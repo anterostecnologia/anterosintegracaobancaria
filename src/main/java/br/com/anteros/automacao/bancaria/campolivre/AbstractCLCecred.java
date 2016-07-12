@@ -15,7 +15,7 @@
  *******************************************************************************/
 package br.com.anteros.automacao.bancaria.campolivre;
 
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 
 /**
  * <p>

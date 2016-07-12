@@ -24,10 +24,10 @@ import com.lowagie.text.DocumentException;
 
 import br.com.anteros.core.utils.IOUtils;
 import br.com.anteros.core.utils.ResourceUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.Banco;
-import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.BoletoHelper;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
+import br.com.anteros.integracao.bancaria.banco.layout.Banco;
+import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.BoletoConfiguration;

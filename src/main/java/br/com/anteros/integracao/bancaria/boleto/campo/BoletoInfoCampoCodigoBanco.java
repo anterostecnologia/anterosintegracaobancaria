@@ -15,7 +15,7 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.boleto.campo;
 
-import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>

@@ -29,8 +29,8 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.type.FixedField;
 import br.com.anteros.flatfile.type.component.BlockOfFields;
 import br.com.anteros.integracao.bancaria.banco.ParametroBancario;
-import br.com.anteros.integracao.bancaria.banco.febraban.Banco;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Banco;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 /**

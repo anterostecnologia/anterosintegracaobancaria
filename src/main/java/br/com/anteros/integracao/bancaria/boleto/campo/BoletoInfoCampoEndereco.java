@@ -18,7 +18,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
 import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.EntidadeDeCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.EntidadeDeCobranca;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>

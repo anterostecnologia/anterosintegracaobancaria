@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.anteros.integracao.bancaria.banco.Banco;
-import br.com.anteros.integracao.bancaria.banco.febraban.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 
 public class BoletoHelper {

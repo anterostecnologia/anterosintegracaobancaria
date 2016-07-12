@@ -16,7 +16,7 @@
 package br.com.anteros.integracao.bancaria.boleto.campo;
 
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 
 /**
  * Formata o Nosso Número do Título que é impresso no boleto.

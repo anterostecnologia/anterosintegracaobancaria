@@ -19,7 +19,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 import java.awt.Image;
 
 import br.com.anteros.core.utils.ObjectUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 

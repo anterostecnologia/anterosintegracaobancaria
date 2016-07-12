@@ -17,9 +17,9 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 
 
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.Agencia;
-import br.com.anteros.integracao.bancaria.banco.febraban.Carteira;
-import br.com.anteros.integracao.bancaria.banco.febraban.NumeroDaConta;
+import br.com.anteros.integracao.bancaria.banco.layout.Agencia;
+import br.com.anteros.integracao.bancaria.banco.layout.Carteira;
+import br.com.anteros.integracao.bancaria.banco.layout.NumeroDaConta;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 

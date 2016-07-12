@@ -18,7 +18,7 @@ package br.com.anteros.automacao.bancaria.campolivre;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 import br.com.anteros.integracao.bancaria.validador.digitoverificador.Modulo;
 
 /**

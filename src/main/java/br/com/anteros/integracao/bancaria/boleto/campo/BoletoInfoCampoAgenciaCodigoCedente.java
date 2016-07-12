@@ -17,7 +17,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 
 import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.core.utils.StringUtils;
-import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 
 /**
  * Formata a agência e o número da conta.

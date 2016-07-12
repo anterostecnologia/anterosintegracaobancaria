@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CNPJ;
-import br.com.anteros.integracao.bancaria.banco.febraban.Banco;
-import br.com.anteros.integracao.bancaria.banco.febraban.CodigoDeCompensacaoBACEN;
+import br.com.anteros.integracao.bancaria.banco.layout.Banco;
+import br.com.anteros.integracao.bancaria.banco.layout.CodigoDeCompensacaoBACEN;
 
 
 /**

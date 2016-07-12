@@ -20,7 +20,7 @@ import java.util.Collection;
 import br.com.anteros.automacao.bancaria.comum.pessoa.contato.NumeroDeTelefone;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
 import br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CPRF;
-import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 
 
 /**

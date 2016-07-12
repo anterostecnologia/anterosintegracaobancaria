@@ -23,8 +23,8 @@ import br.com.anteros.core.utils.DateFormat;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.type.component.Fillers;
 import br.com.anteros.flatfile.type.component.FixedField;
-import br.com.anteros.integracao.bancaria.banco.febraban.ContaBancaria;
-import br.com.anteros.integracao.bancaria.banco.febraban.Titulo;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 
 /**
  * 
