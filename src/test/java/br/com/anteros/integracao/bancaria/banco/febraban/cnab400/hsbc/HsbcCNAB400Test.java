@@ -1,7 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab400.hsbc;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -19,13 +18,13 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400Factory;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.CNAB400;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.CNAB400Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class HsbcCNAB400Test {
 
-	private static final String REMESSA = "REMESSA";
+	
 	private List<RemessaCobranca> remessas;
 	private CNAB400 layoutCNAB400;
 
@@ -66,9 +65,9 @@ public class HsbcCNAB400Test {
 	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException, IOException {
 
-//		byte[] byteArray = layoutCNAB400.generate(REMESSA );
+//		byte[] byteArray = layoutCNAB400.generate(REMESSA_COBRANCA );
 //
-//		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB400_Hsbc.REM");
+//		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB400_Hsbc.REM");
 		
 //		FileOutputStream fos = new FileOutputStream(file);
 //		fos.write(byteArray);
@@ -85,8 +84,8 @@ public class HsbcCNAB400Test {
 	public void deveLerArquivoRetornoEValidarValores() throws IllegalArgumentException, IllegalAccessException,
 			IOException, FlatFileManagerException, JAXBException {
 
-//		File file = new File("src/main/resources/arquivos-retorno/RET_CNAB240_Hsbc.RET");
-//		List<RetornoCobranca> retornos = layoutCNAB400.read(file,  "RETORNO" );
+//		File file = new File("src/main/resources/arquivos-retorno/COB_CNAB240_Hsbc.RET");
+//		List<RetornoCobranca> retornos = layoutCNAB400.read(file,  RETORNO_COBRANCA );
 //
 //		Assert.assertEquals("HSBC: Número de retornos lido incorreto.", retornos.size(), 4);
 //		Assert.assertEquals("HSBC: Tipo de moeda lido incorreto.",

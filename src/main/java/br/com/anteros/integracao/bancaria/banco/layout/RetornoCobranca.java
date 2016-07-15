@@ -19,8 +19,8 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.TitulosCobrancaSegmentoT;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.TitulosCobrancaSegmentoU;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CobrancaSegmentoU;
 
 public class RetornoCobranca {
 
@@ -76,8 +76,8 @@ public class RetornoCobranca {
 
 	private Object motivoRejeicao5;
 
-	private RetornoCobranca(ContaBancaria contaBancaria, TitulosCobrancaSegmentoT segmentoT,
-			TitulosCobrancaSegmentoU segmentoU) {
+	private RetornoCobranca(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT,
+			CobrancaSegmentoU segmentoU) {
 		titulo = new Titulo(contaBancaria);
 		titulo.setCarteira(new Carteira(Integer.valueOf(segmentoT.getCodigoCarteira())));
 		titulo.setValorTitulo(segmentoT.getValorNominalTitulo());
@@ -147,8 +147,8 @@ public class RetornoCobranca {
 		this.digitoAgenciaRecebedora = detalheRetorno.getDigitoAgenciaRecebedora();
 	}
 
-	public static RetornoCobranca of(ContaBancaria contaBancaria, TitulosCobrancaSegmentoT segmentoT,
-			TitulosCobrancaSegmentoU segmentoU) {
+	public static RetornoCobranca of(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT,
+			CobrancaSegmentoU segmentoU) {
 		return new RetornoCobranca(contaBancaria, segmentoT, segmentoU);
 	}
 

@@ -19,15 +19,16 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Factory;
+import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Context;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ContextBuilder;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class SantanderCNAB240Test {
 
-	private static final String REMESSA = "REMESSA";
 	private List<RemessaCobranca> remessas;
-	private CNAB240 layoutCNAB240;
+	private CNAB240Context<RetornoCobranca> layoutCNAB240;
 
 	@Before
 	public void beforeExecuteTests() {
@@ -36,7 +37,8 @@ public class SantanderCNAB240Test {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
 
-		layoutCNAB240 = CNAB240Factory.create(remessas, calendar.getTime(), calendar.getTime());
+		layoutCNAB240 = new CNAB240ContextBuilder<RetornoCobranca>().contaBancaria(remessas.get(0).getTitulo().getContaBancaria())
+				.dataGravacao(calendar.getTime()).dataHoraGeracao(calendar.getTime()).remessas(remessas).build();
 	}
 
 	@After
@@ -65,9 +67,9 @@ public class SantanderCNAB240Test {
 	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException, IOException {
 
-		byte[] byteArray = layoutCNAB240.generate(new String[] { REMESSA });
+		byte[] byteArray = layoutCNAB240.generate(new String[] { REMESSA_COBRANCA });
 
-		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB240_BancoSantander.REM");
+		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB240_BancoSantander.REM");
 
 //		FileOutputStream fos = new FileOutputStream(file);
 //		fos.write(byteArray);

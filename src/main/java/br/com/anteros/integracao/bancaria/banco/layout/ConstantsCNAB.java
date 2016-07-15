@@ -1,7 +1,47 @@
 package br.com.anteros.integracao.bancaria.banco.layout;
 
 public class ConstantsCNAB {
+	
+	public static final int VERSAO_LAYOUT_ARQUIVO_FEBRABAN = 84;
 
+	public static final int VERSAO_LAYOUT_LOTE_FEBRABAN = 45;
+
+	public static final int PRIMEIRA_REMESSA = 0;
+
+	public static final String GLOBAL = "GLOBAL";
+
+	public static final String RETORNO_COBRANCA = "RETORNO_COBRANCA";
+	
+	public static final String REMESSA_COBRANCA = "REMESSA_COBRANCA";
+	
+	public static final String RETORNO_COBRANCA_17 = "RETORNO_COBRANCA_17";
+	
+	public static final String REMESSA_COBRANCA_17 = "REMESSA_COBRANCA_17";
+	
+	public static final String RETORNO_CONCILIACAO_BANCARIA = "RETORNO_CONCILIACAO_BANCARIA";
+
+	public static final String HEADER = "Header";
+	
+	public static final String HEADER_CONCILIACAO_BANCARIA = "HeaderConciliacaoBancaria";
+	
+	public static final String CONCILIACAO_BANCARIA_SEGMENTO_E = "ConciliacaoBancariaSegmentoE";
+	
+	public static final String TRAILLER_CONCILIACAO_BANCARIA = "TraillerConciliacaoBancaria";
+	
+	public static final String HEADER_COBRANCA = "HeaderCobranca";
+	
+	public static final String COBRANCA_SEGMENTO_P = "CobrancaSegmentoP";
+	
+	public static final String COBRANCA_SEGMENTO_Q = "CobrancaSegmentoQ";
+	
+	public static final String COBRANCA_SEGMENTO_T = "CobrancaSegmentoT";
+	
+	public static final String COBRANCA_SEGMENTO_U = "CobrancaSegmentoU";
+	
+	public static final String TRAILLER_COBRANCA = "TraillerCobranca";
+	
+	public static final String TRAILLER = "Trailler";
+	
 	public static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
 
 	public static final String CD_SUBHISTORICO = "CD_SUBHISTORICO";
@@ -14,7 +54,7 @@ public class ConstantsCNAB {
 
 	public static final String NR_LOTE = "NR_LOTE";
 
-	public static final String DT_BALANCETE = "DT_BALANCETE";
+	public static final String DT_CONTABIL = "DT_BALANCETE";
 
 	public static final String VL_LANCAMENTO = "VL_LANCAMENTO";
 
@@ -22,9 +62,9 @@ public class ConstantsCNAB {
 
 	public static final String NR_DOCUMENTO = "NR_DOCUMENTO";
 
-	public static final String LITERAL_LANCAMENTO = "LITERAL_LANCAMENTO";
+	public static final String HISTORICO_LANCAMENTO = "HISTORICO_LANCAMENTO";
 
-	public static final String CD_LANCAMENTO = "CD_LANCAMENTO";
+	public static final String CD_HISTORICO = "CD_LANCAMENTO";
 
 	public static final String CATEGORIA_LANCAMENTO = "CATEGORIA_LANCAMENTO";
 
@@ -54,7 +94,7 @@ public class ConstantsCNAB {
 
 	public static final String VL_TOTAL_BLOQUEADO_04_09 = "VL_TOTAL_BLOQUEADO_04_09";
 
-	public static final String STATUS_CONTA = "STATUS_CONTA";
+	public static final String DEBITO_CREDITO = "DEBITO_CREDITO";
 
 	public static final String VL_SALDO_ANTERIOR = "VL_SALDO_ANTERIOR";
 
@@ -319,5 +359,22 @@ public class ConstantsCNAB {
 	public static final String QT_TITULOS_COBRANCA = "QT_TITULOS_COBRANCA";
 
 	public static final String NR_AVISO_BANCARIO = "NR_AVISO_BANCARIO";
+	
+    public static final String COMPLEMENTO_HISTORICO = "COMPLEMENTO_HISTORICO";
+    
+    public static final String TP_LANCAMENTO = "TP_LANCAMENTO";
+    
+    public static final String STATUS_SALDO = "STATUS_SALDO";
+    
+    public static final String TP_MOEDA = "TP_MOEDA";
+    
+    public static final String NR_SEQUENCIA_EXTRATO = "NR_SEQUENCIA_EXTRATO";
+    
+    public static final String TP_COMPLEMENTO_HISTORICO = "TP_COMPLEMENTO_LANCAMENTO";
 
+	public static final String NATUREZA_LANCAMENTO = "NATUREZA_LANCAMENTO";
+	
+	public static final String SALDO_BLOQUEADO = "SALDO_BLOQUEADO";
+	
+	public static final String QT_REGISTROS_LOTE = "QT_REGISTROS_LOTE";
 }

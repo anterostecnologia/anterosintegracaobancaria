@@ -23,13 +23,13 @@ import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoMoeda;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab400.CNAB400Factory;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.CNAB400;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.CNAB400Factory;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class BancoBrasilCNAB400Test {
 
-	private static final String REMESSA = "REMESSA";
 	private List<RemessaCobranca> remessas;
 	private CNAB400 layoutCNAB400;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -71,9 +71,9 @@ public class BancoBrasilCNAB400Test {
 	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException, IOException {
 
-		byte[] byteArray = layoutCNAB400.generate(REMESSA);
+		byte[] byteArray = layoutCNAB400.generate(REMESSA_COBRANCA);
 
-		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/REM_CNAB400_BancoBrasil.REM");
+		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB400_BancoBrasil.REM");
 
 		FileOutputStream fos = new FileOutputStream(file);
 		fos.write(byteArray);
@@ -90,8 +90,8 @@ public class BancoBrasilCNAB400Test {
 	public void deveLerArquivoRetornoEValidarValores() throws IllegalArgumentException, IllegalAccessException,
 			IOException, FlatFileManagerException, JAXBException {
 
-		File file = new File("src/main/resources/arquivos-retorno/RET_CNAB400_BancoBrasil.RET");
-		List<RetornoCobranca> retornos = layoutCNAB400.read(file, "RETORNO");
+		File file = new File("src/main/resources/arquivos-retorno/COB_CNAB400_BancoBrasil.RET");
+		List<RetornoCobranca> retornos = layoutCNAB400.read(file, RETORNO_COBRANCA);
 
 		Assert.assertEquals("Banco do Brasil: Número de retornos lido incorreto.", retornos.size(), 1);
 
@@ -129,8 +129,8 @@ public class BancoBrasilCNAB400Test {
 	public void deveLerArquivoRetornoCarteira17EValidarValores() throws IllegalArgumentException,
 			IllegalAccessException, IOException, FlatFileManagerException, JAXBException {
 
-		File file = new File("src/main/resources/arquivos-retorno/RET_CNAB400_BancoBrasil_Carteira17.RET");
-		List<RetornoCobranca> retornos = layoutCNAB400.read(file, "RETORNO_17");
+		File file = new File("src/main/resources/arquivos-retorno/COB_CNAB400_BancoBrasil_Carteira17.RET");
+		List<RetornoCobranca> retornos = layoutCNAB400.read(file, RETORNO_COBRANCA_17);
 
 		int titulosEncontrados = 0;
 
