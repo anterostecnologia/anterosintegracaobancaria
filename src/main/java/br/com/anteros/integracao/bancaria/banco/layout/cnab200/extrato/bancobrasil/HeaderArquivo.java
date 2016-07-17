@@ -3,66 +3,81 @@ package br.com.anteros.integracao.bancaria.banco.layout.cnab200.extrato.bancobra
 import java.util.Date;
 
 import br.com.anteros.flatfile.annotation.Field;
+import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderArquivo {	
 
 	@IdType(name = CD_REGISTRO, length = 1, positionField = 1, value = "0")
 	private String codigoRegistro;
+	
+	@Field(name="BRANCOS1", length=8)
+	private String brancos1;
 
 	@Field(name = "ID_SERVICO", length = 2)
 	private String identificadorServico;
 
-	@Field(name = "BRANCOS1", length = 15, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos1;
-
-	@Field(name = "BRANCOS2", length = 11, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS2", length = 15, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
-	@Field(name = "BRANCOS3", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS3", length = 11, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	@Field(name = "BRANCOS4", length = 4, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS4", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos4;
 
 	@Field(name = "BRANCOS5", length = 4, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos5;
 
-	@Field(name = "BRANCOS6", length = 22, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS6", length = 4, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos6;
+
+	@Field(name = "BRANCOS7", length = 22, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos7;
 
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER)
 	private Integer codigoBanco;
+	
+	@Field(name="BRANCOS8", length=15)
+	private String brancos8;
 
-	@Field(name = DT_GRAVACAO, length = 6, type = EnumTypes.DATE)
+	@Field(name = DT_GRAVACAO, length = 6, type = EnumTypes.DATE, format=Formats.DATE_DDMMYY)
 	private Date dataGravacao;
 
-	@Field(name = "BRANCOS7", length = 5, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos7;
+	@Field(name = "BRANCOS9", length = 5, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos9;
 
-	@Field(name = "BRANCOS8", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos8;
+	@Field(name = "BRANCOS10", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos10;
 
 	@Field(name = NR_INSCRICAO_EMPRESA, length = 14)
 	private String numeroInscricaoEmpresa;
 
-	@Field(name = "BRANCOS9", length = 59, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos9;
-
-	@Field(name = "BRANCOS10", length = 8, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos10;
-
-	@Field(name = "BRANCOS11", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS11", length = 59, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos11;
 
-	@Field(name = "BRANCOS12", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS12", length = 8, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos12;
+
+	@Field(name = "BRANCOS13", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos13;
+
+	@Field(name = "BRANCOS14", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos14;
 
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+	
+	private ContaBancaria contaBancaria;
+
+	public HeaderArquivo(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
 		setCodigoBanco((Integer) record.getValue(CD_BANCO));
@@ -117,6 +132,10 @@ public class HeaderArquivo {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public static HeaderArquivo of(ContaBancaria contaBancaria) {
+		return new HeaderArquivo(contaBancaria);
 	}
 
 }

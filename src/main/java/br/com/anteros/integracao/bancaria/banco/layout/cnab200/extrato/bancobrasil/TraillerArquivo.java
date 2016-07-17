@@ -7,6 +7,8 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class TraillerArquivo {
@@ -20,10 +22,10 @@ public class TraillerArquivo {
 	@Field(name="BRANCOS2", length=6)
 	private String brancos2;
 	
-	@Field(name=VL_TOTAL_DEBITOS, length=14, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+	@Field(name=VL_TOTAL_DEBITOS, length=16, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
 	private BigDecimal valorTotalDebitos;
 	
-	@Field(name=VL_TOTAL_CREDITOS, length=14, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
+	@Field(name=VL_TOTAL_CREDITOS, length=16, type=EnumTypes.BIGDECIMAL, format=Formats.DECIMAL_DD)
 	private BigDecimal valorTotalCreditos;
 	
 	@Field(name="BRANCOS3", length=145)
@@ -37,6 +39,12 @@ public class TraillerArquivo {
 	
 	@Field(name=NR_SEQUENCIAL_REGISTRO, length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+
+	private ContaBancaria contaBancaria;
+
+	public TraillerArquivo(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
 
 	public String getTipoRegistro() {
 		return tipoRegistro;
@@ -82,6 +90,10 @@ public class TraillerArquivo {
 		setValorTotalDebitos((BigDecimal) record.getValue(VL_TOTAL_DEBITOS));
 		setValorTotalCreditos((BigDecimal) record.getValue(VL_TOTAL_CREDITOS));
 		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));		
+	}
+
+	public static TraillerArquivo of(ContaBancaria contaBancaria) {
+		return new TraillerArquivo(contaBancaria);
 	}	
 	
 	

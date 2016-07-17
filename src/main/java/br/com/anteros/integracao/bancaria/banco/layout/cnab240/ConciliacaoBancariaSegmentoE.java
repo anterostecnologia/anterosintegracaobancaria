@@ -8,13 +8,14 @@ import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.flatfile.type.component.Record;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.Lancamento;
 
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ConciliacaoBancariaSegmentoE implements RecordData{	
+public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{	
 
 	@IdType(value = "E", length = 1, positionField = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
@@ -27,9 +28,9 @@ public class ConciliacaoBancariaSegmentoE implements RecordData{
 
 	@Field(name = TP_REGISTRO, type = EnumTypes.INTEGER, length = 1, value = "3", padding = Paddings.ZERO_LEFT)
 	private Integer tipoRegistro;
-
-	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
-	private Integer tipoServico;
+	
+	@Field(name=NR_SEQUENCIAL_REGISTRO, length=5)
+	private Integer numeroSequencialRegistro;
 
 	@Field(name = "BRANCOS1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
@@ -110,7 +111,6 @@ public class ConciliacaoBancariaSegmentoE implements RecordData{
 	public void set(Record record){
 		setCodigoBanco((Integer) record.getValue(CD_BANCO));
 		setLoteServico((Integer) record.getValue(LT_SERVICO));
-		setTipoServico((Integer) record.getValue(TP_SERVICO));
 		setTipoInscricao((Integer) record.getValue(TP_INSCRICAO));
 		setNumeroInscricao((String) record.getValue(NR_INSCRICAO));
 		setCodigoConvenio((String) record.getValue(CD_CONVENIO));
@@ -164,14 +164,6 @@ public class ConciliacaoBancariaSegmentoE implements RecordData{
 
 	public void setTipoRegistro(Integer tipoRegistro) {
 		this.tipoRegistro = tipoRegistro;
-	}
-
-	public Integer getTipoServico() {
-		return tipoServico;
-	}
-
-	public void setTipoServico(Integer tipoServico) {
-		this.tipoServico = tipoServico;
 	}
 
 	public Integer getTipoInscricao() {
@@ -354,6 +346,26 @@ public class ConciliacaoBancariaSegmentoE implements RecordData{
 	@Override
 	public void readRowData(int row) {
 		
+	}
+
+	@Override
+	public Integer getAgenciaOrigemLancamento() {
+		return null;
+	}
+
+	@Override
+	public Integer getCodigoBancoOrigem() {
+		return null;
+	}
+
+	@Override
+	public String getCodigoSubHistorico() {
+		return "";
+	}
+
+	@Override
+	public Integer getNumeroSequencialRegistro() {
+		return numeroSequencialRegistro;
 	}
 	
 	

@@ -116,8 +116,6 @@ public class ConstantsCNAB {
 
 	public static final String ESTAGIO_SALDO_ATUAL = "ESTAGIO_SALDO_ATUAL";
 
-	public static final String STATUS_SALDO_ATUAL = "STATUS_SALDO_ATUAL";
-
 	public static final String SALDO_ATUAL = "SALDO_ATUAL";
 
 	public static final String DT_SALDO_ATUAL = "DT_SALDO_ATUAL";

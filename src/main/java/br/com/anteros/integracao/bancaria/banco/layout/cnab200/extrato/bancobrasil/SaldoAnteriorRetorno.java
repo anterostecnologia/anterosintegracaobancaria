@@ -8,6 +8,7 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAnterior;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
@@ -37,7 +38,7 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 	@Field(name = DIGITO_CONTA_CORRENTE, length = 1)
 	private String digitoContaCorrente;
 
-	@Field(name = VL_BLOQUEADO, length = 15, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_BLOQUEADO, length = 17, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorBloqueado;
 
 	@Field(name = CD_CONVENIO, length = 9)
@@ -52,22 +53,22 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 	@Field(name = DT_SALDO_ANTERIOR, length = 6, type = EnumTypes.DATE, format = Formats.DATE_DDMMYY)
 	private Date dataSaldoAnterior;
 
-	@Field(name = VL_SALDO_ANTERIOR, length = 16, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_SALDO_ANTERIOR, length = 18, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorSaldoAnterior;
 
 	@Field(name = DEBITO_CREDITO, length = 1)
 	private String debitoCredito;
 
-	@Field(name = VL_TOTAL_BLOQUEADO_04_09, length = 15, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_TOTAL_BLOQUEADO_04_09, length = 17, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalBloqueado04A09Dias;
 
-	@Field(name = VL_TOTAL_BLOQUEADO_03, length = 15, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_TOTAL_BLOQUEADO_03, length = 17, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalBloqueado03Dias;
 
-	@Field(name = VL_TOTAL_BLOQUEADO_02, length = 15, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_TOTAL_BLOQUEADO_02, length = 17, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalBloqueado02Dias;
 
-	@Field(name = VL_TOTAL_BLOQUEADO_01, length = 15, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
+	@Field(name = VL_TOTAL_BLOQUEADO_01, length = 17, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalBloqueado01Dia;
 
 	@Field(name = "BRANCOS4", length = 8)
@@ -85,8 +86,13 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
-	public void set(br.com.anteros.flatfile.Record record) {
+	private ContaBancaria contaBancaria;
 
+	public SaldoAnteriorRetorno(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public void set(br.com.anteros.flatfile.Record record) {
 		setTipoInscricao((String) record.getValue(TP_TIPO_INSCRICAO));
 		setNumeroInscricao((String) record.getValue(NR_INSCRICAO_EMPRESA));
 		setAgencia((Integer) record.getValue(AGENCIA));
@@ -103,7 +109,6 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 		setValorTotalBloqueado02Dias((BigDecimal) record.getValue(VL_TOTAL_BLOQUEADO_02));
 		setValorTotalBloqueado01Dia((BigDecimal) record.getValue(VL_TOTAL_BLOQUEADO_01));
 		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));
-
 	}
 
 	public String getTipoRegistro() {
@@ -248,6 +253,10 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public static SaldoAnteriorRetorno of(ContaBancaria contaBancaria) {
+		return new SaldoAnteriorRetorno(contaBancaria);
 	}
 
 }

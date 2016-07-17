@@ -10,10 +10,11 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.flatfile.type.component.Record;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.SaldoAtual;
 
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
-public class TraillerConciliacaoBancaria {
+public class TraillerConciliacaoBancaria implements SaldoAtual {
 
 	@IdType(name = TP_REGISTRO, length = 1, positionField = 3, value = "5")
 	private String tipoRegistro;

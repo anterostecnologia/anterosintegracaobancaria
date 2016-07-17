@@ -8,6 +8,7 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAtual;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
@@ -40,10 +41,10 @@ public class SaldoAtualRetorno implements SaldoAtual {
 	@Field(name="BRANCOS2", length=38)
 	private String brancos2;
 	
-	@Field(name=DT_SALDO_ATUAL, length=6, format=Formats.DATE_DDMMYY)
+	@Field(name=DT_SALDO_ATUAL, length=6, format=Formats.DATE_DDMMYY, type=EnumTypes.DATE)
 	private Date dataSaldoAtual;
 	
-	@Field(name=SALDO_ATUAL, length=16, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=SALDO_ATUAL, length=18, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoAtual;
 	
 	@Field(name = DEBITO_CREDITO, length = 1)
@@ -58,25 +59,35 @@ public class SaldoAtualRetorno implements SaldoAtual {
 	@Field(name="BRANCOS5", length=1)
 	private String brancos5;
 	
-	@Field(name="BRANCOS6", length=8)
+	@Field(name="BRANCOS6", length=39)
 	private String brancos6;
 	
-	@Field(name="BRANCOS7", length=14)
+	@Field(name="BRANCOS7", length=8)
 	private String brancos7;
 	
-	@Field(name="BRANCOS8", length=3)
+	@Field(name="BRANCOS8", length=14)
 	private String brancos8;
 	
-	@Field(name="BRANCOS9", length=2)
+	@Field(name="BRANCOS9", length=3)
 	private String brancos9;
+	
+	@Field(name="BRANCOS10", length=2)
+	private String brancos10;
 	
 	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER)
 	private Integer codigoBanco;
 	
 	@Field(name=NR_SEQUENCIAL_REGISTRO, length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer numeroSequencialRegistro;	
+	private Integer numeroSequencialRegistro;
+
+	private ContaBancaria contaBancaria;	
 	
 	
+	public SaldoAtualRetorno(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+
 	public void set(br.com.anteros.flatfile.Record record) {
 		setTipoInscricao((String) record.getValue(TP_TIPO_INSCRICAO));
 		setNumeroInscricao((String) record.getValue(NR_INSCRICAO_EMPRESA));
@@ -216,6 +227,29 @@ public class SaldoAtualRetorno implements SaldoAtual {
 
 	public void setCodigoBanco(Integer codigoBanco) {
 		this.codigoBanco = codigoBanco;
+	}
+
+
+	@Override
+	public BigDecimal getSaldoBloqueado() {
+		return BigDecimal.ZERO;
+	}
+
+
+	@Override
+	public BigDecimal getValorTotalDebitos() {
+		return BigDecimal.ZERO;
+	}
+
+
+	@Override
+	public BigDecimal getValorTotalCreditos() {
+		return BigDecimal.ZERO;
+	}
+
+
+	public static SaldoAtualRetorno of(ContaBancaria contaBancaria) {
+		return new SaldoAtualRetorno(contaBancaria);
 	}
 
 }

@@ -7,11 +7,13 @@ import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
+import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.Lancamento;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
-public class ConciliacaoDetalheRetorno implements Lancamento {
+public class ConciliacaoDetalheRetorno implements Lancamento, RecordData {
 
 	@IdType(name = ID_TIPOREGISTRO, length = 1, positionField = 8, value = "1")
 	private String tipoRegistro;
@@ -46,8 +48,8 @@ public class ConciliacaoDetalheRetorno implements Lancamento {
 	@Field(name = HISTORICO_LANCAMENTO, length = 25)
 	private String historicoLancamento;
 
-	@Field(name = NR_DOCUMENTO, length = 6, type = EnumTypes.INTEGER)
-	private Integer numeroDocumento;
+	@Field(name = NR_DOCUMENTO, length = 6)
+	private String numeroDocumento;
 
 	@Field(name = DT_LANCAMENTO, length = 6, format = Formats.DATE_DDMMYY, type = EnumTypes.DATE)
 	private Date dataLancamento;
@@ -91,6 +93,12 @@ public class ConciliacaoDetalheRetorno implements Lancamento {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
 
+	private ContaBancaria contaBancaria;
+
+	public ConciliacaoDetalheRetorno(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
 	public void set(br.com.anteros.flatfile.Record record) {
 		setTipoInscricao((String) record.getValue(TP_TIPO_INSCRICAO));
 		setNumeroInscricaoEmpresa((String) record.getValue(NR_INSCRICAO_EMPRESA));
@@ -100,7 +108,7 @@ public class ConciliacaoDetalheRetorno implements Lancamento {
 		setCategoriaLancamento((String) record.getValue(CATEGORIA_LANCAMENTO));
 		setCodigoHistorico((Integer) record.getValue(CD_HISTORICO));
 		setHistoricoLancamento((String) record.getValue(HISTORICO_LANCAMENTO));
-		setNumeroDocumento((Integer) record.getValue(NR_DOCUMENTO));
+		setNumeroDocumento((String) record.getValue(NR_DOCUMENTO));
 		setDataLancamento((Date) record.getValue(DT_LANCAMENTO));
 		setValorLancamento((BigDecimal) record.getValue(VL_LANCAMENTO));
 		setComplementoHistorico((String) record.getValue(COMPLEMENTO_HISTORICO));
@@ -186,11 +194,11 @@ public class ConciliacaoDetalheRetorno implements Lancamento {
 		this.historicoLancamento = historicoLancamento;
 	}
 
-	public Integer getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(Integer numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -252,6 +260,55 @@ public class ConciliacaoDetalheRetorno implements Lancamento {
 
 	public String getHistoricoLancamento() {
 		return historicoLancamento;
+	}
+
+	@Override
+	public String getNaturezaLancamento() {
+		return null;
+	}
+
+	@Override
+	public Integer getTipoComplementoHistorico() {
+		return null;
+	}
+
+	@Override
+	public String getIdentificadorCPMF() {
+		return "";
+	}
+
+	@Override
+	public Date getDataContabil() {
+		return dataLancamento;
+	}
+
+	@Override
+	public Integer getAgenciaOrigemLancamento() {
+		return null;
+	}
+
+	@Override
+	public Integer getCodigoBancoOrigem() {
+		return null;
+	}
+
+	@Override
+	public String getCodigoSubHistorico() {
+		return null;
+	}
+
+	@Override
+	public int getNumberOfRecords() {
+		return 0;
+	}
+
+	@Override
+	public void readRowData(int row) {
+	
+	}
+
+	public static ConciliacaoDetalheRetorno of(ContaBancaria contaBancaria) {
+		return new ConciliacaoDetalheRetorno(contaBancaria);
 	}
 
 }

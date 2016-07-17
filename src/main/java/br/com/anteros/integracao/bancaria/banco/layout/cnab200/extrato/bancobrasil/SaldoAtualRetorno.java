@@ -8,6 +8,7 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAtual;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
@@ -34,43 +35,43 @@ public class SaldoAtualRetorno implements SaldoAtual {
 	@Field(name=NR_CONTACORRENTE, length=11, type=EnumTypes.INTEGER)
 	private Integer numeroContaCorrente;
 	
-	@Field(name=DIGITO_CONTA_CORRENTE, length=1)
+	@Field(name=DIGITO_CONTA_CORRENTE, length=1)	
 	private String digitoContaCorrente;
 	
-	@Field(name=SALDO_LIQUIDO_FUNDO_CURTOPRAZO, length=15, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=SALDO_LIQUIDO_FUNDO_CURTOPRAZO, length=17, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoLiquidoFundoCurtoPrazo;
 	
-	@Field(name=VALOR_CPMF, length=15, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=VALOR_CPMF, length=17, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal valorCPMF;
 	
 	@Field(name="BRANCOS2", length=4)
 	private String brancos2;
 	
-	@Field(name=DT_SALDO_ATUAL, length=6, format=Formats.DATE_DDMMYY)
+	@Field(name=DT_SALDO_ATUAL, length=6, format=Formats.DATE_DDMMYY, type=EnumTypes.DATE)
 	private Date dataSaldoAtual;
 	
-	@Field(name=SALDO_ATUAL, length=16, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=SALDO_ATUAL, length=18, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoAtual;
 	
-	@Field(name=STATUS_SALDO_ATUAL, length=1)
-	private String statusSaldoAtual;
+	@Field(name=DEBITO_CREDITO, length=1)
+	private String debitoCredito;
 	
 	@Field(name=ESTAGIO_SALDO_ATUAL, length=1)
 	private String estagioSaldoAtual;
 	
-	@Field(name=SALDO_LIQUIDO_COMMODITIES, length=15, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=SALDO_LIQUIDO_COMMODITIES, length=17, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoLiquidoFundoCommodities;
 	
-	@Field(name=JUROS_CAPITALIZADOS, length=13, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=JUROS_CAPITALIZADOS, length=15, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal jurosCapitalizados;
 	
-	@Field(name=IOF_CAPITALIZADOS, length=13, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
+	@Field(name=IOF_CAPITALIZADOS, length=15, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal IOFCapitalizados;
 	
 	@Field(name=VL_LIMITE_CONTACORRENTE, length=9, format=Formats.DECIMAL_DD, type=EnumTypes.BIGDECIMAL)
 	private BigDecimal valorLimiteContaCorrente;
 	
-	@Field(name="BRANCOS3", length=15)
+	@Field(name="BRANCOS3", length=17)
 	private String brancos3;
 	
 	@Field(name="BRANCOS4", length=2)
@@ -86,9 +87,16 @@ public class SaldoAtualRetorno implements SaldoAtual {
 	private String brancos7;
 	
 	@Field(name=NR_SEQUENCIAL_REGISTRO, length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer numeroSequencialRegistro;	
+	private Integer numeroSequencialRegistro;
+
+	private ContaBancaria contaBancaria;	
 	
 	
+	public SaldoAtualRetorno(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+
 	public void set(br.com.anteros.flatfile.Record record) {
 		setTipoInscricao((String) record.getValue(TP_TIPO_INSCRICAO));
 		setNumeroInscricao((String) record.getValue(NR_INSCRICAO_EMPRESA));
@@ -99,7 +107,7 @@ public class SaldoAtualRetorno implements SaldoAtual {
 		setValorCPMF((BigDecimal) record.getValue(VALOR_CPMF));
 		setDataSaldoAtual((Date) record.getValue(DT_SALDO_ATUAL));
 		setSaldoAtual((BigDecimal) record.getValue(SALDO_ATUAL));
-		setStatusSaldoAtual((String) record.getValue(STATUS_SALDO_ATUAL));
+		setDebitoCredito((String) record.getValue(DEBITO_CREDITO));
 		setEstagioSaldoAtual((String) record.getValue(ESTAGIO_SALDO_ATUAL));
 		setSaldoLiquidoFundoCommodities((BigDecimal) record.getValue(SALDO_LIQUIDO_COMMODITIES));
 		setJurosCapitalizados((BigDecimal) record.getValue(JUROS_CAPITALIZADOS));
@@ -219,13 +227,13 @@ public class SaldoAtualRetorno implements SaldoAtual {
 	}
 
 
-	public String getStatusSaldoAtual() {
-		return statusSaldoAtual;
+	public String getDebitoCredito() {
+		return debitoCredito;
 	}
 
 
-	public void setStatusSaldoAtual(String statusSaldoAtual) {
-		this.statusSaldoAtual = statusSaldoAtual;
+	public void setDebitoCredito(String debitoCredito) {
+		this.debitoCredito = debitoCredito;
 	}
 
 
@@ -286,6 +294,29 @@ public class SaldoAtualRetorno implements SaldoAtual {
 
 	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+
+	@Override
+	public BigDecimal getSaldoBloqueado() {
+		return BigDecimal.ZERO;
+	}
+
+
+	@Override
+	public BigDecimal getValorTotalDebitos() {
+		return BigDecimal.ZERO;
+	}
+
+
+	@Override
+	public BigDecimal getValorTotalCreditos() {
+		return BigDecimal.ZERO;
+	}
+
+
+	public static SaldoAtualRetorno of(ContaBancaria contaBancaria) {
+		return new SaldoAtualRetorno(contaBancaria);
 	}
 
 }

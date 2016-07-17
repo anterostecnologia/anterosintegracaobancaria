@@ -3,6 +3,7 @@ package br.com.anteros.integracao.bancaria.banco.layout.cnab200.extrato;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
@@ -21,22 +22,22 @@ public interface CNAB200 {
 
 	public byte[] getXMLSchema() throws FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(File file) throws IOException, IllegalArgumentException, IllegalAccessException,
+	public List<ConciliacaoBancaria> read(File file) throws IOException, IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(InputStream dataInputStream) throws IOException, IllegalArgumentException,
+	public List<ConciliacaoBancaria> read(InputStream dataInputStream) throws IOException, IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(byte[] data) throws IOException, IllegalArgumentException, IllegalAccessException,
+	public List<ConciliacaoBancaria> read(byte[] data) throws IOException, IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(File file, String[] groups) throws IOException, IllegalArgumentException, IllegalAccessException,
+	public List<ConciliacaoBancaria> read(File file, String[] groups) throws IOException, IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(InputStream dataInputStream, String[] groups) throws IOException, IllegalArgumentException,
+	public List<ConciliacaoBancaria> read(InputStream dataInputStream, String[] groups) throws IOException, IllegalArgumentException,
 			IllegalAccessException, FlatFileManagerException, JAXBException;
 
-	public ConciliacaoBancaria read(byte[] data, String[] groups) throws IOException, IllegalArgumentException, IllegalAccessException,
+	public List<ConciliacaoBancaria> read(byte[] data, String[] groups) throws IOException, IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException;
 
 }

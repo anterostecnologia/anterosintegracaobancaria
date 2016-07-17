@@ -7,6 +7,8 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class TraillerArquivo {
@@ -35,11 +37,17 @@ public class TraillerArquivo {
 	@Field(name="BRANCOS5", length=2)
 	private String brancos5;
 	
-	@Field(name=CD_BANCO, length=3)
+	@Field(name=CD_BANCO, length=3, type=EnumTypes.INTEGER)
 	private Integer codigoBanco;
 	
 	@Field(name=NR_SEQUENCIAL_REGISTRO, length=6, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+
+	private ContaBancaria contaBancaria;
+
+	public TraillerArquivo(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
 
 	public String getTipoRegistro() {
 		return tipoRegistro;
@@ -86,6 +94,10 @@ public class TraillerArquivo {
 		setValorTotalCreditos((BigDecimal) record.getValue(VL_TOTAL_CREDITOS));
 		setCodigoBanco((Integer) record.getValue(CD_BANCO));
 		setNumeroSequencialRegistro((Integer) record.getValue(NR_SEQUENCIAL_REGISTRO));		
+	}
+
+	public static TraillerArquivo of(ContaBancaria contaBancaria) {
+		return new TraillerArquivo(contaBancaria);
 	}	
 	
 	

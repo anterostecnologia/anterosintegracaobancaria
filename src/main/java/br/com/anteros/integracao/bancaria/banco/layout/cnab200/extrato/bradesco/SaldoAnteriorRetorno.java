@@ -8,6 +8,7 @@ import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAnterior;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
@@ -72,6 +73,12 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 6, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
 	private Integer numeroSequencialRegistro;
+
+	private ContaBancaria contaBancaria;
+
+	public SaldoAnteriorRetorno(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
 
@@ -191,6 +198,15 @@ public class SaldoAnteriorRetorno implements SaldoAnterior {
 
 	public void setCodigoBanco(Integer codigoBanco) {
 		this.codigoBanco = codigoBanco;
+	}
+
+	@Override
+	public String getDebitoCredito() {
+		return debitoCredito;
+	}
+
+	public static SaldoAnteriorRetorno of(ContaBancaria contaBancaria) {
+		return new SaldoAnteriorRetorno(contaBancaria);
 	}
 
 }

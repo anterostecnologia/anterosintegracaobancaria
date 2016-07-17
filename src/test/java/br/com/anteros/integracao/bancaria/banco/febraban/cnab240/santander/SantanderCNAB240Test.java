@@ -1,5 +1,7 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.santander;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.REMESSA_COBRANCA;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +25,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Context;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ContextBuilder;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class SantanderCNAB240Test {
 

@@ -23,7 +23,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Context;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ContextBuilder;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class BradescoCNAB240Test {
 
