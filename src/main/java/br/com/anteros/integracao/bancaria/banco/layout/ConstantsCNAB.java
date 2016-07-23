@@ -103,6 +103,8 @@ public class ConstantsCNAB {
 	public static final String NR_ORDEM_EXTRATO = "NR_ORDEM_EXTRATO";
 
 	public static final String CD_CONVENIO = "CD_CONVENIO";
+	
+	public static final String CD_CONVENIO_BANCO = "CD_CONVENIO_BANCO";
 
 	public static final String VL_BLOQUEADO = "VL_BLOQUEADO";
 

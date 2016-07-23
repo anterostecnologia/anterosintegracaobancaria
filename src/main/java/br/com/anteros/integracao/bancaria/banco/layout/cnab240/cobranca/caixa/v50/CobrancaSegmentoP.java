@@ -58,16 +58,16 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "DIGITO_VERIFICADOR_AGENCIA", length = 1)
 	private String digitoVerificadorAgencia;
 
-	@Field(name = "NR_CONTACORRENTE", length = 12, type = EnumTypes.LONG)
-	private Long numeroContaCorrente;
+	@Field(name = "CD_CONVENIO_BANCO", length = 6, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String codigoConvenioBanco;
 
-	@Field(name = "DIGITO_VERIFICADOR_CONTACORRENTE", length = 1)
-	private String DigitoVerificadorContaCorrente;
+	@Field(name = "USO_RESERVADO_BANCO", length = 11, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000000")
+	private Long usoReservadoBanco;
 
-	@Field(name = "DIGITO_VERFICADOR_AGENCIACONTA", length = 1)
-	private String digitoVerificadorAgenciaConta;
+	@Field(name = "MODALIDADE_CARTEIRA", length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String modalidadeCarteira;
 
-	@Field(name = "IDENTIFICADOR_TITULO", length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "IDENTIFICADOR_TITULO", length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorTitulo;
 
 	@Field(name = "CD_CARTEIRA", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -85,13 +85,16 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "ID_DISTRIBUICAO", length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificacaoDistribuicao;
 
-	@Field(name = "NR_DOCUMENTOCOBRANCA", length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "NR_DOCUMENTOCOBRANCA", length = 11, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
+
+	@Field(name = "BRANCOS2", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 4)
+	private String brancos2;
 
 	@Field(name = "DT_VENCIMENTO", length = 8, type = EnumTypes.DATE, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY)
 	private Date dtVencimentoTitulo;
 
-	@Field(name = "VL_NOMINAL_TITULO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+	@Field(name = "VL_NOMINAL_TITULO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal vlNominalTitulo;
 
 	@Field(name = "AGENCIA_ENCARREGADA_COBRANCA", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -115,7 +118,7 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "DT_JUROSMORA", length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dtJurosMora;
 
-	@Field(name = "JUROS_MORA_DIA", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+	@Field(name = "JUROS_MORA_DIA", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal jurosMoraDia;
 
 	@Field(name = "CD_DESCONTO1", type = EnumTypes.INTEGER, length = 1, padding = Paddings.ZERO_LEFT)
@@ -124,13 +127,13 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "DT_DESCONTO1", type = EnumTypes.DATE, length = 8, format = Formats.DATE_DDMMYYYY, padding = Paddings.ZERO_LEFT)
 	private Date dtDesconto1;
 
-	@Field(name = "VL_PERCENTUAL_CONCEDIDO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+	@Field(name = "VL_PERCENTUAL_CONCEDIDO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal vlPercentualConcedido;
 
-	@Field(name = "VL_IOF_RECOLHIDO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+	@Field(name = "VL_IOF_RECOLHIDO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal vlIOFRecolhido;
 
-	@Field(name = "VL_ABATIMENTO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format=Formats.DECIMAL_DD)
+	@Field(name = "VL_ABATIMENTO", length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal vlAbatimento;
 
 	@Field(name = "ID_TITULO_EMPRESA", length = 25)
@@ -171,44 +174,43 @@ public class CobrancaSegmentoP implements RecordData {
 	}
 
 	public void readRowData(int row) {
-		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); //G001
-		this.loteServico = 1; //G002
-		this.numeroSequencialRegistro = row+1;//G038
-		this.codigoMovimentoRemessa = remessas.get(row).getCodigoMovimentoRemessa().getTipo();//C004
-		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();//G008
-		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();//G009
-		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();//G010
-		this.DigitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();//G011
-		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();//G012
-		this.identificadorTitulo = remessas.get(row).getTitulo().getNossoNumero();//G069
-		this.codigoCarteira = remessas.get(row).getTitulo().getCarteira().getCodigo();//C006
-		this.formaCadastroTitulo = remessas.get(row).getTitulo().getCarteira().getTipoDeCobranca().getTipo();//C007
-		this.tipoDocumento = "1";// Tradicional  C008
-		this.identificadorEmissaoBoleto = remessas.get(row).getTitulo().getCarteira().getTipoDeEmissaoBoleto().getTipo();//C009
-		this.identificacaoDistribuicao = remessas.get(row).getTitulo().getCarteira().getTipoDeDistribuicaoBoleto().getTipo();//C010
-		this.numeroDocumentoCobranca = remessas.get(row).getTitulo().getNumeroDocumento();//C011
-		this.dtVencimentoTitulo = remessas.get(row).getTitulo().getDataVencimento();//C012
-		this.vlNominalTitulo = remessas.get(row).getTitulo().getValorTitulo();//G070
-		this.agenciaEncarregadaCobranca = contaBancaria.getAgencia().getCodigo();//C014
-		this.digitoVerificadorAgenciaCobranca = contaBancaria.getAgencia().getDigitoVerificador();//G009
-		this.especieTitulo = remessas.get(row).getTitulo().getTipoDocumento().getCodigo();//C015
-		this.identificadorTituloAceito = remessas.get(row).getTitulo().getAceite().name();//C016
-		this.dtEmissaoTitulo = remessas.get(row).getTitulo().getDataDocumento(); //G071
-		this.codigoJurosMora = remessas.get(row).getTitulo().getTipoJurosMora().getTipo();//C018
-		this.dtJurosMora = remessas.get(row).getTitulo().getDataJurosMora(); //C019
-		this.jurosMoraDia = remessas.get(row).getTitulo().getValorJurosMoraPorAtraso(); //C020
-		this.codigoDesconto1 = remessas.get(row).getTitulo().getTipoDesconto().getTipo();//C021
-		this.dtDesconto1 = remessas.get(row).getTitulo().getDataDesconto(); //C022
-		this.vlPercentualConcedido = remessas.get(row).getTitulo().getPercentualDesconto(); //C023;
-		this.vlIOFRecolhido = remessas.get(row).getTitulo().getValorIOF();//C024
-		this.vlAbatimento = remessas.get(row).getTitulo().getValorAbatimento();//G045
-		this.identificadorTituloEmpresa = remessas.get(row).getTitulo().getNumeroDocumento();//G072
-		this.codigoProtesto = remessas.get(row).getTitulo().getTipoProtesto().getTipo();//C026
-		this.numeroDiasProtesto = remessas.get(row).getTitulo().getNrDiasProtesto();//C027
-		this.codigoBaixaDevolucao = remessas.get(row).getTitulo().getTipoDeBaixaDevolucao().getTipo();//C028
-		this.numeroDiasBaixaDevolucao = remessas.get(row).getTitulo().getNrDiasBaixaDevolucao();//C029
-		this.codigoMoeda = remessas.get(row).getTitulo().getTipoMoeda().getCodigo();//G065
-		this.numeroContrato = 0;//C030
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
+		this.loteServico = 1; // G002
+		this.numeroSequencialRegistro = row + 1;// G038
+		this.codigoMovimentoRemessa = remessas.get(row).getCodigoMovimentoRemessa().getTipo();// C004
+		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
+		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
+		this.identificadorTitulo = remessas.get(row).getTitulo().getNossoNumero();// G069
+		this.codigoCarteira = remessas.get(row).getTitulo().getCarteira().getCodigo();// C006
+		this.formaCadastroTitulo = remessas.get(row).getTitulo().getCarteira().getTipoDeCobranca().getTipo();// C007
+		this.tipoDocumento = "1";// Tradicional C008
+		this.identificadorEmissaoBoleto = remessas.get(row).getTitulo().getCarteira().getTipoDeEmissaoBoleto()
+				.getTipo();// C009
+		this.identificacaoDistribuicao = remessas.get(row).getTitulo().getCarteira().getTipoDeDistribuicaoBoleto()
+				.getTipo();// C010
+		this.numeroDocumentoCobranca = remessas.get(row).getTitulo().getNumeroDocumento();// C011
+		this.dtVencimentoTitulo = remessas.get(row).getTitulo().getDataVencimento();// C012
+		this.vlNominalTitulo = remessas.get(row).getTitulo().getValorTitulo();// G070
+		this.agenciaEncarregadaCobranca = contaBancaria.getAgencia().getCodigo();// C014
+		this.digitoVerificadorAgenciaCobranca = contaBancaria.getAgencia().getDigitoVerificador();// G009
+		this.especieTitulo = remessas.get(row).getTitulo().getTipoDocumento().getCodigo();// C015
+		this.identificadorTituloAceito = remessas.get(row).getTitulo().getAceite().name();// C016
+		this.dtEmissaoTitulo = remessas.get(row).getTitulo().getDataDocumento(); // G071
+		this.codigoJurosMora = remessas.get(row).getTitulo().getTipoJurosMora().getTipo();// C018
+		this.dtJurosMora = remessas.get(row).getTitulo().getDataJurosMora(); // C019
+		this.jurosMoraDia = remessas.get(row).getTitulo().getValorJurosMoraPorAtraso(); // C020
+		this.codigoDesconto1 = remessas.get(row).getTitulo().getTipoDesconto().getTipo();// C021
+		this.dtDesconto1 = remessas.get(row).getTitulo().getDataDesconto(); // C022
+		this.vlPercentualConcedido = remessas.get(row).getTitulo().getPercentualDesconto(); // C023;
+		this.vlIOFRecolhido = remessas.get(row).getTitulo().getValorIOF();// C024
+		this.vlAbatimento = remessas.get(row).getTitulo().getValorAbatimento();// G045
+		this.identificadorTituloEmpresa = remessas.get(row).getTitulo().getNumeroDocumento();// G072
+		this.codigoProtesto = remessas.get(row).getTitulo().getTipoProtesto().getTipo();// C026
+		this.numeroDiasProtesto = remessas.get(row).getTitulo().getNrDiasProtesto();// C027
+		this.codigoBaixaDevolucao = remessas.get(row).getTitulo().getTipoDeBaixaDevolucao().getTipo();// C028
+		this.numeroDiasBaixaDevolucao = remessas.get(row).getTitulo().getNrDiasBaixaDevolucao();// C029
+		this.codigoMoeda = remessas.get(row).getTitulo().getTipoMoeda().getCodigo();// G065
+		this.numeroContrato = 0;// C030
 	}
 
 	public String getCodigoSegmentoRegistro() {
@@ -283,28 +285,48 @@ public class CobrancaSegmentoP implements RecordData {
 		this.digitoVerificadorAgencia = digitoVerificadorAgencia;
 	}
 
-	public Long getNumeroContaCorrente() {
-		return numeroContaCorrente;
+	public String getCodigoConvenioBanco() {
+		return codigoConvenioBanco;
 	}
 
-	public void setNumeroContaCorrente(Long numeroContaCorrente) {
-		this.numeroContaCorrente = numeroContaCorrente;
+	public void setCodigoConvenioBanco(String codigoConvenioBanco) {
+		this.codigoConvenioBanco = codigoConvenioBanco;
 	}
 
-	public String getDigitoVerificadorContaCorrente() {
-		return DigitoVerificadorContaCorrente;
+	public Long getUsoReservadoBanco() {
+		return usoReservadoBanco;
 	}
 
-	public void setDigitoVerificadorContaCorrente(String digitoVerificadorContaCorrente) {
-		DigitoVerificadorContaCorrente = digitoVerificadorContaCorrente;
+	public void setUsoReservadoBanco(Long usoReservadoBanco) {
+		this.usoReservadoBanco = usoReservadoBanco;
 	}
 
-	public String getDigitoVerificadorAgenciaConta() {
-		return digitoVerificadorAgenciaConta;
+	public String getModalidadeCarteira() {
+		return modalidadeCarteira;
 	}
 
-	public void setDigitoVerificadorAgenciaConta(String digitoVerificadorAgenciaConta) {
-		this.digitoVerificadorAgenciaConta = digitoVerificadorAgenciaConta;
+	public void setModalidadeCarteira(String modalidadeCarteira) {
+		this.modalidadeCarteira = modalidadeCarteira;
+	}
+
+	public String getBrancos2() {
+		return brancos2;
+	}
+
+	public void setBrancos2(String brancos2) {
+		this.brancos2 = brancos2;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public void setIdentificadorEmissaoBoleto(Integer identificadorEmissaoBoleto) {
+		this.identificadorEmissaoBoleto = identificadorEmissaoBoleto;
 	}
 
 	public String getIdentificadorTitulo() {
@@ -556,11 +578,11 @@ public class CobrancaSegmentoP implements RecordData {
 	}
 
 	public static CobrancaSegmentoP of(ContaBancaria contaBancaria, List<RemessaCobranca> remessas) {
-		return new CobrancaSegmentoP(contaBancaria,remessas);
+		return new CobrancaSegmentoP(contaBancaria, remessas);
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+
 	}
 
 }

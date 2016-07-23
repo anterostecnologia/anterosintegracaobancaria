@@ -30,8 +30,6 @@ import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderCobranca {
 
-	
-
 	@IdType(name = TP_REGISTRO, length = 1, positionField = 3, value = "1")
 	private String tipoRegistro;
 
@@ -47,23 +45,26 @@ public class HeaderCobranca {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos1;
+	@Field(name = "ZEROS1", length = 2, value = "00", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer zeros1;
 
-	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "030")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS2", length = 1, value = " ")
-	private String brancos2;
+	@Field(name = "BRANCOS1", length = 1, value = " ")
+	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
 	private Integer tipoInscricao;
 
-	@Field(name = NR_INSCRICAO, length = 15, padding=Paddings.ZERO_LEFT)
+	@Field(name = NR_INSCRICAO, length = 15, padding = Paddings.ZERO_LEFT)
 	private String numeroInscricao;
 
-	@Field(name = CD_CONVENIO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = CD_CONVENIO, length = 6, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoConvenio;
+
+	@Field(name = USO_RESERVADO_BANCO, length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000000000")
+	private Long usoReservadoBanco;
 
 	@Field(name = AGENCIA_MANTENEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaMantenedora;
@@ -71,14 +72,11 @@ public class HeaderCobranca {
 	@Field(name = DIGITO_AGENCIA, length = 1)
 	private String digitoVerificadorAgencia;
 
-	@Field(name = NR_CONTACORRENTE, length = 12, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
-	private Long numeroContaCorrente;
+	@Field(name = CD_CONVENIO_BANCO, length = 6, padding = Paddings.WHITE_SPACE_RIGHT)
+	private String codigoConvenioBanco;
 
-	@Field(name = DIGITO_CONTACORRENTE, length = 1)
-	private String digitoVerificadorContaCorrente;
-
-	@Field(name = DIGITO_AGENCIACONTA, length = 1)
-	private String digitoVerificadorAgenciaConta;
+	@Field(name = "ZEROS2", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
+	private Long zeros2;
 
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
@@ -95,11 +93,11 @@ public class HeaderCobranca {
 	@Field(name = DT_GRAVACAO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dataGravacao;
 
-	@Field(name = DT_CREDITO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
-	private Date dataCredito;
+	@Field(name = "ZEROS3", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
+	private Long zeros3;
 
-	@Field(name = "BRANCOS3", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos3;
+	@Field(name = "BRANCOS2", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
 
 	public HeaderCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
 			Integer versaoLayoutLote, Date dataGravacao) {
@@ -111,9 +109,7 @@ public class HeaderCobranca {
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.layoutLote = versaoLayoutLote;// G030
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
-		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
-		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
-		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
+		this.codigoConvenioBanco = carteira.getCodigoConvenio(); // G007
 		this.nomeEmpresa = cedente.getNome();// G013
 		this.numeroRemessaRetorno = 1; // G079
 		this.dataGravacao = dataGravacao;// G068
@@ -124,16 +120,13 @@ public class HeaderCobranca {
 		this.loteServico = 1;// G002
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
-		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
-		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
-		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.numeroRemessaRetorno = 1; // G079
 		this.dataGravacao = dataGravacao;// G068
 	}
-	
+
 	public HeaderCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
 			Integer versaoLayoutLote) {
-		this(contaBancaria,carteira,cedente,versaoLayoutLote,Calendar.getInstance().getTime());
+		this(contaBancaria, carteira, cedente, versaoLayoutLote, Calendar.getInstance().getTime());
 	}
 
 	public HeaderCobranca(ContaBancaria contaBancaria) {
@@ -144,7 +137,7 @@ public class HeaderCobranca {
 			Integer versaoLayoutLote, Date dataGravacao) {
 		return new HeaderCobranca(contaBancaria, carteira, cedente, versaoLayoutLote, dataGravacao);
 	}
-	
+
 	public static HeaderCobranca of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
 			Integer versaoLayoutLote) {
 		return new HeaderCobranca(contaBancaria, carteira, cedente, versaoLayoutLote);
@@ -254,30 +247,6 @@ public class HeaderCobranca {
 		this.digitoVerificadorAgencia = digitoVerificadorAgencia;
 	}
 
-	public Long getNumeroContaCorrente() {
-		return numeroContaCorrente;
-	}
-
-	public void setNumeroContaCorrente(Long numeroContaCorrente) {
-		this.numeroContaCorrente = numeroContaCorrente;
-	}
-
-	public String getDigitoVerificadorContaCorrente() {
-		return digitoVerificadorContaCorrente;
-	}
-
-	public void setDigitoVerificadorContaCorrente(String digitoVerificadorContaCorrente) {
-		this.digitoVerificadorContaCorrente = digitoVerificadorContaCorrente;
-	}
-
-	public String getDigitoVerificadorAgenciaConta() {
-		return digitoVerificadorAgenciaConta;
-	}
-
-	public void setDigitoVerificadorAgenciaConta(String digitoVerificadorAgenciaConta) {
-		this.digitoVerificadorAgenciaConta = digitoVerificadorAgenciaConta;
-	}
-
 	public String getNomeEmpresa() {
 		return nomeEmpresa;
 	}
@@ -318,20 +287,44 @@ public class HeaderCobranca {
 		this.dataGravacao = dataGravacao;
 	}
 
-	public Date getDataCredito() {
-		return dataCredito;
+	public Integer getZeros1() {
+		return zeros1;
 	}
 
-	public void setDataCredito(Date dataCredito) {
-		this.dataCredito = dataCredito;
+	public void setZeros1(Integer zeros1) {
+		this.zeros1 = zeros1;
 	}
 
-	public String getBrancos3() {
-		return brancos3;
+	public Long getUsoReservadoBanco() {
+		return usoReservadoBanco;
 	}
 
-	public void setBrancos3(String brancos3) {
-		this.brancos3 = brancos3;
+	public void setUsoReservadoBanco(Long usoReservadoBanco) {
+		this.usoReservadoBanco = usoReservadoBanco;
+	}
+
+	public String getCodigoConvenioBanco() {
+		return codigoConvenioBanco;
+	}
+
+	public void setCodigoConvenioBanco(String codigoConvenioBanco) {
+		this.codigoConvenioBanco = codigoConvenioBanco;
+	}
+
+	public Long getZeros2() {
+		return zeros2;
+	}
+
+	public void setZeros2(Long zeros2) {
+		this.zeros2 = zeros2;
+	}
+
+	public Long getZeros3() {
+		return zeros3;
+	}
+
+	public void setZeros3(Long zeros3) {
+		this.zeros3 = zeros3;
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
@@ -342,25 +335,22 @@ public class HeaderCobranca {
 		setTipoServico((Integer) record.getValue(TP_SERVICO));
 		setLayoutLote((Integer) record.getValue(LAYOUT_LOTE));
 		setTipoInscricao((Integer) record.getValue(TP_INSCRICAO));
-		setNumeroInscricao((String)record.getValue(NR_INSCRICAO));
+		setNumeroInscricao((String) record.getValue(NR_INSCRICAO));
 		setCodigoConvenio((String) record.getValue(CD_CONVENIO));
 		setAgenciaMantenedora((Integer) record.getValue(AGENCIA_MANTENEDORA));
 		setDigitoVerificadorAgencia((String) record.getValue(DIGITO_AGENCIA));
-		setNumeroContaCorrente((Long) record.getValue(NR_CONTACORRENTE));
-		setDigitoVerificadorContaCorrente((String) record.getValue(DIGITO_CONTACORRENTE));
-		setDigitoVerificadorAgenciaConta((String) record.getValue(DIGITO_AGENCIACONTA));
+		setCodigoConvenioBanco((String) record.getValue(CD_CONVENIO_BANCO));
 		setNomeEmpresa((String) record.getValue(NOME_EMPRESA));
 		setMensagem1((String) record.getValue(MENSAGEM_1));
 		setMensagem2((String) record.getValue(MENSAGEM_2));
 		setNumeroRemessaRetorno((Integer) record.getValue(NR_REMESSA_RETORNO));
 		setDataGravacao((Date) record.getValue(DT_GRAVACAO));
-		setDataCredito((Date) record.getValue(DT_CREDITO));
 	}
 
 	public static HeaderCobranca of(ContaBancaria contaBancaria, Date dataGravacao) {
 		return new HeaderCobranca(contaBancaria, dataGravacao);
 	}
-	
+
 	public static HeaderCobranca of(ContaBancaria contaBancaria) {
 		return new HeaderCobranca(contaBancaria);
 	}
