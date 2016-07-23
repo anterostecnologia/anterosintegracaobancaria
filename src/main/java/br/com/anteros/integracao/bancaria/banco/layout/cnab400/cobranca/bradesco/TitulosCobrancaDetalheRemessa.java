@@ -42,8 +42,8 @@ public class TitulosCobrancaDetalheRemessa implements RecordData {
 	@Field(name="AGENCIA", length=5, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
 	private Integer agencia;
 	
-	@Field(name="NR_CONTACORRENTE", length=7, padding=Paddings.ZERO_LEFT, type=EnumTypes.INTEGER)
-	private Integer numeroContaCorrente;
+	@Field(name="NR_CONTACORRENTE", length=7, padding=Paddings.ZERO_LEFT, type=EnumTypes.LONG)
+	private Long numeroContaCorrente;
 	
 	@Field(name="DIGITO_CONTACORRENTE", length=1)
 	private String digitoContaCorrente;	
@@ -283,12 +283,12 @@ public class TitulosCobrancaDetalheRemessa implements RecordData {
 	}
 
 
-	public Integer getNumeroContaCorrente() {
+	public Long getNumeroContaCorrente() {
 		return numeroContaCorrente;
 	}
 
 
-	public void setNumeroContaCorrente(Integer numeroContaCorrente) {
+	public void setNumeroContaCorrente(Long numeroContaCorrente) {
 		this.numeroContaCorrente = numeroContaCorrente;
 	}
 

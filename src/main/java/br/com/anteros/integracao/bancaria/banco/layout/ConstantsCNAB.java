@@ -374,5 +374,9 @@ public class ConstantsCNAB {
 	
 	public static final String SALDO_BLOQUEADO = "SALDO_BLOQUEADO";
 	
+	public static final String SALDO_BLOQUEADO_ATE_24H = "SALDO_BLOQUEADO_ATE_24H";
+	
+	public static final String SALDO_BLOQUEADO_ACIMA_24H = "SALDO_BLOQUEADO_ACIMA_24H";
+	
 	public static final String QT_REGISTROS_LOTE = "QT_REGISTROS_LOTE";
 }

@@ -174,7 +174,7 @@ class CLCaixaEconomicaFederalSICOBNossoNumero14 extends AbstractCLCaixaEconomica
 	@Override
 	protected void addFields(Titulo titulo) {
 		
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(CARTEIRA_FIELD);
 		this.add(CONSTANT_FIELD);

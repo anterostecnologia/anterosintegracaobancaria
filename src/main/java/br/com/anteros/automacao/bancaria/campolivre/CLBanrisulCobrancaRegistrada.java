@@ -126,7 +126,7 @@ class CLBanrisulCobrancaRegistrada extends AbstractCLBanrisul {
 		this.add(new FixedField<Integer>(1, 1));
 		this.add(new FixedField<String>("1", 1));
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(Integer.valueOf(titulo.getNossoNumero()),8, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>("40", 2));
 		this.add(new FixedField<String>(calculaDuploDigito(concateneOsCamposExistentesAteOMomento()),2));

@@ -100,7 +100,7 @@ class CLBancoReal extends AbstractCLBancoReal {
 		super(FIELDS_LENGTH);
 		
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(calculeDigitoDaPosicao31(titulo.getNossoNumero(), titulo.getContaBancaria().getAgencia().getCodigo(), titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta()), 1, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(StringUtils.eliminateSymbols(titulo.getNossoNumero()), 13, Fillers.ZERO_LEFT));
 	}
@@ -142,7 +142,7 @@ class CLBancoReal extends AbstractCLBancoReal {
 	 * @since 0.2
 	 */	
 	private String calculeDigitoDaPosicao31(String nossoNumero,
-			Integer agencia, Integer contaCorrente) {
+			Integer agencia, Long contaCorrente) {
 
 		StringBuilder formula = new StringBuilder();
 		String dV = null;

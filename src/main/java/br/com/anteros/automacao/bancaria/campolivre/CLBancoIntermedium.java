@@ -107,7 +107,7 @@ class CLBancoIntermedium extends AbstractCLBancoIntermedium {
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(CONSTANTE_70, 2));
 		this.add(new FixedField<String>(titulo.getNossoNumero(), 11, Fillers.ZERO_LEFT));	
-		this.add(new FixedField<Integer>( titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>( titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>( titulo.getContaBancaria().getNumeroDaConta().getDigitoDaConta(), 1, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(CONSTANTE_0, 1));
 	}

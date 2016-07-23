@@ -37,28 +37,28 @@ package br.com.anteros.integracao.bancaria.banco.layout;
  */
 public class NumeroDaConta {
 
-	private Integer codigoDaConta = 0;
+	private Long codigoDaConta = 0L;
 
 	private String digitoDaConta = "";
 	
 	public NumeroDaConta() {}
 	
-	public NumeroDaConta(Integer codigoDaConta) {
+	public NumeroDaConta(Long codigoDaConta) {
 		
 		this.codigoDaConta = codigoDaConta;
 	}
 	
-	public NumeroDaConta(Integer codigoDaConta, String digitoDaConta) {
+	public NumeroDaConta(Long codigoDaConta, String digitoDaConta) {
 		
 		this.codigoDaConta = codigoDaConta;
 		this.digitoDaConta = digitoDaConta;
 	}
 
-	public Integer getCodigoDaConta() {
+	public Long getCodigoDaConta() {
 		return codigoDaConta;
 	}
 
-	public void setCodigoDaConta(Integer codigoDaConta) {
+	public void setCodigoDaConta(Long codigoDaConta) {
 		this.codigoDaConta = codigoDaConta;
 	}
 

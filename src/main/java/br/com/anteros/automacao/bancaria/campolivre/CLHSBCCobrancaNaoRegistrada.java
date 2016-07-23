@@ -128,7 +128,7 @@ class CLHSBCCobrancaNaoRegistrada extends AbstractCLHSBC {
 		String nossoNumero = titulo.getNossoNumero();
 
 		// Conta do cedente (sem dígito)
-		this.add(new FixedField<Integer>(
+		this.add(new FixedField<Long>(
 				conta.getNumeroDaConta().getCodigoDaConta(), 7,
 				Fillers.ZERO_LEFT));
 

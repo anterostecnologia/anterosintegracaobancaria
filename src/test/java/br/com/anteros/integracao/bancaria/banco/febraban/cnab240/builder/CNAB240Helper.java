@@ -143,7 +143,7 @@ public class CNAB240Helper {
 
 	public static ContaBancaria criarContaBancaria(Banco banco) {
 		Agencia agencia = new Agencia(1212, "3");
-		NumeroDaConta numeroDaConta = new NumeroDaConta(23232, "2");
+		NumeroDaConta numeroDaConta = new NumeroDaConta(23232L, "2");
 		ContaBancaria contaBancaria = new ContaBancaria(banco);
 		contaBancaria.setAgencia(agencia);
 		contaBancaria.setNumeroDaConta(numeroDaConta);

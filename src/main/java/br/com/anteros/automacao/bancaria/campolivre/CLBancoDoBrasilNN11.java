@@ -105,7 +105,7 @@ class CLBancoDoBrasilNN11 extends AbstractCLBancoDoBrasil {
 		this.add(new FixedField<String>(nossoNumero, 11, Fillers.ZERO_LEFT));
 		
 		this.add(new FixedField<Integer>(conta.getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 8, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(conta.getNumeroDaConta().getCodigoDaConta(), 8, Fillers.ZERO_LEFT));
 		
 		this.add(new FixedField<Integer>(titulo.getCarteira().getCodigo(), 2, Fillers.ZERO_LEFT));
 	}

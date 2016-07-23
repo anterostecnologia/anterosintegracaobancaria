@@ -107,7 +107,7 @@ class CLMercantilDoBrasil extends AbstractCLMercantilDoBrasil {
 		
 		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoNossoNumero(), 11, Fillers.ZERO_LEFT));
 		
-		this.add(new FixedField<Integer>(contaBancaria.getNumeroDaConta().getCodigoDaConta(), 9, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(contaBancaria.getNumeroDaConta().getCodigoDaConta(), 9, Fillers.ZERO_LEFT));
 		
 		this.add(new FixedField<Integer>(desconto, 1));
 	}

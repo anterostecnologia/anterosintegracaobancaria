@@ -130,7 +130,7 @@ class CLCaixaEconomicaFederalSIGCB extends AbstractCLCaixaEconomicaFederal {
 
 		Integer dVCodigoDoCedente = calculeDigitoVerificador(conta.getNumeroDaConta().getCodigoDaConta().toString());
 
-		this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(conta.getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(dVCodigoDoCedente, 1));
 		this.add(new FixedField<String>(nossoNumero.substring(0, 3), 3));
 		

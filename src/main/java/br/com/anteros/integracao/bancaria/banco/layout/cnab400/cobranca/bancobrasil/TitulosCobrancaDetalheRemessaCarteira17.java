@@ -30,8 +30,8 @@ public class TitulosCobrancaDetalheRemessaCarteira17 implements RecordData {
 	@Field(name = "DIGITO_AGENCIA", length = 1, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String digitoAgencia;
 
-	@Field(name = "NR_CONTACORRENTE", length = 8, padding = Paddings.ZERO_LEFT, type = EnumTypes.INTEGER)
-	private Integer numeroContaCorrente;
+	@Field(name = "NR_CONTACORRENTE", length = 8, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
+	private Long numeroContaCorrente;
 
 	@Field(name = "DIGITO_CONTACORRENTE", length = 1, padding=Paddings.WHITE_SPACE_RIGHT)
 	private String digitoContaCorrente;
@@ -221,11 +221,11 @@ public class TitulosCobrancaDetalheRemessaCarteira17 implements RecordData {
 		this.digitoAgencia = digitoAgencia;
 	}
 
-	public Integer getNumeroContaCorrente() {
+	public Long getNumeroContaCorrente() {
 		return numeroContaCorrente;
 	}
 
-	public void setNumeroContaCorrente(Integer numeroContaCorrente) {
+	public void setNumeroContaCorrente(Long numeroContaCorrente) {
 		this.numeroContaCorrente = numeroContaCorrente;
 	}
 

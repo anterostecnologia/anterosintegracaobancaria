@@ -130,7 +130,7 @@ class CLItauPadrao extends AbstractCLItau {
 									titulo.getNossoNumero()), 1));
 		
 		this.add(new FixedField<Integer>(conta.getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 5, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(conta.getNumeroDaConta().getCodigoDaConta(), 5, Fillers.ZERO_LEFT));
 		
 		this.add(new FixedField<Integer>(calculeDigitoDaPosicao41(
 									conta.getAgencia().getCodigo(), 
@@ -198,7 +198,7 @@ class CLItauPadrao extends AbstractCLItau {
 	 * @since 0.2
 	 */
 	private Integer calculeDigitoDaPosicao31(Integer codigoDaAgencia,
-			Integer codigoDaConta, Integer codigoDaCarteira, String nossoNumero) {
+			Long codigoDaConta, Integer codigoDaCarteira, String nossoNumero) {
 
 		// Carteiras "exceção".
 		Integer[] carteirasEscriturais = {104, 105, 112, 113, 114, 147, 166, 212};
@@ -257,7 +257,7 @@ class CLItauPadrao extends AbstractCLItau {
 	 * @since 0.2
 	 */
 	private Integer calculeDigitoDaPosicao41(Integer codigoDaAgencia,
-			Integer codigoDaConta) {
+			Long codigoDaConta) {
 
 		StringBuilder campo = new StringBuilder();
 		campo.append(Fillers.ZERO_LEFT.fill(codigoDaAgencia.intValue(), 4));

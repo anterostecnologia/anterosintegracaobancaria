@@ -117,7 +117,7 @@ class CLUnibancoCobrancaNaoRegistrada extends AbstractCLUnibanco {
 
 		if(conta.getNumeroDaConta().getCodigoDaConta() > 0){
 			
-			this.add(new FixedField<Integer>(conta.getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
+			this.add(new FixedField<Long>(conta.getNumeroDaConta().getCodigoDaConta(), 6, Fillers.ZERO_LEFT));
 			
 		}else{
 			throw new CampoLivreException(new IllegalArgumentException("Conta bancária com valor inválido, a conta deve ser um número inteiro positivo, e não: "+conta.getNumeroDaConta().getCodigoDaConta()));

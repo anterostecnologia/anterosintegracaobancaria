@@ -1,9 +1,9 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.hsbc;
 
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.REMESSA_COBRANCA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.RETORNO_CONCILIACAO_BANCARIA;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -19,27 +19,38 @@ import br.com.anteros.core.utils.IOUtils;
 import br.com.anteros.core.utils.ResourceUtils;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.flatfile.FlatFileManagerException;
+import br.com.anteros.integracao.bancaria.banco.Banco;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
+import br.com.anteros.integracao.bancaria.banco.layout.ConciliacaoBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Context;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ContextBuilder;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Cobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240CobrancaBuilder;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Extrato;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ExtratoBuilder;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class HsbcCNAB240Test {
 
 	private List<RemessaCobranca> remessas;
-	private CNAB240Context<RetornoCobranca> layoutCNAB240;
+	private CNAB240Cobranca layoutCobrancaCNAB240;
+	private CNAB240Extrato layoutExtratoCNAB240;
 
 	@Before
 	public void beforeExecuteTests() {
-		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(BancosSuportados.HSBC.create(),CNAB240Helper.criarCarteira(1));
+		Banco banco = BancosSuportados.HSBC.create();
+		ContaBancaria contaBancaria = CNAB240Helper.criarContaBancaria(banco);
+		
+		remessas = CNAB240Helper.gerarTitulosParaRemessaCobranca(banco,CNAB240Helper.criarCarteira(1));
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
 
-		layoutCNAB240 = new CNAB240ContextBuilder<RetornoCobranca>().contaBancaria(remessas.get(0).getTitulo().getContaBancaria())
+		layoutCobrancaCNAB240 = new CNAB240CobrancaBuilder().contaBancaria(remessas.get(0).getTitulo().getContaBancaria())
 				.dataGravacao(calendar.getTime()).dataHoraGeracao(calendar.getTime()).remessas(remessas).build();
+		
+		layoutExtratoCNAB240 = new CNAB240ExtratoBuilder().contaBancaria(contaBancaria)
+				.dataHoraGeracao(calendar.getTime()).build();
 	}
 
 	@After
@@ -52,7 +63,7 @@ public class HsbcCNAB240Test {
 			FlatFileManagerException, JAXBException, IOException {
 		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoHsbc.xml");
 
-		String schema = StringUtils.removeCRLF(new String(layoutCNAB240.getXMLSchema(), "UTF-8"));
+		String schema = StringUtils.removeCRLF(new String(layoutCobrancaCNAB240.getXMLSchema(), "UTF-8"));
 		
 //		FileOutputStream fos = new FileOutputStream(file);
 //		fos.write(schema.getBytes());
@@ -68,7 +79,7 @@ public class HsbcCNAB240Test {
 	public void deveGerarArquivoRemessaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 			FlatFileManagerException, JAXBException, IOException {
 
-		byte[] byteArray = layoutCNAB240.generate(new String[] { REMESSA_COBRANCA });
+		byte[] byteArray = layoutCobrancaCNAB240.generate(new String[] { REMESSA_COBRANCA });
 
 		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB240_BancoHsbc.REM");
 		
@@ -87,6 +98,19 @@ public class HsbcCNAB240Test {
 	@Test
 	public void deveLerArquivoRetornoEValidarValores() throws IllegalArgumentException, IllegalAccessException,
 			IOException, FlatFileManagerException, JAXBException {
+	}
+	
+	@Test
+	public void deveLerArquivoRetornoConciliacaoBancariaEValidarValores() throws IllegalArgumentException, IllegalAccessException,
+			IOException, FlatFileManagerException, JAXBException {
+		File file = new File("src/main/resources/arquivos-retorno/EXT_CNAB240_Hsbc.RET");
+		List<ConciliacaoBancaria> conciliacaoBancaria = layoutExtratoCNAB240.read(file, new String[] { RETORNO_CONCILIACAO_BANCARIA });
+		 
+		Calendar dtLancamento = Calendar.getInstance();
+		dtLancamento.set(2011, Calendar.APRIL, 11,0,0,0);
+		
+		System.out.println(conciliacaoBancaria);
+		
 	}
 
 }

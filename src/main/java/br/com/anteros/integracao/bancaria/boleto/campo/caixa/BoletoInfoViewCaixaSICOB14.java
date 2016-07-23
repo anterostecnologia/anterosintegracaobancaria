@@ -45,7 +45,7 @@ public class BoletoInfoViewCaixaSICOB14 extends AbstractBoletoInfoCampoView {
 	public String getTextoFcAgenciaCodigoCedente() {
 		Integer agencia = getBoleto().getTitulo().getContaBancaria().getAgencia().getCodigo();
 		Integer codigoOperacao = getCodigoOperacao();
-		Integer codigoBeneficiario = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getCodigoDaConta();
+		Long codigoBeneficiario = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getCodigoDaConta();
 		String digitoDaConta = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getDigitoDaConta();
 		
 		return String.format("%04d.%03d.%08d-%s", agencia, codigoOperacao, codigoBeneficiario, digitoDaConta);

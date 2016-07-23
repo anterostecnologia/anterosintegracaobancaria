@@ -110,7 +110,7 @@ class CLHSBCCobrancaRegistrada extends AbstractCLHSBC{
 		this.add(new FixedField<String>(titulo.getNossoNumero(), 10, Fillers.ZERO_LEFT));	
 		this.add(new FixedField<String>(titulo.getDigitoNossoNumero(), 1));	
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), 4, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Long>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 7, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(CODIGO_DA_CARTEIRA, 2));
 		this.add(new FixedField<Integer>(CODIGO_DO_APLICATIVO, 1));
 	}

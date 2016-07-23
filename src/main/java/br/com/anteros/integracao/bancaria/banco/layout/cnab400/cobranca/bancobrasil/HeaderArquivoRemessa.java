@@ -38,8 +38,8 @@ public class HeaderArquivoRemessa {
 	@Field(name="DIGITO_AGENCIA", length=1)
 	private String digitoVerificadoraAgencia;
 	
-	@Field(name="NR_CONTACORRENTE", length=8, type=EnumTypes.INTEGER, padding=Paddings.ZERO_LEFT)
-	private Integer numeroContaCorrente;
+	@Field(name="NR_CONTACORRENTE", length=8, type=EnumTypes.LONG, padding=Paddings.ZERO_LEFT)
+	private Long numeroContaCorrente;
 	
 	@Field(name="DIGITO_CONTACORRENTE", length=1)
 	private String digitoContaCorrente;
@@ -143,11 +143,11 @@ public class HeaderArquivoRemessa {
 		this.digitoVerificadoraAgencia = digitoVerificadoraAgencia;
 	}
 
-	public Integer getNumeroContaCorrente() {
+	public Long getNumeroContaCorrente() {
 		return numeroContaCorrente;
 	}
 
-	public void setNumeroContaCorrente(Integer numeroContaCorrente) {
+	public void setNumeroContaCorrente(Long numeroContaCorrente) {
 		this.numeroContaCorrente = numeroContaCorrente;
 	}
 

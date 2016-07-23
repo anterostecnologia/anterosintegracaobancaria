@@ -1,7 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.febraban.cnab240.bradesco;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -20,14 +19,14 @@ import br.com.anteros.flatfile.FlatFileManagerException;
 import br.com.anteros.integracao.bancaria.banco.febraban.cnab240.builder.CNAB240Helper;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.RetornoCobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Context;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240ContextBuilder;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Cobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240CobrancaBuilder;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 
 public class BradescoCNAB240Test {
 
 	private List<RemessaCobranca> remessas;
-	private CNAB240Context<RetornoCobranca> layoutCNAB240;
+	private CNAB240Cobranca layoutCNAB240;
 
 	@Before
 	public void beforeExecuteTests() {
@@ -36,7 +35,7 @@ public class BradescoCNAB240Test {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.JULY, 1, 17, 15, 43);
 
-		layoutCNAB240 = new CNAB240ContextBuilder<RetornoCobranca>().contaBancaria(remessas.get(0).getTitulo().getContaBancaria())
+		layoutCNAB240 = new CNAB240CobrancaBuilder().contaBancaria(remessas.get(0).getTitulo().getContaBancaria())
 				.dataGravacao(calendar.getTime()).dataHoraGeracao(calendar.getTime()).remessas(remessas).build();
 	}
 

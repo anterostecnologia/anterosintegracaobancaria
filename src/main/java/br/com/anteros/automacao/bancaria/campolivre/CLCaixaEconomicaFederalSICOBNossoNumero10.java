@@ -138,7 +138,7 @@ class CLCaixaEconomicaFederalSICOBNossoNumero10 extends AbstractCLCaixaEconomica
 				
 			this.add(new FixedField<Integer>(cnpv, 3, Fillers.ZERO_LEFT));
 			
-			this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 8, Fillers.ZERO_LEFT));
+			this.add(new FixedField<Long>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), 8, Fillers.ZERO_LEFT));
 			
 		}else{
 			
