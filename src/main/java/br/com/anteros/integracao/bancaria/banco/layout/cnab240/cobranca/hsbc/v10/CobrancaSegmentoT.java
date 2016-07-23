@@ -80,8 +80,8 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = ID_TITULO_EMPRESA, length = 25)
 	private String identificadorTituloEmpresa;
 
-	@Field(name = CD_MOEDA, length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String codigoMoeda;
+	@Field(name = CD_MOEDA, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer codigoMoeda;
 
 	@Field(name = TP_INSCRICAO_SACADO_AVALISTA, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoInscricaoSacadoAvalista;
@@ -278,11 +278,11 @@ public class CobrancaSegmentoT implements RecordData {
 		this.identificadorTituloEmpresa = identificadorTituloEmpresa;
 	}
 
-	public String getCodigoMoeda() {
+	public Integer getCodigoMoeda() {
 		return codigoMoeda;
 	}
 
-	public void setCodigoMoeda(String codigoMoeda) {
+	public void setCodigoMoeda(Integer codigoMoeda) {
 		this.codigoMoeda = codigoMoeda;
 	}
 
@@ -375,7 +375,7 @@ public class CobrancaSegmentoT implements RecordData {
 		setAgenciaRecebedora((Integer) record.getValue(AGENCIA_RECEBEDORA));
 		setDigitoAgenciaRecebedora((String) record.getValue(DIGITO_AGENCIA_RECEBEDORA));
 		setIdentificadorTituloEmpresa((String) record.getValue(ID_TITULO_EMPRESA));
-		setCodigoMoeda((String) record.getValue(CD_MOEDA));
+		setCodigoMoeda((Integer) record.getValue(CD_MOEDA));
 		setTipoInscricaoSacadoAvalista((Integer) record.getValue(TP_INSCRICAO_SACADO_AVALISTA));
 		setNumeroInscricaoSacadoAvalista((Long) record.getValue(NR_INSCRICAO_SACADO_AVALISTA));
 		setNomeSacadorAvalista((String) record.getValue(NOME_SACADOR_AVALISTA));

@@ -58,8 +58,11 @@ public class CobrancaSegmentoQ implements RecordData {
 	@Field(name = "NOME", length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nome;
 
-	@Field(name = "ENDERECO", length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "ENDERECO", length = 38, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String endereco;
+	
+	@Field(name = "USO_BANCO", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String usobanco;
 
 	@Field(name = "BAIRRO", length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String bairro;
@@ -153,6 +156,22 @@ public class CobrancaSegmentoQ implements RecordData {
 
 	public void setBrancos1(String brancos1) {
 		this.brancos1 = brancos1;
+	}
+
+	public String getUsobanco() {
+		return usobanco;
+	}
+
+	public void setUsobanco(String usobanco) {
+		this.usobanco = usobanco;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public Integer getCodigoMovimentoRemessa() {
