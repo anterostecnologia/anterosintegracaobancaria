@@ -23,8 +23,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class TraillerArquivo {
-
-
+	
 	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "9")
 	private String tipoRegistro;
 

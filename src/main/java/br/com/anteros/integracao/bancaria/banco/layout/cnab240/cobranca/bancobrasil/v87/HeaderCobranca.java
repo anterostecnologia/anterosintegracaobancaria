@@ -30,8 +30,6 @@ import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderCobranca {
 
-	
-
 	@IdType(name = TP_REGISTRO, length = 1, positionField = 3, value = "1")
 	private String tipoRegistro;
 
@@ -44,13 +42,13 @@ public class HeaderCobranca {
 	@Field(name = TP_OPERACAO, length = 1, value = "R")
 	private String tipoOperacao;
 
-	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="01")
 	private Integer tipoServico;
 
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
-	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="045")
 	private Integer layoutLote;
 
 	@Field(name = "BRANCOS2", length = 1, value = " ")
@@ -83,10 +81,10 @@ public class HeaderCobranca {
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = MENSAGEM_1, length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	@Field(name = MENSAGEM_1, length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String mensagem1;
 
-	@Field(name = MENSAGEM_2, length = 40, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	@Field(name = MENSAGEM_2, length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String mensagem2;
 
 	@Field(name = NR_REMESSA_RETORNO, length = 8, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)

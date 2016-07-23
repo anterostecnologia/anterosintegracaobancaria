@@ -1,5 +1,33 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_MANTENEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_RECEBEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_CARTEIRA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOEDA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOTIVO_REJEICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOVIMENTO_RETORNO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_SEGMENTO_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA_CONTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA_RECEBEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_VERIFICADOR_AGENCIA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_VENCIMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.ID_TITULO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.ID_TITULO_EMPRESA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_SACADOR_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTRATO_OPERACAO_CREDITO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_DOCUMENTO_COBRANCA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO_SACADO_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIAL_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO_SACADO_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_NOMINAL_TITULO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_TARIFA_CUSTAS;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,11 +39,8 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoT implements RecordData {
-
-
 
 	@IdType(value = "T", length = 1, positionField = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
@@ -57,12 +82,12 @@ public class CobrancaSegmentoT implements RecordData {
 	private String identificadorTitulo;
 
 	@Field(name = CD_CARTEIRA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String codigoCarteira;
+	private String codigoCarteira;	
 
 	@Field(name = NR_DOCUMENTO_COBRANCA, length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
 
-	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY, type = EnumTypes.DATE)
 	private Date dataVencimentoTitulo;
 
 	@Field(name = VL_NOMINAL_TITULO, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
@@ -81,7 +106,7 @@ public class CobrancaSegmentoT implements RecordData {
 	private String identificadorTituloEmpresa;
 
 	@Field(name = CD_MOEDA, length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String codigoMoeda;
+	private Integer codigoMoeda;
 
 	@Field(name = TP_INSCRICAO_SACADO_AVALISTA, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoInscricaoSacadoAvalista;
@@ -93,7 +118,7 @@ public class CobrancaSegmentoT implements RecordData {
 	private String nomeSacadorAvalista;
 
 	@Field(name = NR_CONTRATO_OPERACAO_CREDITO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String numeroContratoOperacaoCredito;
+	private Long numeroContratoOperacaoCredito;
 
 	@Field(name = VL_TARIFA_CUSTAS, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTarifaCustas;
@@ -278,11 +303,11 @@ public class CobrancaSegmentoT implements RecordData {
 		this.identificadorTituloEmpresa = identificadorTituloEmpresa;
 	}
 
-	public String getCodigoMoeda() {
+	public Integer getCodigoMoeda() {
 		return codigoMoeda;
 	}
 
-	public void setCodigoMoeda(String codigoMoeda) {
+	public void setCodigoMoeda(Integer codigoMoeda) {
 		this.codigoMoeda = codigoMoeda;
 	}
 
@@ -310,11 +335,11 @@ public class CobrancaSegmentoT implements RecordData {
 		this.nomeSacadorAvalista = nomeSacadorAvalista;
 	}
 
-	public String getNumeroContratoOperacaoCredito() {
+	public Long getNumeroContratoOperacaoCredito() {
 		return numeroContratoOperacaoCredito;
 	}
 
-	public void setNumeroContratoOperacaoCredito(String numeroContratoOperacaoCredito) {
+	public void setNumeroContratoOperacaoCredito(Long numeroContratoOperacaoCredito) {
 		this.numeroContratoOperacaoCredito = numeroContratoOperacaoCredito;
 	}
 
@@ -375,11 +400,11 @@ public class CobrancaSegmentoT implements RecordData {
 		setAgenciaRecebedora((Integer) record.getValue(AGENCIA_RECEBEDORA));
 		setDigitoAgenciaRecebedora((String) record.getValue(DIGITO_AGENCIA_RECEBEDORA));
 		setIdentificadorTituloEmpresa((String) record.getValue(ID_TITULO_EMPRESA));
-		setCodigoMoeda((String) record.getValue(CD_MOEDA));
+		setCodigoMoeda((Integer) record.getValue(CD_MOEDA));
 		setTipoInscricaoSacadoAvalista((Integer) record.getValue(TP_INSCRICAO_SACADO_AVALISTA));
 		setNumeroInscricaoSacadoAvalista((Long) record.getValue(NR_INSCRICAO_SACADO_AVALISTA));
 		setNomeSacadorAvalista((String) record.getValue(NOME_SACADOR_AVALISTA));
-		setNumeroContratoOperacaoCredito((String) record.getValue(NR_CONTRATO_OPERACAO_CREDITO));
+		setNumeroContratoOperacaoCredito((Long) record.getValue(NR_CONTRATO_OPERACAO_CREDITO));
 		setValorTarifaCustas((BigDecimal) record.getValue(VL_TARIFA_CUSTAS));
 		setIdentificadorRejeicao((String) record.getValue(CD_MOTIVO_REJEICAO));
 	}
