@@ -88,7 +88,7 @@ public class HeaderArquivo {
 	@Field(name = NR_SEQUENCIAL_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialArquivo;
 
-	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="084")
 	private Integer numeroVersaoArquivo;
 
 	@Field(name = DENSIDADE_GRAVACAO_ARQUIVO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00000")

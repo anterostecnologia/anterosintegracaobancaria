@@ -44,13 +44,13 @@ public class HeaderCobranca {
 	@Field(name = TP_OPERACAO, length = 1, value = "R")
 	private String tipoOperacao;
 
-	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="01")
 	private Integer tipoServico;
 
 	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
-	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="042")
 	private Integer layoutLote;
 
 	@Field(name = "BRANCOS2", length = 1, value = " ")
