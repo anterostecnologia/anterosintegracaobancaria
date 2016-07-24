@@ -200,6 +200,10 @@ public class ConstantsCNAB {
 	
 	public static final String DIGITO_AGENCIA_RECEBEDORA = "DIGITO_AGENCIA_RECEBEDORA";
 	
+	public static final String DIGITO_AGENCIA_COBRADORA = "DIGITO_AGENCIA_COBRADORA";
+	
+	public static final String AGENCIA_COBRADORA = "AGENCIA_COBRADORA";
+	
 	public static final String AGENCIA_RECEBEDORA = "AGENCIA_COBRADORA";
 	
 	public static final String NR_BANCO = "NR_BANCO";
@@ -381,4 +385,8 @@ public class ConstantsCNAB {
 	public static final String SALDO_BLOQUEADO_ACIMA_24H = "SALDO_BLOQUEADO_ACIMA_24H";
 	
 	public static final String QT_REGISTROS_LOTE = "QT_REGISTROS_LOTE";
+	
+	public static final String INDICADOR_BOLETO_DDA = "INDICADOR_BOLETO_DDA";
+	
+	public static final String CD_LIQUIDACAO = "CD_LIQUIDACAO";
 }
