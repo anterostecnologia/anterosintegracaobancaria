@@ -80,10 +80,7 @@ public class CobrancaSegmentoU {
 	@Field(name = CD_BANCO_CORRESPONDENTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBancoCorrespondente;
 
-	@Field(name = NOSSO_NR_BANCO_CORRESPONDENTE, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String nossoNumeroBancoCorrespondente;
-
-	@Field(name = "BRANCOS2", length = 7, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS2", length = 27, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;
@@ -268,12 +265,12 @@ public class CobrancaSegmentoU {
 		this.codigoBancoCorrespondente = codigoBancoCorrespondente;
 	}
 
-	public String getNossoNumeroBancoCorrespondente() {
-		return nossoNumeroBancoCorrespondente;
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
 	}
 
-	public void setNossoNumeroBancoCorrespondente(String nossoNumeroBancoCorrespondente) {
-		this.nossoNumeroBancoCorrespondente = nossoNumeroBancoCorrespondente;
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public String getBrancos2() {
@@ -310,7 +307,6 @@ public class CobrancaSegmentoU {
 		setValorOcorrencia((BigDecimal) record.getValue(VL_OCORRENCIA));
 		setComplementoOcorrencia((String) record.getValue(COMPLEMENTO_OCORRENCIA));
 		setCodigoBancoCorrespondente((Integer) record.getValue(CD_BANCO_CORRESPONDENTE));
-		setNossoNumeroBancoCorrespondente((String) record.getValue(NOSSO_NR_BANCO_CORRESPONDENTE));
 	}
 
 }

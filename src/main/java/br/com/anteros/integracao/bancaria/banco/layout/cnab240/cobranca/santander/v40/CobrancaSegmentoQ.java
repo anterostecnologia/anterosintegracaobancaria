@@ -85,13 +85,19 @@ public class CobrancaSegmentoQ implements RecordData {
 	@Field(name = "NOME_SACADO_AVALISTA", length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeSacadorAvalista;
 
-	@Field(name = "CD_BANCO_CORRESPONDENTE_COMPE", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
-	private Integer codigoBancoCorrespondenteCompe;
+	@Field(name = "IDENTIFICADOR_CARNE", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer identificadorCarne;
 
-	@Field(name = "NOSSO_NUMERO_BANCO_CORRESPONDENTE", length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String nossoNumeroBancoCorrespondente;
+	@Field(name = "NR_INICIAL_PARCELA", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer numeroInicialParcela;
 
-	@Field(name = "BRANCOS_2", length = 8, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "QT_TOTAL_PARCELAS", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer quantidadeTotalParcelas;
+
+	@Field(name = "NR_PLANO", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	private Integer numeroPlano;
+
+	@Field(name = "BRANCOS_2", length = 19, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
 	private List<RemessaCobranca> remessas;
@@ -259,20 +265,44 @@ public class CobrancaSegmentoQ implements RecordData {
 		this.nomeSacadorAvalista = nomeSacadorAvalista;
 	}
 
-	public Integer getCodigoBancoCorrespondenteCompe() {
-		return codigoBancoCorrespondenteCompe;
+	public Integer getIdentificadorCarne() {
+		return identificadorCarne;
 	}
 
-	public void setCodigoBancoCorrespondenteCompe(Integer codigoBancoCorrespondenteCompe) {
-		this.codigoBancoCorrespondenteCompe = codigoBancoCorrespondenteCompe;
+	public void setIdentificadorCarne(Integer identificadorCarne) {
+		this.identificadorCarne = identificadorCarne;
 	}
 
-	public String getNossoNumeroBancoCorrespondente() {
-		return nossoNumeroBancoCorrespondente;
+	public Integer getNumeroInicialParcela() {
+		return numeroInicialParcela;
 	}
 
-	public void setNossoNumeroBancoCorrespondente(String nossoNumeroBancoCorrespondente) {
-		this.nossoNumeroBancoCorrespondente = nossoNumeroBancoCorrespondente;
+	public void setNumeroInicialParcela(Integer numeroInicialParcela) {
+		this.numeroInicialParcela = numeroInicialParcela;
+	}
+
+	public Integer getQuantidadeTotalParcelas() {
+		return quantidadeTotalParcelas;
+	}
+
+	public void setQuantidadeTotalParcelas(Integer quantidadeTotalParcelas) {
+		this.quantidadeTotalParcelas = quantidadeTotalParcelas;
+	}
+
+	public Integer getNumeroPlano() {
+		return numeroPlano;
+	}
+
+	public void setNumeroPlano(Integer numeroPlano) {
+		this.numeroPlano = numeroPlano;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public String getBrancos2() {
@@ -316,17 +346,16 @@ public class CobrancaSegmentoQ implements RecordData {
 			this.nomeSacadorAvalista = " ";// G013
 		} else {
 			this.tipoInscricaoSacadoAvalista = (remessas.get(row).getTitulo().getSacadorAvalista().getCPRF().isFisica()// G005
-					? 1 : 2);
+			? 1
+					: 2);
 			this.numeroInscricaoSacadoAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getCPRF()
 					.getCodigo();// G006
 			this.nomeSacadorAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getNome();// G013
 		}
-		this.nossoNumeroBancoCorrespondente = " ";// C032
-		this.codigoBancoCorrespondenteCompe = 0; // C031
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+
 	}
 
 }

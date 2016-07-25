@@ -161,6 +161,8 @@ public class ConstantsCNAB {
 	public static final String AGENCIA_MANTENEDORA = "AGENCIA_MANTENEDORA";
 
 	public static final String NR_INSCRICAO = "NR_INSCRICAO";
+	
+	public static final String CD_TRANSMISSAO = "CD_TRANSMISSAO";
 
 	public static final String TP_INSCRICAO = "TP_INSCRICAO";
 

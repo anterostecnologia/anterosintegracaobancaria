@@ -15,8 +15,6 @@ import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoT implements RecordData {
 
-
-
 	@IdType(value = "T", length = 1, positionField = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
 
@@ -32,28 +30,28 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoMovimentoRetorno;
 
-	@Field(name = AGENCIA_MANTENEDORA, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
+	@Field(name = AGENCIA_MANTENEDORA, type = EnumTypes.INTEGER, length = 4, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaMantenedora;
 
 	@Field(name = DIGITO_VERIFICADOR_AGENCIA, length = 1)
 	private String digitoVerificadorAgencia;
 
-	@Field(name = NR_CONTACORRENTE, length = 12, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = NR_CONTACORRENTE, length = 9, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroContaCorrente;
 
 	@Field(name = DIGITO_CONTACORRENTE, length = 1)
 	private String digitoVerificadorContaCorrente;
+	
+	@Field(name = "BRANCOS_2", length = 8, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
 
-	@Field(name = DIGITO_AGENCIA_CONTA, length = 1)
-	private String digitoVerificadorAgenciaConta;
-
-	@Field(name = ID_TITULO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = ID_TITULO, length = 13, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorTitulo;
 
 	@Field(name = CD_CARTEIRA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
@@ -71,7 +69,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NR_BANCO, type = EnumTypes.INTEGER, length = 3, padding = Paddings.ZERO_LEFT)
 	private Integer numeroBanco;
 
-	@Field(name = AGENCIA_RECEBEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = AGENCIA_RECEBEDORA, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaRecebedora;
 
 	@Field(name = DIGITO_AGENCIA_RECEBEDORA, length = 1)
@@ -101,8 +99,8 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = CD_MOTIVO_REJEICAO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorRejeicao;
 
-	@Field(name = "BRANCOS2", length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
-	private String brancos2;
+	@Field(name = "BRANCOS_3", length = 22, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	private String brancos3;
 
 	private ContaBancaria contaBancaria;
 
@@ -198,12 +196,24 @@ public class CobrancaSegmentoT implements RecordData {
 		this.digitoVerificadorContaCorrente = digitoVerificadorContaCorrente;
 	}
 
-	public String getDigitoVerificadorAgenciaConta() {
-		return digitoVerificadorAgenciaConta;
+	public String getBrancos3() {
+		return brancos3;
 	}
 
-	public void setDigitoVerificadorAgenciaConta(String digitoVerificadorAgenciaConta) {
-		this.digitoVerificadorAgenciaConta = digitoVerificadorAgenciaConta;
+	public void setBrancos3(String brancos3) {
+		this.brancos3 = brancos3;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public String getIdentificadorRejeicao() {
+		return identificadorRejeicao;
 	}
 
 	public String getIdentificadorTitulo() {
@@ -365,7 +375,6 @@ public class CobrancaSegmentoT implements RecordData {
 		setDigitoVerificadorAgencia((String) record.getValue(DIGITO_VERIFICADOR_AGENCIA));
 		setNumeroContaCorrente((Integer) record.getValue(NR_CONTACORRENTE));
 		setDigitoVerificadorContaCorrente((String) record.getValue(DIGITO_CONTACORRENTE));
-		setDigitoVerificadorAgenciaConta((String) record.getValue(DIGITO_AGENCIA_CONTA));
 		setIdentificadorTitulo((String) record.getValue(ID_TITULO));
 		setCodigoCarteira((String) record.getValue(CD_CARTEIRA));
 		setNumeroDocumentoCobranca((String) record.getValue(NR_DOCUMENTO_COBRANCA));

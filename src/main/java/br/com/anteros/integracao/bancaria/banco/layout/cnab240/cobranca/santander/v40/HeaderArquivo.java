@@ -15,7 +15,19 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.santander.v40;
 
-import java.text.SimpleDateFormat;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_REMESSA_RETORNO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_TRANSMISSAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_GERACAO_ARQUIVO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_EMPRESA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIAL_ARQUIVO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_VERSAO_ARQUIVO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TIPO_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO;
+
 import java.util.Date;
 
 import br.com.anteros.flatfile.annotation.Field;
@@ -26,8 +38,6 @@ import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.Carteira;
 import br.com.anteros.integracao.bancaria.banco.layout.Cedente;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
-
 
 public class HeaderArquivo {
 
@@ -40,32 +50,20 @@ public class HeaderArquivo {
 	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000")
 	private Integer loteServico;
 
-	@Field(name = "BRANCOS_1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 8, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoInscricao;
 
-	@Field(name = NR_INSCRICAO, length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	@Field(name = NR_INSCRICAO, length = 15, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroInscricao;
 
-	@Field(name = CD_CONVENIO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String codigoConvenio;
+	@Field(name = CD_TRANSMISSAO, length = 15, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	private Long codigoTransmissao;
 
-	@Field(name = AGENCIA_MANTENEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
-	private Integer agenciaMantenedora;
-
-	@Field(name = DIGITO_AGENCIA, length = 1)
-	private String digitoVerificadorAgencia;
-
-	@Field(name = NR_CONTACORRENTE, length = 12, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
-	private Long numeroContaCorrente;
-
-	@Field(name = DIGITO_CONTACORRENTE, length = 1)
-	private String digitoVerificadorContaCorrente;
-
-	@Field(name = DIGITO_AGENCIACONTA, length = 1)
-	private String digitoVerificadorAgenciaConta;
+	@Field(name = "BRANCOS_2", length = 25, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
 
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
@@ -73,8 +71,8 @@ public class HeaderArquivo {
 	@Field(name = NOME_BANCO, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeBanco;
 
-	@Field(name = "BRANCOS_2", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos2;
+	@Field(name = "BRANCOS_3", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos3;
 
 	@Field(name = CD_REMESSA_RETORNO, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoRemessaRetorno;
@@ -82,57 +80,36 @@ public class HeaderArquivo {
 	@Field(name = DT_GERACAO_ARQUIVO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY, padding = Paddings.ZERO_LEFT)
 	private Date dataGeracaoArquivo;
 
-	@Field(name = HR_GERACAO_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
-	private Integer horaGeracaoArquivo;
+	@Field(name = "BRANCOS_4", length = 6, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos4;
 
 	@Field(name = NR_SEQUENCIAL_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialArquivo;
 
-	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "040")
 	private Integer numeroVersaoArquivo;
 
-	@Field(name = DENSIDADE_GRAVACAO_ARQUIVO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00000")
-	private Integer densidadeGravacaoArquivo;
+	@Field(name = "BRANCOS_5", length = 74, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos5;
 
-	@Field(name = USO_RESERVADO_BANCO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String usoReservadoBanco;
-
-	@Field(name = USO_RESERVADO_EMPRESA, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String usoReservadoEmpresa;
-
-	@Field(name = "BRANCOS_3", length = 29, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos3;
-
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
+			Integer versaoLayoutArquivo, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
-		this.codigoConvenio = carteira.getCodigoConvenio();// G007
-		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
-		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
-		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
 		this.numeroVersaoArquivo = versaoLayoutArquivo;// G030
-		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
-		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeEmpresa = cedente.getNome();// G013
 		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
 		this.codigoRemessaRetorno = 1;// G015
 		this.dataGeracaoArquivo = dataHoraGeracao;// G016
-		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
 	public HeaderArquivo(ContaBancaria contaBancaria, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
-		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
-		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
-		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
-		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
-		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
 		this.codigoRemessaRetorno = 1;// G015
 		this.dataGeracaoArquivo = dataHoraGeracao;// G016
-		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
@@ -193,52 +170,28 @@ public class HeaderArquivo {
 		this.numeroInscricao = numeroInscricao;
 	}
 
-	public String getCodigoConvenio() {
-		return codigoConvenio;
+	public Long getCodigoTransmissao() {
+		return codigoTransmissao;
 	}
 
-	public void setCodigoConvenio(String codigoConvenio) {
-		this.codigoConvenio = codigoConvenio;
+	public void setCodigoTransmissao(Long codigoTransmissao) {
+		this.codigoTransmissao = codigoTransmissao;
 	}
 
-	public Integer getAgenciaMantenedora() {
-		return agenciaMantenedora;
+	public String getBrancos4() {
+		return brancos4;
 	}
 
-	public void setAgenciaMantenedora(Integer agenciaMantenedora) {
-		this.agenciaMantenedora = agenciaMantenedora;
+	public void setBrancos4(String brancos4) {
+		this.brancos4 = brancos4;
 	}
 
-	public String getDigitoVerificadorAgencia() {
-		return digitoVerificadorAgencia;
+	public String getBrancos5() {
+		return brancos5;
 	}
 
-	public void setDigitoVerificadorAgencia(String digitoVerificadorAgencia) {
-		this.digitoVerificadorAgencia = digitoVerificadorAgencia;
-	}
-
-	public Long getNumeroContaCorrente() {
-		return numeroContaCorrente;
-	}
-
-	public void setNumeroContaCorrente(Long numeroContaCorrente) {
-		this.numeroContaCorrente = numeroContaCorrente;
-	}
-
-	public String getDigitoVerificadorContaCorrente() {
-		return digitoVerificadorContaCorrente;
-	}
-
-	public void setDigitoVerificadorContaCorrente(String digitoVerificadorContaCorrente) {
-		this.digitoVerificadorContaCorrente = digitoVerificadorContaCorrente;
-	}
-
-	public String getDigitoVerificadorAgenciaConta() {
-		return digitoVerificadorAgenciaConta;
-	}
-
-	public void setDigitoVerificadorAgenciaConta(String digitoVerificadorAgenciaConta) {
-		this.digitoVerificadorAgenciaConta = digitoVerificadorAgenciaConta;
+	public void setBrancos5(String brancos5) {
+		this.brancos5 = brancos5;
 	}
 
 	public String getNomeEmpresa() {
@@ -281,14 +234,6 @@ public class HeaderArquivo {
 		this.dataGeracaoArquivo = dataGeracaoArquivo;
 	}
 
-	public Integer getHoraGeracaoArquivo() {
-		return horaGeracaoArquivo;
-	}
-
-	public void setHoraGeracaoArquivo(Integer horaGeracaoArquivo) {
-		this.horaGeracaoArquivo = horaGeracaoArquivo;
-	}
-
 	public Integer getNumeroSequencialArquivo() {
 		return numeroSequencialArquivo;
 	}
@@ -305,30 +250,6 @@ public class HeaderArquivo {
 		this.numeroVersaoArquivo = numeroVersaoArquivo;
 	}
 
-	public Integer getDensidadeGravacaoArquivo() {
-		return densidadeGravacaoArquivo;
-	}
-
-	public void setDensidadeGravacaoArquivo(Integer densidadeGravacaoArquivo) {
-		this.densidadeGravacaoArquivo = densidadeGravacaoArquivo;
-	}
-
-	public String getUsoReservadoBanco() {
-		return usoReservadoBanco;
-	}
-
-	public void setUsoReservadoBanco(String usoReservadoBanco) {
-		this.usoReservadoBanco = usoReservadoBanco;
-	}
-
-	public String getUsoReservadoEmpresa() {
-		return usoReservadoEmpresa;
-	}
-
-	public void setUsoReservadoEmpresa(String usoReservadoEmpresa) {
-		this.usoReservadoEmpresa = usoReservadoEmpresa;
-	}
-
 	public String getBrancos3() {
 		return brancos3;
 	}
@@ -343,22 +264,12 @@ public class HeaderArquivo {
 		setLoteServico((Integer) record.getValue(LT_SERVICO));
 		setTipoInscricao((Integer) record.getValue(TP_INSCRICAO));
 		setNumeroInscricao((Long) record.getValue(NR_INSCRICAO));
-		setCodigoConvenio((String) record.getValue(CD_CONVENIO));
-		setAgenciaMantenedora((Integer) record.getValue(AGENCIA_MANTENEDORA));
-		setDigitoVerificadorAgencia((String) record.getValue(DIGITO_AGENCIA));
-		setNumeroContaCorrente((Long) record.getValue(NR_CONTACORRENTE));
-		setDigitoVerificadorContaCorrente((String) record.getValue(DIGITO_CONTACORRENTE));
-		setDigitoVerificadorAgenciaConta((String) record.getValue(DIGITO_AGENCIACONTA));
 		setNomeEmpresa((String) record.getValue(NOME_EMPRESA));
 		setNomeBanco((String) record.getValue(NOME_BANCO));
 		setCodigoRemessaRetorno((Integer) record.getValue(CD_REMESSA_RETORNO));
 		setDataGeracaoArquivo((Date) record.getValue(DT_GERACAO_ARQUIVO));
-		setHoraGeracaoArquivo((Integer) record.getValue(HR_GERACAO_ARQUIVO));
 		setNumeroSequencialArquivo((Integer) record.getValue(NR_SEQUENCIAL_ARQUIVO));
 		setNumeroVersaoArquivo((Integer) record.getValue(NR_VERSAO_ARQUIVO));
-		setDensidadeGravacaoArquivo((Integer) record.getValue(DENSIDADE_GRAVACAO_ARQUIVO));
-		setUsoReservadoBanco((String) record.getValue(USO_RESERVADO_BANCO));
-		setUsoReservadoEmpresa((String) record.getValue(USO_RESERVADO_EMPRESA));
 	}
 
 }
