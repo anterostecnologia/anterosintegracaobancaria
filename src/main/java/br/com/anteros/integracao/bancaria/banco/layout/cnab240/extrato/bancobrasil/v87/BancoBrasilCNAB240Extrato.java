@@ -54,7 +54,7 @@ public class BancoBrasilCNAB240Extrato implements CNAB240Extrato {
 	protected TraillerArquivo traillerArquivo;
 
 	private ContaBancaria contaBancaria;
-	
+
 	protected BancoBrasilCNAB240Extrato(ContaBancaria contaBancaria, Date dataHoraGeracao) {
 		this.contaBancaria = contaBancaria;
 		headerArquivo = HeaderArquivo.of(contaBancaria, dataHoraGeracao);
@@ -62,7 +62,7 @@ public class BancoBrasilCNAB240Extrato implements CNAB240Extrato {
 		segmentoE = ConciliacaoBancariaSegmentoE.of(contaBancaria);
 		traillerConciliacaoBancaria = TraillerConciliacaoBancaria.of(contaBancaria);
 		traillerArquivo = TraillerArquivo.of(contaBancaria);
-	}	
+	}
 
 	@Override
 	public byte[] generate() throws FlatFileManagerException, JAXBException, IllegalArgumentException,

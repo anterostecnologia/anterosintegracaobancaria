@@ -1,5 +1,26 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bancobrasil.v87;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_MANTENEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_CONVENIO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DEBITO_CREDITO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIACONTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_SALDO_ATUAL;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.QT_REGISTROS_LOTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.SALDO_ATUAL;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.SALDO_BLOQUEADO_ACIMA_24H;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.SALDO_BLOQUEADO_ATE_24H;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_LIMITE_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_TOTAL_CREDITOS;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_TOTAL_DEBITOS;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,8 +32,6 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAtual;
-
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class TraillerConciliacaoBancaria implements SaldoAtual {
 
@@ -57,14 +76,14 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 
 	@Field(name = SALDO_BLOQUEADO_ATE_24H, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoBloqueadoAte24Horas;
-	
+
 	@Field(name = VL_LIMITE_CONTACORRENTE, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
 	private BigDecimal limiteContaCorrente;
-	
+
 	@Field(name = SALDO_BLOQUEADO_ACIMA_24H, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoBloqueadoAcima24Horas;
 
-	@Field(name = DT_SALDO_ATUAL, length = 8, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	@Field(name = DT_SALDO_ATUAL, length = 8, format = Formats.DATE_DDMMYYYY, type = EnumTypes.DATE)
 	private Date dataSaldoAtual;
 
 	@Field(name = SALDO_ATUAL, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
@@ -84,18 +103,17 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 
 	@Field(name = VL_TOTAL_CREDITOS, length = 18, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalCreditos;
-	
+
 	@Field(name = "BRANCOS5", length = 28, value = " ")
 	private String brancos5;
 
 	private ContaBancaria contaBancaria;
-	
-	
+
 	public TraillerConciliacaoBancaria(ContaBancaria contaBancaria) {
 		this.contaBancaria = contaBancaria;
 	}
 
-	public void set(Record record){
+	public void set(Record record) {
 		setCodigoBanco((Integer) record.getValue(CD_BANCO));
 		setLoteServico((Integer) record.getValue(LT_SERVICO));
 		setTipoInscricao((Integer) record.getValue(TP_INSCRICAO));
@@ -211,7 +229,7 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 	public void setSaldoBloqueadoAte24Horas(BigDecimal saldoBloqueadoAte24Horas) {
 		this.saldoBloqueadoAte24Horas = saldoBloqueadoAte24Horas;
 	}
-	
+
 	public BigDecimal getSaldoBloqueadoAcima24Horas() {
 		return saldoBloqueadoAte24Horas;
 	}
