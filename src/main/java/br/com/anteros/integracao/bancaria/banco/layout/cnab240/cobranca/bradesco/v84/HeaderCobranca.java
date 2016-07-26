@@ -30,7 +30,6 @@ import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderCobranca {
 
-	
 
 	@IdType(name = TP_REGISTRO, length = 1, positionField = 3, value = "1")
 	private String tipoRegistro;
@@ -47,13 +46,13 @@ public class HeaderCobranca {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="01")
 	private Integer tipoServico;
 
-	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="042")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS2", length = 1, value = " ")
+	@Field(name = "BRANCOS_2", length = 1, value = " ")
 	private String brancos2;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -98,7 +97,7 @@ public class HeaderCobranca {
 	@Field(name = DT_CREDITO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dataCredito;
 
-	@Field(name = "BRANCOS3", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_3", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
 	public HeaderCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,

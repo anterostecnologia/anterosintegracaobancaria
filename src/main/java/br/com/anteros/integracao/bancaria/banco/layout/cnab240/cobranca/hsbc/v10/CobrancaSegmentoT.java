@@ -1,5 +1,33 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.hsbc.v10;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_MANTENEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_RECEBEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_CARTEIRA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOEDA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOTIVO_REJEICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOVIMENTO_RETORNO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_SEGMENTO_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA_CONTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA_RECEBEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_VERIFICADOR_AGENCIA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_VENCIMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.ID_TITULO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.ID_TITULO_EMPRESA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_SACADOR_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTRATO_OPERACAO_CREDITO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_DOCUMENTO_COBRANCA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO_SACADO_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIAL_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO_SACADO_AVALISTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_NOMINAL_TITULO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_TARIFA_CUSTAS;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,11 +39,8 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoT implements RecordData {
-
-
 
 	@IdType(value = "T", length = 1, positionField = 5, name = CD_SEGMENTO_REGISTRO)
 	private String codigoSegmentoRegistro;
@@ -32,7 +57,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -62,7 +87,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NR_DOCUMENTO_COBRANCA, length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
 
-	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	@Field(name = DT_VENCIMENTO, length = 8, padding = Paddings.ZERO_LEFT, format = Formats.DATE_DDMMYYYY, type = EnumTypes.DATE)
 	private Date dataVencimentoTitulo;
 
 	@Field(name = VL_NOMINAL_TITULO, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
@@ -101,7 +126,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = CD_MOTIVO_REJEICAO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorRejeicao;
 
-	@Field(name = "BRANCOS2", length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	@Field(name = "BRANCOS_2", length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;

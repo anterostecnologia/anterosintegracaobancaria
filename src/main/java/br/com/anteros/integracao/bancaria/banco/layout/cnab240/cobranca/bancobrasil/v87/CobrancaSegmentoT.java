@@ -57,7 +57,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -105,7 +105,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = ID_TITULO_EMPRESA, length = 25)
 	private String identificadorTituloEmpresa;
 
-	@Field(name = CD_MOEDA, length = 2, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = CD_MOEDA, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoMoeda;
 
 	@Field(name = TP_INSCRICAO_SACADO_AVALISTA, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -117,7 +117,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = NOME_SACADOR_AVALISTA, length = 40, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeSacadorAvalista;
 
-	@Field(name = NR_CONTRATO_OPERACAO_CREDITO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = NR_CONTRATO_OPERACAO_CREDITO, length = 10, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroContratoOperacaoCredito;
 
 	@Field(name = VL_TARIFA_CUSTAS, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
@@ -126,7 +126,7 @@ public class CobrancaSegmentoT implements RecordData {
 	@Field(name = CD_MOTIVO_REJEICAO, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String identificadorRejeicao;
 
-	@Field(name = "BRANCOS2", length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	@Field(name = "BRANCOS_2", length = 17, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;

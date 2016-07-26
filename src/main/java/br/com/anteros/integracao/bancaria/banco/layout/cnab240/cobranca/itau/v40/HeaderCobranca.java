@@ -45,13 +45,13 @@ public class HeaderCobranca {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "ZEROS1", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00")
+	@Field(name = "ZEROS_1", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00")
 	private Integer zeros1;
 
 	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "030")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -60,10 +60,10 @@ public class HeaderCobranca {
 	@Field(name = NR_INSCRICAO, length = 15, padding = Paddings.ZERO_LEFT)
 	private String numeroInscricao;
 
-	@Field(name = "BRANCOS2", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_2", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
-	@Field(name = "ZEROS2", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
+	@Field(name = "ZEROS_2", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
 	private Integer zeros2;
 
 	@Field(name = AGENCIA_MANTENEDORA, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -78,7 +78,7 @@ public class HeaderCobranca {
 	@Field(name = NR_CONTACORRENTE, length = 5, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroContaCorrente;
 
-	@Field(name = "BRANCOS4", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_4", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos4;
 
 	@Field(name = DIGITO_AGENCIACONTA, length = 1)
@@ -87,7 +87,7 @@ public class HeaderCobranca {
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = "BRANCOS5", length = 80, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
+	@Field(name = "BRANCOS_5", length = 80, padding = Paddings.WHITE_SPACE_RIGHT, value = " ")
 	private String brancos5;
 
 	@Field(name = NR_REMESSA_RETORNO, length = 8, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -99,7 +99,7 @@ public class HeaderCobranca {
 	@Field(name = DT_CREDITO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dataCredito;
 
-	@Field(name = "BRANCOS6", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_6", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos6;
 
 	public HeaderCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,

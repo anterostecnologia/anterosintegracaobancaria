@@ -27,7 +27,6 @@ import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoP implements RecordData {
 
@@ -46,28 +45,28 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
+	@Field(name = "BRANCOS_1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
 	private String brancos;
 
 	@Field(name = "CD_MOVIMENTO_REMESSA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoMovimentoRemessa;
 
-	@Field(name = "ZEROS1", type = EnumTypes.INTEGER, length = 1, padding = Paddings.ZERO_LEFT, value = "0")
+	@Field(name = "ZEROS_1", type = EnumTypes.INTEGER, length = 1, padding = Paddings.ZERO_LEFT, value = "0")
 	private Integer zeros1;
 
 	@Field(name = "AGENCIA_MANTENEDORA", type = EnumTypes.INTEGER, length = 4, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaMantenedora;
 
-	@Field(name = "BRANCOS2", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
+	@Field(name = "BRANCOS_2", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
 	private String brancos2;
 
-	@Field(name = "ZEROS2", type = EnumTypes.INTEGER, length = 7, padding = Paddings.ZERO_LEFT, value = "0000000")
+	@Field(name = "ZEROS_2", type = EnumTypes.INTEGER, length = 7, padding = Paddings.ZERO_LEFT, value = "0000000")
 	private Integer zeros2;
 
 	@Field(name = "NR_CONTACORRENTE", length = 5, type = EnumTypes.LONG)
 	private Long numeroContaCorrente;
 
-	@Field(name = "BRANCOS3", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
+	@Field(name = "BRANCOS_3", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
 	private String brancos3;
 
 	@Field(name = "DIGITO_VERIFICADOR_AGENCIACONTA", length = 1)
@@ -82,10 +81,10 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "DIGITO_NOSSO_NUMERO", length = 1)
 	private String digitoNossoNumero;
 
-	@Field(name = "BRANCOS4", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 8)
+	@Field(name = "BRANCOS_4", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 8)
 	private String brancos4;
 
-	@Field(name = "ZEROS3", type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_3", type = EnumTypes.INTEGER, length = 5, padding = Paddings.ZERO_LEFT)
 	private Integer zeros3;
 
 	@Field(name = "NR_DOCUMENTOCOBRANCA", length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
@@ -154,10 +153,10 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_DIAS_BAIXA_DEVOLUCAO", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroDiasBaixaDevolucao;
 
-	@Field(name = "ZEROS4", type = EnumTypes.INTEGER, length = 13, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_4", type = EnumTypes.INTEGER, length = 13, padding = Paddings.ZERO_LEFT)
 	private Long zeros4;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	private List<RemessaCobranca> remessas;

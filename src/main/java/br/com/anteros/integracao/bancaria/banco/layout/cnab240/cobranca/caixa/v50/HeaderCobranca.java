@@ -45,13 +45,13 @@ public class HeaderCobranca {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "ZEROS1", length = 2, value = "00", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_1", length = 2, value = "00", type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer zeros1;
 
 	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "030")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ")
+	@Field(name = "BRANCOS_1", length = 1, value = " ")
 	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -75,7 +75,7 @@ public class HeaderCobranca {
 	@Field(name = CD_CONVENIO_BANCO, length = 6, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoConvenioBanco;
 
-	@Field(name = "ZEROS2", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
+	@Field(name = "ZEROS_2", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
 	private Long zeros2;
 
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
@@ -93,10 +93,10 @@ public class HeaderCobranca {
 	@Field(name = DT_GRAVACAO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dataGravacao;
 
-	@Field(name = "ZEROS3", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
+	@Field(name = "ZEROS_3", length = 8, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT, value = "00000000")
 	private Long zeros3;
 
-	@Field(name = "BRANCOS2", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_2", length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
 	public HeaderCobranca(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,

@@ -29,7 +29,7 @@ public class CobrancaSegmentoU {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -80,7 +80,7 @@ public class CobrancaSegmentoU {
 	@Field(name = CD_BANCO_CORRESPONDENTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBancoCorrespondente;
 
-	@Field(name = "BRANCOS2", length = 27, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_2", length = 27, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;

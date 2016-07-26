@@ -45,8 +45,8 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
-	private String brancos;
+	@Field(name = "BRANCOS_1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
+	private String brancos1;
 
 	@Field(name = "CD_MOVIMENTO_REMESSA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoMovimentoRemessa;
@@ -153,8 +153,8 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_CONTRATO", length = 10, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroContrato;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos1;
+	@Field(name = "BRANCOS_2", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
 
 	private List<RemessaCobranca> remessas;
 
@@ -250,12 +250,24 @@ public class CobrancaSegmentoP implements RecordData {
 		this.numeroSequencialRegistro = numeroSequencialRegistro;
 	}
 
-	public String getBrancos() {
-		return brancos;
+	public String getBrancos2() {
+		return brancos2;
 	}
 
-	public void setBrancos(String brancos) {
-		this.brancos = brancos;
+	public void setBrancos2(String brancos2) {
+		this.brancos2 = brancos2;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public void setIdentificadorEmissaoBoleto(Integer identificadorEmissaoBoleto) {
+		this.identificadorEmissaoBoleto = identificadorEmissaoBoleto;
 	}
 
 	public Integer getCodigoMovimentoRemessa() {

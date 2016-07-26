@@ -46,7 +46,7 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_SEQUENCIAL_REGISTRO", length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
+	@Field(name = "BRANCOS_1", value = " ", padding = Paddings.WHITE_SPACE_RIGHT, length = 1)
 	private String brancos;
 
 	@Field(name = "CD_MOVIMENTO_REMESSA", length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -157,7 +157,7 @@ public class CobrancaSegmentoP implements RecordData {
 	@Field(name = "NR_CONTRATO", length = 10, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroContrato;
 
-	@Field(name = "BRANCOS1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	private List<RemessaCobranca> remessas;

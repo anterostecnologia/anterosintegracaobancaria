@@ -51,7 +51,7 @@ public class HeaderArquivo {
 	@Field(name = "BRANCOS_2", length = 20, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
-	@Field(name = "ZEROS1", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
+	@Field(name = "ZEROS_1", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
 	private Integer zeros1;
 
 	@Field(name = AGENCIA_MANTENEDORA, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -60,7 +60,7 @@ public class HeaderArquivo {
 	@Field(name = "BRANCOS_3", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	@Field(name = "ZEROS2", length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000000")
+	@Field(name = "ZEROS_2", length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000000")
 	private Integer zeros2;
 
 	@Field(name = NR_CONTACORRENTE, length = 5, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
@@ -102,7 +102,7 @@ public class HeaderArquivo {
 	@Field(name = "BRANCOS_6", length = 54, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos6;
 
-	@Field(name = "ZEROS3", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "000")
+	@Field(name = "ZEROS_3", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "000")
 	private Integer zeros3;
 
 	@Field(name = "BRANCOS_7", length = 12, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)

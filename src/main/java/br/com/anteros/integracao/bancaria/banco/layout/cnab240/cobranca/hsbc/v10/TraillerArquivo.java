@@ -15,15 +15,19 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.hsbc.v10;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.QT_CONTA_CONCILIACAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.QT_LOTE_ARQUIVO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.QT_REGISTRO_ARQUIVO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TIPO_REGISTRO;
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class TraillerArquivo {
-
 
 	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "9")
 	private String tipoRegistro;

@@ -24,7 +24,6 @@ import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoQ implements RecordData {
 
@@ -57,7 +56,7 @@ public class CobrancaSegmentoQ implements RecordData {
 
 	@Field(name = "NOME", length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nome;
-	
+
 	@Field(name = "BRANCOS_2", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
@@ -87,11 +86,11 @@ public class CobrancaSegmentoQ implements RecordData {
 
 	@Field(name = "NOME_SACADO_AVALISTA", length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeSacadorAvalista;
-	
+
 	@Field(name = "BRANCOS_3", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	@Field(name = "ZEROS_1", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="000")
+	@Field(name = "ZEROS_1", length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "000")
 	private Integer zeros1;
 
 	@Field(name = "BRANCOS_4", length = 28, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
@@ -335,7 +334,8 @@ public class CobrancaSegmentoQ implements RecordData {
 			this.nomeSacadorAvalista = " ";// G013
 		} else {
 			this.tipoInscricaoSacadoAvalista = (remessas.get(row).getTitulo().getSacadorAvalista().getCPRF().isFisica()// G005
-					? 1 : 2);
+			? 1
+					: 2);
 			this.numeroInscricaoSacadoAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getCPRF()
 					.getCodigo();// G006
 			this.nomeSacadorAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getNome();// G013
@@ -343,7 +343,7 @@ public class CobrancaSegmentoQ implements RecordData {
 	}
 
 	public void set(br.com.anteros.flatfile.Record record) {
-		
+
 	}
 
 }

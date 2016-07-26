@@ -32,7 +32,7 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	@Field(name=NR_SEQUENCIAL_REGISTRO, length=5)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 	
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -62,8 +62,8 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 	
-	@Field(name = "BRANCOS3", length = 6, value = " ")
-	private String brancos3;
+	@Field(name = "BRANCOS_2", length = 6, value = " ")
+	private String brancos2;
 	
 	@Field(name=NATUREZA_LANCAMENTO, length=3)
 	private String naturezaLancamento;

@@ -31,13 +31,13 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS2", length = 1, value = " ")
+	@Field(name = "BRANCOS_2", length = 1, value = " ")
 	private String brancos2;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -67,7 +67,7 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = "BRANCOS3", length = 40, value = " ")
+	@Field(name = "BRANCOS_3", length = 40, value = " ")
 	private String brancos3;
 
 	@Field(name = DT_SALDO_ANTERIOR, length = 8, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
@@ -79,7 +79,7 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = DEBITO_CREDITO, length = 1)
 	private String debitoCredito;
 
-	@Field(name = "BRANCOS4", length = 1, value = " ")
+	@Field(name = "BRANCOS_4", length = 1, value = " ")
 	private String brancos4;
 
 	@Field(name = TP_MOEDA, length = 3)
@@ -88,7 +88,7 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NR_SEQUENCIA_EXTRATO, length = 5, type = EnumTypes.INTEGER)
 	private Integer numeroSequenciaExtrato;
 
-	@Field(name = "BRANCOS5", length = 62, value = " ")
+	@Field(name = "BRANCOS_5", length = 62, value = " ")
 	private String brancos5;
 
 	private ContaBancaria contaBancaria;
