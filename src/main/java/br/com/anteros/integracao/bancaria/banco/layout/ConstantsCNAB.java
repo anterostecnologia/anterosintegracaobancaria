@@ -67,6 +67,8 @@ public class ConstantsCNAB {
 	public static final String HISTORICO_LANCAMENTO = "HISTORICO_LANCAMENTO";
 
 	public static final String CD_HISTORICO = "CD_LANCAMENTO";
+	
+	public static final String PREFIXO_HISTORICO = "PREFIXO_HISTORICO";
 
 	public static final String CATEGORIA_LANCAMENTO = "CATEGORIA_LANCAMENTO";
 

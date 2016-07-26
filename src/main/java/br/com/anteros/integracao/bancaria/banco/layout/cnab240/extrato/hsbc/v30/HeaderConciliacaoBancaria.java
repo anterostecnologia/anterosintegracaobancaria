@@ -1,5 +1,27 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.hsbc.v30;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_MANTENEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_CONVENIO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIACONTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_SALDO_ANTERIOR;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LAYOUT_LOTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_EMPRESA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIA_EXTRATO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.SITUACAO_SALDO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.STATUS_SALDO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_MOEDA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_OPERACAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_SALDO_ANTERIOR;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,8 +33,6 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAnterior;
-
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderConciliacaoBancaria implements SaldoAnterior {
 
@@ -31,13 +51,13 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
-	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "032")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS2", length = 1, value = " ")
+	@Field(name = "BRANCOS_2", length = 1, value = " ")
 	private String brancos2;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -67,20 +87,20 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = "BRANCOS3", length = 40, value = " ")
+	@Field(name = "BRANCOS_3", length = 40, value = " ")
 	private String brancos3;
 
-	@Field(name = DT_SALDO_ANTERIOR, length = 8, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	@Field(name = DT_SALDO_ANTERIOR, length = 8, format = Formats.DATE_DDMMYYYY, type = EnumTypes.DATE)
 	private Date dataSaldoAnterior;
 
 	@Field(name = VL_SALDO_ANTERIOR, length = 18, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorSaldoAnterior;
 
-	@Field(name = DEBITO_CREDITO, length = 1)
-	private String debitoCredito;
+	@Field(name = SITUACAO_SALDO, length = 1)
+	private String situacaoSaldo;
 
-	@Field(name = "BRANCOS4", length = 1, value = " ")
-	private String brancos4;
+	@Field(name = STATUS_SALDO, length = 1)
+	private String statusSaldo;
 
 	@Field(name = TP_MOEDA, length = 3)
 	private String tipoMoeda;
@@ -88,7 +108,7 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NR_SEQUENCIA_EXTRATO, length = 5, type = EnumTypes.INTEGER)
 	private Integer numeroSequenciaExtrato;
 
-	@Field(name = "BRANCOS5", length = 62, value = " ")
+	@Field(name = "BRANCOS_5", length = 62, value = " ")
 	private String brancos5;
 
 	private ContaBancaria contaBancaria;
@@ -113,7 +133,8 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 		setNomeEmpresa((String) record.getValue(NOME_EMPRESA));
 		setDataSaldoAnterior((Date) record.getValue(DT_SALDO_ANTERIOR));
 		setValorSaldoAnterior((BigDecimal) record.getValue(VL_SALDO_ANTERIOR));
-		setDebitoCredito((String) record.getValue(DEBITO_CREDITO));
+		setSituacaoSaldo((String) record.getValue(SITUACAO_SALDO));
+		setStatusSaldo((String) record.getValue(STATUS_SALDO));
 		setTipoMoeda((String) record.getValue(TP_MOEDA));
 		setNumeroSequenciaExtrato((Integer) record.getValue(NR_SEQUENCIA_EXTRATO));
 	}
@@ -254,12 +275,28 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 		this.valorSaldoAnterior = valorSaldoAnterior;
 	}
 
-	public String getDebitoCredito() {
-		return debitoCredito;
+	public String getSituacaoSaldo() {
+		return situacaoSaldo;
 	}
 
-	public void setDebitoCredito(String debitoCredito) {
-		this.debitoCredito = debitoCredito;
+	public void setSituacaoSaldo(String situacaoSaldo) {
+		this.situacaoSaldo = situacaoSaldo;
+	}
+
+	public String getStatusSaldo() {
+		return statusSaldo;
+	}
+
+	public void setStatusSaldo(String statusSaldo) {
+		this.statusSaldo = statusSaldo;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public String getTipoMoeda() {
@@ -280,5 +317,10 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 
 	public static HeaderConciliacaoBancaria of(ContaBancaria contaBancaria) {
 		return new HeaderConciliacaoBancaria(contaBancaria);
+	}
+
+	@Override
+	public String getDebitoCredito() {
+		return null;
 	}
 }
