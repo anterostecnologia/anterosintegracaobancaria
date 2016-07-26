@@ -25,7 +25,7 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer loteServico;
 
-	@Field(name = "BRANCOS1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 9, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -52,8 +52,8 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 	@Field(name = DIGITO_AGENCIACONTA, length = 1)
 	private String digitoVerificadorAgenciaConta;
 
-	@Field(name = "BRANCOS3", length = 16, value = " ")
-	private String brancos3;
+	@Field(name = "BRANCOS_2", length = 16, value = " ")
+	private String brancos2;
 
 	@Field(name = SALDO_BLOQUEADO_ATE_24H, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
 	private BigDecimal saldoBloqueadoAte24Horas;
@@ -73,7 +73,7 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 	@Field(name = DEBITO_CREDITO, length = 1)
 	private String debitoCredito;
 
-	@Field(name = "BRANCOS4", length = 1, value = " ")
+	@Field(name = "BRANCOS_4", length = 1, value = " ")
 	private String brancos4;
 
 	@Field(name = QT_REGISTROS_LOTE, length = 6, type = EnumTypes.INTEGER)
@@ -85,7 +85,7 @@ public class TraillerConciliacaoBancaria implements SaldoAtual {
 	@Field(name = VL_TOTAL_CREDITOS, length = 18, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTotalCreditos;
 	
-	@Field(name = "BRANCOS5", length = 28, value = " ")
+	@Field(name = "BRANCOS_5", length = 28, value = " ")
 	private String brancos5;
 
 	private ContaBancaria contaBancaria;

@@ -51,6 +51,8 @@ public class ConstantsCNAB {
 	public static final String CD_BANCO_ORIGEM = "CD_BANCO_ORIGEM";
 
 	public static final String AGENCIA_ORIGEM_LANCAMENTO = "AGENCIA_ORIGEM_LANCAMENTO";
+	
+	public static final String FORMA_LANCAMENTO = "FORMA_LANCAMENTO";
 
 	public static final String NR_LOTE = "NR_LOTE";
 
@@ -371,6 +373,8 @@ public class ConstantsCNAB {
     public static final String TP_LANCAMENTO = "TP_LANCAMENTO";
     
     public static final String STATUS_SALDO = "STATUS_SALDO";
+    
+    public static final String SITUACAO_SALDO = "SITUACAO_SALDO";
     
     public static final String TP_MOEDA = "TP_MOEDA";
     

@@ -1,5 +1,35 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bradesco.v50;
 
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.AGENCIA_MANTENEDORA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CATEGORIA_LANCAMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_CONVENIO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_HISTORICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_SEGMENTO_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COMPLEMENTO_HISTORICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DEBITO_CREDITO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_AGENCIACONTA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DIGITO_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_CONTABIL;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_LANCAMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.HISTORICO_LANCAMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.IDENTIFICADOR_CPMF;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LT_SERVICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NATUREZA_LANCAMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOME_EMPRESA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_CONTACORRENTE;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_DOCUMENTO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIAL_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_COMPLEMENTO_HISTORICO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_INSCRICAO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_LANCAMENTO;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
 import br.com.anteros.flatfile.Record;
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
@@ -9,11 +39,6 @@ import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.Lancamento;
-
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{	
 
@@ -29,10 +54,10 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	@Field(name = TP_REGISTRO, type = EnumTypes.INTEGER, length = 1, value = "3", padding = Paddings.ZERO_LEFT)
 	private Integer tipoRegistro;
 	
-	@Field(name=NR_SEQUENCIAL_REGISTRO, length=5)
+	@Field(name=NR_SEQUENCIAL_REGISTRO, type = EnumTypes.INTEGER, length=5)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_1", length = 3, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 	
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
@@ -62,8 +87,8 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 	
-	@Field(name = "BRANCOS3", length = 6, value = " ")
-	private String brancos3;
+	@Field(name = "BRANCOS_2", length = 6, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
 	
 	@Field(name=NATUREZA_LANCAMENTO, length=3)
 	private String naturezaLancamento;
@@ -86,7 +111,7 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	@Field(name = VL_LANCAMENTO, length = 18, format = Formats.DECIMAL_DD, type = EnumTypes.BIGDECIMAL)
 	private BigDecimal valorLancamento;
 	
-	@Field(name=DEBITO_CREDITO, length=1)
+	@Field(name = DEBITO_CREDITO, length = 1)
 	private String debitoCredito;
 	
 	@Field(name = CATEGORIA_LANCAMENTO, length = 3)
