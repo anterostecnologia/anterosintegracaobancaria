@@ -28,7 +28,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Cedente;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
-
 public class HeaderArquivo {
 
 	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "0")
@@ -49,16 +48,25 @@ public class HeaderArquivo {
 	@Field(name = NR_INSCRICAO, length = 14, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroInscricao;
 
-	@Field(name = CD_CONVENIO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = "BRANCOS_2", length = 15, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
+
+	@Field(name = CD_CONVENIO, length = 5, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoConvenio;
 
-	@Field(name = AGENCIA_MANTENEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_1", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
+	private Integer zeros1;
+
+	@Field(name = AGENCIA_MANTENEDORA, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaMantenedora;
 
 	@Field(name = DIGITO_AGENCIA, length = 1)
 	private String digitoVerificadorAgencia;
 
-	@Field(name = NR_CONTACORRENTE, length = 12, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
+	@Field(name = "ZEROS_2", length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000000")
+	private Integer zeros2;
+
+	@Field(name = NR_CONTACORRENTE, length = 5, padding = Paddings.ZERO_LEFT, type = EnumTypes.LONG)
 	private Long numeroContaCorrente;
 
 	@Field(name = DIGITO_CONTACORRENTE, length = 1)
@@ -73,8 +81,8 @@ public class HeaderArquivo {
 	@Field(name = NOME_BANCO, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeBanco;
 
-	@Field(name = "BRANCOS_2", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos2;
+	@Field(name = "BRANCOS_3", length = 10, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos3;
 
 	@Field(name = CD_REMESSA_RETORNO, length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoRemessaRetorno;
@@ -97,13 +105,11 @@ public class HeaderArquivo {
 	@Field(name = USO_RESERVADO_BANCO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String usoReservadoBanco;
 
-	@Field(name = USO_RESERVADO_EMPRESA, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String usoReservadoEmpresa;
+	@Field(name = "BRANCOS_4", length = 49, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos4;
 
-	@Field(name = "BRANCOS_3", length = 29, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos3;
-
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
+			Integer versaoLayoutArquivo, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
@@ -321,14 +327,6 @@ public class HeaderArquivo {
 		this.usoReservadoBanco = usoReservadoBanco;
 	}
 
-	public String getUsoReservadoEmpresa() {
-		return usoReservadoEmpresa;
-	}
-
-	public void setUsoReservadoEmpresa(String usoReservadoEmpresa) {
-		this.usoReservadoEmpresa = usoReservadoEmpresa;
-	}
-
 	public String getBrancos3() {
 		return brancos3;
 	}
@@ -358,7 +356,6 @@ public class HeaderArquivo {
 		setNumeroVersaoArquivo((Integer) record.getValue(NR_VERSAO_ARQUIVO));
 		setDensidadeGravacaoArquivo((Integer) record.getValue(DENSIDADE_GRAVACAO_ARQUIVO));
 		setUsoReservadoBanco((String) record.getValue(USO_RESERVADO_BANCO));
-		setUsoReservadoEmpresa((String) record.getValue(USO_RESERVADO_EMPRESA));
 	}
 
 }

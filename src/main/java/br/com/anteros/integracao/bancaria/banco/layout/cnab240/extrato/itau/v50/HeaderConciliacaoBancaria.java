@@ -11,7 +11,6 @@ import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.SaldoAnterior;
-
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class HeaderConciliacaoBancaria implements SaldoAnterior {
@@ -31,14 +30,14 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = TP_SERVICO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer tipoServico;
 
-	@Field(name = "BRANCOS1", length = 2, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
-	private String brancos1;
+	@Field(name = TP_LANCAMENTO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "40")
+	private Integer tipoLancamento;
 
-	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = LAYOUT_LOTE, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "031")
 	private Integer layoutLote;
 
-	@Field(name = "BRANCOS2", length = 1, value = " ")
-	private String brancos2;
+	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos1;
 
 	@Field(name = TP_INSCRICAO, length = 1, type = EnumTypes.INTEGER)
 	private Integer tipoInscricao;
@@ -46,16 +45,28 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NR_INSCRICAO, length = 14, padding = Paddings.ZERO_LEFT)
 	private String numeroInscricao;
 
-	@Field(name = CD_CONVENIO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = TP_CONTA, length = 4, type = EnumTypes.INTEGER)
+	private Integer tipoConta;
+
+	@Field(name = "BRANCOS_2", length = 11, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	private String brancos2;
+
+	@Field(name = CD_CONVENIO, length = 5, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codigoConvenio;
 
-	@Field(name = AGENCIA_MANTENEDORA, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_1", length = 1, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0")
+	private Integer zeros1;
+
+	@Field(name = AGENCIA_MANTENEDORA, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer agenciaMantenedora;
 
 	@Field(name = DIGITO_AGENCIA, length = 1)
 	private String digitoVerificadorAgencia;
 
-	@Field(name = NR_CONTACORRENTE, length = 12, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
+	@Field(name = "ZEROS_2", length = 7, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000000")
+	private Integer zeros2;
+
+	@Field(name = NR_CONTACORRENTE, length = 5, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
 	private Long numeroContaCorrente;
 
 	@Field(name = DIGITO_CONTACORRENTE, length = 1)
@@ -67,20 +78,20 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nomeEmpresa;
 
-	@Field(name = "BRANCOS3", length = 40, value = " ")
+	@Field(name = "BRANCOS_3", length = 40, value = " ")
 	private String brancos3;
 
-	@Field(name = DT_SALDO_ANTERIOR, length = 8, format = Formats.DATE_DDMMYYYY, type=EnumTypes.DATE)
+	@Field(name = DT_SALDO_ANTERIOR, length = 8, format = Formats.DATE_DDMMYYYY, type = EnumTypes.DATE)
 	private Date dataSaldoAnterior;
 
 	@Field(name = VL_SALDO_ANTERIOR, length = 18, type = EnumTypes.BIGDECIMAL, format = Formats.DECIMAL_DD)
 	private BigDecimal valorSaldoAnterior;
 
-	@Field(name = DEBITO_CREDITO, length = 1)
-	private String debitoCredito;
+	@Field(name = SITUACAO_SALDO, length = 1)
+	private String situacaoSaldo;
 
-	@Field(name = "BRANCOS4", length = 1, value = " ")
-	private String brancos4;
+	@Field(name = STATUS_SALDO, length = 1)
+	private String statusSaldo;
 
 	@Field(name = TP_MOEDA, length = 3)
 	private String tipoMoeda;
@@ -88,8 +99,8 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 	@Field(name = NR_SEQUENCIA_EXTRATO, length = 5, type = EnumTypes.INTEGER)
 	private Integer numeroSequenciaExtrato;
 
-	@Field(name = "BRANCOS5", length = 62, value = " ")
-	private String brancos5;
+	@Field(name = "BRANCOS_4", length = 62, value = " ")
+	private String brancos4;
 
 	private ContaBancaria contaBancaria;
 
@@ -113,7 +124,8 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 		setNomeEmpresa((String) record.getValue(NOME_EMPRESA));
 		setDataSaldoAnterior((Date) record.getValue(DT_SALDO_ANTERIOR));
 		setValorSaldoAnterior((BigDecimal) record.getValue(VL_SALDO_ANTERIOR));
-		setDebitoCredito((String) record.getValue(DEBITO_CREDITO));
+		setSituacaoSaldo((String) record.getValue(SITUACAO_SALDO));
+		setStatusSaldo((String) record.getValue(STATUS_SALDO));
 		setTipoMoeda((String) record.getValue(TP_MOEDA));
 		setNumeroSequenciaExtrato((Integer) record.getValue(NR_SEQUENCIA_EXTRATO));
 	}
@@ -254,12 +266,36 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 		this.valorSaldoAnterior = valorSaldoAnterior;
 	}
 
-	public String getDebitoCredito() {
-		return debitoCredito;
+	public Integer getTipoLancamento() {
+		return tipoLancamento;
 	}
 
-	public void setDebitoCredito(String debitoCredito) {
-		this.debitoCredito = debitoCredito;
+	public void setTipoLancamento(Integer tipoLancamento) {
+		this.tipoLancamento = tipoLancamento;
+	}
+
+	public Integer getTipoConta() {
+		return tipoConta;
+	}
+
+	public void setTipoConta(Integer tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+
+	public String getSituacaoSaldo() {
+		return situacaoSaldo;
+	}
+
+	public void setSituacaoSaldo(String situacaoSaldo) {
+		this.situacaoSaldo = situacaoSaldo;
+	}
+
+	public String getStatusSaldo() {
+		return statusSaldo;
+	}
+
+	public void setStatusSaldo(String statusSaldo) {
+		this.statusSaldo = statusSaldo;
 	}
 
 	public String getTipoMoeda() {
@@ -280,5 +316,11 @@ public class HeaderConciliacaoBancaria implements SaldoAnterior {
 
 	public static HeaderConciliacaoBancaria of(ContaBancaria contaBancaria) {
 		return new HeaderConciliacaoBancaria(contaBancaria);
+	}
+
+	@Override
+	public String getDebitoCredito() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

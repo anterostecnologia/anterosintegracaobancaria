@@ -52,6 +52,8 @@ public class ConstantsCNAB {
 
 	public static final String AGENCIA_ORIGEM_LANCAMENTO = "AGENCIA_ORIGEM_LANCAMENTO";
 	
+	public static final String AGENCIA_CONTA_ORIGEM_LANCAMENTO = "AGENCIA_CONTA_ORIGEM_LANCAMENTO";
+	
 	public static final String FORMA_LANCAMENTO = "FORMA_LANCAMENTO";
 
 	public static final String NR_LOTE = "NR_LOTE";
@@ -89,6 +91,8 @@ public class ConstantsCNAB {
 	public static final String DT_GRAVACAO = "DT_GRAVACAO";
 
 	public static final String CD_BANCO = "CD_BANCO";
+	
+	public static final String VL_TOTAL_NAO_CONTABIL = "VL_TOTAL_NAO_CONTABIL";
 
 	public static final String VL_TOTAL_BLOQUEADO_01 = "VL_TOTAL_BLOQUEADO_01";
 
@@ -187,6 +191,8 @@ public class ConstantsCNAB {
 	public static final String TP_OPERACAO = "TP_OPERACAO";
 	
 	public static final String TP_REGISTRO = "TP_REGISTRO";
+	
+	public static final String TP_CONTA = "TP_CONTA";
 	
 	public static final String CD_MOTIVO_REJEICAO = "CD_MOTIVO_REJEICAO";
 	
@@ -373,6 +379,10 @@ public class ConstantsCNAB {
     public static final String COMPLEMENTO_HISTORICO = "COMPLEMENTO_HISTORICO";
     
     public static final String TP_LANCAMENTO = "TP_LANCAMENTO";
+    
+    public static final String LANCAMENTO = "LANCAMENTO";
+    
+    public static final String CD_LANCAMENTO = "CD_LANCAMENTO";
     
     public static final String STATUS_SALDO = "STATUS_SALDO";
     
