@@ -295,10 +295,10 @@ public class CobrancaSegmentoQ implements RecordData {
 		return remessas.size();
 	}
 
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
 		this.loteServico = 1; // G002
-		this.numeroSequencialRegistro = row + 1;// G038
+		this.numeroSequencialRegistro = sequence;// G038
 		this.codigoMovimentoRemessa = remessas.get(row).getCodigoMovimentoRemessa().getTipo();// C004
 		this.tipoInscricaoSacado = (remessas.get(row).getTitulo().getSacado().getCPRF().isFisica() ? 1 : 2);// G005
 		this.numeroInscricaoSacado = remessas.get(row).getTitulo().getSacado().getCPRF().getCodigo();// G006

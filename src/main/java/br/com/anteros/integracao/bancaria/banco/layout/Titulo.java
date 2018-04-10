@@ -49,44 +49,50 @@ public class Titulo {
 	private Date dataDocumento;
 
 	private Date dataVencimento;
+	
+	private Date dataMulta;
 
 	private TipoMoeda tipoMoeda = TipoMoeda.REAL;
 
-	private BigDecimal valorTitulo= BigDecimal.ZERO;
+	private BigDecimal valorTitulo = BigDecimal.ZERO;
 
-	private BigDecimal valorDescontoConcedido= BigDecimal.ZERO;
+	private BigDecimal valorDescontoConcedido = BigDecimal.ZERO;
 
-	private BigDecimal percentualDescontoConcedido= BigDecimal.ZERO;
+	private BigDecimal percentualDescontoConcedido = BigDecimal.ZERO;
 
-	private BigDecimal valorJurosMoraPorAtraso= BigDecimal.ZERO;
+	private BigDecimal percentualMulta = BigDecimal.ZERO;
 
-	private BigDecimal valorAcrecimo= BigDecimal.ZERO;
-	
-	private BigDecimal valorJuros= BigDecimal.ZERO;
-	
-	private BigDecimal valorDesconto= BigDecimal.ZERO;
-	
-	private BigDecimal valorDeducao= BigDecimal.ZERO;
+	private BigDecimal valorJurosMoraPorAtraso = BigDecimal.ZERO;
 
-	private BigDecimal valorCobrado= BigDecimal.ZERO;
+	private BigDecimal valorAcrecimo = BigDecimal.ZERO;
 
-	private BigDecimal valorIOF= BigDecimal.ZERO;
+	private BigDecimal valorJuros = BigDecimal.ZERO;
 
-	private BigDecimal valorAbatimentoConcedido= BigDecimal.ZERO;
+	private BigDecimal valorDesconto = BigDecimal.ZERO;
 
-	private BigDecimal valorAbatimento= BigDecimal.ZERO;
+	private BigDecimal valorDeducao = BigDecimal.ZERO;
 
-	private Integer nrDiasProtesto=0;
+	private BigDecimal valorCobrado = BigDecimal.ZERO;
+
+	private BigDecimal valorIOF = BigDecimal.ZERO;
+
+	private BigDecimal valorAbatimentoConcedido = BigDecimal.ZERO;
+
+	private BigDecimal valorAbatimento = BigDecimal.ZERO;
+
+	private Integer nrDiasProtesto = 0;
 
 	private TipoDeBaixaDevolucao tipoBaixaDevolucao;
 
-	private Integer nrDiasBaixaDevolucao=0;
+	private Integer nrDiasBaixaDevolucao = 0;
 
 	private TipoTitulo tipoDocumento;
 
 	private TipoJurosMora tipoJurosMora;
 
 	private TipoDesconto tipoDesconto;
+
+	private TipoMulta tipoMulta;
 
 	private TipoProtesto tipoProtesto;
 
@@ -185,6 +191,14 @@ public class Titulo {
 
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
+	}
+
+	public Date getDataMulta() {
+		return dataMulta;
+	}
+
+	public void setDataMulta(Date dataMulta) {
+		this.dataMulta = dataMulta;
 	}
 
 	public String getDigitoNossoNumero() {
@@ -364,6 +378,14 @@ public class Titulo {
 		this.tipoDesconto = tipoDesconto;
 	}
 
+	public TipoMulta getTipoMulta() {
+		return tipoMulta;
+	}
+
+	public void setTipoMulta(TipoMulta tipoMulta) {
+		this.tipoMulta = tipoMulta;
+	}
+
 	public Date getDataDesconto() {
 		return dataDesconto;
 	}
@@ -378,6 +400,42 @@ public class Titulo {
 
 	public void setPercentualDesconto(BigDecimal percentualDesconto) {
 		this.percentualDescontoConcedido = percentualDesconto;
+	}
+
+	public SimpleDateFormat getSdf() {
+		return sdf;
+	}
+
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
+	}
+
+	public BigDecimal getPercentualDescontoConcedido() {
+		return percentualDescontoConcedido;
+	}
+
+	public void setPercentualDescontoConcedido(BigDecimal percentualDescontoConcedido) {
+		this.percentualDescontoConcedido = percentualDescontoConcedido;
+	}
+
+	public BigDecimal getPercentualMulta() {
+		return percentualMulta;
+	}
+
+	public void setPercentualMulta(BigDecimal percentualMulta) {
+		this.percentualMulta = percentualMulta;
+	}
+
+	public ParametrosBancariosMap getParametrosBancariosMap() {
+		return parametrosBancariosMap;
+	}
+
+	public void setParametrosBancariosMap(ParametrosBancariosMap parametrosBancariosMap) {
+		this.parametrosBancariosMap = parametrosBancariosMap;
+	}
+
+	public TipoDeBaixaDevolucao getTipoBaixaDevolucao() {
+		return tipoBaixaDevolucao;
 	}
 
 	public BigDecimal getValorIOF() {
@@ -443,28 +501,37 @@ public class Titulo {
 	public void setInstrucaoCobranca2(Integer instrucaoCobranca2) {
 		this.instrucaoCobranca2 = instrucaoCobranca2;
 	}
-//
-//	@Override
-//	public String toString() {
-//		return "Titulo [numeroDocumento=" + numeroDocumento + ", dataDocumento="
-//				+ (dataDocumento == null ? "" : sdf.format(dataDocumento)) + ", dataVencimento="
-//				+ (dataVencimento == null ? "" : sdf.format(dataVencimento)) + ", tipoDeMoeda=" + tipoMoeda
-//				+ ", valorTitulo=" + valorTitulo + ", valorDesconto=" + valorDescontoConcedido + ", percentualDesconto="
-//				+ percentualDescontoConcedido + ", valorJurosMora=" + valorJurosMoraPorAtraso + ", valorAcrecimo=" + valorAcrecimo + 
-//				", valorCobrado=" + valorCobrado + ", valorIOF="
-//				+ valorIOF + ", valorAbatimento=" + valorAbatimentoConcedido + ", nrDiasProtesto=" + nrDiasProtesto
-//				+ ", tipoDeBaixaDevolucao=" + tipoBaixaDevolucao + ", nrDiasBaixaDevolucao=" + nrDiasBaixaDevolucao
-//				+ ", tipoDeDocumento=" + tipoDocumento + ", tipoDeJurosMora=" + tipoJurosMora + ", tipoDeDesconto="
-//				+ tipoDesconto + ", tipoDeProtesto=" + tipoProtesto + ", dataDesconto="
-//				+ (dataDesconto == null ? "" : sdf.format(dataDesconto)) + ", dataJurosMora="
-//				+ (dataJurosMora == null ? "" : sdf.format(dataJurosMora)) + ", nossoNumero=" + nossoNumero
-//				+ ", digitoDoNossoNumero=" + digitoNossoNumero + ", contaBancaria=" + contaBancaria + ", cedente="
-//				+ cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista + ", carteira=" + carteira
-//				+ ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite + ", instrucaoCobranca1="
-//				+ instrucaoCobranca1 + ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
-//	}
-	
-	
+	//
+	// @Override
+	// public String toString() {
+	// return "Titulo [numeroDocumento=" + numeroDocumento + ", dataDocumento="
+	// + (dataDocumento == null ? "" : sdf.format(dataDocumento)) + ",
+	// dataVencimento="
+	// + (dataVencimento == null ? "" : sdf.format(dataVencimento)) + ",
+	// tipoDeMoeda=" + tipoMoeda
+	// + ", valorTitulo=" + valorTitulo + ", valorDesconto=" +
+	// valorDescontoConcedido + ", percentualDesconto="
+	// + percentualDescontoConcedido + ", valorJurosMora=" + valorJurosMoraPorAtraso
+	// + ", valorAcrecimo=" + valorAcrecimo +
+	// ", valorCobrado=" + valorCobrado + ", valorIOF="
+	// + valorIOF + ", valorAbatimento=" + valorAbatimentoConcedido + ",
+	// nrDiasProtesto=" + nrDiasProtesto
+	// + ", tipoDeBaixaDevolucao=" + tipoBaixaDevolucao + ", nrDiasBaixaDevolucao="
+	// + nrDiasBaixaDevolucao
+	// + ", tipoDeDocumento=" + tipoDocumento + ", tipoDeJurosMora=" + tipoJurosMora
+	// + ", tipoDeDesconto="
+	// + tipoDesconto + ", tipoDeProtesto=" + tipoProtesto + ", dataDesconto="
+	// + (dataDesconto == null ? "" : sdf.format(dataDesconto)) + ", dataJurosMora="
+	// + (dataJurosMora == null ? "" : sdf.format(dataJurosMora)) + ", nossoNumero="
+	// + nossoNumero
+	// + ", digitoDoNossoNumero=" + digitoNossoNumero + ", contaBancaria=" +
+	// contaBancaria + ", cedente="
+	// + cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista +
+	// ", carteira=" + carteira
+	// + ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite
+	// + ", instrucaoCobranca1="
+	// + instrucaoCobranca1 + ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
+	// }
 
 	public BigDecimal getValorAbatimentoConcedido() {
 		return valorAbatimentoConcedido;
@@ -510,16 +577,16 @@ public class Titulo {
 				+ ", nrDiasProtesto=" + nrDiasProtesto + ", tipoBaixaDevolucao=" + tipoBaixaDevolucao
 				+ ", nrDiasBaixaDevolucao=" + nrDiasBaixaDevolucao + ", tipoDocumento=" + tipoDocumento
 				+ ", tipoJurosMora=" + tipoJurosMora + ", tipoDesconto=" + tipoDesconto + ", tipoProtesto="
-				+ tipoProtesto + ", dataDesconto=" + formatarData(dataDesconto) + ", dataJurosMora=" + formatarData(dataJurosMora)
-				+ ", nossoNumero=" + nossoNumero + ", digitoNossoNumero=" + digitoNossoNumero + ", contaBancaria="
-				+ contaBancaria + ", cedente=" + cedente + ", sacado=" + sacado + ", sacadorAvalista=" + sacadorAvalista
-				+ ", carteira=" + carteira + ", parametrosBancariosMap=" + parametrosBancariosMap + ", aceite=" + aceite
-				+ ", instrucaoCobranca1=" + instrucaoCobranca1 + ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
+				+ tipoProtesto + ", dataDesconto=" + formatarData(dataDesconto) + ", dataJurosMora="
+				+ formatarData(dataJurosMora) + ", nossoNumero=" + nossoNumero + ", digitoNossoNumero="
+				+ digitoNossoNumero + ", contaBancaria=" + contaBancaria + ", cedente=" + cedente + ", sacado=" + sacado
+				+ ", sacadorAvalista=" + sacadorAvalista + ", carteira=" + carteira + ", parametrosBancariosMap="
+				+ parametrosBancariosMap + ", aceite=" + aceite + ", instrucaoCobranca1=" + instrucaoCobranca1
+				+ ", instrucaoCobranca2=" + instrucaoCobranca2 + "]";
 	}
-	
-	
-	private String formatarData(Date data){
-		if (data==null)
+
+	private String formatarData(Date data) {
+		if (data == null)
 			return "";
 		return sdf.format(data);
 	}

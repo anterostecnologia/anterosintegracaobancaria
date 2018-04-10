@@ -374,8 +374,8 @@ public class CobrancaSegmentoT implements RecordData {
 	public int getNumberOfRecords() {
 		return 0;
 	}
-
-	public void readRowData(int row) {
+	
+	public void readRowData(int row, int sequence) {
 
 	}
 

@@ -15,6 +15,8 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout;
 
+import static java.lang.String.format;
+
 public enum TipoJurosMora {
 
 	VALOR_POR_DIA(1),
@@ -29,5 +31,14 @@ public enum TipoJurosMora {
 	
 	public Integer getTipo(){
 		return tipo;
+	}
+	
+	public static TipoJurosMora valueOf(int codigo){
+		for(TipoJurosMora t : values()){
+			if(t.getTipo() == codigo){
+				return t;
+			}
+		}
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoJurosMora.class, codigo));
 	}
 }

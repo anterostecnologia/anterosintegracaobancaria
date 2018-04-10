@@ -15,6 +15,8 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout;
 
+import static java.lang.String.format;
+
 public enum TipoProtesto {
 	
 	PROTESTAR_DIAS_CORRIDOS(1),
@@ -35,5 +37,13 @@ public enum TipoProtesto {
 		return tipo;
 	}
 	
-
+	public static TipoProtesto valueOf(int codigo){
+		for(TipoProtesto t : values()){
+			if(t.getTipo() == codigo){
+				return t;
+			}
+		}
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoProtesto.class, codigo));
+	}
+	
 }

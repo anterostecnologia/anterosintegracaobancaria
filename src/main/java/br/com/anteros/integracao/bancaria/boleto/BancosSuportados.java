@@ -278,7 +278,7 @@ public enum BancosSuportados{
 	 * 
 	 * @since 0.2
 	 */
-	BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
+	BANCOOB("756", "02038232000164", "SICOOB", "Banco Sicoob");
 	
 	/**
 	 * Singleton <code>Map</code> para pesquisa por bancos suportados no

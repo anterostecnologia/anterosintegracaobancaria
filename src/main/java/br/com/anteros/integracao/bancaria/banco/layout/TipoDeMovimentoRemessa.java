@@ -68,7 +68,7 @@ public enum TipoDeMovimentoRemessa {
 		return tipo;
 	}
 	
-	public TipoDeMovimentoRemessa valueOfTipo(Integer tipo){
+	public static TipoDeMovimentoRemessa valueOfTipo(Integer tipo){
 		for(TipoDeMovimentoRemessa t : values()){
 			if(t.getTipo().equals(tipo)){
 				return t;

@@ -15,8 +15,11 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout;
 
+import static java.lang.String.format;
+
 public enum TipoDesconto {
 
+	NAO_CONCEDER_DESCONTO(0),
 	VALOR_FIXO_ATE_A_DATA(1),
 	PERCENTUAL_ATE_A_DATA(2),
 	VALOR_ANTECIPACAO_DIA_CORRIDO(3),
@@ -33,5 +36,14 @@ public enum TipoDesconto {
 	
 	public Integer getTipo(){
 		return tipo;
+	}
+	
+	public static TipoDesconto valueOf(int codigo){
+		for(TipoDesconto t : values()){
+			if(t.getTipo() == codigo){
+				return t;
+			}
+		}
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoDesconto.class, codigo));
 	}
 }

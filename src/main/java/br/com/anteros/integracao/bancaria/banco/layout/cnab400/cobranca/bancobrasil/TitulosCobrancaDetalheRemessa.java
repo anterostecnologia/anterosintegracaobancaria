@@ -590,7 +590,7 @@ public class TitulosCobrancaDetalheRemessa implements RecordData {
 		return remessas.size();
 	}
 
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 		this.tipoInscricaoEmpresa  = (remessas.get(row).getTitulo().getCedente().getCPRF().isFisica() ? 1 : 2);
 		this.numeroInscricao = remessas.get(row).getTitulo().getCedente().getCPRF().getCodigo();
 		this.agencia = contaBancaria.getAgencia().getCodigo();

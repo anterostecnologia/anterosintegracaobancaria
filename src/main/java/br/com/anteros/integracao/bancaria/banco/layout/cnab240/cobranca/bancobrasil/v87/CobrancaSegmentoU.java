@@ -1,27 +1,6 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87;
 
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_BANCO_CORRESPONDENTE;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_MOVIMENTO_RETORNO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_OCORRENCIA;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.CD_SEGMENTO_REGISTRO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COMPLEMENTO_OCORRENCIA;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_EFETIVACAO_CREDITO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_OCORRENCIA;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.DT_OCORRENCIA_PAGAMENTO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.LOTE_SERVICO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NOSSO_NR_BANCO_CORRESPONDENTE;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.NR_SEQUENCIAL_REGISTRO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TP_REGISTRO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_ABATIMENTO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_DESCONTO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_IOF;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_JUROS_MULTAS;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_LIQUIDO_CREDITADO;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_OCORRENCIA;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_OUTRAS_DESPESAS;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_OUTROS_CREDITOS;
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_PAGOSACADO;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -51,7 +30,7 @@ public class CobrancaSegmentoU {
 	@Field(name = NR_SEQUENCIAL_REGISTRO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialRegistro;
 
-	@Field(name = "BRANCOS_1", length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = BRANCOS_1, length = 1, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos1;
 
 	@Field(name = CD_MOVIMENTO_RETORNO, length = 2, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
@@ -105,7 +84,7 @@ public class CobrancaSegmentoU {
 	@Field(name = NOSSO_NR_BANCO_CORRESPONDENTE, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String nossoNumeroBancoCorrespondente;
 
-	@Field(name = "BRANCOS_2", length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = BRANCOS_2, length = 7, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos2;
 
 	private ContaBancaria contaBancaria;

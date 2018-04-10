@@ -41,8 +41,8 @@ import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Cobranca;
 @FlatFile(name = "Arquivo CNAB240 - Banco do Brasil", description = "Arquivo de remessa/retorno COBRANÇA CNAB240", version = "1.0")
 public class BancoBrasilCNAB240Cobranca implements CNAB240Cobranca {
 
-	private static final int VERSAO_LAYOUT_ARQUIVO_ITAU = 40;
-	private static final int VERSAO_LAYOUT_LOTE_ITAU = 30;
+	private static final int VERSAO_LAYOUT_ARQUIVO_BB = 40;
+	private static final int VERSAO_LAYOUT_LOTE_BB = 42;
 
 	@Record(name = HEADER, description = "Protocolo de comunicação", order = 1, groups = { REMESSA_COBRANCA,
 			RETORNO_COBRANCA })
@@ -147,11 +147,11 @@ public class BancoBrasilCNAB240Cobranca implements CNAB240Cobranca {
 	}
 
 	public int getVersaoLayoutArquivo() {
-		return VERSAO_LAYOUT_ARQUIVO_ITAU;
+		return VERSAO_LAYOUT_ARQUIVO_BB;
 	}
 
 	public int getVersaoLayoutLote() {
-		return VERSAO_LAYOUT_LOTE_ITAU;
+		return VERSAO_LAYOUT_LOTE_BB;
 	}
 
 	@Override

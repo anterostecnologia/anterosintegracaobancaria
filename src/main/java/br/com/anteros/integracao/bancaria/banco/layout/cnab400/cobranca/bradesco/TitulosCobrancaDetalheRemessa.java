@@ -161,7 +161,7 @@ public class TitulosCobrancaDetalheRemessa implements RecordData {
 	}
 
 
-	public void readRowData(int row) {		
+	public void readRowData(int row, int sequence) {	
 		this.agencia = contaBancaria.getAgencia().getCodigo();
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();
 		this.digitoContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();

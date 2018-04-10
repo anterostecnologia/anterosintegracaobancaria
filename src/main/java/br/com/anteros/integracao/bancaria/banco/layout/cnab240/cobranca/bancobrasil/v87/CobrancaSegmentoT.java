@@ -82,7 +82,7 @@ public class CobrancaSegmentoT implements RecordData {
 	private String identificadorTitulo;
 
 	@Field(name = CD_CARTEIRA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
-	private String codigoCarteira;	
+	private String codigoCarteira;
 
 	@Field(name = NR_DOCUMENTO_COBRANCA, length = 15, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String numeroDocumentoCobranca;
@@ -118,7 +118,7 @@ public class CobrancaSegmentoT implements RecordData {
 	private String nomeSacadorAvalista;
 
 	@Field(name = NR_CONTRATO_OPERACAO_CREDITO, length = 10, type = EnumTypes.LONG, padding = Paddings.ZERO_LEFT)
-	private Long numeroContratoOperacaoCredito;
+	private String numeroContratoOperacaoCredito;
 
 	@Field(name = VL_TARIFA_CUSTAS, length = 15, type = EnumTypes.BIGDECIMAL, padding = Paddings.ZERO_LEFT, format = Formats.DECIMAL_DD)
 	private BigDecimal valorTarifaCustas;
@@ -335,12 +335,24 @@ public class CobrancaSegmentoT implements RecordData {
 		this.nomeSacadorAvalista = nomeSacadorAvalista;
 	}
 
-	public Long getNumeroContratoOperacaoCredito() {
+	public String getNumeroContratoOperacaoCredito() {
 		return numeroContratoOperacaoCredito;
 	}
 
-	public void setNumeroContratoOperacaoCredito(Long numeroContratoOperacaoCredito) {
+	public void setNumeroContratoOperacaoCredito(String numeroContratoOperacaoCredito) {
 		this.numeroContratoOperacaoCredito = numeroContratoOperacaoCredito;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
+	}
+
+	public String getIdentificadorRejeicao() {
+		return identificadorRejeicao;
 	}
 
 	public BigDecimal getValorTarifaCustas() {
@@ -375,7 +387,7 @@ public class CobrancaSegmentoT implements RecordData {
 		return 0;
 	}
 
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 
 	}
 
@@ -404,7 +416,7 @@ public class CobrancaSegmentoT implements RecordData {
 		setTipoInscricaoSacadoAvalista((Integer) record.getValue(TP_INSCRICAO_SACADO_AVALISTA));
 		setNumeroInscricaoSacadoAvalista((Long) record.getValue(NR_INSCRICAO_SACADO_AVALISTA));
 		setNomeSacadorAvalista((String) record.getValue(NOME_SACADOR_AVALISTA));
-		setNumeroContratoOperacaoCredito((Long) record.getValue(NR_CONTRATO_OPERACAO_CREDITO));
+		setNumeroContratoOperacaoCredito((String) record.getValue(NR_CONTRATO_OPERACAO_CREDITO));
 		setValorTarifaCustas((BigDecimal) record.getValue(VL_TARIFA_CUSTAS));
 		setIdentificadorRejeicao((String) record.getValue(CD_MOTIVO_REJEICAO));
 	}

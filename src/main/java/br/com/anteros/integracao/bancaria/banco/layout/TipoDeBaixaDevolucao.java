@@ -15,6 +15,8 @@
  *******************************************************************************/
 package br.com.anteros.integracao.bancaria.banco.layout;
 
+import static java.lang.String.format;
+
 public enum TipoDeBaixaDevolucao {
 	
 	BAIXAR_DEVOLVER(1),
@@ -30,6 +32,15 @@ public enum TipoDeBaixaDevolucao {
 	
 	public Integer getTipo(){
 		return tipo;
+	}
+	
+	public static TipoDeBaixaDevolucao valueOf(int codigo){
+		for(TipoDeBaixaDevolucao t : values()){
+			if(t.getTipo() == codigo){
+				return t;
+			}
+		}
+		throw  new IllegalArgumentException(format("Nenhuma constante enum %s com código igual a %s!", TipoDeBaixaDevolucao.class, codigo));
 	}
 
 }

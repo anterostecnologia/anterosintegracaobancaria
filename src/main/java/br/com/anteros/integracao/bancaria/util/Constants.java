@@ -9,4 +9,5 @@ public class Constants {
 	public static final Integer ITAU = 341;
 	public static final Integer SANTANDER = 33;
 	public static final Integer REAL = 356;
+	public static final Integer SICOOB = 756;
 }

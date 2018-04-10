@@ -344,7 +344,7 @@ public class ConciliacaoBancariaSegmentoE implements Lancamento, RecordData{
 	}
 
 	@Override
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 		
 	}
 

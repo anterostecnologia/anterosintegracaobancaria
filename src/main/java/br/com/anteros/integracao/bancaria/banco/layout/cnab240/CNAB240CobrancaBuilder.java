@@ -13,6 +13,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.caixa.v5
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.hsbc.v10.HsbcCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.itau.v40.ItauCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.santander.v40.SantanderCNAB240Cobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob.BancoSicoobCNAB240RemessaCobranca;
 import br.com.anteros.integracao.bancaria.util.Constants;
 
 public class CNAB240CobrancaBuilder {
@@ -24,6 +25,8 @@ public class CNAB240CobrancaBuilder {
 	private Date dataGravacao = Calendar.getInstance().getTime();
 
 	private Date dataHoraGeracao = Calendar.getInstance().getTime();
+	
+	private Integer numeroSequencialArquivo;
 
 	public CNAB240CobrancaBuilder remessas(List<RemessaCobranca> remessas) {
 		this.remessas = remessas;
@@ -44,6 +47,11 @@ public class CNAB240CobrancaBuilder {
 		this.dataHoraGeracao = dataHoraGeracao;
 		return this;
 	}
+	
+	public CNAB240CobrancaBuilder numeroSequencialArquivo(Integer numeroSequencialArquivo) {
+		this.numeroSequencialArquivo = numeroSequencialArquivo;
+		return this;
+	}
 
 	public CNAB240Cobranca build() {
 		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BANCO_BRASIL)) {
@@ -59,6 +67,8 @@ public class CNAB240CobrancaBuilder {
 			return ItauCNAB240Cobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {
 			return SantanderCNAB240Cobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SICOOB)) {
+			return BancoSicoobCNAB240RemessaCobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao, numeroSequencialArquivo);
 		}
 		throw new CNABException(
 				"Layout CNAB240 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");

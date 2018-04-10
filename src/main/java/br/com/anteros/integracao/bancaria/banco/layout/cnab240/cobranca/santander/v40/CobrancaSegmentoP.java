@@ -175,10 +175,10 @@ public class CobrancaSegmentoP implements RecordData {
 		return remessas.size();
 	}
 
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); // G001
 		this.loteServico = 1; // G002
-		this.numeroSequencialRegistro = row + 1;// G038
+		this.numeroSequencialRegistro = sequence;// G038
 		this.codigoMovimentoRemessa = remessas.get(row).getCodigoMovimentoRemessa().getTipo();// C004
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009

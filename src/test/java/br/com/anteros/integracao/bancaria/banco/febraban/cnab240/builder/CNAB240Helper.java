@@ -27,6 +27,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.TipoDeMovimentoRemessa;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoDesconto;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoJurosMora;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoMoeda;
+import br.com.anteros.integracao.bancaria.banco.layout.TipoMulta;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoProtesto;
 import br.com.anteros.integracao.bancaria.banco.layout.TipoTitulo;
 import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
@@ -67,8 +68,8 @@ public class CNAB240Helper {
 			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado4(), new BigDecimal("234.54"),
 					"100000001", DateUtil.stringToDate("11/08/2016", "dd/MM/yyyy"), "5009401447", "1", 1000));
 		} else {
-			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("12347.34"),
-					"100000001", DateUtil.stringToDate("10/05/2016", "dd/MM/yyyy"), "05009401448", "1", 1000));
+			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado1(), new BigDecimal("376.80"), 
+					"429106-FR/1", DateUtil.stringToDate("02/11/2017", "dd/MM/yyyy"), "001790000901014", "1", 1000));
 			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado2(), new BigDecimal("52347.14"),
 					"100000001", DateUtil.stringToDate("15/06/2016", "dd/MM/yyyy"), "05009401449", "1", 1000));
 			result.add(criarRemessa(contaBancaria, cedente, carteira, criarSacado3(), new BigDecimal("61247.24"),
@@ -85,32 +86,30 @@ public class CNAB240Helper {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, Calendar.MAY, 10);
 		Titulo titulo = new Titulo(contaBancaria, sacado, cedente, carteira);
-		titulo.setAceite(Aceite.N);
-		titulo.setDataDesconto(calendar.getTime());
-		titulo.setDataDocumento(calendar.getTime());
-		titulo.setDataVencimento(calendar.getTime());
-		titulo.setDataJurosMora(calendar.getTime());
+		titulo.setAceite(Aceite.A);
+		titulo.setDataDocumento(DateUtil.stringToDate("03/10/2017", "dd/MM/yyyy"));
+		titulo.setDataVencimento(dataVencimento);
+		titulo.setDataJurosMora(DateUtil.stringToDate("03/11/2017", "dd/MM/yyyy"));
 		titulo.setDigitoNossoNumero("1");
 		titulo.setJurosMora(BigDecimal.TEN);
 		titulo.setNossoNumero(nossoNumero);
 		titulo.setNrDiasBaixaDevolucao(10);
-		titulo.setNrDiasProtesto(5);
+		titulo.setNrDiasProtesto(3);
 		titulo.setNumeroDocumento(numeroDocumento);
-		titulo.setPercentualDesconto(BigDecimal.TEN);
 		titulo.setTipoBaixaDevolucao(TipoDeBaixaDevolucao.NAO_BAIXAR);
-		titulo.setTipoDesconto(TipoDesconto.VALOR_FIXO_ATE_A_DATA);
+		titulo.setTipoDesconto(TipoDesconto.NAO_CONCEDER_DESCONTO);
 		titulo.setTipoDocumento(TipoTitulo.DM_DUPLICATA_MERCANTIL);
-		titulo.setTipoJurosMora(TipoJurosMora.VALOR_POR_DIA);
+		titulo.setTipoJurosMora(TipoJurosMora.TAXA_MENSAL);
 		titulo.setTipoMoeda(TipoMoeda.REAL);
-		titulo.setTipoProtesto(TipoProtesto.NAO_PROTESTAR);
+		titulo.setTipoProtesto(TipoProtesto.PROTESTAR_DIAS_UTEIS);
 		titulo.setValorTitulo(valorTitulo);
-		titulo.setValorAbatimento(BigDecimal.TEN);
 		titulo.setValorAcrecimo(BigDecimal.TEN);
 		titulo.setValorCobrado(valorTitulo);
 		titulo.setValorDeducao(BigDecimal.TEN);
-		titulo.setValorDesconto(BigDecimal.TEN);
-		titulo.setValorIOF(BigDecimal.TEN);
-		titulo.setValorJurosMoraPorAtraso(BigDecimal.TEN);
+		titulo.setTipoMulta(TipoMulta.PERCENTUAL);
+		titulo.setPercentualMulta(new BigDecimal("2.00"));
+		titulo.setDataMulta(DateUtil.stringToDate("03/11/2017", "dd/MM/yyyy"));
+		titulo.setValorJurosMoraPorAtraso(new BigDecimal("33.00"));
 
 		return RemessaCobranca.of(TipoDeMovimentoRemessa.ENTRADA_TITULOS, titulo, nrLote);
 	}
@@ -137,13 +136,13 @@ public class CNAB240Helper {
 		NumeroDeTelefone telefone = new NumeroDeTelefone();
 		telefone.setDDD(44);
 		telefone.setDDI(55);
-		telefone.setTelefone("87586514");
+		telefone.setTelefone("35621206");
 		return telefone;
 	}
 
 	public static ContaBancaria criarContaBancaria(Banco banco) {
-		Agencia agencia = new Agencia(1212, "3");
-		NumeroDaConta numeroDaConta = new NumeroDaConta(23232L, "2");
+		Agencia agencia = new Agencia(4340, "0");
+		NumeroDaConta numeroDaConta = new NumeroDaConta(110042L, "4");
 		ContaBancaria contaBancaria = new ContaBancaria(banco);
 		contaBancaria.setAgencia(agencia);
 		contaBancaria.setNumeroDaConta(numeroDaConta);
@@ -156,7 +155,10 @@ public class CNAB240Helper {
 		Endereco enderecoSacado = new Endereco();
 		enderecoSacado.setUF(UnidadeFederativa.PR);
 		enderecoSacado.setLocalidade("Araruna");
-		enderecoSacado.setCep(new CEP("87260-000"));
+		CEP cep = new CEP("87260000");
+		cep.setPrefixo(87260);
+		cep.setSufixo(000);
+		enderecoSacado.setCep(cep);
 		enderecoSacado.setBairro("Centro");
 		enderecoSacado.setLogradouro("Av. Presidente Vargas");
 		enderecoSacado.setNumero("140");
@@ -171,7 +173,10 @@ public class CNAB240Helper {
 		Endereco enderecoSacado = new Endereco();
 		enderecoSacado.setUF(UnidadeFederativa.PR);
 		enderecoSacado.setLocalidade("Peabiru");
-		enderecoSacado.setCep(new CEP("87250-000"));
+		CEP cep = new CEP("87260000");
+		cep.setPrefixo(87260);
+		cep.setSufixo(000);
+		enderecoSacado.setCep(cep);
 		enderecoSacado.setBairro("Centro");
 		enderecoSacado.setLogradouro("Rua do Mercado");
 		enderecoSacado.setNumero("140");
@@ -186,7 +191,10 @@ public class CNAB240Helper {
 		Endereco enderecoSacado = new Endereco();
 		enderecoSacado.setUF(UnidadeFederativa.PR);
 		enderecoSacado.setLocalidade("Campo Mourão");
-		enderecoSacado.setCep(new CEP("87300-000"));
+		CEP cep = new CEP("87303180");
+		cep.setPrefixo(87303);
+		cep.setSufixo(180);
+		enderecoSacado.setCep(cep);
 		enderecoSacado.setBairro("Centro");
 		enderecoSacado.setLogradouro("Av. Manoel Mendes de Camargo");
 		enderecoSacado.setNumero("340");
@@ -201,7 +209,10 @@ public class CNAB240Helper {
 		Endereco enderecoSacado = new Endereco();
 		enderecoSacado.setUF(UnidadeFederativa.PR);
 		enderecoSacado.setLocalidade("Araruna");
-		enderecoSacado.setCep(new CEP("87260-000"));
+		CEP cep = new CEP("87260000");
+		cep.setPrefixo(87260);
+		cep.setSufixo(000);
+		enderecoSacado.setCep(cep);
 		enderecoSacado.setBairro("Centro");
 		enderecoSacado.setLogradouro("Av. Presidente Vargas");
 		enderecoSacado.setNumero("140");
@@ -212,7 +223,8 @@ public class CNAB240Helper {
 
 	public static Carteira criarCarteira(int codigoCarteira) {
 		Carteira carteira = new Carteira(codigoCarteira);
-		carteira.setCodigoConvenio("123456");
+		carteira.setCodigo(1);
+		carteira.setCodigoConvenio("      ");
 		carteira.setNome("CARTEIRA");
 		carteira.setTipoDeCobranca(TipoDeCobranca.COM_REGISTRO);
 		carteira.setTipoDeDistribuicaoBoleto(TipoDeDistribuicaoBoleto.CLIENTE_DISTRIBUI);

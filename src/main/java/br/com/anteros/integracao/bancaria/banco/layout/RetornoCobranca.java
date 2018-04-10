@@ -19,6 +19,9 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87.CobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87.CobrancaSegmentoU;
+
 public class RetornoCobranca {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

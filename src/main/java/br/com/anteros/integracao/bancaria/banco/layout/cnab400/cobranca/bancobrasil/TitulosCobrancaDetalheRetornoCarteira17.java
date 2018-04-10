@@ -620,7 +620,7 @@ public class TitulosCobrancaDetalheRetornoCarteira17 implements RecordData, Deta
 		return 0;
 	}
 
-	public void readRowData(int row) {
+	public void readRowData(int row, int sequence) {
 
 	}
 
