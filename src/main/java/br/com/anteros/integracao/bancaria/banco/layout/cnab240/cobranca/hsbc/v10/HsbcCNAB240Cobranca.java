@@ -184,8 +184,7 @@ public class HsbcCNAB240Cobranca implements CNAB240Cobranca {
 			IOException {
 
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(groups,
-				dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream, groups);
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
 
 		headerArquivo.set(flatFile.getRecord(HEADER));

@@ -10,6 +10,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bancobras
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bradesco.v50.BradescoCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.hsbc.v30.HsbcCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.itau.v50.ItauCNAB240Extrato;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.sicoob.BancoSicoobCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.util.Constants;
 
 public class CNAB240ExtratoBuilder {
@@ -30,21 +31,21 @@ public class CNAB240ExtratoBuilder {
 
 	public CNAB240Extrato build() {
 		Assert.notNull(contaBancaria, "Informe a conta bancária para criar o contexto CNAB240.");
+
 		if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BANCO_BRASIL)) {
 			return BancoBrasilCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BRADESCO)) {
 			return BradescoCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
-		// } else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
-			//return CaixaEconomicaFederalCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
 			return HsbcCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
 			return ItauCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
-		//} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {
-	//		return SantanderCNAB240.of(contaBancaria, dataHoraGeracao);
+		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SICOOB)) {
+			return BancoSicoobCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
+		} else {
+			throw new CNABException(
+					"Layout CNAB240 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
 		}
-		throw new CNABException(
-				"Layout CNAB240 do banco " + contaBancaria.getBanco().getNome() + " ainda não implementado.");
 	}
 
 }

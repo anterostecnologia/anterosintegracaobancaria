@@ -111,8 +111,7 @@ public class HsbcCNAB240Extrato implements CNAB240Extrato {
 	public List<ConciliacaoBancaria> read(InputStream dataInputStream, String[] groups) throws IOException,
 			IllegalArgumentException, IllegalAccessException, FlatFileManagerException, JAXBException {
 		FlatFileManager manager = new FlatFileManager();
-		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(groups,
-				dataInputStream);
+		br.com.anteros.flatfile.FlatFile<br.com.anteros.flatfile.Record> flatFile = manager.read(this, dataInputStream, groups);
 		List<ConciliacaoBancaria> result = new ArrayList<ConciliacaoBancaria>();
 
 		ConciliacaoBancaria conciliacaoBancaria = ConciliacaoBancaria.of(contaBancaria);

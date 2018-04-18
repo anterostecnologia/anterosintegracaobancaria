@@ -122,11 +122,7 @@ public class CobrancaSegmentoQ implements RecordData {
 		this.cidade = remessas.get(row).getTitulo().getSacado().getNextEndereco().getLocalidade();// G033
 		this.uf = remessas.get(row).getTitulo().getSacado().getNextEndereco().getUF().getSigla();// G036
 		
-		if (remessas.get(row).getTitulo().getSacadorAvalista() == null) {
-			this.tipoInscricaoSacadoAvalista = 0;// G005
-			this.numeroInscricaoSacadoAvalista = 0L;// G006
-			this.nomeSacadorAvalista = " ";// G013
-		} else {
+		if (remessas.get(row).getTitulo().getSacadorAvalista() != null) {
 			this.tipoInscricaoSacadoAvalista = (remessas.get(row).getTitulo().getSacadorAvalista().getCPRF().isFisica() ? 1 : 2);
 			this.numeroInscricaoSacadoAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getCPRF().getCodigo();// G006
 			this.nomeSacadorAvalista = remessas.get(row).getTitulo().getSacadorAvalista().getNome();// G013
@@ -279,6 +275,14 @@ public class CobrancaSegmentoQ implements RecordData {
 
 	public void setNumeroInscricaoSacadoAvalista(Long numeroInscricaoSacadoAvalista) {
 		this.numeroInscricaoSacadoAvalista = numeroInscricaoSacadoAvalista;
+	}
+
+	public ContaBancaria getContaBancaria() {
+		return contaBancaria;
+	}
+
+	public void setContaBancaria(ContaBancaria contaBancaria) {
+		this.contaBancaria = contaBancaria;
 	}
 
 	public String getNomeSacadorAvalista() {

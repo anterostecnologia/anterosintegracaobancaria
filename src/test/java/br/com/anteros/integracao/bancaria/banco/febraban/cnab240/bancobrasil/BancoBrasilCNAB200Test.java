@@ -52,16 +52,16 @@
 //	@Test
 //	public void deveGerarlSchemaXMLDoLayoutIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 //			FlatFileManagerException, JAXBException, IOException {
-//		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB200-BancoBrasil.xml");
+//	//	File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB200-BancoBrasil.xml");
 //
-//		String schema = StringUtils.removeCRLF(new String(layoutExtratoCNAB200.getXMLSchema(), "UTF-8"));
+//	//	String schema = StringUtils.removeCRLF(new String(layoutExtratoCNAB200.getXMLSchema(), "UTF-8"));
 ////
 ////		 FileOutputStream fos = new FileOutputStream(file);
 ////		 fos.write(schema.getBytes());
 ////		 fos.flush();
 ////		 fos.close();
 //
-//		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
+//	//	String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 //
 ////		Assert.assertEquals("Banco do Brasil: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
 //	}

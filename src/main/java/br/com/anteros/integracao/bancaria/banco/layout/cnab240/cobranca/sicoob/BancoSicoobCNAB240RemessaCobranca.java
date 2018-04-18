@@ -1,6 +1,16 @@
 package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob;
 
-import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COBRANCA_SEGMENTO_P;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COBRANCA_SEGMENTO_Q;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COBRANCA_SEGMENTO_R;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.COBRANCA_SEGMENTO_S;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.GLOBAL;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.HEADER;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.HEADER_COBRANCA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.PRIMEIRA_REMESSA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.REMESSA_COBRANCA;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TRAILLER;
+import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.TRAILLER_COBRANCA;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -52,7 +62,7 @@ public class BancoSicoobCNAB240RemessaCobranca implements CNAB240Cobranca {
 	@Record(name = TRAILLER_COBRANCA, description = "Resumo lote de cobrança", order = 7, groups = { REMESSA_COBRANCA })
 	protected TraillerCobranca traillerCobranca;
 
-	@Record(name = TRAILLER, order = 11, groups = { REMESSA_COBRANCA })
+	@Record(name = TRAILLER, order = 8, groups = { REMESSA_COBRANCA })
 	protected TraillerArquivo traillerArquivo;
 
 	private ContaBancaria contaBancaria;

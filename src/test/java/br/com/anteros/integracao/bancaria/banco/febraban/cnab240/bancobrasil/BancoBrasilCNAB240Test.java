@@ -67,14 +67,14 @@
 //			FlatFileManagerException, JAXBException, IOException {
 //		File file = ResourceUtils.getFile("src/main/resources/layouts/Layout-CNAB240-BancoBrasil.xml");
 //
-//		String schema = StringUtils.removeCRLF(new String(layoutCobrancaCNAB240.getXMLSchema(), "UTF-8"));
+//	//	String schema = StringUtils.removeCRLF(new String(layoutCobrancaCNAB240.getXMLSchema(), "UTF-8"));
 //
 ////		 FileOutputStream fos = new FileOutputStream(file);
 ////		 fos.write(schema.getBytes());
 ////		 fos.flush();
 ////		 fos.close();
 //
-//		String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
+//	//	String fileSchema = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
 //	
 //
 ////		Assert.assertEquals("Banco do Brasil: Arquivo XML gerado diferente do modelo.", fileSchema, schema);
@@ -84,24 +84,24 @@
 //	public void deveGerarArquivoRemessaCobrancaIgualAoModelo() throws IllegalArgumentException, IllegalAccessException,
 //			FlatFileManagerException, JAXBException, IOException {
 //
-//		byte[] byteArray = layoutCobrancaCNAB240.generate(new String[] { REMESSA_COBRANCA });
-//
-//		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB240_BancoBrasil.REM");
+////		byte[] byteArray = layoutCobrancaCNAB240.generate(new String[] { REMESSA_COBRANCA });
+////
+////		File file = ResourceUtils.getFile("src/main/resources/arquivos-remessa/COB_CNAB240_BancoBrasil.REM");
 //
 ////		 FileOutputStream fos = new FileOutputStream(file);
 ////		 fos.write(byteArray);
 ////		 fos.flush();
 ////		 fos.close();
 //
-//		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
-//		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));
-//
-//		System.out.println(data);
+////		String fileData = StringUtils.removeCRLF(IOUtils.readFileToString(file, "UTF-8"));
+////		String data = StringUtils.removeCRLF(new String(byteArray, "UTF-8"));
+////
+////		System.out.println(data);
 //		
 ////		Assert.assertEquals("Banco do Brasil: Arquivo de REMESSA gerado diferente do modelo.", fileData, data);
 //	}
 //
-////	@Test
+//	@Test
 //	public void deveLerArquivoRetornoCobrancaEValidarValores() throws IllegalArgumentException, IllegalAccessException,
 //			IOException, FlatFileManagerException, JAXBException {
 //

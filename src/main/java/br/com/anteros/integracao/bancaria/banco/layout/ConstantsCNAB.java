@@ -109,6 +109,8 @@ public class ConstantsCNAB {
 	public static final String VL_TOTAL_BLOQUEADO_04_09 = "VL_TOTAL_BLOQUEADO_04_09";
 
 	public static final String DEBITO_CREDITO = "DEBITO_CREDITO";
+	
+	public static final String POSICAO_SALDO = "POSICAO_SALDO";
 
 	public static final String VL_SALDO_ANTERIOR = "VL_SALDO_ANTERIOR";
 

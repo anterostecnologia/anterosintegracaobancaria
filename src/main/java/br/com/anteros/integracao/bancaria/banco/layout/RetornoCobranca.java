@@ -19,8 +19,8 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87.CobrancaSegmentoT;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87.CobrancaSegmentoU;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob.CobrancaSegmentoT;
+import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob.CobrancaSegmentoU;
 
 public class RetornoCobranca {
 
@@ -75,6 +75,8 @@ public class RetornoCobranca {
 	private Object motivoRejeicao4;
 
 	private Object motivoRejeicao5;
+	
+	private Integer numeroBancoCobradorRecebedor;
 
 	private RetornoCobranca(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT,
 			CobrancaSegmentoU segmentoU) {
@@ -94,7 +96,7 @@ public class RetornoCobranca {
 		this.nrLote = segmentoT.getLoteServico();
 		this.numeroSequencial = segmentoT.getNumeroSequencialRegistro();
 		this.codigoMovimentoRetorno = segmentoT.getCodigoMovimentoRetorno();
-		this.numeroContratoOperacaoCredito = segmentoT.getNumeroContratoOperacaoCredito();
+		this.numeroContratoOperacaoCredito = segmentoT.getNumeroContratoOperacaoCredito().toString();
 		this.tipoInscricaoSacadoAvalista = segmentoT.getTipoInscricaoSacadoAvalista();
 		this.numeroInscricaoSacadoAvalista = segmentoT.getNumeroInscricaoSacadoAvalista();
 		this.nomeSacadorAvalista = segmentoT.getNomeSacadorAvalista();
@@ -111,6 +113,7 @@ public class RetornoCobranca {
 		this.complementoOcorrenciaSacado = segmentoU.getComplementoOcorrencia();
 		this.agenciaRecebedora = segmentoT.getAgenciaRecebedora();
 		this.digitoAgenciaRecebedora = segmentoT.getDigitoAgenciaRecebedora();
+		this.numeroBancoCobradorRecebedor = segmentoT.getNumeroBanco();
 	}
 
 	public RetornoCobranca(ContaBancaria contaBancaria, DetalheRetorno detalheRetorno) {
@@ -232,6 +235,50 @@ public class RetornoCobranca {
 		this.valorTarifasCustas = valorTarifasCustas;
 	}
 
+	public String getMotivoRejeicao1() {
+		return motivoRejeicao1;
+	}
+
+	public void setMotivoRejeicao1(String motivoRejeicao1) {
+		this.motivoRejeicao1 = motivoRejeicao1;
+	}
+
+	public Object getMotivoRejeicao2() {
+		return motivoRejeicao2;
+	}
+
+	public void setMotivoRejeicao2(Object motivoRejeicao2) {
+		this.motivoRejeicao2 = motivoRejeicao2;
+	}
+
+	public Object getMotivoRejeicao3() {
+		return motivoRejeicao3;
+	}
+
+	public void setMotivoRejeicao3(Object motivoRejeicao3) {
+		this.motivoRejeicao3 = motivoRejeicao3;
+	}
+
+	public Object getMotivoRejeicao4() {
+		return motivoRejeicao4;
+	}
+
+	public void setMotivoRejeicao4(Object motivoRejeicao4) {
+		this.motivoRejeicao4 = motivoRejeicao4;
+	}
+
+	public Object getMotivoRejeicao5() {
+		return motivoRejeicao5;
+	}
+
+	public void setMotivoRejeicao5(Object motivoRejeicao5) {
+		this.motivoRejeicao5 = motivoRejeicao5;
+	}
+
+	public void setNrLote(Integer nrLote) {
+		this.nrLote = nrLote;
+	}
+
 	public BigDecimal getValorLiquidoCreditado() {
 		return valorLiquidoCreditado;
 	}
@@ -310,22 +357,20 @@ public class RetornoCobranca {
 
 	@Override
 	public String toString() {
-		return "RetornoCobranca [titulo=" + titulo + ", nrLote=" + nrLote + ", numeroSequencial=" + numeroSequencial
-				+ ", codigoMovimentoRetorno=" + codigoMovimentoRetorno + ", numeroContratoOperacaoCredito="
-				+ numeroContratoOperacaoCredito + ", tipoInscricaoSacadoAvalista=" + tipoInscricaoSacadoAvalista
-				+ ", numeroInscricaoSacadoAvalista=" + numeroInscricaoSacadoAvalista + ", nomeSacadorAvalista="
-				+ nomeSacadorAvalista + ", valorTarifasCustas=" + valorTarifasCustas + ", motivoRejeicao1="
-				+ motivoRejeicao1 + ", motivoRejeicao2=" + motivoRejeicao2 + ", motivoRejeicao3=" + motivoRejeicao3
-				+ ", motivoRejeicao4=" + motivoRejeicao4 + ", motivoRejeicao5=" + motivoRejeicao5
-				+ ", valorLiquidoCreditado=" + valorLiquidoCreditado + ", valorOutrasDespesas=" + valorOutrasDespesas
-				+ ", valorOutrosCreditos=" + valorOutrosCreditos + ", dataOcorrenciaPagamento="
-				+ (dataOcorrenciaPagamento == null ? "" : sdf.format(dataOcorrenciaPagamento))
-				+ ", dataEfetivacaoCredito=" + (dataEfetivacaoCredito == null ? "" : sdf.format(dataEfetivacaoCredito))
-				+ ", codigoOcorrenciaSacado=" + codigoOcorrenciaSacado + ", dataOcorrenciaSacado="
-				+ (dataOcorrenciaSacado == null ? "" : sdf.format(dataOcorrenciaSacado)) + ", valorOcorrenciaSacado="
-				+ valorOcorrenciaSacado + ", complementoOcorrenciaSacado=" + complementoOcorrenciaSacado
-				+ ", agenciaRecebedora=" + agenciaRecebedora + ", digitoAgenciaRecebedora=" + digitoAgenciaRecebedora
-				+ "]";
+		return "RetornoCobranca [titulo=" + titulo + ", nrLote=" + nrLote + ", numeroSequencial="
+				+ numeroSequencial + ", codigoMovimentoRetorno=" + codigoMovimentoRetorno
+				+ ", numeroContratoOperacaoCredito=" + numeroContratoOperacaoCredito + ", tipoInscricaoSacadoAvalista="
+				+ tipoInscricaoSacadoAvalista + ", numeroInscricaoSacadoAvalista=" + numeroInscricaoSacadoAvalista
+				+ ", nomeSacadorAvalista=" + nomeSacadorAvalista + ", valorTarifasCustas=" + valorTarifasCustas
+				+ ", motivoRejeicao1=" + motivoRejeicao1 + ", valorLiquidoCreditado=" + valorLiquidoCreditado
+				+ ", valorOutrasDespesas=" + valorOutrasDespesas + ", valorOutrosCreditos=" + valorOutrosCreditos
+				+ ", dataOcorrenciaPagamento=" + dataOcorrenciaPagamento + ", dataEfetivacaoCredito="
+				+ dataEfetivacaoCredito + ", codigoOcorrenciaSacado=" + codigoOcorrenciaSacado
+				+ ", dataOcorrenciaSacado=" + dataOcorrenciaSacado + ", valorOcorrenciaSacado=" + valorOcorrenciaSacado
+				+ ", complementoOcorrenciaSacado=" + complementoOcorrenciaSacado + ", agenciaRecebedora="
+				+ agenciaRecebedora + ", digitoAgenciaRecebedora=" + digitoAgenciaRecebedora + ", motivoRejeicao2="
+				+ motivoRejeicao2 + ", motivoRejeicao3=" + motivoRejeicao3 + ", motivoRejeicao4=" + motivoRejeicao4
+				+ ", motivoRejeicao5=" + motivoRejeicao5 + "]";
 	}
 
 	public Integer getAgenciaRecebedora() {
@@ -342,6 +387,14 @@ public class RetornoCobranca {
 
 	public void setDigitoAgenciaRecebedora(String digitoAgenciaRecebedora) {
 		this.digitoAgenciaRecebedora = digitoAgenciaRecebedora;
+	}
+
+	public Integer getNumeroBancoCobradorRecebedor() {
+		return numeroBancoCobradorRecebedor;
+	}
+
+	public void setNumeroBancoCobradorRecebedor(Integer numeroBancoCobradorRecebedor) {
+		this.numeroBancoCobradorRecebedor = numeroBancoCobradorRecebedor;
 	}
 
 }

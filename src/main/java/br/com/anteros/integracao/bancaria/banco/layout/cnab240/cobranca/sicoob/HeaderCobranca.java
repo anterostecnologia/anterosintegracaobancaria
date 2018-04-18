@@ -94,8 +94,8 @@ public class HeaderCobranca implements RecordData {
 	@Field(name = DT_GRAVACAO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY)
 	private Date dataGravacao;
 
-	@Field(name = DT_CREDITO, length = 8, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="00000000")
-	private Integer dataCredito;
+	@Field(name = DT_CREDITO, length = 8, type = EnumTypes.DATE, format = Formats.DATE_DDMMYYYY, padding = Paddings.ZERO_LEFT)
+	private Date dataCredito;
 
 	@Field(name = BRANCOS_3, length = 33, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
@@ -316,11 +316,11 @@ public class HeaderCobranca implements RecordData {
 		this.dataGravacao = dataGravacao;
 	}
 
-	public Integer getDataCredito() {
+	public Date getDataCredito() {
 		return dataCredito;
 	}
 
-	public void setDataCredito(Integer dataCredito) {
+	public void setDataCredito(Date dataCredito) {
 		this.dataCredito = dataCredito;
 	}
 
@@ -352,7 +352,7 @@ public class HeaderCobranca implements RecordData {
 		setMensagem2((String) record.getValue(MENSAGEM_2));
 		setNumeroRemessaRetorno((Integer) record.getValue(NR_REMESSA_RETORNO));
 		setDataGravacao((Date) record.getValue(DT_GRAVACAO));
-		setDataCredito((Integer) record.getValue(DT_CREDITO));
+		setDataCredito((Date) record.getValue(DT_CREDITO));
 	}
 
 	public static HeaderCobranca of(ContaBancaria contaBancaria, Date dataGravacao) {
@@ -365,14 +365,11 @@ public class HeaderCobranca implements RecordData {
 
 	@Override
 	public int getNumberOfRecords() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void readRowData(int row, int sequence) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

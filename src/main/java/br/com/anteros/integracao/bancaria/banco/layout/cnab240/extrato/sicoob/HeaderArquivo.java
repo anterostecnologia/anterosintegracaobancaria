@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob;
+package br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.sicoob;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +22,6 @@ import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
 import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
-import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
 import br.com.anteros.integracao.bancaria.banco.layout.Carteira;
 import br.com.anteros.integracao.bancaria.banco.layout.Cedente;
@@ -30,12 +29,12 @@ import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 
-public class HeaderArquivo implements RecordData {
+public class HeaderArquivo {
 
 	@IdType(name = TIPO_REGISTRO, length = 1, positionField = 3, value = "0")
 	private String tipoRegistro;
 
-	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="756")
+	@Field(name = CD_BANCO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer codigoBanco;
 
 	@Field(name = LT_SERVICO, length = 4, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "0000")
@@ -65,7 +64,7 @@ public class HeaderArquivo implements RecordData {
 	@Field(name = DIGITO_CONTACORRENTE, length = 1)
 	private String digitoVerificadorContaCorrente;
 
-	@Field(name = DIGITO_AGENCIACONTA, length = 1, padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = DIGITO_AGENCIACONTA, length = 1)
 	private String digitoVerificadorAgenciaConta;
 
 	@Field(name = NOME_EMPRESA, length = 30, padding = Paddings.WHITE_SPACE_RIGHT)
@@ -89,22 +88,22 @@ public class HeaderArquivo implements RecordData {
 	@Field(name = NR_SEQUENCIAL_ARQUIVO, length = 6, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroSequencialArquivo;
 
-	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="081")
+	@Field(name = NR_VERSAO_ARQUIVO, length = 3, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT)
 	private Integer numeroVersaoArquivo;
 
-	@Field(name = DENSIDADE_GRAVACAO_ARQUIVO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value="00000")
+	@Field(name = DENSIDADE_GRAVACAO_ARQUIVO, length = 5, type = EnumTypes.INTEGER, padding = Paddings.ZERO_LEFT, value = "00000")
 	private Integer densidadeGravacaoArquivo;
 
-	@Field(name = USO_RESERVADO_BANCO, length = 20, value = "", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = USO_RESERVADO_BANCO, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String usoReservadoBanco;
 
-	@Field(name = USO_RESERVADO_EMPRESA, length = 20, value = "", padding = Paddings.WHITE_SPACE_RIGHT)
+	@Field(name = USO_RESERVADO_EMPRESA, length = 20, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String usoReservadoEmpresa;
 
 	@Field(name = BRANCOS_3, length = 29, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao, Integer numeroSequencialArquivo) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
@@ -112,14 +111,15 @@ public class HeaderArquivo implements RecordData {
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
+		this.numeroVersaoArquivo = versaoLayoutArquivo;// G030
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
+		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeEmpresa = cedente.getNome();// G013
 		this.nomeBanco = contaBancaria.getBanco().getNome();// G014
 		this.codigoRemessaRetorno = 1;// G015
 		this.dataGeracaoArquivo = dataHoraGeracao;// G016
 		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
-		this.numeroSequencialArquivo = numeroSequencialArquivo;// G018
-		this.numeroVersaoArquivo = versaoLayoutArquivo;// G030
+		this.numeroSequencialArquivo = 1;// G018
 	}
 
 	public HeaderArquivo(ContaBancaria contaBancaria, Date dataHoraGeracao) {
@@ -137,8 +137,8 @@ public class HeaderArquivo implements RecordData {
 	}
 
 	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutArquivo, Date dataHoraGeracao, Integer numeroSequencialArquivo) {
-		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo, dataHoraGeracao, numeroSequencialArquivo);
+			Integer versaoLayoutArquivo, Date dataHoraGeracao) {
+		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo, dataHoraGeracao);
 	}
 
 	public static HeaderArquivo of(ContaBancaria contaBancaria, Date dataHoraGeracao) {
@@ -359,16 +359,6 @@ public class HeaderArquivo implements RecordData {
 		setDensidadeGravacaoArquivo((Integer) record.getValue(DENSIDADE_GRAVACAO_ARQUIVO));
 		setUsoReservadoBanco((String) record.getValue(USO_RESERVADO_BANCO));
 		setUsoReservadoEmpresa((String) record.getValue(USO_RESERVADO_EMPRESA));
-	}
-
-	@Override
-	public int getNumberOfRecords() {
-		return 0;
-	}
-
-	@Override
-	public void readRowData(int row, int sequence) {
-		
 	}
 
 }
