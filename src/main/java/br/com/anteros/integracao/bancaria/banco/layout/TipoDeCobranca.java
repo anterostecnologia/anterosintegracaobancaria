@@ -14,10 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-	
+
 package br.com.anteros.integracao.bancaria.banco.layout;
-
-
 
 /**
  * 
@@ -40,23 +38,37 @@ package br.com.anteros.integracao.bancaria.banco.layout;
  * @version 0.2
  */
 
-public enum TipoDeCobranca{
+public enum TipoDeCobranca {
 	/**
-	 * <p>Tipo onde os títulos emitidos são sempre registrados no banco antes de seu vencimento ou pagamento.</p>
+	 * <p>
+	 * Tipo onde os títulos emitidos são sempre registrados no banco antes de seu
+	 * vencimento ou pagamento.
+	 * </p>
 	 */
-	COM_REGISTRO(1), 
+	COM_REGISTRO(1),
 	/**
-	 * <p>Tipo onde os títulos emitidos só são registrados pelo banco quando são pagos.</p>
+	 * <p>
+	 * Tipo onde os títulos emitidos só são registrados pelo banco quando são pagos.
+	 * </p>
 	 */
 	SEM_REGISTRO(2);
-	
+
 	private int tipo;
 
-	private TipoDeCobranca(int tipo){
+	private TipoDeCobranca(int tipo) {
 		this.tipo = tipo;
 	}
-	
-	public int getTipo(){
+
+	public int getTipo() {
 		return tipo;
+	}
+
+	public static String getTipoModalidade(TipoDeCobranca tipo) {
+		if (tipo.equals(TipoDeCobranca.COM_REGISTRO))
+			return "01";
+		else if (tipo.equals(TipoDeCobranca.SEM_REGISTRO))
+			return "02";
+
+		return "";
 	}
 }

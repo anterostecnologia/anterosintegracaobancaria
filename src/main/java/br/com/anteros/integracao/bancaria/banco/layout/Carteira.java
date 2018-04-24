@@ -53,6 +53,8 @@ public class Carteira {
 	
 	private TipoDeDistribuicaoBoleto tipoDeDistribuicaoBoleto;
 	
+	private TipoFormulario tipoFormulario;
+	
 	private String codigoConvenio;
 	
 	private Integer variacaoCarteira=0; 
@@ -182,6 +184,14 @@ public class Carteira {
 
 	public void setTipoDeDistribuicaoBoleto(TipoDeDistribuicaoBoleto tipoDeDistribuicaoBoleto) {
 		this.tipoDeDistribuicaoBoleto = tipoDeDistribuicaoBoleto;
+	}
+
+	public TipoFormulario getTipoFormulario() {
+		return tipoFormulario;
+	}
+
+	public void setTipoFormulario(TipoFormulario tipoFormulario) {
+		this.tipoFormulario = tipoFormulario;
 	}
 
 	public String getCodigoConvenio() {

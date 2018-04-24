@@ -96,7 +96,11 @@ public class ConstantsCNAB {
 
 	public static final String CD_BANCO = "CD_BANCO";
 	
+	public static final String CD_BANCO_FAVORECIDO = "CD_BANCO_FAVORECIDO";
+	
 	public static final String BANCO = "BANCO";
+	
+	public static final String VL_TOTAL = "VL_TOTAL";
 
 	public static final String VL_TOTAL_NAO_CONTABIL = "VL_TOTAL_NAO_CONTABIL";
 
@@ -141,6 +145,8 @@ public class ConstantsCNAB {
 	public static final String VALOR_CPMF = "VALOR_CPMF";
 
 	public static final String SALDO_LIQUIDO_FUNDO_CURTOPRAZO = "SALDO_LIQUIDO_FUNDO_CURTOPRAZO";
+	
+	public static final String VL_JUROS_MORA = "VL_JUROS_MORA";
 
 	public static final String VL_TOTAL_DEBITOS = "VL_TOTAL_DEBITOS";
 
@@ -193,12 +199,18 @@ public class ConstantsCNAB {
 	public static final String MENSAGEM_1 = "MENSAGEM_1";
 
 	public static final String LAYOUT_LOTE = "LAYOUT_LOTE";
+	
+	public static final String FINALIDADE_TED = "FINALIDADE_TED";
+	
+	public static final String FINALIDADE_PAGAMENTO = "FINALIDADE_PAGAMENTO";
 
 	public static final String TP_SERVICO = "TP_SERVICO";
 
 	public static final String TP_OPERACAO = "TP_OPERACAO";
 
 	public static final String TP_REGISTRO = "TP_REGISTRO";
+	
+	public static final String TP_MOVIMENTO = "TP_MOVIMENTO";
 
 	public static final String TP_CONTA = "TP_CONTA";
 
@@ -215,6 +227,8 @@ public class ConstantsCNAB {
 	public static final String TP_INSCRICAO_SACADO_AVALISTA = "TP_INSCRICAO_SACADO_AVALISTA";
 
 	public static final String CD_MOEDA = "CD_MOEDA";
+	
+	public static final String QT_MOEDA = "QT_MOEDA";
 
 	public static final String ID_TITULO_EMPRESA = "ID_TITULO_EMPRESA";
 
@@ -267,6 +281,8 @@ public class ConstantsCNAB {
 	public static final String TIPO_IMPRESSAO = "TIPO_IMPRESSAO";
 	
 	public static final String NR_AVISO = "NR_AVISO";
+	
+	public static final String CD_ISPB_BANCO = "CD_ISPB_BANCO";
 
 	public static final String NOSSO_NR_BANCO_CORRESPONDENTE = "NOSSO_NR_BANCO_CORRESPONDENTE";
 
@@ -291,6 +307,8 @@ public class ConstantsCNAB {
 	public static final String VL_LIQUIDO_CREDITADO = "VL_LIQUIDO_CREDITADO";
 
 	public static final String VL_PAGOSACADO = "VL_PAGOSACADO";
+	
+	public static final String VL_PAGAMENTO = "VL_PAGAMENTO";
 
 	public static final String VL_IOF = "VL_IOF";
 
@@ -371,6 +389,8 @@ public class ConstantsCNAB {
 	public static final String VL_DESPESAS_COBRANCA = "VL_TARIFA";
 
 	public static final String VL_TITULO = "VL_TITULO";
+	
+	public static final String VL_DOCUMENTO = "VL_DOCUMENTO";
 
 	public static final String CARTEIRA = "CARTEIRA";
 
@@ -449,14 +469,20 @@ public class ConstantsCNAB {
 	public static final String INDICADOR_BOLETO_DDA = "INDICADOR_BOLETO_DDA";
 
 	public static final String CD_LIQUIDACAO = "CD_LIQUIDACAO";
+	
+	public static final String CD_MOVIMENTO = "CD_MOVIMENTO";
 
 	public static final String CD_MOVIMENTO_REMESSA = "CD_MOVIMENTO_REMESSA";
+	
+	public static final String CD_BARRA = "CD_BARRA";
 
 	public static final String DIGITO_VERIFICADOR_CONTACORRENTE = "DIGITO_VERIFICADOR_CONTACORRENTE";
 
 	public static final String DIGITO_VERFICADOR_AGENCIACONTA = "DIGITO_VERFICADOR_AGENCIACONTA";
 
 	public static final String IDENTIFICADOR_TITULO = "IDENTIFICADOR_TITULO";
+	
+	public static final String IDENTIFICADOR_TITULO_BANCO = "IDENTIFICADOR_TITULO_BANCO";
 
 	public static final String FORMA_CADASTRO_TITULO = "FORMA_CADASTRO_TITULO";
 
@@ -514,6 +540,10 @@ public class ConstantsCNAB {
 
 	public static final String ENDERECO = "ENDERECO";
 
+	public static final String NUMERO = "NUMERO";
+	
+	public static final String COMPLEMENTO = "COMPLEMENTO";
+	
 	public static final String BAIRRO = "BAIRRO";
 
 	public static final String CEP = "CEP";
@@ -531,6 +561,16 @@ public class ConstantsCNAB {
 	public static final String NOSSO_NUMERO_BANCO_CORRESPONDENTE = "NOSSO_NUMERO_BANCO_CORRESPONDENTE";
 	
 	public static final String EMISSAO_AVISO_DA = "EMISSAO_AVISO_DA";
+	
+	public static final String FORMA_PAGAMENTO = "FORMA_PAGAMENTO";
+	
+	public static final String CD_CAMARA_CENTRALIZADORA = "CD_CAMARA_CENTRALIZADORA";
+	
+	public static final String DT_PAGAMENTO = "DT_PAGAMENTO";
+	
+	public static final String DT_EFETIVACAO_PAGAMENTO = "DT_EFETIVACAO_PAGAMENTO";
+	
+	public static final String VL_EFETIVACAO_PAGAMENTO = "VL_EFETIVACAO_PAGAMENTO";
 
 	public static final String BRANCOS_1 = "BRANCOS_1";
 

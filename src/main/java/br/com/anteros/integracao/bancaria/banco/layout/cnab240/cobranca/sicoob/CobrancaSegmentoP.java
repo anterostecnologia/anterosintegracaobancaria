@@ -25,8 +25,11 @@ import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.CNABException;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
+import br.com.anteros.integracao.bancaria.banco.layout.TipoDeCobranca;
+
 import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.*;
 
 public class CobrancaSegmentoP implements RecordData {
@@ -179,7 +182,6 @@ public class CobrancaSegmentoP implements RecordData {
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();//G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();//G010
 		this.DigitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();//G011
-		this.identificadorTitulo = remessas.get(row).getTitulo().getNossoNumero();//G069
 		this.codigoCarteira = remessas.get(row).getTitulo().getCarteira().getCodigo();//C006
 		this.identificadorEmissaoBoleto = remessas.get(row).getTitulo().getCarteira().getTipoDeEmissaoBoleto().getTipo();//C009
 		this.identificacaoDistribuicao = remessas.get(row).getTitulo().getCarteira().getTipoDeDistribuicaoBoleto().getTipo();//C010
@@ -200,6 +202,20 @@ public class CobrancaSegmentoP implements RecordData {
 		this.codigoProtesto = remessas.get(row).getTitulo().getTipoProtesto().getTipo();//C026
 		this.numeroDiasProtesto = remessas.get(row).getTitulo().getNrDiasProtesto();//C027
 		this.codigoMoeda = remessas.get(row).getTitulo().getTipoMoeda().getCodigo();//G065
+		
+		String idTitulo = remessas.get(row).getTitulo().getNossoNumero() + remessas.get(row).getTitulo().getDigitoNossoNumero();
+		if (idTitulo.length() > 10)
+			throw new CNABException("Nosso número SICOOB não deve ter mais que 10 caracteres.");
+		else if (idTitulo.length() < 10) {
+			int incrementarZeros = 10 - idTitulo.length();
+			for (int i = 0; i < incrementarZeros; i++) {
+				idTitulo = "0" + idTitulo;
+			}
+		}
+		
+		this.identificadorTitulo = idTitulo + remessas.get(row).getTitulo().getQuantidadeParcela() + 
+											 TipoDeCobranca.getTipoModalidade(remessas.get(row).getTitulo().getCarteira().getTipoDeCobranca()) +
+											 remessas.get(row).getTitulo().getCarteira().getTipoFormulario().getTipo();
 	}
 
 	public String getCodigoSegmentoRegistro() {

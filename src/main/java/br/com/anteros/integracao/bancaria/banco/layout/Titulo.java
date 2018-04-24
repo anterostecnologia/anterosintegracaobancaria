@@ -45,6 +45,8 @@ public class Titulo {
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	private String numeroDocumento;
+	
+	private String quantidadeParcela;
 
 	private Date dataDocumento;
 
@@ -231,6 +233,14 @@ public class Titulo {
 
 	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
+	}
+
+	public String getQuantidadeParcela() {
+		return quantidadeParcela;
+	}
+
+	public void setQuantidadeParcela(String quantidadeParcela) {
+		this.quantidadeParcela = quantidadeParcela;
 	}
 
 	public ContaBancaria getContaBancaria() {
@@ -567,7 +577,7 @@ public class Titulo {
 
 	@Override
 	public String toString() {
-		return "Titulo [numeroDocumento=" + numeroDocumento + ", dataDocumento=" + dataDocumento + ", dataVencimento="
+		return "Titulo [numeroDocumento=" + numeroDocumento + ", quantidadeParcela=" + quantidadeParcela + ", dataDocumento=" + dataDocumento + ", dataVencimento="
 				+ formatarData(dataVencimento) + ", tipoMoeda=" + tipoMoeda + ", valorTitulo=" + valorTitulo
 				+ ", valorDescontoConcedido=" + valorDescontoConcedido + ", percentualDescontoConcedido="
 				+ percentualDescontoConcedido + ", valorJurosMoraPorAtraso=" + valorJurosMoraPorAtraso
