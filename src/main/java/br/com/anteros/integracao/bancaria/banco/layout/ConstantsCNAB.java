@@ -13,6 +13,10 @@ public class ConstantsCNAB {
 	public static final String RETORNO_COBRANCA = "RETORNO_COBRANCA";
 
 	public static final String REMESSA_COBRANCA = "REMESSA_COBRANCA";
+	
+	public static final String RETORNO_PAGAMENTO = "RETORNO_PAGAMENTO";
+
+	public static final String REMESSA_PAGAMENTO = "REMESSA_PAGAMENTO";
 
 	public static final String RETORNO_COBRANCA_17 = "RETORNO_COBRANCA_17";
 
@@ -21,6 +25,8 @@ public class ConstantsCNAB {
 	public static final String RETORNO_CONCILIACAO_BANCARIA = "RETORNO_CONCILIACAO_BANCARIA";
 
 	public static final String HEADER = "Header";
+	
+	public static final String HEADER_LOTE = "HeaderLote";
 
 	public static final String HEADER_CONCILIACAO_BANCARIA = "HeaderConciliacaoBancaria";
 
@@ -577,4 +583,10 @@ public class ConstantsCNAB {
 	public static final String BRANCOS_2 = "BRANCOS_2";
 
 	public static final String BRANCOS_3 = "BRANCOS_3";
+	
+	public static final String PAGAMENTO_SEGMENTO_A = "PAGAMENTO_SEGMENTO_A";
+	
+	public static final String PAGAMENTO_SEGMENTO_B = "PAGAMENTO_SEGMENTO_B";
+	
+	public static final String PAGAMENTO_SEGMENTO_C = "PAGAMENTO_SEGMENTO_C";
 }
