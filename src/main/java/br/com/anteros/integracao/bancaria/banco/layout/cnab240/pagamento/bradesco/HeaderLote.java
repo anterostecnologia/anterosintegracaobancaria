@@ -145,15 +145,13 @@ public class HeaderLote {
 	@Field(name = CD_OCORRENCIA, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codOcorrencia;
 
-	public HeaderLote(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutLote,
-			Date dataGravacao) {
+	public HeaderLote(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataGravacao) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.loteServico = 1;// G002
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigoComZeros(); // G006
 		this.codigoConvenio = carteira.getCodigoConvenio();// G007
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
-		this.layoutLote = versaoLayoutLote;// G030
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
@@ -171,22 +169,20 @@ public class HeaderLote {
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 	}
 
-	public HeaderLote(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutLote) {
-		this(contaBancaria, carteira, cedente, versaoLayoutLote, Calendar.getInstance().getTime());
+	public HeaderLote(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+		this(contaBancaria, carteira, cedente, Calendar.getInstance().getTime());
 	}
 
 	public HeaderLote(ContaBancaria contaBancaria) {
 		this(contaBancaria, Calendar.getInstance().getTime());
 	}
 
-	public static HeaderLote of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutLote, Date dataGravacao) {
-		return new HeaderLote(contaBancaria, carteira, cedente, versaoLayoutLote, dataGravacao);
+	public static HeaderLote of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataGravacao) {
+		return new HeaderLote(contaBancaria, carteira, cedente, dataGravacao);
 	}
 
-	public static HeaderLote of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutLote) {
-		return new HeaderLote(contaBancaria, carteira, cedente, versaoLayoutLote);
+	public static HeaderLote of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente) {
+		return new HeaderLote(contaBancaria, carteira, cedente);
 	}
 
 	public String getTipoRegistro() {

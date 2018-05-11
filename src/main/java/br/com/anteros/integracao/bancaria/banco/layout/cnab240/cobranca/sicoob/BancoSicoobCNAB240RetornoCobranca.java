@@ -111,7 +111,7 @@ public class BancoSicoobCNAB240RetornoCobranca implements CNAB240Cobranca {
 		List<RetornoCobranca> result = new ArrayList<RetornoCobranca>();
 
 		headerArquivo.set(flatFile.getRecord(HEADER));
-		headerCobranca.set(flatFile.getRecord(HEADER_COBRANCA));
+		headerCobranca.set(flatFile.getRecord(HEADER_COBRANCA));	
 
 		Iterator<br.com.anteros.flatfile.Record> iteratorT = flatFile.getRecords(COBRANCA_SEGMENTO_T).iterator();
 		while (iteratorT.hasNext()) {
@@ -123,7 +123,7 @@ public class BancoSicoobCNAB240RetornoCobranca implements CNAB240Cobranca {
 			
 			segmentoU.set(recordT.getInnerRecords().iterator().next());
 			
-			result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU));
+			result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU, headerCobranca.getDataGravacao()));
 		}
 
 		traillerCobranca.set(flatFile.getRecord(TRAILLER_COBRANCA));

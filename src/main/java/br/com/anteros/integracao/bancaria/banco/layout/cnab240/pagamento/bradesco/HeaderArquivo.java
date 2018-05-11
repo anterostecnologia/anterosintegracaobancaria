@@ -103,7 +103,7 @@ public class HeaderArquivo {
 	@Field(name = BRANCOS_3, length = 29, value = " ", padding = Paddings.WHITE_SPACE_RIGHT)
 	private String brancos3;
 
-	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Integer versaoLayoutArquivo, Date dataHoraGeracao) {
+	protected HeaderArquivo(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataHoraGeracao, Integer numeroSequencialArquivo) {
 		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo();// G001
 		this.tipoInscricao = (cedente.getCPRF().isFisica() ? 1 : 2); // G005
 		this.numeroInscricao = cedente.getCPRF().getCodigo(); // G006
@@ -111,7 +111,6 @@ public class HeaderArquivo {
 		this.agenciaMantenedora = contaBancaria.getAgencia().getCodigo();// G008
 		this.digitoVerificadorAgencia = contaBancaria.getAgencia().getDigitoVerificador();// G009
 		this.numeroContaCorrente = contaBancaria.getNumeroDaConta().getCodigoDaConta();// G010
-		this.numeroVersaoArquivo = versaoLayoutArquivo;// G030
 		this.digitoVerificadorContaCorrente = contaBancaria.getNumeroDaConta().getDigitoDaConta();// G011
 		this.digitoVerificadorAgenciaConta = contaBancaria.getAgencia().getDigitoVerificador();// G012
 		this.nomeEmpresa = cedente.getNome();// G013
@@ -119,7 +118,7 @@ public class HeaderArquivo {
 		this.codigoRemessaRetorno = 1;// G015
 		this.dataGeracaoArquivo = dataHoraGeracao;// G016
 		this.horaGeracaoArquivo = Integer.valueOf(new SimpleDateFormat("HHmmss").format(dataHoraGeracao));// G017
-		this.numeroSequencialArquivo = 1;// G018
+		this.numeroSequencialArquivo = numeroSequencialArquivo;// G018
 	}
 
 	public HeaderArquivo(ContaBancaria contaBancaria, Date dataHoraGeracao) {
@@ -136,9 +135,8 @@ public class HeaderArquivo {
 		this.numeroSequencialArquivo = 1;// G018
 	}
 
-	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente,
-			Integer versaoLayoutArquivo, Date dataHoraGeracao) {
-		return new HeaderArquivo(contaBancaria, carteira, cedente, versaoLayoutArquivo, dataHoraGeracao);
+	public static HeaderArquivo of(ContaBancaria contaBancaria, Carteira carteira, Cedente cedente, Date dataHoraGeracao, Integer numeroSequencialArquivo) {
+		return new HeaderArquivo(contaBancaria, carteira, cedente, dataHoraGeracao, numeroSequencialArquivo);
 	}
 
 	public static HeaderArquivo of(ContaBancaria contaBancaria, Date dataHoraGeracao) {

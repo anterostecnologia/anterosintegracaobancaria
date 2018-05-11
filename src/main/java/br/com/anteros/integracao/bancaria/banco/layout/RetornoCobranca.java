@@ -75,11 +75,13 @@ public class RetornoCobranca {
 	private Object motivoRejeicao4;
 
 	private Object motivoRejeicao5;
-	
+
 	private Integer numeroBancoCobradorRecebedor;
 
-	private RetornoCobranca(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT,
-			CobrancaSegmentoU segmentoU) {
+	private Date dataGravacao;
+
+	private RetornoCobranca(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT, CobrancaSegmentoU segmentoU,
+			Date dataGravacao) {
 		titulo = new Titulo(contaBancaria);
 		titulo.setCarteira(new Carteira(Integer.valueOf(segmentoT.getCodigoCarteira())));
 		titulo.setValorTitulo(segmentoT.getValorNominalTitulo());
@@ -114,6 +116,7 @@ public class RetornoCobranca {
 		this.agenciaRecebedora = segmentoT.getAgenciaRecebedora();
 		this.digitoAgenciaRecebedora = segmentoT.getDigitoAgenciaRecebedora();
 		this.numeroBancoCobradorRecebedor = segmentoT.getNumeroBanco();
+		this.dataGravacao = dataGravacao;
 	}
 
 	public RetornoCobranca(ContaBancaria contaBancaria, DetalheRetorno detalheRetorno) {
@@ -151,8 +154,8 @@ public class RetornoCobranca {
 	}
 
 	public static RetornoCobranca of(ContaBancaria contaBancaria, CobrancaSegmentoT segmentoT,
-			CobrancaSegmentoU segmentoU) {
-		return new RetornoCobranca(contaBancaria, segmentoT, segmentoU);
+			CobrancaSegmentoU segmentoU, Date dataGravacao) {
+		return new RetornoCobranca(contaBancaria, segmentoT, segmentoU, dataGravacao);
 	}
 
 	public SimpleDateFormat getSdf() {
@@ -357,16 +360,16 @@ public class RetornoCobranca {
 
 	@Override
 	public String toString() {
-		return "RetornoCobranca [titulo=" + titulo + ", nrLote=" + nrLote + ", numeroSequencial="
-				+ numeroSequencial + ", codigoMovimentoRetorno=" + codigoMovimentoRetorno
-				+ ", numeroContratoOperacaoCredito=" + numeroContratoOperacaoCredito + ", tipoInscricaoSacadoAvalista="
-				+ tipoInscricaoSacadoAvalista + ", numeroInscricaoSacadoAvalista=" + numeroInscricaoSacadoAvalista
-				+ ", nomeSacadorAvalista=" + nomeSacadorAvalista + ", valorTarifasCustas=" + valorTarifasCustas
-				+ ", motivoRejeicao1=" + motivoRejeicao1 + ", valorLiquidoCreditado=" + valorLiquidoCreditado
-				+ ", valorOutrasDespesas=" + valorOutrasDespesas + ", valorOutrosCreditos=" + valorOutrosCreditos
-				+ ", dataOcorrenciaPagamento=" + dataOcorrenciaPagamento + ", dataEfetivacaoCredito="
-				+ dataEfetivacaoCredito + ", codigoOcorrenciaSacado=" + codigoOcorrenciaSacado
-				+ ", dataOcorrenciaSacado=" + dataOcorrenciaSacado + ", valorOcorrenciaSacado=" + valorOcorrenciaSacado
+		return "RetornoCobranca [titulo=" + titulo + ", nrLote=" + nrLote + ", numeroSequencial=" + numeroSequencial
+				+ ", codigoMovimentoRetorno=" + codigoMovimentoRetorno + ", numeroContratoOperacaoCredito="
+				+ numeroContratoOperacaoCredito + ", tipoInscricaoSacadoAvalista=" + tipoInscricaoSacadoAvalista
+				+ ", numeroInscricaoSacadoAvalista=" + numeroInscricaoSacadoAvalista + ", nomeSacadorAvalista="
+				+ nomeSacadorAvalista + ", valorTarifasCustas=" + valorTarifasCustas + ", motivoRejeicao1="
+				+ motivoRejeicao1 + ", valorLiquidoCreditado=" + valorLiquidoCreditado + ", valorOutrasDespesas="
+				+ valorOutrasDespesas + ", valorOutrosCreditos=" + valorOutrosCreditos + ", dataOcorrenciaPagamento="
+				+ dataOcorrenciaPagamento + ", dataEfetivacaoCredito=" + dataEfetivacaoCredito
+				+ ", codigoOcorrenciaSacado=" + codigoOcorrenciaSacado + ", dataOcorrenciaSacado="
+				+ dataOcorrenciaSacado + ", valorOcorrenciaSacado=" + valorOcorrenciaSacado
 				+ ", complementoOcorrenciaSacado=" + complementoOcorrenciaSacado + ", agenciaRecebedora="
 				+ agenciaRecebedora + ", digitoAgenciaRecebedora=" + digitoAgenciaRecebedora + ", motivoRejeicao2="
 				+ motivoRejeicao2 + ", motivoRejeicao3=" + motivoRejeicao3 + ", motivoRejeicao4=" + motivoRejeicao4
@@ -395,6 +398,14 @@ public class RetornoCobranca {
 
 	public void setNumeroBancoCobradorRecebedor(Integer numeroBancoCobradorRecebedor) {
 		this.numeroBancoCobradorRecebedor = numeroBancoCobradorRecebedor;
+	}
+
+	public Date getDataGravacao() {
+		return dataGravacao;
+	}
+
+	public void setDataGravacao(Date dataGravacao) {
+		this.dataGravacao = dataGravacao;
 	}
 
 }

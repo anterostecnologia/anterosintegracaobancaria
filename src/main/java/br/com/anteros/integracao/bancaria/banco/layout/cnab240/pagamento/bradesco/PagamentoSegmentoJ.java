@@ -24,6 +24,7 @@ import static br.com.anteros.integracao.bancaria.banco.layout.ConstantsCNAB.VL_T
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import br.com.anteros.flatfile.annotation.Field;
 import br.com.anteros.flatfile.annotation.Formats;
@@ -31,6 +32,8 @@ import br.com.anteros.flatfile.annotation.IdType;
 import br.com.anteros.flatfile.annotation.Paddings;
 import br.com.anteros.flatfile.annotation.RecordData;
 import br.com.anteros.flatfile.language.EnumTypes;
+import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
+import br.com.anteros.integracao.bancaria.banco.layout.RemessaPagamento;
 
 public class PagamentoSegmentoJ implements RecordData {
 
@@ -97,14 +100,200 @@ public class PagamentoSegmentoJ implements RecordData {
 	@Field(name = CD_OCORRENCIA, length = 10, padding = Paddings.WHITE_SPACE_RIGHT)
 	private String codOcorrenciaRetorno;
 
-	@Override
+	private List<RemessaPagamento> remessas;
+
+	private ContaBancaria contaBancaria;
+
+	public PagamentoSegmentoJ(ContaBancaria contaBancaria, List<RemessaPagamento> remessas) {
+		this.remessas = remessas;
+		this.contaBancaria = contaBancaria;
+	}
+
 	public int getNumberOfRecords() {
-		return 0;
+		return remessas.size();
 	}
 
 	@Override
 	public void readRowData(int row, int sequence) {
-		// TODO Auto-generated method stub
+		this.codigoBanco = contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo(); //G001
+		this.loteServico = 1; //G002
+		this.numeroSequencialRegistro = sequence;//G038
+		this.codigoMoeda = remessas.get(row).getTitulo().getTipoMoeda().getCodigo();//G065
+	}
+
+	public String getCodigoSegmentoRegistro() {
+		return codigoSegmentoRegistro;
+	}
+
+	public void setCodigoSegmentoRegistro(String codigoSegmentoRegistro) {
+		this.codigoSegmentoRegistro = codigoSegmentoRegistro;
+	}
+
+	public Integer getCodigoBanco() {
+		return codigoBanco;
+	}
+
+	public void setCodigoBanco(Integer codigoBanco) {
+		this.codigoBanco = codigoBanco;
+	}
+
+	public Integer getLoteServico() {
+		return loteServico;
+	}
+
+	public void setLoteServico(Integer loteServico) {
+		this.loteServico = loteServico;
+	}
+
+	public Integer getTipoRegistro() {
+		return tipoRegistro;
+	}
+
+	public void setTipoRegistro(Integer tipoRegistro) {
+		this.tipoRegistro = tipoRegistro;
+	}
+
+	public Integer getNumeroSequencialRegistro() {
+		return numeroSequencialRegistro;
+	}
+
+	public void setNumeroSequencialRegistro(Integer numeroSequencialRegistro) {
+		this.numeroSequencialRegistro = numeroSequencialRegistro;
+	}
+
+	public Integer getTipoMovimento() {
+		return tipoMovimento;
+	}
+
+	public void setTipoMovimento(Integer tipoMovimento) {
+		this.tipoMovimento = tipoMovimento;
+	}
+
+	public Integer getCodigoMovimento() {
+		return codigoMovimento;
+	}
+
+	public void setCodigoMovimento(Integer codigoMovimento) {
+		this.codigoMovimento = codigoMovimento;
+	}
+
+	public Long getCodigoBarras() {
+		return codigoBarras;
+	}
+
+	public void setCodigoBarras(Long codigoBarras) {
+		this.codigoBarras = codigoBarras;
+	}
+
+	public String getNomeCedente() {
+		return nomeCedente;
+	}
+
+	public void setNomeCedente(String nomeCedente) {
+		this.nomeCedente = nomeCedente;
+	}
+
+	public Date getDtVencimento() {
+		return dtVencimento;
+	}
+
+	public void setDtVencimento(Date dtVencimento) {
+		this.dtVencimento = dtVencimento;
+	}
+
+	public BigDecimal getVlTitulo() {
+		return vlTitulo;
+	}
+
+	public void setVlTitulo(BigDecimal vlTitulo) {
+		this.vlTitulo = vlTitulo;
+	}
+
+	public BigDecimal getVlDescontoEAbatimento() {
+		return vlDescontoEAbatimento;
+	}
+
+	public void setVlDescontoEAbatimento(BigDecimal vlDescontoEAbatimento) {
+		this.vlDescontoEAbatimento = vlDescontoEAbatimento;
+	}
+
+	public BigDecimal getVlMoraEMulta() {
+		return vlMoraEMulta;
+	}
+
+	public void setVlMoraEMulta(BigDecimal vlMoraEMulta) {
+		this.vlMoraEMulta = vlMoraEMulta;
+	}
+
+	public Date getDtPagamento() {
+		return dtPagamento;
+	}
+
+	public void setDtPagamento(Date dtPagamento) {
+		this.dtPagamento = dtPagamento;
+	}
+
+	public BigDecimal getVlPagamento() {
+		return vlPagamento;
+	}
+
+	public void setVlPagamento(BigDecimal vlPagamento) {
+		this.vlPagamento = vlPagamento;
+	}
+
+	public BigDecimal getQuantidadeMoeda() {
+		return quantidadeMoeda;
+	}
+
+	public void setQuantidadeMoeda(BigDecimal quantidadeMoeda) {
+		this.quantidadeMoeda = quantidadeMoeda;
+	}
+
+	public String getIdentificadorTituloEmpresa() {
+		return identificadorTituloEmpresa;
+	}
+
+	public void setIdentificadorTituloEmpresa(String identificadorTituloEmpresa) {
+		this.identificadorTituloEmpresa = identificadorTituloEmpresa;
+	}
+
+	public String getIdentificadorTituloBanco() {
+		return identificadorTituloBanco;
+	}
+
+	public void setIdentificadorTituloBanco(String identificadorTituloBanco) {
+		this.identificadorTituloBanco = identificadorTituloBanco;
+	}
+
+	public Integer getCodigoMoeda() {
+		return codigoMoeda;
+	}
+
+	public void setCodigoMoeda(Integer codigoMoeda) {
+		this.codigoMoeda = codigoMoeda;
+	}
+
+	public String getBrancos1() {
+		return brancos1;
+	}
+
+	public void setBrancos1(String brancos1) {
+		this.brancos1 = brancos1;
+	}
+
+	public String getCodOcorrenciaRetorno() {
+		return codOcorrenciaRetorno;
+	}
+
+	public void setCodOcorrenciaRetorno(String codOcorrenciaRetorno) {
+		this.codOcorrenciaRetorno = codOcorrenciaRetorno;
+	}
+	
+	public static PagamentoSegmentoJ of(ContaBancaria contaBancaria, List<RemessaPagamento> remessas) {
+		return new PagamentoSegmentoJ(contaBancaria, remessas);
+	}
+
+	public void set(br.com.anteros.flatfile.Record record) {
 
 	}
 

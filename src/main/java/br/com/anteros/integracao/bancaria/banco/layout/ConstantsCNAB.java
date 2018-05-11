@@ -51,6 +51,8 @@ public class ConstantsCNAB {
 	public static final String TRAILLER_COBRANCA = "TraillerCobranca";
 
 	public static final String TRAILLER = "Trailler";
+	
+	public static final String TRAILLER_PAGAMENTO = "TraillerPagamento";
 
 	public static final String NR_SEQUENCIAL_REGISTRO = "NR_SEQUENCIAL_REGISTRO";
 
@@ -589,4 +591,6 @@ public class ConstantsCNAB {
 	public static final String PAGAMENTO_SEGMENTO_B = "PAGAMENTO_SEGMENTO_B";
 	
 	public static final String PAGAMENTO_SEGMENTO_C = "PAGAMENTO_SEGMENTO_C";
+	
+	public static final String PAGAMENTO_SEGMENTO_J = "PAGAMENTO_SEGMENTO_J";
 }

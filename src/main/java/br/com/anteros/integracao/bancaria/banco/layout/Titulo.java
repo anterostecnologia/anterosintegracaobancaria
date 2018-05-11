@@ -52,6 +52,8 @@ public class Titulo {
 
 	private Date dataVencimento;
 	
+	private Date dataPagamento;
+	
 	private Date dataMulta;
 
 	private TipoMoeda tipoMoeda = TipoMoeda.REAL;
@@ -81,6 +83,8 @@ public class Titulo {
 	private BigDecimal valorAbatimentoConcedido = BigDecimal.ZERO;
 
 	private BigDecimal valorAbatimento = BigDecimal.ZERO;
+	
+	private BigDecimal valorPagamento = BigDecimal.ZERO;
 
 	private Integer nrDiasProtesto = 0;
 
@@ -193,6 +197,14 @@ public class Titulo {
 
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
+	}
+
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
 	}
 
 	public Date getDataMulta() {
@@ -462,6 +474,14 @@ public class Titulo {
 
 	public void setValorAbatimento(BigDecimal valorAbatimento) {
 		this.valorAbatimentoConcedido = valorAbatimento;
+	}
+
+	public BigDecimal getValorPagamento() {
+		return valorPagamento;
+	}
+
+	public void setValorPagamento(BigDecimal valorPagamento) {
+		this.valorPagamento = valorPagamento;
 	}
 
 	public TipoProtesto getTipoProtesto() {
