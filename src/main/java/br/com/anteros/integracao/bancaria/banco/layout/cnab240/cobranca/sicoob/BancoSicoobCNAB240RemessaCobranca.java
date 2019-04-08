@@ -38,8 +38,8 @@ import br.com.anteros.integracao.bancaria.banco.layout.cnab240.CNAB240Cobranca;
 @FlatFile(name = "Arquivo CNAB240 - Banco Sicoob", description = "Arquivo de remessa/retorno COBRANÇA CNAB240", version = "1.0")
 public class BancoSicoobCNAB240RemessaCobranca implements CNAB240Cobranca {
 
-	private static final int VERSAO_LAYOUT_ARQUIVO_SICOOB = 87;
-	private static final int VERSAO_LAYOUT_LOTE_SICOOB = 45;
+	private static final int VERSAO_LAYOUT_ARQUIVO_SICOOB = 81;
+	private static final int VERSAO_LAYOUT_LOTE_SICOOB = 40;
 
 	@Record(name = HEADER, description = "Protocolo de comunicação", order = 1, groups = { REMESSA_COBRANCA })
 	protected HeaderArquivo headerArquivo;
@@ -77,7 +77,7 @@ public class BancoSicoobCNAB240RemessaCobranca implements CNAB240Cobranca {
 
 		this.contaBancaria = contaBancaria;
 
-		headerArquivo = HeaderArquivo.of(contaBancaria, remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(),
+		headerArquivo = new  HeaderArquivo(contaBancaria, remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(PRIMEIRA_REMESSA).getTitulo().getCedente(), getVersaoLayoutArquivo(), dataHoraGeracao, numeroSequencialArquivo);
 		headerCobranca = HeaderCobranca.of(contaBancaria, remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(PRIMEIRA_REMESSA).getTitulo().getCedente(), getVersaoLayoutLote(), dataGravacao);
