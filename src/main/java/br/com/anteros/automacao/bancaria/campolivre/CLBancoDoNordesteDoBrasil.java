@@ -87,16 +87,8 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </table>
  * <br/>
  * 
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:pporto@gmail.com">Paulo Porto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
+
 class CLBancoDoNordesteDoBrasil extends AbstractCLBancoDoNordesteDoBrasil {
 	
 	/**

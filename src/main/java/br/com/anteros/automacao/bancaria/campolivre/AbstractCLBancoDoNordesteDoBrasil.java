@@ -23,12 +23,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * Brasil que venham a existir.
  * </p>
  * 
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:pporto@gmail.com">Paulo Porto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public abstract class AbstractCLBancoDoNordesteDoBrasil extends AbstractCampoLivre {
 

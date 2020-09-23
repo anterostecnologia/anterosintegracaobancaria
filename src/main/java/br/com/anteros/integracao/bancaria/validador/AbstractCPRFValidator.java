@@ -29,15 +29,6 @@ import br.com.anteros.integracao.bancaria.validador.digitoverificador.CPFDV;
  * Representa a família de validadores para o cadastro de pessoa na receita
  * federal (CPRF).
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  * 
  */
 public abstract class AbstractCPRFValidator {
@@ -74,15 +65,6 @@ public abstract class AbstractCPRFValidator {
 	 * Representa o tipo de cadastro e fornece o autenticador correto de a cordo
 	 * com este tipo.
 	 * 
-	 * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
-	 * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
-	 * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
-	 * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
-	 *         Mercantil</a>
-	 * 
-	 * @since 0.2
-	 * 
-	 * @version 0.2
 	 */
 	public enum TipoDeCPRF implements Serializable {
 
@@ -152,13 +134,6 @@ public abstract class AbstractCPRFValidator {
 	 * </ul>
 	 * </p>
 	 * 
-	 * @param codigoDoCadastro
-	 *            - identificador do cadastro de pessoa.
-	 * @return uma instância de <code>AbstractCPRFValidator</code>.
-	 * @exception IllegalArgumentException
-	 *                - caso o parâmetro não esteja em um formatador válido de
-	 *                cadastro de pessoa.
-	 * @since 0.2
 	 */
 	public static final AbstractCPRFValidator create(String codigoDoCadastro)
 			throws IllegalArgumentException {
@@ -179,7 +154,6 @@ public abstract class AbstractCPRFValidator {
 	 * @param tipoDeCadastro
 	 * @return um validador
 	 * 
-	 * @since 0.2
 	 */
 	public static final AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro) {
 
@@ -206,7 +180,6 @@ public abstract class AbstractCPRFValidator {
 	 * @return Tipo de CPRF
 	 * @throws IllegalArgumentException
 	 * 
-	 * @since 0.2
 	 */
 	private static TipoDeCPRF selectTipoDeCadastro(String codigoDoCadastro)
 			throws IllegalArgumentException {
@@ -253,7 +226,6 @@ public abstract class AbstractCPRFValidator {
 	 * @return indicação de aprovação
 	 * @throws IllegalArgumentException
 	 * 
-	 * @since 0.2
 	 */
 	public static final boolean isParametrosValidos(String codigoDoCadastro,
 			TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
@@ -290,7 +262,6 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @return cadastro de pessoa a ser validado.
 	 * 
-	 * @since 0.2
 	 */
 	public final String getCodigoDoCadastro() {
 
@@ -301,7 +272,6 @@ public abstract class AbstractCPRFValidator {
 	 * Indica se o validador é de pessoa física.
 	 * 
 	 * @return verdadeiro se for de pessoa física.
-	 * @since 0.2
 	 */
 	public final boolean isFisica() {
 
@@ -312,7 +282,6 @@ public abstract class AbstractCPRFValidator {
 	 * Indica se o validador é de pessoa jurídica.
 	 * 
 	 * @return verdadeiro se for de pessoa jurídica.
-	 * @since 0.2
 	 */
 	public final boolean isJuridica() {
 

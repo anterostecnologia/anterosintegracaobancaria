@@ -21,9 +21,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 /**
  * Interface comum para todos os campos livres do CITIBANK
  * 
- * @author <a href="mailto:fabianojustino@gmail.com">Fabiano Carrijo Justino</a>
- * @since 0.2
- * @version 0.2
  */
 
 class CLBancoCitiBankNN11 extends AbstractCLBancoDoBrasil { 

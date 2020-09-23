@@ -88,13 +88,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </table>
  * </p>
  * 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:fernandohsmartin@gmail.com">Fernando Martin</a>
  * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLItauPadrao extends AbstractCLItau {
 

@@ -21,14 +21,6 @@ package br.com.anteros.automacao.bancaria.comum.pessoa.endereco;
  * facilidades na manipulação dos seus atributos.
  * </p>
  *
- * @author   <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author   Misael Barreto 
- * @author   Rômulo Augusto
- * @author   <a href="http://www.nordestefomento.com.br">Nordeste Fomento Mercantil</a>
- * @author <a href="mailto:samuelvalerio@gmail.com">Samuel Valério</a>
- * 
- * @since   0.2
- * @version   0.2
  */
 public class Endereco {
 

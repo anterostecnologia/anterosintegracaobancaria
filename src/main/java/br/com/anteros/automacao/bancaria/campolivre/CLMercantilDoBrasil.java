@@ -63,11 +63,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </table>
  * </p>
  * 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLMercantilDoBrasil extends AbstractCLMercantilDoBrasil {
 

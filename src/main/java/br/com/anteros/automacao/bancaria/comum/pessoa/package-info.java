@@ -15,6 +15,5 @@
  *******************************************************************************/
 
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  */
 package br.com.anteros.automacao.bancaria.comum.pessoa;

@@ -24,13 +24,6 @@ package br.com.anteros.integracao.bancaria.boleto;
  * </p>
  * 
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @see org.jrimum.bopepo.CodigoDeBarras
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 
 public class CodigoDeBarrasException extends RuntimeException {

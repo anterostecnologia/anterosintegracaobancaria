@@ -89,15 +89,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </tr>
  * </table>
  * 
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Rômulo Augusto
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class CLBancoobCobrancaNaoRegistrada extends AbstractCLBancoob{
 

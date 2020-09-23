@@ -32,22 +32,10 @@ package br.com.anteros.integracao.bancaria.validador;
  * verificador é válido.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CNPJValidator extends AbstractCPRFValidator {
 
-	/**
-	 * @see org.jrimum.vallia.AbstractCPRFValidator#isValido()
-	 * @since 0.2
-	 */
+
 	@Override
 	public boolean isValido() {
 
@@ -65,10 +53,7 @@ class CNPJValidator extends AbstractCPRFValidator {
 		return isValido;
 	}
 
-	/**
-	 * @see org.jrimum.vallia.AbstractCPRFValidator#removeFormatacao()
-	 * @since 0.2
-	 */
+
 	@Override
 	protected void removeFormatacao() {
 

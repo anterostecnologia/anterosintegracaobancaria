@@ -20,8 +20,6 @@ import static java.math.BigDecimal.ZERO;
 
 import java.util.Objects;
 
-import org.apache.logging.log4j.util.Strings;
-
 import br.com.anteros.core.log.Logger;
 import br.com.anteros.core.log.LoggerProvider;
 import br.com.anteros.core.utils.Assert;
@@ -54,23 +52,6 @@ import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
  * </p>
  * 
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="mailto:lukas.antunes@virtualsistemas.com.br">Lukas
- *         Antunes</a> - Colaborador com o banco Intermedium (077)
- * @author <a href="mailto:fernandobgi@gmail.com">Fernando Dias</a> -
- *         Colaborador com o banco Rural (453)
- * @author <a href="mailto:pporto@gmail.com">Paulo Porto</a> - 
- * 		   Colaborador com o Banco do Nordeste do Brasil (004).
- * @author <a href="mailto:fabianojustino@gmail.com">Fabiano Carrijo</a> - 
- * 		   Colaborador com o Banco Citibank (756).
- * @author <a href="mailto:contato@douglasramiro.com.br">Douglas Ramiro</a> - 
- * 		   Colaborador com o Banco de Brasília (070).
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 
@@ -87,42 +68,42 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 	/**
 	 * Nosso número com 7 posições.
 	 */
-	static final int NN7 = 7;
+	public static final int NN7 = 7;
 
 	/**
 	 * Nosso número com 8 posições.
 	 */
-	static final int NN8 = 8;
+	public static final int NN8 = 8;
 	
 	/**
 	 * Nosso número com 9 posições.
 	 */
-	static final int NN9 = 9;
+	public static final int NN9 = 9;
 	
 	/**
 	 * Nosso número com 10 posições.
 	 */
-	static final int NN10 = 10;
+	public static final int NN10 = 10;
 	
 	/**
 	 * Nosso número com 11 posições.
 	 */
-	static final int NN11 = 11;
+	public static final int NN11 = 11;
 	
 	/**
 	 * Nosso número com 14 posições.
 	 */
-	static final int NN14 = 14;
+	public static final int NN14 = 14;
 
 	/**
 	 * Nosso número com 15 posições.
 	 */
-	static final int NN15 = 15;
+	public static final int NN15 = 15;
 	
 	/**
 	 * Nosso número com 17 posições.
 	 */
-	static final int NN17 = 17;
+	public static final int NN17 = 17;
 
 	/**
 	 * Subclasses não precisam definir o tamanho.
@@ -187,23 +168,18 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
 					case BANCO_BRADESCO: return AbstractCLBradesco.create(titulo);
 					case BANCO_DO_BRASIL: return AbstractCLBancoDoBrasil.create(titulo);
 					case BANCO_DO_NORDESTE_DO_BRASIL: return AbstractCLBancoDoNordesteDoBrasil.create(titulo);
-					case BANCO_ABN_AMRO_REAL: return AbstractCLBancoReal.create(titulo);
 					case CAIXA_ECONOMICA_FEDERAL: return AbstractCLCaixaEconomicaFederal.create(titulo);
-					case HSBC: return AbstractCLHSBC.create(titulo);
-					case UNIBANCO: return AbstractCLUnibanco.create(titulo);
 					case BANCO_ITAU: return AbstractCLItau.create(titulo);
 					case BANCO_SAFRA: return AbstractCLBancoSafra.create(titulo);
 					case BANCO_DO_ESTADO_DO_RIO_GRANDE_DO_SUL: return AbstractCLBanrisul.create(titulo);
 					case MERCANTIL_DO_BRASIL: return AbstractCLMercantilDoBrasil.create(titulo);
 					case BANCO_DO_ESTADO_DO_ESPIRITO_SANTO: return AbstractCLBanestes.create(titulo);
-					case BANCO_RURAL: return AbstractCLBancoRural.create(titulo);
 					case BANCO_SANTANDER: return AbstractCLSantander.create(titulo);
 					case BANCO_INTEMEDIUM: return AbstractCLBancoIntermedium.create(titulo);
 					case BANCO_SICREDI: return AbstractCLSicredi.create(titulo);
 					case BANCOOB: return AbstractCLBancoob.create(titulo);
 					case CITIBANK: return AbstractCLBancoCitibank.create(titulo); 
 					case BANCO_DE_BRASILIA: return AbstractCLBancoDeBrasilia.create(titulo);
-					case CECRED: return AbstractCLCecred.create(titulo);
 						
 					default:
 						/*

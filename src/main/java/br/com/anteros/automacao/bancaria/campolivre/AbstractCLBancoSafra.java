@@ -26,11 +26,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * existir.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 abstract class AbstractCLBancoSafra extends AbstractCampoLivre {
 

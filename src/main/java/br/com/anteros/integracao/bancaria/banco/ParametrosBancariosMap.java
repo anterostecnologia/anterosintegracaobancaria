@@ -49,10 +49,6 @@ import br.com.anteros.core.utils.Assert;
  * Definidos como padrão pela FEBRABAN.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @version 0.2
- * @since 0.2
  */
 public final class ParametrosBancariosMap {
 

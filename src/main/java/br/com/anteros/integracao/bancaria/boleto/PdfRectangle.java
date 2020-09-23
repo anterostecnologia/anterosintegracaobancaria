@@ -22,11 +22,6 @@ import com.lowagie.text.Rectangle;
  * Classe adapter para facilitar as operações com os fields pdf com a lib iText.
  * </p>
  * 
- * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class PdfRectangle extends Rectangle {
 

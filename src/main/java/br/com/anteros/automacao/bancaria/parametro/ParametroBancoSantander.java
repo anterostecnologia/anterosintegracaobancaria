@@ -22,11 +22,6 @@ import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
  * Parâmetros bancários específicos para o
  * {@link BancosSuportados#BANCO_SANTANDER}.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @version 0.2.3
- * 
- * @since 0.2
  */
 public enum ParametroBancoSantander implements ParametroBancario<ParametroBancoSantander>{
 	/**

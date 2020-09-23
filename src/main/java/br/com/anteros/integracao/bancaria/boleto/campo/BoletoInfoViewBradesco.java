@@ -23,9 +23,7 @@ import br.com.anteros.integracao.bancaria.banco.layout.NumeroDaConta;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- */
+
 public class BoletoInfoViewBradesco extends AbstractBoletoInfoCampoView{
 
 	BoletoInfoViewBradesco(ResourceBundle resourceBundle, Boleto boleto) {

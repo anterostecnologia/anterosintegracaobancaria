@@ -48,17 +48,6 @@ import br.com.anteros.core.utils.StringUtils;
  * Obs.: O limite mínimo e máximo do módulo 11 são 2 e 9, respectivamente.
  * </p>
  * 
- * @see Modulo
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class CNPJDV extends AbstractDigitoVerificador {
 

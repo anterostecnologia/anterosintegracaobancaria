@@ -27,11 +27,6 @@ import br.com.anteros.core.utils.StringUtils;
  * As rotinas tradicionais são Módulo 10 e Módulo 11.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @version 0.2
- * 
- * @since 0.2
  */
 public class Modulo {
 

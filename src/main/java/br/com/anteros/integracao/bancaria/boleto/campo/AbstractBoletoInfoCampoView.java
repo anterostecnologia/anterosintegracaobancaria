@@ -38,10 +38,6 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
- */
 public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView{
 	
 	private final ResourceBundle resourceBundle;

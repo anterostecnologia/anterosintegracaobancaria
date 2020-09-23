@@ -103,13 +103,6 @@ import br.com.anteros.integracao.bancaria.validador.digitoverificador.TipoDeModu
  * </tr>
  * </table>
  * 
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLSicredi extends AbstractCLSicredi {
 

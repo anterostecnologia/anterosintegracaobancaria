@@ -16,7 +16,6 @@
 package br.com.anteros.integracao.bancaria.banco.layout;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import br.com.anteros.automacao.bancaria.comum.pessoa.contato.NumeroDeTelefone;
 import br.com.anteros.automacao.bancaria.comum.pessoa.endereco.Endereco;
@@ -28,11 +27,6 @@ import br.com.anteros.integracao.bancaria.banco.Pessoa;
  * Supertipo para as entidades de cobrança (Sacado, Cedente, SacadorAvalista). Encapsula
  * a composição com o objeto Pessoa deixando apenas as particularidades de cada entidade nos subtipos.
  * 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- *
- * @since 0.2
- * 
- * @version 0.2
  */
 public class EntidadeDeCobranca{
 

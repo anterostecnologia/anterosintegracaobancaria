@@ -30,14 +30,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.CodigoDeCompensacaoBACEN;
  * financeira) supervisionada pelo <a href="http://www.bcb.gov.br/">BACEN</a>.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="mailto:samuelvalerio@gmail.com">Samuel Valério</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 	
 public interface Banco extends PessoaJuridica {

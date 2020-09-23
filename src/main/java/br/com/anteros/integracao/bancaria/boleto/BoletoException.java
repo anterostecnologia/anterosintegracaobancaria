@@ -21,9 +21,6 @@ package br.com.anteros.integracao.bancaria.boleto;
  * Qualquer exceção gerada durante a geração de um Boleto gera uma <code>BoletoExceptiton</code>. Centraliza e localiza os problemas relativos a geração de um boleto.
  * </p>
  * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
  */
 
 public class BoletoException extends RuntimeException {

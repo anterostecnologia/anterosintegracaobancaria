@@ -197,7 +197,6 @@ public class BradescoCNAB240Cobranca implements CNAB240Cobranca {
 			if (recordT.getInnerRecords().size() != 1)
 				throw new CNABException("Número de registros filhos para o Registro T incorreto.");
 			segmentoU.set(recordT.getInnerRecords().iterator().next());
-			//result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU));
 		}
 
 		traillerCobranca.set(flatFile.getRecord(TRAILLER_COBRANCA));

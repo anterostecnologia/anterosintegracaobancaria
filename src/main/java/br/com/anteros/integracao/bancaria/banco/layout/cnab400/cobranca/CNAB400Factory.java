@@ -11,7 +11,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.bancobrasil.BancoBrasilCNAB400;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.bradesco.BradescoCNAB400;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.caixa.CaixaEconomicaFederalCNAB400;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.hsbc.HsbcCNAB400;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.itau.ItauCNAB400;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab400.cobranca.santander.SantanderCNAB400;
 import br.com.anteros.integracao.bancaria.util.Constants;
@@ -31,8 +30,6 @@ public class CNAB400Factory {
 			return BradescoCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
 			return CaixaEconomicaFederalCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
-			return HsbcCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
 			return ItauCNAB400.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {
@@ -53,8 +50,6 @@ public class CNAB400Factory {
 			return BradescoCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
 			return CaixaEconomicaFederalCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
-			return HsbcCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
 			return ItauCNAB400.of(contaBancaria, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {

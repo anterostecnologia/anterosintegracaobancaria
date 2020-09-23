@@ -37,17 +37,6 @@ import br.com.anteros.core.utils.StringUtils;
  * Obs.: A rotina de módulo utilizada é o módulo 11.
  * </p>
  * 
- * @see Modulo
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @version 0.2
- * 
- * @since 0.2
  */
 public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 

@@ -36,11 +36,6 @@ import br.com.anteros.integracao.bancaria.banco.PessoaJuridica;
  * Um Banco (instituição financeira) supervisionada pelo <a href="http://www.bcb.gov.br/">BACEN</a>.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 	
 public class Banco implements br.com.anteros.integracao.bancaria.banco.Banco {

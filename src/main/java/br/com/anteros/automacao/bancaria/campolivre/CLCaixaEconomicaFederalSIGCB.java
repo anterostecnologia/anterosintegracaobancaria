@@ -77,13 +77,6 @@ import br.com.anteros.integracao.bancaria.validador.digitoverificador.Modulo;
  * </tbody>
  * </table>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:rogerio@visaosoft.com.br">Rogério Kleinkauf</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLCaixaEconomicaFederalSIGCB extends AbstractCLCaixaEconomicaFederal {
 

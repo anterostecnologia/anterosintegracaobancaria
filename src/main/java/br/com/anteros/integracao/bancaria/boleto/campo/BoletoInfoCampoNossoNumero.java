@@ -21,7 +21,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
 /**
  * Formata o Nosso Número do Título que é impresso no boleto.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public class BoletoInfoCampoNossoNumero {
 

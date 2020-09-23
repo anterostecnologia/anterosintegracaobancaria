@@ -26,11 +26,6 @@ import br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CPRF;
  * Pessoa física ou jurídica a que se destina a cobrança do compromisso, é o cliente do Cedente.
  * </p>
  * 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class Sacado extends EntidadeDeCobranca {
 

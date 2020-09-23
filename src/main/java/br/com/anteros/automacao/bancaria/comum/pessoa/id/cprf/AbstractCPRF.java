@@ -31,14 +31,6 @@ import br.com.anteros.integracao.bancaria.validador.AbstractCPRFValidator.TipoDe
  * ou jurídica. O <a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/CPF/default.htm">Cadastro de Pessoa Física é o CPF</a>, já o de <a href="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConsulSitCadastralCnpj.htm">Pessoa Jurídica é o CNPJ</a>.
  * </p>
  * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 	
 public abstract class AbstractCPRF implements CPRF{ 

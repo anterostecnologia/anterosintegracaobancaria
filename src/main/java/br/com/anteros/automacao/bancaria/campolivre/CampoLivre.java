@@ -25,15 +25,6 @@ import br.com.anteros.flatfile.TextStream;
  * Essa é uma Interace com um propósito de marcar e agrupar tipos campo livre.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @see AbstractCampoLivre
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public interface CampoLivre extends TextStream{
 	

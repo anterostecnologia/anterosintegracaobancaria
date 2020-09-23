@@ -82,13 +82,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </table>
  * 
  * 
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * 
- * @since 0.2
- * 
- * @version 0.2.3
  */
 class CLCaixaEconomicaFederalSICOBNossoNumero14 extends AbstractCLCaixaEconomicaFederal {
 	 

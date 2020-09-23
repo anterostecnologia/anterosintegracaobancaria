@@ -80,16 +80,10 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </tbody>
  * </table>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
-
  * @see <a href="http://www1.caixa.gov.br/download/asp/download.asp?subCategId=198&CategId=65&subCateglayout=Manuais&Categlayout=Cobran%C3%A7a%20Caixa%20%E2%80%93%20SICOB#aba_voce">Manuais SICOB - Caixa</a>
  * @see <a href="http://downloads.caixa.gov.br/_arquivos/cobrcaixasicob/manuaissicob/ESPCODBARR_SICOB.pdf">Especificação código barras com nosso número de 11 posições</a>
  * @see <a href="http://downloads.caixa.gov.br/_arquivos/cobrcaixasicob/manuaissicob/ESPCODBARBLOQCOBRANREGIST_16POSICOES.pdf">Leiaute de Arquivo Eletrônico Padrão CNAB 240 - Cobrança Bancária CAIXA - SICOB</a>
  * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLCaixaEconomicaFederalSICOBNossoNumero10 extends AbstractCLCaixaEconomicaFederal {
 	

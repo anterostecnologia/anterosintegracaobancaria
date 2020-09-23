@@ -8,7 +8,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.CNABException;
 import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bancobrasil.v87.BancoBrasilCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.bradesco.v50.BradescoCNAB240Extrato;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.hsbc.v30.HsbcCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.itau.v50.ItauCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.extrato.sicoob.BancoSicoobCNAB240Extrato;
 import br.com.anteros.integracao.bancaria.util.Constants;
@@ -36,8 +35,6 @@ public class CNAB240ExtratoBuilder {
 			return BancoBrasilCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.BRADESCO)) {
 			return BradescoCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
-			return HsbcCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
 			return ItauCNAB240Extrato.of(contaBancaria, dataHoraGeracao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SICOOB)) {

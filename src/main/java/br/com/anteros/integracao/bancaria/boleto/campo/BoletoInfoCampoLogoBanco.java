@@ -23,10 +23,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
- */
 public class BoletoInfoCampoLogoBanco {
 	
 	public static Image getImagemBanco(ResourceBundle resourceBundle, ContaBancaria conta){

@@ -23,12 +23,6 @@ package br.com.anteros.integracao.bancaria.banco.layout;
  *  Carteira de Cobrança de uma Conta Corrente.
  * </p>
  * 
- * 
- * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 	
 public class Carteira {

@@ -22,11 +22,6 @@ import br.com.anteros.integracao.bancaria.boleto.BancosSuportados;
  * Parâmetros bancários específicos para o
  * {@link BancosSuportados#BANCOOB}.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @version 0.2.3
- * 
- * @since 0.2
  */
 public enum ParametroBancoob implements ParametroBancario<ParametroBancoob>{
 	MODALIDADE_DE_COBRANCA,

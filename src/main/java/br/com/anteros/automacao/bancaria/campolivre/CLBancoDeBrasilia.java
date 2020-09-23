@@ -99,18 +99,6 @@ import br.com.anteros.integracao.bancaria.validador.digitoverificador.Modulo;
  * </table>
  * 
  * 
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:contato@douglasramiro.com.br">Douglas Ramiro</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
- */
-/**
- * @author gleitao
  *
  */
 public class CLBancoDeBrasilia extends AbstractCLBancoDeBrasilia{

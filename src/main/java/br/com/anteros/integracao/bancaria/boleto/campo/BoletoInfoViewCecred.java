@@ -21,9 +21,7 @@ import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- */
+
 public class BoletoInfoViewCecred extends AbstractBoletoInfoCampoView {
 
 	BoletoInfoViewCecred(ResourceBundle resourceBundle, Boleto boleto) {
@@ -35,18 +33,13 @@ public class BoletoInfoViewCecred extends AbstractBoletoInfoCampoView {
 		String textoFcLocalPagamento = super.getTextoFcLocalPagamento();
 		return StringUtils.isBlank(textoFcLocalPagamento) ? "PAGAVEL PREFERENCIALMENTE NAS COOPERATIVAS DO SISTEMA CECRED." : textoFcLocalPagamento;
 	}
-	
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
-	 */
+
 	@Override
 	public String getTextoRsAgenciaCodigoCedente() {
 		return getAgenciaCodigoCedente();
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
-	 */
+
 	@Override
 	public String getTextoFcAgenciaCodigoCedente() {
 		return getAgenciaCodigoCedente();

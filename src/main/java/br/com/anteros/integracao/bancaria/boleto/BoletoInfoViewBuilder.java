@@ -33,11 +33,7 @@ import java.util.WeakHashMap;
 /**
  * Lê os dados do Boleto e monta-os para uso em {@linkplain #texts()} e {@linkplain #images()}. 
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  *
- * @since 0.2
- * 
- * @version 0.2
  */
 public class BoletoInfoViewBuilder {
 	

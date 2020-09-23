@@ -28,13 +28,6 @@ package br.com.anteros.integracao.bancaria.banco;
  * @see br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CPRF
  * @see br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CNPJ
  * 
- * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class PessoaJuridica extends Pessoa implements br.com.anteros.automacao.bancaria.comum.pessoa.PessoaJuridica {
 

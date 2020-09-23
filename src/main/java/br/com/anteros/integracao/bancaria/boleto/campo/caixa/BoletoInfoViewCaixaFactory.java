@@ -22,7 +22,6 @@ import br.com.anteros.integracao.bancaria.boleto.campo.BoletoInfoCampoView;
 
 /**
  * Factory para determinar qual a implementação da CAIXA será usada de acordo com o convênio (SIGCB, SINCO, SICOB).
- * @author Rômulo Augusto
  */
 public class BoletoInfoViewCaixaFactory {
 

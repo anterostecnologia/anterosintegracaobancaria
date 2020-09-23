@@ -80,6 +80,8 @@ public class BancoBrasilCNAB240Cobranca implements CNAB240Cobranca {
 	protected TraillerArquivo traillerArquivo;
 
 	private ContaBancaria contaBancaria;
+	
+	private Date dataGravacao;
 
 	protected BancoBrasilCNAB240Cobranca(ContaBancaria contaBancaria, List<RemessaCobranca> remessas, Date dataHoraGeracao,
 			Date dataGravacao) {
@@ -89,6 +91,7 @@ public class BancoBrasilCNAB240Cobranca implements CNAB240Cobranca {
 		}
 
 		this.contaBancaria = contaBancaria;
+		this.dataGravacao = dataGravacao;
 
 		headerArquivo = HeaderArquivo.of(contaBancaria, remessas.get(PRIMEIRA_REMESSA).getTitulo().getCarteira(),
 				remessas.get(PRIMEIRA_REMESSA).getTitulo().getCedente(), getVersaoLayoutArquivo(), dataHoraGeracao);
@@ -197,7 +200,7 @@ public class BancoBrasilCNAB240Cobranca implements CNAB240Cobranca {
 			if (recordT.getInnerRecords().size() != 1)
 				throw new CNABException("Número de registros filhos para o Registro T incorreto.");
 			segmentoU.set(recordT.getInnerRecords().iterator().next());
-			//result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU));
+			result.add(RetornoCobranca.of(contaBancaria, segmentoT, segmentoU, this.dataGravacao));
 		}
 
 		traillerCobranca.set(flatFile.getRecord(TRAILLER_COBRANCA));

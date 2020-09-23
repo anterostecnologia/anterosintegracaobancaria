@@ -23,12 +23,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * venham a existir.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 abstract class AbstractCLMercantilDoBrasil extends AbstractCampoLivre {
 

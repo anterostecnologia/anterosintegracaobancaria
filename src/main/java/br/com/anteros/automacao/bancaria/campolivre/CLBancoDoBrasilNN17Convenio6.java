@@ -58,17 +58,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo;
  * </tr>
  * </table>
  * 
- * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 class CLBancoDoBrasilNN17Convenio6 extends AbstractCLBancoDoBrasil{
 

@@ -25,11 +25,6 @@ import br.com.anteros.integracao.bancaria.validador.digitoverificador.BoletoLinh
  * linhas digitáveis de boletos.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public final class BoletoUtil {
 

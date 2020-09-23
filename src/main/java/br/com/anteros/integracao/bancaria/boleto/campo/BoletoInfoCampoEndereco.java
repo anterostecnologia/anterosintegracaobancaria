@@ -20,9 +20,6 @@ import br.com.anteros.core.utils.ObjectUtils;
 import br.com.anteros.core.utils.StringUtils;
 import br.com.anteros.integracao.bancaria.banco.layout.EntidadeDeCobranca;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- */
 public class BoletoInfoCampoEndereco {
 	
 	public static String getTextoEnderecoLinha1(EntidadeDeCobranca pessoa){

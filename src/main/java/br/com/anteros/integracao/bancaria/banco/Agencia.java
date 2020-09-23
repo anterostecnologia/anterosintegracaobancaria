@@ -30,10 +30,6 @@ package br.com.anteros.integracao.bancaria.banco;
  * </ul>
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a> 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @version 0.2
  */
 public interface Agencia<C, D>{
 

@@ -23,13 +23,6 @@ import br.com.anteros.core.utils.StringUtils;
  * supervisionados pelo <a href="http://www.bcb.gov.br/?CHEQUESCOMPE">BACEN</a>
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 

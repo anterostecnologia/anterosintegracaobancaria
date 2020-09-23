@@ -37,11 +37,6 @@ import br.com.anteros.core.utils.ResourceUtils;
  * Acessa os resources usados pelo Bopepo e os mantém nesta instância para as
  * próximas chamadas.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class ResourceBundle {
 	

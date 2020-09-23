@@ -26,12 +26,6 @@ import br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf.CPRF;
  * <p>
  * Cedente original do Título.
  * </p>
- * 
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  */
 public class SacadorAvalista extends EntidadeDeCobranca {
 

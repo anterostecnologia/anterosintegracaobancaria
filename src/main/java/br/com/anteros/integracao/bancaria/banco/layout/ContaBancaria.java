@@ -24,11 +24,6 @@ import br.com.anteros.integracao.bancaria.banco.Banco;
  * conta ou o código do cedente e a carteira.
  * </p>
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
  * 
  * @see br.com.anteros.automacao.bancaria.comum.pessoa.Pessoa
  * @see Banco

@@ -2,7 +2,11 @@ package br.com.anteros.integracao.bancaria.banco.layout;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author edsonmartins
+ *
+ */
 public class ConciliacaoBancaria {
 
 	private ContaBancaria contaBancaria;

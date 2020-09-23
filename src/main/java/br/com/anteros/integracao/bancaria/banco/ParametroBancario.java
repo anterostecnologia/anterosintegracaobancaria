@@ -21,8 +21,6 @@ package br.com.anteros.integracao.bancaria.banco;
  * nome em uma Enumeração.
  * 
  * 
- * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * 
  * @param <P>
  *            Enum usado como key do parâmetro bancário.
  */

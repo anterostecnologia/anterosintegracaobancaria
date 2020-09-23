@@ -21,75 +21,56 @@ import br.com.anteros.integracao.bancaria.banco.layout.Titulo.Aceite;
 import br.com.anteros.integracao.bancaria.boleto.Boleto;
 import br.com.anteros.integracao.bancaria.boleto.ResourceBundle;
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
- */
+
 public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 
 	BoletoInfoViewSicredi(ResourceBundle resourceBundle, Boleto boleto) {
 		super(resourceBundle, boleto);
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsCodigoBanco()
-	 */
+
 	@Override
 	public String getTextoRsCodigoBanco() {
 		return getTextoCodigoDoBanco();
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcCodigoBanco()
-	 */
+
 	@Override
 	public String getTextoFcCodigoBanco() {
 		return getTextoCodigoDoBanco();
 	}
 	
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcLocalPagamento()
-	 */
+
 	@Override
 	public String getTextoFcLocalPagamento() {
 		return "Preferencialmente nas cooperativas de crédito do SICREDI";
 	}	
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
-	 */
+
 	@Override
 	public String getTextoRsAgenciaCodigoCedente() {
 		return getAgenciaCodigoCedente();
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
-	 */
+
 	@Override
 	public String getTextoFcAgenciaCodigoCedente() {
 		return getAgenciaCodigoCedente();
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsNossoNumero()
-	 */
+
 	@Override
 	public String getTextoRsNossoNumero() {
 		return getTextoNossoNumero();
 	}
 
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcNossoNumero()
-	 */
+
 	@Override
 	public String getTextoFcNossoNumero() {
 		return getTextoNossoNumero(); 
 	}
 	
-	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAceite()
-	 */
+
 	@Override
 	public String getTextoFcAceite() {
 		Aceite aceite = super.getBoleto().getTitulo().getAceite();

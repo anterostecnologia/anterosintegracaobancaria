@@ -24,7 +24,6 @@ import br.com.anteros.integracao.bancaria.boleto.campo.AbstractBoletoInfoCampoVi
 /**
  * View para o convênio SIGCB da CAIXA.
  * 
- * @author Rômulo Augusto
  */
 public class BoletoInfoViewCaixaSIGCB extends AbstractBoletoInfoCampoView {
 

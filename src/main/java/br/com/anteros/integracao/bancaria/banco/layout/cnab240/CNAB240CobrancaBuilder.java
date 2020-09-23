@@ -10,7 +10,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.RemessaCobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bancobrasil.v87.BancoBrasilCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.bradesco.v84.BradescoCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.caixa.v50.CaixaEconomicaFederalCNAB240Cobranca;
-import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.hsbc.v10.HsbcCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.itau.v40.ItauCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.santander.v40.SantanderCNAB240Cobranca;
 import br.com.anteros.integracao.bancaria.banco.layout.cnab240.cobranca.sicoob.BancoSicoobCNAB240RemessaCobranca;
@@ -61,8 +60,6 @@ public class CNAB240CobrancaBuilder {
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo()
 				.equals(Constants.CAIXA_ECONOMICA_FEDERAL)) {
 			return CaixaEconomicaFederalCNAB240Cobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
-		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.HSBC)) {
-			return HsbcCNAB240Cobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.ITAU)) {
 			return ItauCNAB240Cobranca.of(contaBancaria, remessas, dataHoraGeracao, dataGravacao);
 		} else if (contaBancaria.getBanco().getCodigoDeCompensacaoBACEN().getCodigo().equals(Constants.SANTANDER)) {

@@ -22,7 +22,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.ContaBancaria;
 /**
  * Formata a agência e o número da conta.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public class BoletoInfoCampoAgenciaCodigoCedente {
 

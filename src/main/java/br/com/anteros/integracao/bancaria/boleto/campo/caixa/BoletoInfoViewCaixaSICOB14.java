@@ -26,7 +26,6 @@ import br.com.anteros.integracao.bancaria.boleto.campo.AbstractBoletoInfoCampoVi
 /**
  * View para o convênio SICOB, Nosso número com 14 dígitos, da CAIXA.
  * 
- * @author Rômulo Augusto
  */
 public class BoletoInfoViewCaixaSICOB14 extends AbstractBoletoInfoCampoView {
 

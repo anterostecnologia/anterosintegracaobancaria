@@ -22,7 +22,6 @@ import br.com.anteros.integracao.bancaria.banco.layout.EntidadeDeCobranca;
 /**
  * Formata os dados como CPRF e Nome de uma pessoa que são impressos no boleto.
  * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public class BoletoInfoCampoPessoa {
 
@@ -30,7 +29,7 @@ public class BoletoInfoCampoPessoa {
 	 * Retorna o texto formatado no estilo {@code "%nome, %tipo_de_cprf: %cprf"}:
 	 * 
 	 * <ul>
-	 * <li>"Fulando Da Silva, CPF: 111.111.111-11"</li>
+	 * <li>"Fulano Da Silva, CPF: 111.111.111-11"</li>
 	 * <li>"Empresa Boa, CNPJ: 00.123.456/0001-78"</li>
 	 * </ul>
 	 * 

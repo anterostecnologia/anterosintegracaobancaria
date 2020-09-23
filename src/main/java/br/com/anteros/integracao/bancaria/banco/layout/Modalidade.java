@@ -17,10 +17,7 @@ package br.com.anteros.integracao.bancaria.banco.layout;
 
 import br.com.anteros.core.utils.StringUtils;
 
-/**
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- *
- */
+
 public class Modalidade {
 
 	private String codigo;

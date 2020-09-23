@@ -18,8 +18,6 @@ package br.com.anteros.automacao.bancaria.comum.pessoa.id.cprf;
 /**
  * Interface comum entre Cadastro de Pessoa na Receita Federal de pessoas
  * Físicas ou Jurídicas.
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public interface CPRF extends Comparable<Object>{
 

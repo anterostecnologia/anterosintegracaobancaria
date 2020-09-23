@@ -18,10 +18,7 @@ package br.com.anteros.integracao.bancaria.boleto.campo;
 import java.awt.Image;
 
 
-/**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
- */
+
 public interface BoletoInfoCampoView {
 	
 	//Recibo do Sacado
